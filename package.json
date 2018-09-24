@@ -1,0 +1,38 @@
+{
+  "name": "cpro_customs_git",
+  "version": "1.0.0",
+  "description": "This is just a simple Readme.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --mode development ./cpro_customs/frontend/src/index.js --output ./cpro_customs/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./cpro_customs/frontend/src/index.js --output ./cpro_customs/frontend/static/frontend/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsm121/cpro_customs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsm121/cpro_customs/issues"
+  },
+  "homepage": "https://github.com/tsm121/cpro_customs#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "weak-key": "^1.0.1",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.1"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.1.0"
+  }
+}
