@@ -1,8 +1,8 @@
 {
-  "name": "CproCustoms",
+  "name": "PWA Toll",
   "short_name": "TollCustoms",
-  "theme_color": "#2196f3",
-  "background_color": "#2196f3",
+  "theme_color": "#343c3f",
+  "background_color": "#343c3f",
   "display": "fullscreen",
   "orientation": "portrait",
   "Scope": ".",
