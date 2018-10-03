@@ -49,7 +49,7 @@ if (workbox) {
     "revision": "0175eff2625e5bad81e422f3c41e6154"
   },
   {
-    "url": "assets/test.png",
+    "url": "assets/test.js.png",
     "revision": "9b15b6140374217a74fcf2d920bb8f05"
   },
   {
