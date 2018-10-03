@@ -6,3 +6,8 @@ body {
 .header {
     background-color: white!important;
 }
+
+.svg_nav_icon{
+    transform: scale(5);
+}
+
