@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Theme from'./material-theme'
+
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+
+import Header from './components/Header'
+import Welcome from "./components/Welcome";
+import Navigation from "./components/Navigation";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">You are looking at some BADASS engineering skills!</h1>	
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+	render() {
+		return (
+
+			<MuiThemeProvider theme={Theme}>
+				<Header/>
+				<Welcome/>
+				<Navigation/>
+			</MuiThemeProvider>
+		);
+	}
 }
 
-export default App;
+export default withStyles()(App);
