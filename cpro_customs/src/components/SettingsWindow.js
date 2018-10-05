@@ -44,15 +44,15 @@ export default class SettingsWindow extends Component  {
 						>
 
 							<Grid item sm={0}>
-								<LangButton text={'Norsk'}/>
+								<LangButton text={'Norsk'} countryName={'norway'}/>
 							</Grid>
 
 							<Grid item sm={0}>
-								<LangButton text={'Svenska'}/>
+								<LangButton text={'Svenska'} countryName={'sweden'}/>
 							</Grid>
 
 							<Grid item sm={0}>
-								<LangButton text={'English'}/>
+								<LangButton text={'English'} countryName={'uk'}/>
 							</Grid>
 
 

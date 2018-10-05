@@ -21,13 +21,13 @@ export default class LangButton extends Component  {
 	}
 
 	render = () => {
-		const { text } = this.props
+		const { text, countryName } = this.props
 
 		return (
 
 			<div>
 				<Avatar
-					src={require('../logo.png')}
+					src={require(`../assets/lang_icons/${countryName}.png`)}
 					style={styles.flag_img}
 				/>
 				<h3 style={styles.flag_name}>{text}</h3>
