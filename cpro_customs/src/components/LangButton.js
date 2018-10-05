@@ -16,8 +16,13 @@ const styles =({
 
 
 export default class LangButton extends Component  {
+	constructor (props) {
+		super(props)
+	}
 
 	render = () => {
+		const { text } = this.props
+
 		return (
 
 			<div>
@@ -25,7 +30,7 @@ export default class LangButton extends Component  {
 					src={require('../logo.png')}
 					style={styles.flag_img}
 				/>
-				<h3 style={styles.flag_name}>Norsk</h3>
+				<h3 style={styles.flag_name}>{text}</h3>
 			</div>
 
 		)

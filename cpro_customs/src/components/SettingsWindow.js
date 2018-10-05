@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import Grid from '@material-ui/core/Grid';
-import Avatar from '@material-ui/core/Avatar';
 import LangButton from "./LangButton";
 
 
@@ -15,16 +14,6 @@ const styles =({
 		top: '50%',
 		left: '50%',
 		transform: 'translate(-50%, -50%)'
-	},
-
-	flag_img: {
-		height:'70px',
-		width:'70px',
-		margin: '10px'
-	},
-
-	flag_name: {
-		textAlign: 'center'
 	}
 });
 
@@ -55,15 +44,15 @@ export default class SettingsWindow extends Component  {
 						>
 
 							<Grid item sm={0}>
-								<LangButton/>
+								<LangButton text={'Norsk'}/>
 							</Grid>
 
 							<Grid item sm={0}>
-								<LangButton/>
+								<LangButton text={'Svenska'}/>
 							</Grid>
 
 							<Grid item sm={0}>
-								<LangButton/>
+								<LangButton text={'English'}/>
 							</Grid>
 
 
