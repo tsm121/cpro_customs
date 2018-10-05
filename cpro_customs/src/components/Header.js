@@ -9,21 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Modal from '@material-ui/core/Modal';
 import SettingsWindow from "./SettingsWindow";
 
-
-const styles =({
-	modal: {
-		height: '60%',
-		width:'80%',
-		backgroundColor:'#37424a',
-		color: '#e2e3e5',
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)'
-	}
-});
-
-
 export default class Header extends Component  {
 	constructor(){
 		super()
