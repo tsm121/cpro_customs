@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
 import Modal from '@material-ui/core/Modal';
+import SettingsWindow from "./SettingsWindow";
 
 
 const styles =({
@@ -86,11 +87,9 @@ export default class Header extends Component  {
 					open={this.state.open}
 					onClose={this.handleClose}
 				>
-
-					<div style={styles.modal}>
-						jisajdklasjdklas djklas djklas jdkasl
+					<div>
+						<SettingsWindow/>
 					</div>
-
 				</Modal>
 
 			</FormControl>
