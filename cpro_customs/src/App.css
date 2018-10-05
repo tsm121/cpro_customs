@@ -11,3 +11,12 @@ body {
     transform: scale(5);
 }
 
+.settings_modal {
+    height: 50%;
+    width: 80%;
+    background-color: #37424a;
+    position: absolute;
+    top: 50%;
+    left: 50%;,
+    transform: translate(-50%, -50%);
+}
