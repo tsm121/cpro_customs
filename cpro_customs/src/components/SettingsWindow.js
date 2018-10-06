@@ -36,7 +36,7 @@ export default class SettingsWindow extends Component  {
 						<h1>Settings</h1>
 					</Grid>
 
-					<Grid item md={4}>
+					<Grid item md={0}>
 
 						<Grid container spacing={0}
 							  direction={"row"}

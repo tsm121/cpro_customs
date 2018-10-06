@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
 import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+
 
 const styles =({
 	flag_img: {
@@ -10,7 +13,18 @@ const styles =({
 	},
 
 	flag_name: {
-		textAlign: 'center'
+		textAlign: 'center',
+		margin:'0px',
+	},
+
+	flag_button: {
+		height: '150%',
+		width: '150p%',
+		borderRadius: '0',
+		webkitBoxShadow:'inset 0 0 5px #7d8f9e',
+		mozBoxShadow:'inset 0 0 5px #7d8f9e',
+		boxShadow:'inset 0 0 5px #7d8f9e',
+		margin: '8px'
 	}
 });
 
@@ -24,15 +38,23 @@ export default class LangButton extends Component  {
 		const { text, countryName } = this.props
 
 		return (
-
 			<div>
-				<Avatar
-					src={require(`../assets/lang_icons/${countryName}.png`)}
-					style={styles.flag_img}
-				/>
-				<h3 style={styles.flag_name}>{text}</h3>
+				<Button size={"large"} style={styles.flag_button}>
+					<Grid container spacing={0}
+						  direction={"column"}
+					>
+						<Grid item md={0}>
+							<Avatar
+								src={require(`../assets/lang_icons/${countryName}.png`)}
+								style={styles.flag_img}
+							/>
+						</Grid>
+						<Grid item md={0}>
+							<h3 style={styles.flag_name}>{text}</h3>
+						</Grid>
+					</Grid>
+				</Button>
 			</div>
-
 		)
 	}
 }
