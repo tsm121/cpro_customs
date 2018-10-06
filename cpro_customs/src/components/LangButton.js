@@ -18,13 +18,12 @@ const styles =({
 	},
 
 	flag_button: {
-		height: '150%',
-		width: '150p%',
+
 		borderRadius: '0',
 		webkitBoxShadow:'inset 0 0 5px #7d8f9e',
 		mozBoxShadow:'inset 0 0 5px #7d8f9e',
 		boxShadow:'inset 0 0 5px #7d8f9e',
-		margin: '8px'
+		margin: '10px'
 	}
 });
 

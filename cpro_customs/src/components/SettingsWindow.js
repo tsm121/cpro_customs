@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 
 import Grid from '@material-ui/core/Grid';
 import LangButton from "./LangButton";
+import TextField from '@material-ui/core/TextField';
+
+
 
 
 const styles =({
 	modal: {
-		height: '60%',
+		height: '80%',
 		width:'80%',
 		backgroundColor:'#e2e3e5',
 		color: '#37424a',
@@ -58,6 +61,33 @@ export default class SettingsWindow extends Component  {
 
 						</Grid>
 					</Grid>
+
+					<Grid item md={0}>
+
+						<TextField
+							id="outlined-licence-name"
+							label="License plate"
+							placeholder="AA12345"
+							margin="normal"
+							variant="outlined"
+							style={{margin:'5px'}}
+						/>
+
+						<TextField
+							id="outlined-email-input"
+							label="Email"
+							placeholder="mail@mail.com"
+							type="email"
+							name="email"
+							autoComplete="email"
+							margin="normal"
+							variant="outlined"
+							style={{margin:'5px'}}
+
+						/>
+
+					</Grid>
+
 				</Grid>
 			</div>
 
