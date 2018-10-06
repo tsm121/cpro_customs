@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Theme from'./material-theme'
+import theme from'./material-theme'
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +13,7 @@ class App extends Component {
 	render() {
 		return (
 
-			<MuiThemeProvider theme={Theme}>
+			<MuiThemeProvider theme={theme}>
 				<Header/>
 				<Welcome/>
 				<Navigation/>
