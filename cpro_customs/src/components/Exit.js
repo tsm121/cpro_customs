@@ -5,30 +5,42 @@ import Grid from '@material-ui/core/Grid';
 import {Icon} from "@material-ui/core";
 
 const styles = {
-	nav_bottom: {
+	exit_bottom: {
 		position:'absolute',
 		left:'0',
 		bottom:'0',
 		right:'0',
 		paddingBottom: '1em',
 	},
-	nav_icon: {
-		transform: 'scale(5)'
+
+	exit_text: {
+		margin:'0',
+		paddingBottom: '5px',
+	},
+	exit_icon: {
+		transform: 'scale(3)'
 	}
 };
 
-export default class Navigation extends Component  {
+export default class Exit extends Component  {
 
 	render = () => {
 		return (
-			<FormControl fullWidth={true} root={true} style={styles.nav_bottom}>
+			<FormControl fullWidth={true} root={true} style={styles.exit_bottom}>
 				<Grid container
 					  spacing={0}
 					  justify="center"
 					  alignItems="center"
+					  direction={"column"}
+
 				>
 					<Grid item xl>
-						<Icon style={styles.nav_icon}>
+						<h1 style={styles.exit_text}>Exit</h1>
+					</Grid>
+					<Grid item xl>
+						<Icon
+							style={styles.exit_icon}
+						>
 							keyboard_arrow_down
 						</Icon>
 					</Grid>
