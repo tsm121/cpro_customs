@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Modal from '@material-ui/core/Modal';
 import SettingsWindow from "./SettingsWindow";
 
-export default class Header extends Component  {
+export default class Navbar extends Component  {
 	constructor(){
 		super()
 
@@ -45,7 +45,7 @@ export default class Header extends Component  {
 
 							<Grid item sm={2}>
 								<img
-									src={require('../logo.png')}
+									src={require('assets/navbar/logo.png')}
 									style={{maxHeight: '50px'}}
 								/>
 							</Grid>
