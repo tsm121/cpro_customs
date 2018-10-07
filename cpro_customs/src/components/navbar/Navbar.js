@@ -47,6 +47,7 @@ export default class Navbar extends Component  {
 								<img
 									src={require('assets/navbar/logo.png')}
 									style={{maxHeight: '50px'}}
+									alt={"Logo"}
 								/>
 							</Grid>
 

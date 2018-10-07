@@ -29,10 +29,6 @@ const styles =({
 
 
 export default class LangButton extends Component  {
-	constructor (props) {
-		super(props)
-	}
-
 	render = () => {
 		const { text, countryName } = this.props
 

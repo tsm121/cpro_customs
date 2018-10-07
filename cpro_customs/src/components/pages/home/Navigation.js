@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 import {Link, withRouter} from 'react-router-dom';
-
-import FormControl from '@material-ui/core/FormControl';
-import Grid from '@material-ui/core/Grid';
-import {Icon} from "@material-ui/core";
+import {Icon, Grid, Button, FormControl} from "@material-ui/core";
 
 const styles = {
 	nav_bottom: {
@@ -17,6 +14,8 @@ const styles = {
 		transform: 'scale(5)'
 	}
 };
+
+const MyLink = props => <Link to="/persons-in-vehicle" {...props} />
 
 class Navigation extends Component  {
 	handleClick = () => {
@@ -32,6 +31,9 @@ class Navigation extends Component  {
 					  alignItems="center"
 				>
 					<Link to="/persons-in-vehicle" >Next Page with a Link</Link>
+					<Button component={MyLink}>
+						Next Page with a Button
+					</Button>
 					<Grid item xl onClick={this.handleClick}>
 						<Icon style={styles.nav_icon}>
 							keyboard_arrow_down
