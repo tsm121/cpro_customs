@@ -32,8 +32,7 @@ export default class Welcome extends Component  {
 					  spacing={0}
 					  justify="center"
 					  alignItems="center"
-					  direction="column"
-				>
+					  direction="column">
 					<Grid item sm>
 						<h1 style={h1Style}>
 							You are approaching the Norwegian boarder
@@ -41,7 +40,7 @@ export default class Welcome extends Component  {
 					</Grid>
 					<Grid item sm>
 						<h1 style={h1Style_secondary}>
-							Please declare your goods						</h1>
+							Please declare your goods</h1>
 					</Grid>
 				</Grid>
 			</FormControl>

@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import './App.css';
-import theme from'./material-theme'
-
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 
-import Header from './components/Header'
-import Welcome from "./components/Welcome";
-import Navigation from "./components/Navigation";
+import theme from'../material-theme'
 
+import './App.css';
+import Header from './Header'
+import Router from './Router'
+
+/**
+ * The entry point to the SPA
+ */
 class App extends Component {
 	render() {
 		return (
-
-			<MuiThemeProvider theme={theme}>
-				<Header/>
-				<Welcome/>
-				<Navigation/>
-			</MuiThemeProvider>
+		    <div>
+                <MuiThemeProvider theme={theme}>
+                    {/* put components that shall be displayed on every page here */}
+                    <Header/>
+                    {/* handles dynamic component loading */}
+                    <Router/>
+                </MuiThemeProvider>
+            </div>
 		);
 	}
 }
