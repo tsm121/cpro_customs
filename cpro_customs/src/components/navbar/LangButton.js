@@ -44,7 +44,7 @@ export default class LangButton extends Component  {
 					>
 						<Grid item md={0}>
 							<Avatar
-								src={require(`../../assets/navbar/lang_icons/${countryName}.png`)}
+								src={require(`assets/navbar/lang_icons/${countryName}.png`)}
 								style={styles.flag_img}
 							/>
 						</Grid>
