@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import theme from'../material-theme'
 
 import './App.css';
-import Header from './Header'
+import Navbar from './navbar/Navbar'
 import Router from './Router'
 
 /**
@@ -17,7 +17,7 @@ class App extends Component {
 		    <div>
                 <MuiThemeProvider theme={theme}>
                     {/* put components that shall be displayed on every page here */}
-                    <Header/>
+                    <Navbar/>
                     {/* handles dynamic component loading */}
                     <Router/>
                 </MuiThemeProvider>
