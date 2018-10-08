@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.1.2",
+    "immutability-helper": "^2.8.1",
     "react": "^16.5.2",
     "react-app-rewire-workbox": "^2.0.1",
     "react-app-rewired": "^1.6.2",
