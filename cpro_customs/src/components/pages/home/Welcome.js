@@ -11,6 +11,7 @@ const h1Style = {
 	paddingRight: '3v',
 	marginBottom: '0',
 	textAlign: 'center',
+	color: '#ffffff'
 };
 
 const h1Style_secondary = {
@@ -32,7 +33,8 @@ export default class Welcome extends Component  {
 					  spacing={0}
 					  justify="center"
 					  alignItems="center"
-					  direction="column">
+					  direction="column"
+				>
 					<Grid item sm>
 						<h1 style={h1Style}>
 							You are approaching the Norwegian boarder

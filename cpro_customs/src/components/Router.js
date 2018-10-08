@@ -12,12 +12,10 @@ import PersonsInVehicle from './pages/persons-in-vehicle/PersonsInVehicle'
 class Router extends Component {
     render() {
 		return (
-            <router>
-                <Switch>
-                  <Route exact path='/' component={Home}/>
-                  <Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
-                </Switch>
-            </router>
+            <Switch>
+              <Route exact path='/' component={Home}/>
+              <Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
+            </Switch>
 		);
 	}
 }
