@@ -5,14 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from '@material-ui/core/Paper';
 
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-
 import '../../../assets/css/core.css' // TODO: make this path absolute
 import './PersonsInVehicle.css'
-
 
 
 const styles = theme => ({
@@ -114,9 +108,6 @@ class PersonsInVehicle extends Component {
         this.setState({
               showIcons: update(this.state.showIcons, {$set: showIcons})
         });
-        /*this.setState({
-              showIcons: update(this.state.showIcons, {[id]: {$set: false}})
-        });*/
     }
 
     onClick(id) {
