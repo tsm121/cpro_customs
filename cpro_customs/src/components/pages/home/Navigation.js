@@ -47,3 +47,6 @@ class Navigation extends Component  {
 }
 
 export default withRouter(Navigation);
+
+//for i in list
+	//<komponent prop={i}/>

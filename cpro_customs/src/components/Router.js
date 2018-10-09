@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import Home from './pages/home/Home'
 import PersonsInVehicle from './pages/persons-in-vehicle/PersonsInVehicle'
+import OnBoarding from "./pages/on-boarding/OnBoarding";
 
 /**
  * Router handles routing through our pages / components
@@ -13,8 +14,9 @@ class Router extends Component {
     render() {
 		return (
             <Switch>
-              <Route exact path='/' component={Home}/>
-              <Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
+				<Route exact path='/' component={Home}/>
+				<Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
+				<Route exact path='/on-boarding' component={OnBoarding}/>
             </Switch>
 		);
 	}

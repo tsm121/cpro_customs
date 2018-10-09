@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 
 import LangButton from "./LangButton";
 import Exit from "./Exit";
+import InputFields from "../InputFields";
 
 const styles =({
 	modal: {
@@ -27,7 +27,6 @@ const styles =({
 		padding: '0',
 	}
 });
-
 
 export default class SettingsWindow extends Component  {
 
@@ -79,29 +78,8 @@ export default class SettingsWindow extends Component  {
 							Personal settings
 						</h3>
 					</Grid>
-
 					<Grid item md={0}>
-						<TextField
-							id="outlined-licence-name"
-							label="License plate"
-							placeholder="AA12345"
-							margin="normal"
-							variant="outlined"
-							style={{margin:'5px'}}
-						/>
-
-						<TextField
-							id="outlined-email-input"
-							label="Email"
-							placeholder="mail@mail.com"
-							type="email"
-							name="email"
-							autoComplete="email"
-							margin="normal"
-							variant="outlined"
-							style={{margin:'5px'}}
-
-						/>
+					<InputFields/>
 					</Grid>
 
 				</Grid>
