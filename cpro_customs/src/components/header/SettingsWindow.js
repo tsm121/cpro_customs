@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 
 import LangButton from "./LangButton";
 import Exit from "./Exit";
@@ -29,6 +32,13 @@ const styles =({
 });
 
 export default class SettingsWindow extends Component  {
+	constructor(props) {
+		super(props);
+		this.state = {
+
+		};
+	}
+
 
 	render = () => {
 
@@ -42,45 +52,44 @@ export default class SettingsWindow extends Component  {
 					  direction={"column"}
 				>
 
-					<Grid item md={4} >
+					<Grid item md={1} >
 						<h1 style={styles.title}>Settings</h1>
 					</Grid>
 
-					<Grid item md={0}>
+					<Grid item md={1}>
 						<h3 style={styles.title}>
 							Language selection
 						</h3>
 					</Grid>
 
-					<Grid item md={0}>
+					<Grid item xl={3}>
 						<Grid container spacing={0}
 							  direction={"row"}
 							  justify={"center"}
 
 						>
-							<Grid item sm={0}>
+							<Grid item>
 								<LangButton text={'Norsk'} countryName={'norway'}/>
 							</Grid>
 
-							<Grid item sm={0}>
+							<Grid item>
 								<LangButton text={'Svenska'} countryName={'sweden'}/>
 							</Grid>
 
-							<Grid item sm={0}>
+							<Grid item>
 								<LangButton text={'English'} countryName={'uk'}/>
 							</Grid>
 
 						</Grid>
 					</Grid>
 
-					<Grid item md={0}>
+					<Grid item>
 						<h3 style={styles.title}>
 							Personal settings
 						</h3>
 					</Grid>
-					<Grid item md={0}>
+
 					<InputFields/>
-					</Grid>
 
 				</Grid>
 
