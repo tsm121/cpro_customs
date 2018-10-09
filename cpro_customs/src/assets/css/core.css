@@ -13,7 +13,7 @@
 /*
     <h1>, <h2>, <h3>, <h4>
  */
-h1, h2, h3, h4 {
+h1.cdp, h2.cdp, h3.cdp, h4.cdp {
     font-weight: var(--font-weight);
     font-family: var(--font-family);
     padding-left: 3vw;
@@ -22,14 +22,14 @@ h1, h2, h3, h4 {
     text-align: center;
 }
 
-h1.primary, h2.primary, h3.primary, h4.primary {
+h1.cdp_primary, h2.cdp_primary, h3.cdp_primary, h4.cdp_primary {
     color: white;
 }
 
-h1.secondary, h2.secondary, h3.secondary, h4.secondary {
+h1.cdp_secondary, h2.cdp_secondary, h3.cdp_secondary, h4.cdp_secondary {
     color: #ffd200;
 }
 
-h1 {
+h1.cdp {
     font-size: 5vw;
 }
