@@ -5,15 +5,13 @@ import Grid from "@material-ui/core/Grid/Grid";
 import Button from "@material-ui/core/Button/Button";
 
 var userData = {
-	licencePlate:'AA12345',
-	email:'mail@mail.com',
+	licencePlate:'',
+	email:'',
 }
 
 export default class InputFields extends Component  {
 	constructor() {
 		super()
-		this.timeout =  0;
-
 		this.state = {
 			light: false,
 			licencePlateInputError: false,
@@ -23,7 +21,13 @@ export default class InputFields extends Component  {
 	}
 
 	componentWillMount = () => {
-		localStorage.setItem('userData', JSON.stringify(userData))
+
+		if(!('userData' in localStorage)){
+			userData = {
+				licencePlate: '',
+				email: ''
+			}
+		}
 	}
 
 	onClickHandler = ()=> {
@@ -32,7 +36,6 @@ export default class InputFields extends Component  {
 	}
 
 	toggleEmailInput = (error) => {
-		const {emailInputError} = this.state
 		if (error) {
 			this.setState({
 				emailInputError: true
@@ -46,7 +49,6 @@ export default class InputFields extends Component  {
 	}
 
 	toggleLicencePlateInput = (error) => {
-		const {emailInputError} = this.state
 		if (error) {
 			this.setState({
 				licencePlateInputError: true
@@ -84,47 +86,86 @@ export default class InputFields extends Component  {
 		}
 	}
 
+	getLicencePlate = () => {
+		if (localStorage.getItem("userData") === null) {
+			return ''
+		}
+		else{
+			return JSON.parse(localStorage.getItem('userData')).licencePlate
+
+		}
+	}
+
+	getEmailPlate = () => {
+		if (localStorage.getItem("userData") === null) {
+			return ''
+		}
+		else{
+			return JSON.parse(localStorage.getItem('userData')).email
+		}
+	}
+
 	render = () => {
 		const {light} = this.props
 		const{licencePlateInputError,emailInputError } = this.state
 
 		return (
+
 			<div>
-				<TextField
-					id="outlined-licence-name"
-					label="License plate"
-					placeholder="AA12345"
-					margin="normal"
-					variant="outlined"
-					style={{margin:'5px'}}
-					className={light ? 'light' : ''}
-					onChange={this.handleLicencePlateInput}
-					error={licencePlateInputError}
+				<Grid container
+					  justify={"center"}
+					  alignItems={"center"}
+					  direction={"row"}
+					  style={{marginTop:'1em'}}
+				>
+					<Grid item>
 
-				/>
+						<TextField
+							id="outlined-licence-name"
+							label="License plate"
+							placeholder="AA12345"
+							margin="normal"
+							variant="outlined"
+							style={{margin:'5px', height:'auto'}}
+							className={light ? 'light' : ''}
+							onChange={this.handleLicencePlateInput}
+							error={licencePlateInputError}
+							defaultValue={this.getLicencePlate()}
+						/>
+					</Grid>
+					<Grid item>
 
-				<TextField
-					id="outlined-email-input"
-					label="Email"
-					placeholder="mail@mail.com"
-					type="email"
-					name="email"
-					autoComplete="email"
-					margin="normal"
-					variant="outlined"
-					style={{margin:'5px'}}
-					className={light ? 'light' : ''}
-					onChange={this.handleEmailInput}
-					error={emailInputError}
+						<TextField
+							id="outlined-email-input"
+							label="Email"
+							placeholder="mail@mail.com"
+							type="email"
+							name="email"
+							autoComplete="email"
+							margin="normal"
+							variant="outlined"
+							style={{margin:'5px'}}
+							className={light ? 'light' : ''}
+							onChange={this.handleEmailInput}
+							error={emailInputError}
+							defaultValue={this.getEmailPlate()}
+						/>
+					</Grid>
+				</Grid>
+
+				<Grid container
+					  justify={"center"}
+					  alignItems={"center"}
+					  direction={"row"}
+					  style={{marginTop:'1em'}}
+				>
 
 
 
-				/>
-
-				<Grid item>
 					<Button
 						variant={'outlined'}
 						onClick={this.onClickHandler}
+						style={light ? {backgroundColor:'white'} : {backgroundColor: 'transparent'}}
 					>
 						Save
 					</Button>
