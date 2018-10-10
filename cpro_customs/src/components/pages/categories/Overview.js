@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class Categories extends Component {
+class Overview extends Component {
     render = () => {
         return(
             <div>
@@ -10,4 +10,4 @@ class Categories extends Component {
     }
 }
 
-export default Categories;
+export default Overview;
