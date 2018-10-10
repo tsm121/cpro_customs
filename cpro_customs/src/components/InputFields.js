@@ -13,7 +13,6 @@ export default class InputFields extends Component  {
 	constructor() {
 		super()
 		this.state = {
-			light: false,
 			licencePlateInputError: false,
 			emailInputError: false,
 
@@ -21,7 +20,6 @@ export default class InputFields extends Component  {
 	}
 
 	componentWillMount = () => {
-
 		if(!('userData' in localStorage)){
 			userData = {
 				licencePlate: '',
@@ -31,8 +29,11 @@ export default class InputFields extends Component  {
 	}
 
 	onClickHandler = ()=> {
-		console.log(userData)
-		localStorage.setItem('userData', JSON.stringify(userData))
+		const {licencePlateInputError, emailInputError} = this.state
+
+		if (!licencePlateInputError && !emailInputError) {
+			localStorage.setItem('userData', JSON.stringify(userData))
+		}
 	}
 
 	toggleEmailInput = (error) => {
@@ -65,24 +66,26 @@ export default class InputFields extends Component  {
 		let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		var input = event.target.value
 
-		if (re.test(input)){
+		if (input.length > 2 && re.test(input)){
 			userData.email = input
 			setTimeout(this.toggleEmailInput(false),1000)
 		} else {
 			setTimeout(this.toggleEmailInput(true),1000)
+
 		}
 	}
 
 	handleLicencePlateInput = (event) =>{
 		var input = event.target.value
-		let re = /(^[A-z]{2,2}\d{4,4}?\S)$/
+		let re = /(^[a-zA-Z]{2}[0-9]{5})$/
 
 		if (re.test(input)){
-			console.log(input)
 			userData.licencePlate = input
 			setTimeout(this.toggleLicencePlateInput(false),1000)
+
 		} else {
 			setTimeout(this.toggleLicencePlateInput(true),1000)
+
 		}
 	}
 
@@ -104,10 +107,9 @@ export default class InputFields extends Component  {
 			return JSON.parse(localStorage.getItem('userData')).email
 		}
 	}
-
 	render = () => {
 		const {light} = this.props
-		const{licencePlateInputError,emailInputError } = this.state
+		const{licencePlateInputError,emailInputError, btnDisabled } = this.state
 
 		return (
 
@@ -133,6 +135,7 @@ export default class InputFields extends Component  {
 							defaultValue={this.getLicencePlate()}
 						/>
 					</Grid>
+
 					<Grid item>
 
 						<TextField
@@ -165,7 +168,7 @@ export default class InputFields extends Component  {
 					<Button
 						variant={'outlined'}
 						onClick={this.onClickHandler}
-						style={light ? {backgroundColor:'white'} : {backgroundColor: 'transparent'}}
+						style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
 					>
 						Save
 					</Button>
