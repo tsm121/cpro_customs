@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-import ReactRouter from 'react-router';
 
 import theme from'../material-theme'
 

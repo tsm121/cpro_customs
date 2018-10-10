@@ -7,27 +7,27 @@ import Paper from '@material-ui/core/Paper';
 
 import '../../../assets/css/core.css' // TODO: make this path absolute
 import './PersonsInVehicle.css'
+import Navigation from './Navigation'
 
 
 const styles = theme => ({
-  personPaper: {
-    padding: theme.spacing.unit * 2,
-  },
 });
 
 class PersonsInVehicle extends Component {
-    static amount_persons_shown = 7;
-
     constructor(props) {
         super(props);
         // init state
-        let showYellowIcon = [true, false, false, false, false, false, false];
-        let iconClicked = [false, false, false, false, false, false, false];
-        this.state = { showYellowIcon: showYellowIcon , iconClicked: iconClicked};
+        this.state = {
+            showYellowIcon: [true, false, false, false, false, false, false],
+            iconClicked: [false, false, false, false, false, false, false],
+            amountPersonsShown: 5,
+            plusClickCounter: 0,
+        };
     }
 
     render() {
         const {classes} = this.props;
+        const {showYellowIcon, amountPersonsShown, plusClickCounter} = this.state;
         return (
             <div>
                 <Grid container
@@ -45,31 +45,61 @@ class PersonsInVehicle extends Component {
                           justify="center"
                           alignItems="center"
                           direction="row"
+                          className="personContainer"
                     >
-                        <Grid item xs={4}>
-                            <Paper className={classes.personPaper}>
-                                <Grid container justify="flex-start" spacing={0}>
-                                    {(Array.apply(null, {length: PersonsInVehicle.amount_persons_shown})
-                                        .map(Number.call, Number))
-                                        .map(value => (
-                                            <Grid item key={value}
-                                                  onMouseEnter={() => this.onMouseOver(value)}
-                                                  onMouseLeave={() => this.onMouseOut(value)}
-                                                  onClick={() => this.onClick(value)}
-                                            >
-                                                <img className="person_icon" src={this.state.showYellowIcon[value] ?
-                                                    require(`./person_icon_yellow.png`) : require(`./person_icon_black.png`)}
-                                                     alt="icon"
-                                                />
-                                            </Grid>
-                                        ))}
+                        <Grid item xs={11} sm={8} md={7} xl={6}>
+                            <Paper className="personPaper">
+                                <Grid container justify="center" spacing={0}>
+                                    { /* person icons */
+                                        (Array.apply(null, {length: amountPersonsShown}).map(Number.call, Number))
+                                            .map(value => (
+                                                <Grid item key={value}
+                                                      onMouseEnter={() => this.personOnMouseOver(value)}
+                                                      onMouseLeave={() => this.personOnMouseOut(value)}
+                                                      onClick={() => this.personOnClick(value)}
+                                                >
+                                                    <img className="icon_sm" src={showYellowIcon[value] ?
+                                                        require(`assets/img/icons/128x128/person_yellow.png`) :
+                                                        require(`assets/img/icons/128x128/person_black.png`)}
+                                                         alt="icon"
+                                                    />
+                                                </Grid>
+                                            ))
+                                    }
+                                    { /* plus button */
+                                        amountPersonsShown < 12
+                                            ?   <Grid item
+                                                      onClick={() => this.plusOnClick()}
+                                                      onMouseOver={() => this.plusOnMouseOver()}
+                                                >
+                                                    <img className="icon_sm"
+                                                         src={require(`assets/img/icons/128x128/plus_black.png`)}
+                                                         alt="icon"
+                                                    />
+                                                </Grid>
+                                            : null
+                                    }
                                 </Grid>
                             </Paper>
                         </Grid>
                     </Grid>
+                    <Navigation/>
                 </Grid>
             </div>
         );
+    }
+
+    plusOnClick() {
+        this.setState({
+            showYellowIcon: update(this.state.showYellowIcon, {$push: [false]}),
+            iconClicked: update(this.state.iconClicked, {$push: [false]}),
+            amountPersonsShown: this.state.amountPersonsShown + 1,
+            plusClickCounter: this.state.plusClickCounter + 1,
+        });
+    }
+
+    plusOnMouseOver() {
+        document.body.style.cursor = "pointer";
     }
 
     /**
@@ -77,17 +107,18 @@ class PersonsInVehicle extends Component {
      * Updates the state -> yellow icons are shown
      * @param id - the id of the icon
      */
-    onMouseOver(id) {
-        if (this.state.iconClicked[id]) {
+    personOnMouseOver(id) {
+        const {showYellowIcon, iconClicked, amountPersonsShown} = this.state;
+        if (iconClicked[id]) {
             return;
         }
         document.body.style.cursor = "pointer";
         console.log("in: " + id);
-        let showYellowIcon = this.state.showYellowIcon;
-        for (let i=0; i <= id; i++) showYellowIcon[i] = true;
-        for (let i = id + 1; i < PersonsInVehicle.amount_persons_shown; i++) showYellowIcon[i] = false;
+        let showYellowIcon_2 = showYellowIcon;
+        for (let i=0; i <= id; i++) showYellowIcon_2[i] = true;
+        for (let i = id + 1; i < amountPersonsShown; i++) showYellowIcon_2[i] = false;
         this.setState({
-              showYellowIcon: update(this.state.showYellowIcon, {$set: showYellowIcon})
+            showYellowIcon: update(showYellowIcon_2, {$set: showYellowIcon_2})
         });
     }
 
@@ -96,20 +127,22 @@ class PersonsInVehicle extends Component {
      * Updates the state -> black icons are shown
      * @param id - the id of the icon
      */
-    onMouseOut(id) {
-        if (this.state.iconClicked[id]) {
+    personOnMouseOut(id) {
+        const {showYellowIcon, iconClicked, amountPersonsShown} = this.state;
+
+        if (iconClicked[id]) {
             this.setState({
-              iconClicked: update(this.state.iconClicked, {[id]: {$set: false}})
+              iconClicked: update(iconClicked, {[id]: {$set: false}})
             });
             return;
         }
         if (id === 0) return;
         document.body.style.cursor = "default";
         console.log("out: " + id);
-        let showIcons = this.state.showYellowIcon;
-        for (let i=1; i < PersonsInVehicle.amount_persons_shown; i++) showIcons[i] = false;
+        let showYellowIcons_2 = showYellowIcon;
+        for (let i=1; i < amountPersonsShown; i++) showYellowIcons_2[i] = false;
         this.setState({
-              showYellowIcon: update(this.state.showYellowIcon, {$set: showIcons})
+              showYellowIcon: update(showYellowIcon, {$set: showYellowIcons_2})
         });
     }
 
@@ -118,9 +151,10 @@ class PersonsInVehicle extends Component {
      * Updates the state -> marks current icon as clicked
      * @param id - the id of the icon
      */
-    onClick(id) {
+    personOnClick(id) {
+        const {iconClicked} = this.state;
         this.setState({
-            iconClicked: update(this.state.iconClicked, {[id]: {$set: true}})
+            iconClicked: update(iconClicked, {[id]: {$set: true}})
         });
     }
 }
