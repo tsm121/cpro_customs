@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 
 import '../../../assets/css/core.css' // TODO: make this path absolute
 import './PersonsInVehicle.css'
-import Navigation from './Navigation'
+import NavigationArrow from '../../NavigationArrow'
 
 
 const styles = theme => ({
@@ -71,6 +71,7 @@ class PersonsInVehicle extends Component {
                                             ?   <Grid item
                                                       onClick={() => this.plusOnClick()}
                                                       onMouseOver={() => this.plusOnMouseOver()}
+                                                      onMouseOut={() => this.plusOnMouseOut()}
                                                 >
                                                     <img className="icon_sm"
                                                          src={require(`assets/img/icons/128x128/plus_black.png`)}
@@ -83,7 +84,7 @@ class PersonsInVehicle extends Component {
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Navigation/>
+                    <NavigationArrow direction={"right"} page={"categories"}/>
                 </Grid>
             </div>
         );
@@ -100,6 +101,10 @@ class PersonsInVehicle extends Component {
 
     plusOnMouseOver() {
         document.body.style.cursor = "pointer";
+    }
+
+    plusOnMouseOut() {
+        document.body.style.cursor = "default";
     }
 
     /**

@@ -1,7 +1,4 @@
-/* xl */
-img.icon_sm {
-   width: 100px;
-}
+
 
 div.personContainer {
     padding-top: 5vw;
@@ -11,30 +8,3 @@ div.personPaper {
     padding: 20px;
 }
 
-@media only screen and (max-width: 1919px) {
-    /* md */
-    img.icon_sm {
-        width: 100px;
-    }
-}
-
-@media only screen and (max-width: 1279px) {
-    /* md */
-    img.icon_sm {
-        width: 80px;
-    }
-}
-
-@media only screen and (max-width: 959px) {
-    /* sm */
-    img.icon_sm {
-        width: 80px;
-    }
-}
-
-@media only screen and (max-width: 599px) {
-    /* xs */
-    img.icon_sm {
-        width: 50px;
-    }
-}
