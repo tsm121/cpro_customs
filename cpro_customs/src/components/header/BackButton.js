@@ -1,22 +1,17 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
 
-import {Icon, IconButton} from "@material-ui/core";
+import HeaderButton from "./HeaderButton"
 
 
-
-class BackButton extends Component  {
+class BackButton extends HeaderButton  {
     render = () => {
         return (
-            <IconButton onClick={this.handleBack}>
-                <Icon>
-                    keyboard_arrow_left
-                </Icon>
-            </IconButton>
+            <HeaderButton icon={"keyboard_arrow_left"} onClick={this.onClick.bind(this)}/>
         );
     };
 
-    handleBack = () => {
+    onClick() {
 	    this.props.history.goBack();
     }
 }

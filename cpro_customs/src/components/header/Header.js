@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+import {withRouter} from "react-router";
 
 import { AppBar, Toolbar, Grid, FormControl, Modal } from '@material-ui/core';
 
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
-import {withRouter} from "react-router";
 
 
 class Header extends Component  {

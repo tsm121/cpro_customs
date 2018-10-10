@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import {Icon, IconButton} from "@material-ui/core";
+
+import HeaderButton from "./HeaderButton";
+
 
 class SettingsButton extends Component  {
     render = () => {
         const {onClick} = this.props;
         return (
-            <IconButton onClick={onClick}>
-                <Icon>
-                    settings
-                </Icon>
-            </IconButton>
+            <HeaderButton icon={"settings"} onClick={onClick}/>
         );
     };
 }
