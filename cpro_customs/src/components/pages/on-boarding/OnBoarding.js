@@ -37,7 +37,7 @@ export default class OnBoarding extends Component  {
 					  alignItems={'center'}
 				>
 
-					<Grid item xl={2}>
+					<Grid item>
 						<h1 style={h1Style}>
 							You need to set up your account
 						</h1>
@@ -45,7 +45,7 @@ export default class OnBoarding extends Component  {
 							Please fill out your licence number and email
 						</h3>
 					</Grid>
-					<Grid item xl={1}
+					<Grid item
 						  style={{marginTop:'5%'}}
 					>
 						<InputFields light={true} />
