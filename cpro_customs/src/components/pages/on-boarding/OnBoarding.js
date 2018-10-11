@@ -4,7 +4,6 @@ import InputFields from "../../InputFields";
 
 import Grid from '@material-ui/core/Grid';
 
-
 const h1Style = {
 	fontFamily: 'Arial, serif',
 	fontWeight: 'normal',
@@ -27,18 +26,15 @@ const h1Style_secondary = {
 };
 
 export default class OnBoarding extends Component  {
-
 	render = () => {
 		return (
 
 			<div>
-
 				<Grid container
 					  spacing={0}
 					  direction={'column'}
 					  justify={'center'}
 					  alignItems={'center'}
-
 				>
 
 					<Grid item xl={2}>
@@ -49,7 +45,9 @@ export default class OnBoarding extends Component  {
 							Please fill out your licence number and email
 						</h3>
 					</Grid>
-					<Grid item xl={1} style={{marginTop:'5%'}}>
+					<Grid item xl={1}
+						  style={{marginTop:'5%'}}
+					>
 						<InputFields light={true} />
 					</Grid>
 
@@ -57,7 +55,6 @@ export default class OnBoarding extends Component  {
 
 				<NavigationArrow direction={"down"}/>
 			</div>
-
 		)
 	}
 }

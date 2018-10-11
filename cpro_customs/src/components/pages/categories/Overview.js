@@ -4,7 +4,9 @@ class Overview extends Component {
     render = () => {
         return(
             <div>
-                <h1>CATEGORIES PAGE</h1>
+                <h1>
+                    CATEGORIES PAGE
+                </h1>
             </div>
         )
     }

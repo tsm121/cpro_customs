@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Grid from "@material-ui/core/Grid/Grid";
-import "../assets/css/core.css"
+import "../../../assets/css/core.css"
 
 const styles =({
 	container: {
@@ -10,7 +10,7 @@ const styles =({
 
 class PageTitle extends Component {
     render = () => {
-        const { title } = this.props;
+        const {title} = this.props;
         return (
             <Grid container
                   justify={"center"}
@@ -18,7 +18,9 @@ class PageTitle extends Component {
                   style={styles.container}
             >
                 <Grid item>
-                    <h1 className={"cdp cdp_primary"}>{title}</h1>
+                    <h1 className={"cdp cdp_primary"}>
+						{title}
+						</h1>
                 </Grid>
             </Grid>
         )

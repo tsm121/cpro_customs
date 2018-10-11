@@ -25,7 +25,6 @@ const h1Style_secondary = {
 };
 
 export default class Welcome extends Component  {
-
 	render = () => {
 		return (
 			<FormControl fullWidth={true}>
@@ -42,7 +41,8 @@ export default class Welcome extends Component  {
 					</Grid>
 					<Grid item>
 						<h1 style={h1Style_secondary}>
-							Please declare your goods</h1>
+							Please declare your goods
+						</h1>
 					</Grid>
 				</Grid>
 			</FormControl>

@@ -8,7 +8,9 @@ class Home extends Component {
 		return (
 			<div>
 				<Welcome/>
-				<NavigationArrow direction={"down"} page={"persons-in-vehicle"}/>
+				<NavigationArrow direction={"down"}
+								 page={"persons-in-vehicle"}
+				/>
 			</div>
 		);
 	}

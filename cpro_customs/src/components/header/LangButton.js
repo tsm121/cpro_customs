@@ -30,12 +30,15 @@ const styles =({
 
 export default class LangButton extends Component  {
 	render = () => {
-		const { text, countryName } = this.props
+		const {text, countryName} = this.props
 
 		return (
 			<div>
-				<Button size={"large"} style={styles.flag_button}>
-					<Grid container spacing={8}
+				<Button size={"large"}
+						style={styles.flag_button}
+				>
+					<Grid container
+						  spacing={8}
 						  direction={"column"}
 					>
 						<Grid item>
@@ -45,7 +48,9 @@ export default class LangButton extends Component  {
 							/>
 						</Grid>
 						<Grid item>
-							<h3 style={styles.flag_name}>{text}</h3>
+							<h3 style={styles.flag_name}>
+								{text}
+							</h3>
 						</Grid>
 					</Grid>
 				</Button>

@@ -21,41 +21,54 @@ class Header extends Component  {
 	 * This method is used to trigger opening this Modal.
 	 */
 	openModal = () => {
-		this.setState({ showSettingsModal: true });
+		this.setState({showSettingsModal: true});
 	}
 
 	/**
 	 * This method is used to trigger closing this Modal.
 	 */
 	closeModal = () => {
-		this.setState({ showSettingsModal: false })
+		this.setState({showSettingsModal: false})
 	}
 
 	render = () => {
 		const {pathname} = this.props.location;
 		return (
 			<FormControl fullWidth={true}>
-				<AppBar position="static" color="primary" style={{backgroundColor: '#e2e3e5', color: '#37424a'}}>
+				<AppBar position="static"
+						color="primary"
+						style={{backgroundColor:'#e2e3e5', color:'#37424a'}}
+				>
 					<Toolbar>
-						<Grid container spacing={16}
+						<Grid container
+							  spacing={16}
 							  justify="space-between"
 							  alignItems={"center"}
 						>
 							<Grid item xs={2}>
 								{/* do not show back button when on landing page */}
 								{pathname === "/" ? null :
-									<Grid container justify={"center"} alignItems={"center"}>
+									<Grid container
+										  justify={"center"}
+										  alignItems={"center"}
+									>
 										<BackButton/>
 									</Grid>
 								}
 							</Grid>
 							<Grid item xs={8}>
-								<Grid container justify={"center"} alignItems={"center"}>
+								<Grid container
+									  justify={"center"}
+									  alignItems={"center"}
+								>
 									<h3>Norwegian Customs</h3>
 								</Grid>
 							</Grid>
 							<Grid item xs={2}>
-								<Grid container justify={"center"} alignItems={"center"}>
+								<Grid container
+									  justify={"center"}
+									  alignItems={"center"}
+								>
 									<SettingsButton onClick={this.openModal}/>
 								</Grid>
 							</Grid>

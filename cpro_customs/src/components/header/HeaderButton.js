@@ -5,9 +5,12 @@ import {Icon, IconButton} from "@material-ui/core";
 
 class HeaderButton extends Component {
 	render = () => {
-		const { icon, onClick } = this.props;
+		const {icon, onClick} = this.props;
 		return (
-			<IconButton onClick={onClick} onMouseOver={this.onMouseOver} onMouseOut={this.onMouseOut}>
+			<IconButton onClick={onClick}
+						onMouseOver={this.onMouseOver}
+						onMouseOut={this.onMouseOut}
+			>
 				<Icon>
 					{icon}
 				</Icon>

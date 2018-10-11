@@ -38,9 +38,7 @@ export default class Exit extends Component  {
 						<h1 style={styles.exit_text}>Exit</h1>
 					</Grid>
 					<Grid item xl>
-						<Icon
-							style={styles.exit_icon}
-						>
+						<Icon style={styles.exit_icon}>
 							keyboard_arrow_down
 						</Icon>
 					</Grid>

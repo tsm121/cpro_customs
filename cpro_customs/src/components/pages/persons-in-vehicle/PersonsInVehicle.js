@@ -22,7 +22,7 @@ class PersonsInVehicle extends Component {
 	}
 
 	render() {
-		const { showYellowIcon, amountPersonsShown } = this.state;
+		const {showYellowIcon, amountPersonsShown} = this.state;
 		return (
 			<div>
 				<Grid container
@@ -42,7 +42,12 @@ class PersonsInVehicle extends Component {
 						  direction="row"
 						  className="personContainer"
 					>
-						<Grid item xs={11} sm={8} md={7} xl={6}>
+						<Grid item
+							  xs={11}
+							  sm={8}
+							  md={7}
+							  xl={6}
+						>
 							<Paper className="personPaper">
 								<Grid container justify="center" spacing={0}>
 									{ /* person icons */
