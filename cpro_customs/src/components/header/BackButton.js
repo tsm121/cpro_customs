@@ -5,15 +5,15 @@ import HeaderButton from "./HeaderButton"
 
 
 class BackButton extends HeaderButton  {
-    render = () => {
-        return (
-            <HeaderButton icon={"keyboard_arrow_left"} onClick={this.onClick.bind(this)}/>
-        );
-    };
+	render = () => {
+		return (
+			<HeaderButton icon={"keyboard_arrow_left"} onClick={this.onClick.bind(this)}/>
+		);
+	};
 
-    onClick() {
-	    this.props.history.goBack();
-    }
+	onClick() {
+		this.props.history.goBack();
+	}
 }
 
 export default withRouter(BackButton);

@@ -41,17 +41,17 @@ export default class OnBoarding extends Component  {
 
 				>
 
-				<Grid item xl={2}>
-				<h1 style={h1Style}>
-					You need to set up your account
-				</h1>
-				<h3 style={h1Style_secondary}>
-					Please fill out your licence number and email
-				</h3>
-				</Grid>
-				<Grid item xl={1} style={{marginTop:'5%'}}>
-					<InputFields light={true} />
-				</Grid>
+					<Grid item xl={2}>
+						<h1 style={h1Style}>
+							You need to set up your account
+						</h1>
+						<h3 style={h1Style_secondary}>
+							Please fill out your licence number and email
+						</h3>
+					</Grid>
+					<Grid item xl={1} style={{marginTop:'5%'}}>
+						<InputFields light={true} />
+					</Grid>
 
 				</Grid>
 

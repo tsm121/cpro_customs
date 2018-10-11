@@ -10,20 +10,18 @@ import SettingsButton from "./SettingsButton";
 
 class Header extends Component  {
 	constructor() {
-	    super();
+		super();
 
-        this.state = {
-            showSettingsModal: false,
-        }
-    }
+		this.state = {
+			showSettingsModal: false,
+		}
+	}
 
-    /**
+	/**
 	 * This method is used to trigger opening this Modal.
 	 */
 	openModal = () => {
-	    console.log("clicked");
 		this.setState({ showSettingsModal: true });
-        console.log(this.state.showSettingsModal);
 	}
 
 	/**
@@ -34,7 +32,7 @@ class Header extends Component  {
 	}
 
 	render = () => {
-	    const {pathname} = this.props.location;
+		const {pathname} = this.props.location;
 		return (
 			<FormControl fullWidth={true} root={true}>
 				<AppBar position="static" color="primary" style={{backgroundColor: '#e2e3e5', color: '#37424a'}}>
@@ -43,24 +41,24 @@ class Header extends Component  {
 							  justify="space-between"
 							  alignItems={"center"}
 						>
-                            <Grid item xs={2}>
-                                {/* do not show back button when on landing page */}
-                                {pathname === "/" ? null :
-                                     <Grid container justify={"center"} alignItems={"center"}>
-                                        <BackButton/>
-                                    </Grid>
-                                }
-                            </Grid>
-                            <Grid item xs={8}>
-                                <Grid container justify={"center"} alignItems={"center"}>
-                                    <h3>Norwegian Customs</h3>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <Grid container justify={"center"} alignItems={"center"}>
-                                    <SettingsButton onClick={this.openModal}/>
-                                </Grid>
-                            </Grid>
+							<Grid item xs={2}>
+								{/* do not show back button when on landing page */}
+								{pathname === "/" ? null :
+									<Grid container justify={"center"} alignItems={"center"}>
+										<BackButton/>
+									</Grid>
+								}
+							</Grid>
+							<Grid item xs={8}>
+								<Grid container justify={"center"} alignItems={"center"}>
+									<h3>Norwegian Customs</h3>
+								</Grid>
+							</Grid>
+							<Grid item xs={2}>
+								<Grid container justify={"center"} alignItems={"center"}>
+									<SettingsButton onClick={this.openModal}/>
+								</Grid>
+							</Grid>
 						</Grid>
 					</Toolbar>
 				</AppBar>
