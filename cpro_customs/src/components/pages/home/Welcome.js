@@ -28,19 +28,19 @@ export default class Welcome extends Component  {
 
 	render = () => {
 		return (
-			<FormControl fullWidth={true} root={true}>
+			<FormControl fullWidth={true}>
 				<Grid container
 					  spacing={0}
 					  justify="center"
 					  alignItems="center"
 					  direction="column"
 				>
-					<Grid item sm>
+					<Grid item>
 						<h1 style={h1Style}>
 							You are approaching the Norwegian boarder
 						</h1>
 					</Grid>
-					<Grid item sm>
+					<Grid item>
 						<h1 style={h1Style_secondary}>
 							Please declare your goods</h1>
 					</Grid>

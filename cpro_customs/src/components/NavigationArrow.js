@@ -78,7 +78,7 @@ class NavigationArrow extends Component  {
                     );
                 }
 			default:
-				throw "prop direction not declared or value invalid"
+				throw new Error("prop direction not declared or value invalid")
         }
     }
 

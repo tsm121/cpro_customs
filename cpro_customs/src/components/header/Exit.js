@@ -26,7 +26,7 @@ export default class Exit extends Component  {
 
 	render = () => {
 		return (
-			<FormControl fullWidth={true} root={true} style={styles.exit_bottom}>
+			<FormControl fullWidth={true} style={styles.exit_bottom}>
 				<Grid container
 					  spacing={0}
 					  justify="center"

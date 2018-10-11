@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { withStyles } from '@material-ui/core/styles';
+//import { withStyles } from '@material-ui/core/styles';
 
 import theme from'../material-theme'
 
@@ -26,4 +26,5 @@ class App extends Component {
 	}
 }
 
-export default withStyles()(App);
+//export default withStyles()(App);
+export default (App);

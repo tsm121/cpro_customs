@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
 
 import LangButton from "./LangButton";
 import Exit from "./Exit";
@@ -63,7 +60,7 @@ export default class SettingsWindow extends Component  {
 					</Grid>
 
 					<Grid item xl={3}>
-						<Grid container spacing={0}
+						<Grid container spacing={8}
 							  direction={"row"}
 							  justify={"center"}
 
