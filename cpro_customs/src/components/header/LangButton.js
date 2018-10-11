@@ -29,10 +29,6 @@ const styles =({
 
 
 export default class LangButton extends Component  {
-	constructor (props) {
-		super(props)
-	}
-
 	render = () => {
 		const { text, countryName } = this.props
 
@@ -44,7 +40,7 @@ export default class LangButton extends Component  {
 					>
 						<Grid item md={0}>
 							<Avatar
-								src={require(`../assets/lang_icons/${countryName}.png`)}
+								src={require(`assets/header/lang_icons/${countryName}.png`)}
 								style={styles.flag_img}
 							/>
 						</Grid>

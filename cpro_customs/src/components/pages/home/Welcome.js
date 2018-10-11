@@ -11,6 +11,7 @@ const h1Style = {
 	paddingRight: '3v',
 	marginBottom: '0',
 	textAlign: 'center',
+	color: '#ffffff'
 };
 
 const h1Style_secondary = {
@@ -41,7 +42,7 @@ export default class Welcome extends Component  {
 					</Grid>
 					<Grid item sm>
 						<h1 style={h1Style_secondary}>
-							Please declare your goods						</h1>
+							Please declare your goods</h1>
 					</Grid>
 				</Grid>
 			</FormControl>
