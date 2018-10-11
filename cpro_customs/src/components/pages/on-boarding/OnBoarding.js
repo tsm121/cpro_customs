@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Navigation from "../home/Navigation";
+import NavigationArrow from "../../NavigationArrow";
 import InputFields from "../../InputFields";
 
 import Grid from '@material-ui/core/Grid';
@@ -55,7 +55,7 @@ export default class OnBoarding extends Component  {
 
 				</Grid>
 
-				<Navigation/>
+				<NavigationArrow direction={"down"}/>
 			</div>
 
 		)

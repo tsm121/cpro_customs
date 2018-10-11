@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import update from "immutability-helper";
 
-import { withStyles } from '@material-ui/core/styles';
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from '@material-ui/core/Paper';
 
@@ -9,9 +8,6 @@ import '../../../assets/css/core.css' // TODO: make this path absolute
 import './PersonsInVehicle.css'
 import NavigationArrow from '../../NavigationArrow'
 
-
-const styles = theme => ({
-});
 
 class PersonsInVehicle extends Component {
     constructor(props) {
@@ -26,8 +22,7 @@ class PersonsInVehicle extends Component {
     }
 
     render() {
-        const {classes} = this.props;
-        const {showYellowIcon, amountPersonsShown, plusClickCounter} = this.state;
+        const { showYellowIcon, amountPersonsShown } = this.state;
         return (
             <div>
                 <Grid container
@@ -164,4 +159,4 @@ class PersonsInVehicle extends Component {
     }
 }
 
-export default withStyles(styles)(PersonsInVehicle);
+export default PersonsInVehicle;
