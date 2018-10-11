@@ -23,3 +23,38 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.light .MuiInputBase-input-206 {
+    border-radius: 4px !important;
+    border-color: white !important;
+    background-color: white !important;
+}
+
+
+.light .MuiInputLabel-outlined-175.MuiInputLabel-shrink-172 {
+    color: white !important;
+    transform: translate(14px, -13px) scale(0.75) !important;
+}
+
+.light label {
+    color: black !important;
+}
+
+.light .MuiInputBase-input-206 MuiOutlinedInput-input-191 {
+    color: black !important;
+}
+
+.light .MuiInputBase-input-206 {
+    color: black !important;
+}
+
+.light fieldset {
+    border: none !important;
+}
+
+.light .MuiNotchedOutline-error-216 {
+    background-color: rgba(256, 51, 77, .4) !important;
+}
+
+.klasse1 {
+    background-color: red;
+}
