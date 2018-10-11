@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-
 
 import LangButton from "./LangButton";
 import Exit from "./Exit";
@@ -32,16 +29,7 @@ const styles =({
 });
 
 export default class SettingsWindow extends Component  {
-	constructor(props) {
-		super(props);
-		this.state = {
-
-		};
-	}
-
-
 	render = () => {
-
 		return (
 
 			<div style={styles.modal}>
@@ -53,7 +41,9 @@ export default class SettingsWindow extends Component  {
 				>
 
 					<Grid item md={1} >
-						<h1 style={styles.title}>Settings</h1>
+						<h1 style={styles.title}>
+							Settings
+						</h1>
 					</Grid>
 
 					<Grid item md={1}>
@@ -63,21 +53,30 @@ export default class SettingsWindow extends Component  {
 					</Grid>
 
 					<Grid item xl={3}>
-						<Grid container spacing={0}
+						<Grid container spacing={8}
 							  direction={"row"}
 							  justify={"center"}
 
 						>
 							<Grid item>
-								<LangButton text={'Norsk'} countryName={'norway'}/>
+								<LangButton
+									text={'Norsk'}
+									countryName={'norway'}
+								/>
 							</Grid>
 
 							<Grid item>
-								<LangButton text={'Svenska'} countryName={'sweden'}/>
+								<LangButton
+									text={'Svenska'}
+									countryName={'sweden'}
+								/>
 							</Grid>
 
 							<Grid item>
-								<LangButton text={'English'} countryName={'uk'}/>
+								<LangButton
+									text={'English'}
+									countryName={'uk'}
+								/>
 							</Grid>
 
 						</Grid>
@@ -97,7 +96,6 @@ export default class SettingsWindow extends Component  {
 					<Exit/>
 				</div>
 			</div>
-
 		)
 	}
 }

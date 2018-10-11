@@ -109,7 +109,7 @@ export default class InputFields extends Component  {
 	}
 	render = () => {
 		const {light} = this.props
-		const{licencePlateInputError,emailInputError, btnDisabled } = this.state
+		const{licencePlateInputError,emailInputError } = this.state
 
 		return (
 
