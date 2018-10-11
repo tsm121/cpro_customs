@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
 import Welcome from "./Welcome";
-import Navigation from "./Navigation";
+import NavigationArrow from "../../NavigationArrow";
 
 class Home extends Component {
     render() {
         return (
             <div>
                 <Welcome/>
-                <Navigation/>
+                <NavigationArrow direction={"down"} page={"persons-in-vehicle"}/>
             </div>
         );
     }

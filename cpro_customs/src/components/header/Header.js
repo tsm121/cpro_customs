@@ -1,39 +1,40 @@
 import React, { Component } from 'react'
+import {withRouter} from "react-router";
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import { Icon } from '@material-ui/core/';
-import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import IconButton from '@material-ui/core/IconButton';
-import Modal from '@material-ui/core/Modal';
+import { AppBar, Toolbar, Grid, FormControl, Modal } from '@material-ui/core';
+
 import SettingsWindow from "./SettingsWindow";
+import BackButton from "./BackButton";
+import SettingsButton from "./SettingsButton";
 
-export default class Header extends Component  {
-	constructor(){
-		super()
 
-		this.state = {
-			open: false,
-		}
-	}
+class Header extends Component  {
+	constructor() {
+	    super();
 
-	/**
+        this.state = {
+            showSettingsModal: false,
+        }
+    }
+
+    /**
 	 * This method is used to trigger opening this Modal.
 	 */
-	handleOpen = () => {
-		this.setState({ open: true })
+	openModal = () => {
+	    console.log("clicked");
+		this.setState({ showSettingsModal: true });
+        console.log(this.state.showSettingsModal);
 	}
 
 	/**
 	 * This method is used to trigger closing this Modal.
 	 */
-	handleClose = () => {
-		this.setState({ open: false })
+	closeModal = () => {
+		this.setState({ showSettingsModal: false })
 	}
 
 	render = () => {
-
+	    const {pathname} = this.props.location;
 		return (
 			<FormControl fullWidth={true} root={true}>
 				<AppBar position="static" color="primary" style={{backgroundColor: '#e2e3e5', color: '#37424a'}}>
@@ -42,27 +43,24 @@ export default class Header extends Component  {
 							  justify="space-between"
 							  alignItems={"center"}
 						>
-
-							<Grid item sm={2}>
-								<img
-									src={require('assets/header/logo.png')}
-									style={{maxHeight: '50px'}}
-									alt={"Logo"}
-								/>
-							</Grid>
-
-							<Grid item md={8}>
-								<h3>Norwegian Customs</h3>
-							</Grid>
-
-							<Grid item xs={2}>
-								<IconButton>
-									<Icon onClick={this.handleOpen}>
-										settings
-									</Icon>
-								</IconButton>
-							</Grid>
-
+                            <Grid item xs={2}>
+                                {/* do not show back button when on landing page */}
+                                {pathname === "/" ? null :
+                                     <Grid container justify={"center"} alignItems={"center"}>
+                                        <BackButton/>
+                                    </Grid>
+                                }
+                            </Grid>
+                            <Grid item xs={8}>
+                                <Grid container justify={"center"} alignItems={"center"}>
+                                    <h3>Norwegian Customs</h3>
+                                </Grid>
+                            </Grid>
+                            <Grid item xs={2}>
+                                <Grid container justify={"center"} alignItems={"center"}>
+                                    <SettingsButton onClick={this.openModal}/>
+                                </Grid>
+                            </Grid>
 						</Grid>
 					</Toolbar>
 				</AppBar>
@@ -70,8 +68,8 @@ export default class Header extends Component  {
 				<Modal
 					aria-labelledby="simple-modal-title"
 					aria-describedby="simple-modal-description"
-					open={this.state.open}
-					onClose={this.handleClose}
+					open={this.state.showSettingsModal}
+					onClose={this.closeModal}
 				>
 					<div>
 						<SettingsWindow/>
@@ -82,3 +80,5 @@ export default class Header extends Component  {
 		)
 	}
 }
+
+export default withRouter(Header);
