@@ -4,3 +4,4 @@ npm-debug.log
 __pycache__/
 cpro_customs/build
 yarn.lock
+cpro_customs/package-lock.json
