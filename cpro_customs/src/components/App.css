@@ -50,3 +50,11 @@ body {
 .light fieldset {
     border: none !important;
 }
+
+.light .MuiNotchedOutline-error-216 {
+    background-color: rgba(256, 51, 77, .4) !important;
+}
+
+.klasse1 {
+    background-color: red;
+}
