@@ -60,7 +60,7 @@ export default class SettingsWindow extends Component  {
 					</Grid>
 
 					<Grid item xl={3}>
-						<Grid container spacing={0}
+						<Grid container spacing={8}
 							  direction={"row"}
 							  justify={"center"}
 

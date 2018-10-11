@@ -34,7 +34,7 @@ class Header extends Component  {
 	render = () => {
 		const {pathname} = this.props.location;
 		return (
-			<FormControl fullWidth={true} root={true}>
+			<FormControl fullWidth={true}>
 				<AppBar position="static" color="primary" style={{backgroundColor: '#e2e3e5', color: '#37424a'}}>
 					<Toolbar>
 						<Grid container spacing={16}

@@ -20,8 +20,8 @@ const styles =({
 	flag_button: {
 
 		borderRadius: '0',
-		webkitBoxShadow:'inset 0 0 5px #7d8f9e',
-		mozBoxShadow:'inset 0 0 5px #7d8f9e',
+		WebkitBoxShadow:'inset 0 0 5px #7d8f9e',
+		MozBoxShadow:'inset 0 0 5px #7d8f9e',
 		boxShadow:'inset 0 0 5px #7d8f9e',
 		margin: '10px'
 	}
@@ -35,16 +35,16 @@ export default class LangButton extends Component  {
 		return (
 			<div>
 				<Button size={"large"} style={styles.flag_button}>
-					<Grid container spacing={0}
+					<Grid container spacing={8}
 						  direction={"column"}
 					>
-						<Grid item md={0}>
+						<Grid item>
 							<Avatar
 								src={require(`assets/header/lang_icons/${countryName}.png`)}
 								style={styles.flag_img}
 							/>
 						</Grid>
-						<Grid item md={0}>
+						<Grid item>
 							<h3 style={styles.flag_name}>{text}</h3>
 						</Grid>
 					</Grid>
