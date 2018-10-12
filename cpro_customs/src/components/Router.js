@@ -4,6 +4,8 @@ import { Switch, Route } from 'react-router-dom'
 import Home from './pages/home/Home'
 import PersonsInVehicle from './pages/persons-in-vehicle/PersonsInVehicle'
 import OnBoarding from "./pages/on-boarding/OnBoarding";
+import Categories from "./pages/categories/Categories";
+import GridListTest from "./pages/grid-list/GridListTest";
 
 /**
  * Router handles routing through our pages / components
@@ -17,6 +19,8 @@ class Router extends Component {
 				<Route exact path='/' component={Home}/>
 				<Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
 				<Route exact path='/on-boarding' component={OnBoarding}/>
+				<Route exact path='/categories' component={Categories} />
+				<Route exact path='/grid-list' component={GridListTest} />
             </Switch>
 		);
 	}
