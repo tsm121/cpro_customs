@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import PageTitle from "../PageTitle";
 import Grid from "@material-ui/core/Grid/Grid";
 
-import "../../../../assets/css/core.css"
+import "../../../App.css"
 import Paper from "@material-ui/core/Paper/Paper";
 
 class Animals extends Component {
