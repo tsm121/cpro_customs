@@ -29,9 +29,7 @@ const styles =({
 });
 
 export default class SettingsWindow extends Component  {
-
 	render = () => {
-
 		return (
 
 			<div style={styles.modal}>
@@ -42,45 +40,55 @@ export default class SettingsWindow extends Component  {
 					  direction={"column"}
 				>
 
-					<Grid item md={4} >
-						<h1 style={styles.title}>Settings</h1>
+					<Grid item md={1} >
+						<h1 style={styles.title}>
+							Settings
+						</h1>
 					</Grid>
 
-					<Grid item md={0}>
+					<Grid item md={1}>
 						<h3 style={styles.title}>
 							Language selection
 						</h3>
 					</Grid>
 
-					<Grid item md={0}>
-						<Grid container spacing={0}
+					<Grid item xl={3}>
+						<Grid container spacing={8}
 							  direction={"row"}
 							  justify={"center"}
 
 						>
-							<Grid item sm={0}>
-								<LangButton text={'Norsk'} countryName={'norway'}/>
+							<Grid item>
+								<LangButton
+									text={'Norsk'}
+									countryName={'norway'}
+								/>
 							</Grid>
 
-							<Grid item sm={0}>
-								<LangButton text={'Svenska'} countryName={'sweden'}/>
+							<Grid item>
+								<LangButton
+									text={'Svenska'}
+									countryName={'sweden'}
+								/>
 							</Grid>
 
-							<Grid item sm={0}>
-								<LangButton text={'English'} countryName={'uk'}/>
+							<Grid item>
+								<LangButton
+									text={'English'}
+									countryName={'uk'}
+								/>
 							</Grid>
 
 						</Grid>
 					</Grid>
 
-					<Grid item md={0}>
+					<Grid item>
 						<h3 style={styles.title}>
 							Personal settings
 						</h3>
 					</Grid>
-					<Grid item md={0}>
+
 					<InputFields/>
-					</Grid>
 
 				</Grid>
 
@@ -88,7 +96,6 @@ export default class SettingsWindow extends Component  {
 					<Exit/>
 				</div>
 			</div>
-
 		)
 	}
 }
