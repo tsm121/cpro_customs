@@ -27,16 +27,16 @@ class Animals extends Component {
                     </Grid>
                     <Grid item>
                         <SubSelection
-                            text={"I want to import an animal"}
+                            text={"I bought an animal abroad"}
                             icon={"animal"}
-                            route={"/categories/animals/import"}
+                            route={"/categories/animals/bought"}
                         />
                     </Grid>
                     <Grid item>
                         <SubSelection
-                            text={"I bought an animal abroad"}
+                            text={"I want to import an animal"}
                             icon={"animal"}
-                            route={"/categories/animals/bought"}
+                            route={"/categories/animals/import"}
                         />
                     </Grid>
                 </Grid>

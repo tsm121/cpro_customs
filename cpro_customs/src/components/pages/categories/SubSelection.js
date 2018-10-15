@@ -16,7 +16,6 @@ class SubSelection extends Component {
             <Grid container
                   justify={"center"}
                   alignItems={"center"}
-                  spacing={0}
                   direction={"row"}
             >
                 <Grid item xs={11} sm={10} md={8}
@@ -38,14 +37,13 @@ class SubSelection extends Component {
                                     <Grid item xs={7} sm={7} md={8}>
                                         <Grid container>
                                             <Grid item>
-                                                <img className={"icon_md"}
+                                                <img className={"icon_xs"}
                                                  src={icons[icon]}
                                                  alt={"icon"}/>
                                             </Grid>
                                         </Grid>
                                     </Grid>
-                                    <Grid item xs={3} sm={3} md={2}>
-                                    </Grid>
+                                    <Grid item xs={3} sm={3} md={2}></Grid>
                                 </Grid>
                             </Grid>
                             <Grid item xs={8} sm={9} md={9}>
