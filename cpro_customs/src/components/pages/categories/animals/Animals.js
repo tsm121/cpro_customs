@@ -16,7 +16,7 @@ class Animals extends Component {
                       spacing={0}
                       direction={"row"}
                 >
-                    <Grid item xs={11} sm={10} md={9} lg={8} xl={8}>
+                    <Grid item xs={12} sm={12} md={1} lg={1} xl={1}>
                         <Paper className={"cdp_paper_category_sub_selection"}>
                             <Grid container
                                   justify={"flex-start"}
