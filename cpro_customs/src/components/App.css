@@ -149,45 +149,8 @@ div.cdp_paper_category_sub_selection {
     padding: 25px;
 }
 
-@media only screen and (max-width: 1919px) {
-    /* lg */
-
-}
-
-@media only screen and (max-width: 1279px) {
-    /* md */
-    h1.cdp {
-        font-size: 80px;
-    }
-    h2.cdp {
-        font-size: 80px;
-    }
-    h3.cdp {
-        font-size: 70px;
-    }
-    h4.cdp {
-        font-size: 60px;
-    }
-
-    img.icon_xs {
-        width: 60px;
-    }
-    img.icon_sm {
-        width: 80px;
-    }
-    img.icon_md {
-        width: 100px;
-    }
-    img.icon_lg {
-        width: 120px;
-    }
-    img.icon_xl {
-        width: 140px;
-    }
-}
-
+/* ---- sm ---- */
 @media only screen and (max-width: 959px) {
-    /* sm */
     h1.cdp {
         font-size: 60px;
     }
@@ -216,10 +179,14 @@ div.cdp_paper_category_sub_selection {
     img.icon_xl {
         width: 140px;
     }
+
+    span.cdp_category_sub_selection {
+        font-size: 2em;
+    }
 }
 
+/* ---- xs ---- */
 @media only screen and (max-width: 599px) {
-    /* xs */
     h1.cdp {
         font-size: 40px;
     }
@@ -247,5 +214,9 @@ div.cdp_paper_category_sub_selection {
     }
     img.icon_xl {
         width: 80px;
+    }
+
+    span.cdp_category_sub_selection {
+        font-size: 1em;
     }
 }
