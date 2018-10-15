@@ -5,24 +5,13 @@ import Grid from '@material-ui/core/Grid';
 
 
 const styles =({
-    category_img: {
-        height:'90px',
-        width:'90px',
-        margin: '10px',
-        padding: '10px',
-        alignItems: 'center'
-    },
-
     category_text: {
         textAlign: 'center',
         margin: '5px',
         textTransform: 'none'
-
     },
 
     category_button: {
-        height: '200px',
-        width: '200px',
         borderRadius: '0',
         background: 'white',
         margin: '10px'
@@ -36,13 +25,12 @@ export default class CategoryButton extends Component  {
 
         return (
             <div>
-                <Button variant='contained' size={"large"} style={styles.category_button}>
+                <Button className={"category_button"} variant='contained' size={"large"} style={styles.category_button}>
                     <Grid container spacing={0}
                           direction={"column"}
                     >
                         <Grid item xl={1}>
-                            <img src={require(`assets/categories/${filename}.png`)}
-                            style={styles.category_img}
+                            <img className="icon_md" src={require(`assets/img/icons/512x512/${filename}.png`)}
                             />
                         </Grid>
                         <Grid item xl={1}>

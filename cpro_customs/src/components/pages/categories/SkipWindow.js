@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import Button from "@material-ui/core/Button/Button";
 import Modal from "@material-ui/core/Modal/Modal";
+import {withRouter} from "react-router-dom";
 
 const styles =({
     modal: {
@@ -39,24 +40,20 @@ const styles =({
         fontWeight: 'normal',
         fontSize: '3vw',
         margin: 'vw',
-        whiteSpace: 'initial'
-    },
-    buttonSkip: {
-        backgroundColor: 'white',
-        width: '10vw',
-        height: '4vw',
-        position: 'absolute',
-        bottom:'4px',
-        right:'16px',
-        paddingBottom: '1em',
-        margin: 'vw'
+        whiteSpace: 'initial',
+        lineHeight: '1.4'
     }
 });
 
-export default class SkipWindow extends Component  {
-    state = {
-        open: false,
-    };
+class SkipWindow extends Component  {
+    constructor(props) {
+        super(props);
+        // init state
+        this.state = {
+            open: false,
+            showYellowIcon: false
+        };
+    }
 
     handleOpen = () => {
         this.setState({ open: true });
@@ -69,7 +66,21 @@ export default class SkipWindow extends Component  {
     render() {
         return (
             <div>
-                <Button onClick={this.handleOpen} style={styles.buttonSkip}>Skip</Button>
+                <Button variant={"contained"}
+                        onClick={this.handleOpen}
+                        onMouseOver={() => this.nextOnMouseOver()}
+                        onMouseOut={() => this.nextOnMouseOut()}
+                        style={{
+                            width: '14vw',
+                            height: '5vw',
+                            marginRight: '1em',
+                            backgroundColor: this.state.showYellowIcon ? '#ffd200' : 'white'
+                        }}
+                >
+                    <h4 className={"cdp cdp_dark_grey"} style={{fontSize:'2em', textAlign: 'center', margin:'0'}}>
+                        Skip
+                    </h4>
+                </Button>
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
@@ -82,25 +93,27 @@ export default class SkipWindow extends Component  {
                               spacing={0}
                               justify={'center'}
                               alignItems={"center"}
-                              direction={"column"}
+                              direction={"row"}
                         >
 
                             <Grid item xl={1} >
-                                <h1 style={styles.title}>Skip declaring</h1>
+                                <h4 className={"cdp"}>Skip declaring</h4>
                             </Grid>
 
-                             <Grid item xl={1} justify={'center'} alignItems={"center"}>
+                             <Grid item xl={1}
+                                   justify={'center'}
+                                   alignItems={"center"}>
                                  <Button style={styles.buttonModal}>
                                      <h2 style={styles.buttonTextModal}>
-                                         I'm <span style={{color: '#ffd200'}}> bringing </span> something with me
+                                         I'm <span className={"cdp_yellow"}> bringing </span> something with me
                                      </h2>
                                  </Button>
                              </Grid>
 
                              <Grid item xl={1} justify={'center'} alignItems={"center"}>
                                  <Button style={styles.buttonModal}>
-                                     <h2 style={styles.buttonTextModal}>
-                                        I'm <span style={{color: '#ffd200'}}> not </span> bringing anything into the country
+                                     <h2 style={styles.buttonTextModal} >
+                                         <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>
                                      </h2>
                                  </Button>
                              </Grid>
@@ -112,4 +125,20 @@ export default class SkipWindow extends Component  {
             </div>
         );
     }
+
+    nextOnMouseOver() {
+        this.setState({
+            showYellowIcon: true,
+        });
+        document.body.style.cursor = "pointer";
+    }
+
+    nextOnMouseOut() {
+        this.setState({
+            showYellowIcon: false,
+        });
+        document.body.style.cursor = "default";
+    }
 }
+
+export default withRouter(SkipWindow);

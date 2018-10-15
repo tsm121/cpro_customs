@@ -2,109 +2,113 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import CategoryButton from "./CategoryButton";
 import SkipWindow from "./SkipWindow";
-import ExtendButton from "./ExtendButton";
-import NavigationArrow from "../../NavigationArrow";
+import ArrowButton from "./ArrowButton";
+import {categories} from "./categoryData";
+import Button from '@material-ui/core/Button';
 
 
-const h1Style = {
-    fontFamily: 'Arial, serif',
-    fontWeight: 'normal',
-    fontSize: '5vw',
-    paddingLeft: '3vw',
-    paddingRight: '3v',
-    marginBottom: '150px',
-    textAlign: 'center',
-    color: '#ffffff',
-};
-
-const h1Style_secondary = {
-    fontFamily: 'Arial, serif',
-    fontWeight: 'normal',
-    fontSize: '3vw',
-    paddingLeft: '3vw',
-    paddingRight: '3vw',
-    textAlign: 'center',
-    color: '#ffd200'
-};
-
-const categories = {
-    firstList: [
-        {
-            text: 'Alcohol',
-            filename: 'alcohol' },
-        {
-            text: 'Tobacco',
-            filename: 'logo' },
-        {
-            text: 'Food',
-            filename: 'logo'},
-        {
-            text: 'Goods',
-            filename: 'logo'},
-    ],
-
-    secondList: [
-        {
-            text: 'Alcohol',
-            filename: 'alcohol' },
-        {
-            text: 'Tobacco',
-            filename: 'tobacco' },
-        {
-            text: 'Food',
-            filename: 'food'},
-        {
-            text: 'Goods',
-            filename: 'goods'},
-        {
-            text: 'Animal',
-            filename: 'animal'}
-    ]
-}
+const styles =({
+    title: {
+        paddingBottom: '6vw'
+    } ,
+    bottom_line: {
+    	position:'relative',
+        top:'90px',
+   		paddingBottom: '1em',
+    },
+    bottom_line_expand: {
+    	position:'relative',
+        top:'0px',
+   		paddingBottom: '1em',
+    },
+});
 
 export default class Categories extends Component  {
+    constructor() {
+        super()
+        this.state = {
+            more_categories: false
+        }
+    }
+
+    handleOnClickCategories = ()  =>{
+        const {more_categories} = this.state
+        this.setState({
+            more_categories: !more_categories
+        })
+        this.renderCategories()
+    }
+
+    renderCategories = () => {
+        const {more_categories} = this.state
+        if(more_categories) {
+            return categories.secondList
+
+        } else {
+            return categories.firstList
+        }
+    }
 
     render = () => {
         return (
-
             <div>
-                {/* Outer Grid */}
                 <Grid container
                       spacing={0}
-                      direction={'column'}
+                      direction={'row'}
                       justify={'center'}
                       alignItems={'center'}
                 >
-                    {/* Outer Grid item 1 */}
-                    <Grid item xl={1}>
-                        <h1 style={h1Style}>
-                            What would you like to <span style={{color: '#ffd200'}}>declare</span>?
-                        </h1>
+                    <Grid item >
+                        <h3 className={"cdp"} style={styles.title}>
+                            What would you like to <span className={"cdp_yellow"}>declare</span>?
+                        </h3>
                     </Grid>
 
-                    {/* Outer Grid item 2 */}
-                    <Grid item xl={1}>
-                        {/* Inner Grid */}
+                    <Grid item xs={9} sm={9} md={9} style={{paddingBottom:'50px'}}
+                    >
                         <Grid container
-                              spacing={0}
+                              spacing={8}
                               direction={'row'}
                               justify={'center'}
                               alignItems={'center'}
                         >
-
-                            {categories.firstList.map(category => (
-                                <Grid item xl={1}>
-                                    <CategoryButton text={category.text} filename={category.filename}/>
+                            {(this.renderCategories()).map (category => (
+                                <Grid item xs={6} sm={4} md={3} >
+                                    <CategoryButton text={category.text} filename={"diet"}/>
                                 </Grid>
-                                ))}
-
+                            ))}
                         </Grid>
                     </Grid>
 
+                    <Grid item xs={12} sm={12} md={12} style={styles.bottom_line}>
+                        <Grid container
+                              spacing={0}
+                              direction={'row'}
+                              justify={'space-between'}
+                              alignItems={'flex-end'}
+                        >
+                            <Grid item xs={4} sm={4} md={4}></Grid>
+
+                            <Grid item xs={4} sm={4} md={4} alignContent={'center'}
+                             >
+                                <ArrowButton
+                                    direction={this.state.more_categories ? "up" : "down"}
+                                    text={this.state.more_categories ? "Less categories" : "More categories"}
+                                    onClick={this.handleOnClickCategories}
+                                />
+                            </Grid>
+
+                            <Grid item xs={4} sm={4} md={4} >
+                                <Grid container justify={"flex-end"}  >
+                                    <SkipWindow/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
-                <ExtendButton/>
-                <SkipWindow/>
             </div>
+
+
 
         )
     }
