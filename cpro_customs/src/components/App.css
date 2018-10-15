@@ -142,11 +142,26 @@ img.icon_xl {
     width: 160px;
 }
 
+img.cdp_icon_item {
+    width: 40px;
+    height: 40px;
+}
+
 /*
     material ui elements
  */
 div.cdp_paper_category_sub_selection {
     padding: 25px;
+}
+
+/*
+    custom components that are used in multiple other components
+ */
+.cdp_img_badge {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    margin-right: 16px;
 }
 
 /* ---- sm ---- */
