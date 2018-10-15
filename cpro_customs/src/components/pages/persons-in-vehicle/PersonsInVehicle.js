@@ -4,7 +4,7 @@ import update from "immutability-helper";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from '@material-ui/core/Paper';
 
-import '../../../assets/css/core.css' // TODO: make this path absolute
+import '../../App.css' // TODO: make this path absolute
 import './PersonsInVehicle.css'
 import NavigationArrow from '../../NavigationArrow'
 

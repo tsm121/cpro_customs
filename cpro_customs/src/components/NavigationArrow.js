@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 import { Grid } from "@material-ui/core";
 
-import '../assets/css/core.css'
+import './App.css'
 
 
 class NavigationArrow extends Component  {
