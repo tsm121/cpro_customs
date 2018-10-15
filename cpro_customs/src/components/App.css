@@ -100,7 +100,28 @@ h4.cdp {
     font-size: 70px;
 }
 
+/*
+    text
+ */
+span.cdp_white {
+    color: white;
+}
+span.cdp_black {
+    color: black;
+}
+span.cdp_yellow {
+    color: #ffd200;
+}
+span.cdp_dark_grey {
+    color: #37424a;
+}
+span.cdp_light_grey {
+    color: #e2e3e5;
+}
 
+span.cdp_category_sub_selection {
+    font-size: 3em;
+}
 
 /*
     icons
@@ -119,6 +140,13 @@ img.icon_lg {
 }
 img.icon_xl {
     width: 160px;
+}
+
+/*
+    material ui elements
+ */
+div.cdp_paper_category_sub_selection {
+    padding: 25px;
 }
 
 @media only screen and (max-width: 1919px) {
