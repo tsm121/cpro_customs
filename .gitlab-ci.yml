@@ -62,5 +62,5 @@ test:
     DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
   script:
   - cd cpro_customs/
-  - echo -e "{\"DB_PASSWORD\"\":" \"password\"}" > secrets.json
+  - echo -e "{\"DB_PASSWORD\":\ \"password\"}" > secrets.json
   - python manage.py test
