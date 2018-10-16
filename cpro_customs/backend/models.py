@@ -4,7 +4,7 @@ from django.db import models
 
 class Transaction(models.Model):
     license_plate = models.CharField(max_length=255)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(default=0)
     taxes_and_fees = models.FloatField(default=0)
     
     def __str__(self):
