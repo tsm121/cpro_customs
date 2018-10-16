@@ -6,42 +6,13 @@ import Modal from "@material-ui/core/Modal/Modal";
 import {withRouter} from "react-router-dom";
 
 const styles =({
-    modal: {
-        display: 'block',
-        overflow: 'auto',
-        minWidth: '60%',
-        maxHeight: '80%',
-        paddingRight: '8vw',
-        paddingLeft: '8vw',
-        paddingBottom: '12vw',
-        backgroundColor:'#e2e3e5',
-        color: '#37424a',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)'
-    },
     title: {
-        marginBottom:'5vw',
+        marginBottom:'1vw',
         padding: 'calc(10px + vw)',
-    },
-    buttonModal: {
-        backgroundColor: '#37424a',
-        width: '50vw',
-        height: '15vw',
-        borderRadius: '0',
-        margin: '2vw'
+        fontSize: '4.5vw'
     },
     buttonTextModal: {
-        textAlign: 'center',
-        color: 'white',
-        textTransform: 'none',
-        fontFamily: 'Arial, serif',
-        fontWeight: 'normal',
-        fontSize: '3vw',
-        margin: 'vw',
-        whiteSpace: 'initial',
-        lineHeight: '1.4'
+        fontSize: '2.3vw',
     }
 });
 
@@ -66,7 +37,7 @@ class SkipWindow extends Component  {
     render() {
         return (
             <div>
-                <Button variant={"contained"}
+                <Button
                         onClick={this.handleOpen}
                         onMouseOver={() => this.nextOnMouseOver()}
                         onMouseOut={() => this.nextOnMouseOut()}
@@ -87,7 +58,7 @@ class SkipWindow extends Component  {
                     open={this.state.open}
                     onClose={this.handleClose}
                 >
-                    <div style={styles.modal}>
+                    <div className={"modal"}>
 
                         <Grid container
                               spacing={0}
@@ -96,23 +67,23 @@ class SkipWindow extends Component  {
                               direction={"row"}
                         >
 
-                            <Grid item xl={1} >
-                                <h4 className={"cdp"}>Skip declaring</h4>
+                            <Grid item xs={12} sm={12} md={12} >
+                                <h4 className={"cdp"} style={styles.title}>Skip declaring</h4>
                             </Grid>
 
                              <Grid item xl={1}
                                    justify={'center'}
                                    alignItems={"center"}>
-                                 <Button style={styles.buttonModal}>
-                                     <h2 style={styles.buttonTextModal}>
+                                 <Button className={"modal_skip_button"}>
+                                     <h2 className={"cdp modal_skip_button_text"} style={styles.buttonTextModal}>
                                          I'm <span className={"cdp_yellow"}> bringing </span> something with me
                                      </h2>
                                  </Button>
                              </Grid>
 
                              <Grid item xl={1} justify={'center'} alignItems={"center"}>
-                                 <Button style={styles.buttonModal}>
-                                     <h2 style={styles.buttonTextModal} >
+                                 <Button className={"modal_skip_button"}>
+                                     <h2 className={"cdp modal_skip_button_text"} style={styles.buttonTextModal} >
                                          <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>
                                      </h2>
                                  </Button>

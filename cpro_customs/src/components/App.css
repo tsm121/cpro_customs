@@ -67,13 +67,6 @@ transform: translate(-50%, -50%);
     background-color: rgba(256, 51, 77, .4) !important;
 }
 
-.category_button {
-    border-radius: 10px;
-    background-color: white !important;
-    margin: 10px;
-    height: 15vw;
-    width: 15vw;
-}
 
 /*
     <h1>, <h2>, <h3>, <h4>
@@ -156,6 +149,7 @@ img.cdp_icon_item {
     height: 40px;
 }
 
+
 /*
     material ui elements
  */
@@ -176,8 +170,8 @@ div.cdp_paper_category_sub_selection {
 .modal {
     display: block;
     overflow: auto;
-    min-width: 50%;
-    max-height: 80%;
+    min-width: 50% !important;
+    max-height: 80% !important;
     padding-right: 4vw;
     padding-left: 4vw;
     padding-bottom: 12vw;
@@ -192,6 +186,22 @@ div.cdp_paper_category_sub_selection {
 .modal_title {
     padding: 0;
     margin-bottom: 10px;
+}
+
+.modal_skip_button {
+    background-color: #37424a !important;
+    width: 42vw;
+    height: 11vw;
+    border-radius: 0;
+    margin: 1vw !important;
+
+}
+
+.modal_skip_button_text {
+    white-space: initial;
+    line-height: 1.4;
+    margin: 1vw !important;
+    color: white;
 }
 
 .flag_img {
@@ -222,6 +232,43 @@ div.cdp_paper_category_sub_selection {
     background-color: #37424a !important;
     color: #ffd200 !important;
 }
+
+/*
+    Categories
+*/
+
+.category_title {
+    padding-bottom: 3.5vw;
+    font-size: 5vw !important;
+}
+
+.category_button {
+    border-radius: 0 !important;
+    background-color: white !important;
+    margin: 10px !important;
+    height: 14vw;
+    width: 14vw;
+    padding: 1vw;
+    min-height: 10vmin;
+    min-width: 10vmin;
+}
+
+.category_text {
+    text-align: center;
+    color: #37424a;
+}
+
+.category_button_text {
+    font-size: 2.4vw !important;
+    margin: 10px !important
+}
+
+img.category_button_img {
+    width: 7vw;
+    min-width: 9vmin;
+}
+
+
 
 /* ---- xs ---- */
 @media only screen and (max-width: 599px) {
@@ -258,10 +305,30 @@ div.cdp_paper_category_sub_selection {
         font-size: 1em;
     }
 
-    .category_button {
-        height: 30vw;
-        width: 30vw;
+    .category_title {
+        padding-bottom: 3.5vw;
+        font-size: 10vw !important;
     }
+
+    .category_button {
+        margin: 10px !important;
+        height: 35vw;
+        width: 35vw;
+        padding: 1vw;
+    }
+
+    .category_text {
+        text-align: center;
+    }
+
+    img.category_button_img {
+        width: 15vw;
+    }
+
+    .category_button_text {
+        font-size: 8vw !important;
+    }
+
 }
 
 /* ---- sm ---- */
@@ -308,8 +375,9 @@ div.cdp_paper_category_sub_selection {
         min-width: 8vmax;
     }
 
-    .category_button {
-        height: 20vw;
-        width: 20vw;
+    .category_title {
+        padding-bottom: 3.5vw;
+        font-size: 8vw !important;
     }
+
 }
