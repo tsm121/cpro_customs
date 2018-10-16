@@ -28,33 +28,33 @@ export const categories = {
             filename: 'diet'},
         {
             text: 'Goods',
-            filename: 'goods'},
+            filename: 'diet'},
         {
             text: 'Animal',
             filename: 'pawprint'},
         {
             text: 'Weapons',
-            filename: 'weapons'},
+            filename: 'diet'},
         {
             text: 'Currency',
             filename: 'funds'},
         {
             text: 'Vehicles',
-            filename: 'vehicles'},
+            filename: 'diet'},
         {
             text: 'Chemicals',
-            filename: 'chemicals'},
+            filename: 'diet'},
         {
             text: 'Plants',
             filename: 'plant'},
         {
             text: 'Fireworks',
-            filename: 'fireworks'},
+            filename: 'diet'},
         {
             text: 'Gifts',
-            filename: 'gifts'},
+            filename: 'diet'},
         {
             text: 'Medicine',
-            filename: 'medicine'}
+            filename: 'diet'}
     ]
 }

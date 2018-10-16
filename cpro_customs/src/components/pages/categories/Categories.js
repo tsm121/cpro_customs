@@ -74,7 +74,7 @@ export default class Categories extends Component  {
                         >
                             {(this.renderCategories()).map (category => (
                                 <Grid item xs={6} sm={4} md={3} >
-                                    <CategoryButton text={category.text} filename={"diet"}/>
+                                    <CategoryButton text={category.text} filename={category.filename}/>
                                 </Grid>
                             ))}
                         </Grid>
