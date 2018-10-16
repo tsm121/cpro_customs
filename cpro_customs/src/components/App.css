@@ -1,3 +1,15 @@
+/*
+    A css file containing default styles for default components, e.g. for text, headings etc
+ */
+
+/*
+    global variables (within this file)
+ */
+:root {
+  --font-family: Arial, sans-serif;
+  --font-weight: normal;
+}
+
 body {
     background: #37424a;
     color: #e2e3e5;
@@ -54,6 +66,102 @@ transform: translate(-50%, -50%);
 .light .MuiNotchedOutline-error-216 {
     background-color: rgba(256, 51, 77, .4) !important;
 }
+/*
+    <h1>, <h2>, <h3>, <h4>
+ */
+h1.cdp, h2.cdp, h3.cdp, h4.cdp {
+    font-weight: var(--font-weight);
+    font-family: var(--font-family);
+    padding-left: 3vw;
+    padding-right: 3vw;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+h1.cdp_primary, h2.cdp_primary, h3.cdp_primary, h4.cdp_primary {
+    color: white;
+}
+
+h1.cdp_secondary, h2.cdp_secondary, h3.cdp_secondary, h4.cdp_secondary {
+    color: #ffd200;
+}
+
+h1.cdp {
+    font-size: 100px;
+}
+h2.cdp {
+    font-size: 90px;
+}
+h3.cdp {
+    font-size: 80px;
+}
+h4.cdp {
+    font-size: 70px;
+}
+
+/*
+    text
+ */
+span.cdp_white {
+    color: white;
+}
+span.cdp_black {
+    color: black;
+}
+span.cdp_yellow {
+    color: #ffd200;
+}
+span.cdp_dark_grey {
+    color: #37424a;
+}
+span.cdp_light_grey {
+    color: #e2e3e5;
+}
+
+span.cdp_category_sub_selection {
+    font-size: 3em;
+}
+
+/*
+    icons
+ */
+img.icon_xs {
+    width: 80px;
+}
+img.icon_sm {
+    width: 100px;
+}
+img.icon_md {
+    width: 120px;
+}
+img.icon_lg {
+    width: 140px;
+}
+img.icon_xl {
+    width: 160px;
+}
+
+img.cdp_icon_item {
+    width: 40px;
+    height: 40px;
+}
+
+/*
+    material ui elements
+ */
+div.cdp_paper_category_sub_selection {
+    padding: 25px;
+}
+
+/*
+    custom components that are used in multiple other components
+ */
+.cdp_img_badge {
+    margin-top: 24px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    margin-right: 16px;
+}
 
 .modal {
     display: block;
@@ -107,6 +215,79 @@ transform: translate(-50%, -50%);
     color: #ffd200 !important;
 }
 
+/* ---- sm ---- */
+@media only screen and (max-width: 959px) {
+    h1.cdp {
+        font-size: 60px;
+    }
+    h2.cdp {
+        font-size: 70px;
+    }
+    h3.cdp {
+        font-size: 60px;
+    }
+    h4.cdp {
+        font-size: 50px;
+    }
+
+    img.icon_xs {
+        width: 60px;
+    }
+    img.icon_sm {
+        width: 80px;
+    }
+    img.icon_md {
+        width: 100px;
+    }
+    img.icon_lg {
+        width: 120px;
+    }
+    img.icon_xl {
+        width: 140px;
+    }
+
+    span.cdp_category_sub_selection {
+        font-size: 2em;
+    }
+}
+
+/* ---- xs ---- */
+@media only screen and (max-width: 599px) {
+    h1.cdp {
+        font-size: 40px;
+    }
+    h2.cdp {
+        font-size: 60px;
+    }
+    h3.cdp {
+        font-size: 50px;
+    }
+    h4.cdp {
+        font-size: 40px;
+    }
+
+    img.icon_xs {
+        width: 40px;
+    }
+    img.icon_sm {
+        width: 50px;
+    }
+    img.icon_md {
+        width: 60px;
+    }
+    img.icon_lg {
+        width: 70px;
+    }
+    img.icon_xl {
+        width: 80px;
+    }
+
+    span.cdp_category_sub_selection {
+        font-size: 1em;
+    }
+}
+
+
 @media only screen and (max-width: 959px) {
     /* sm */
     .modal {
@@ -118,3 +299,4 @@ transform: translate(-50%, -50%);
     }
 
 }
+

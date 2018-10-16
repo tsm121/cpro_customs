@@ -6,6 +6,12 @@ import PersonsInVehicle from './pages/persons-in-vehicle/PersonsInVehicle'
 import OnBoarding from "./pages/on-boarding/OnBoarding";
 import Overview from './pages/categories/Overview'
 import Animals from "./pages/categories/animals/Animals";
+import Pet from "./pages/categories/animals/Pet";
+import Horse from "./pages/categories/animals/Horse";
+import Import from "./pages/categories/animals/Import";
+import Bought from "./pages/categories/animals/Bought";
+import Goods from "./pages/categories/goods/Goods";
+
 
 /**
  * Router handles routing through our pages / components
@@ -21,6 +27,11 @@ class Router extends Component {
                 <Route exact path='/on-boarding' component={OnBoarding}/>
                 <Route exact path='/categories' component={Overview}/>
                 <Route exact path='/categories/animals' component={Animals}/>
+                <Route exact path='/categories/animals/pet' component={Pet}/>
+                <Route exact path='/categories/animals/horse' component={Horse}/>
+                <Route exact path='/categories/animals/import' component={Import}/>
+                <Route exact path='/categories/animals/bought' component={Bought}/>
+                <Route exact path='/categories/goods' component={Goods}/>
             </Switch>
 		);
 	}

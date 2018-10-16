@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Grid from "@material-ui/core/Grid/Grid";
-import "../../../assets/css/core.css"
+import "../../App.css"
 
 const styles =({
 	container: {
