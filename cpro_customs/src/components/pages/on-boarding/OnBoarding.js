@@ -48,7 +48,7 @@ export default class OnBoarding extends Component  {
 					<Grid item
 						  style={{marginTop:'5%'}}
 					>
-						<InputFields light={true} />
+						<InputFields light={true} on_boarding={true} />
 					</Grid>
 
 				</Grid>

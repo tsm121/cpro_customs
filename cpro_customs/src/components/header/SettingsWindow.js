@@ -6,95 +6,83 @@ import LangButton from "./LangButton";
 import Exit from "./Exit";
 import InputFields from "../InputFields";
 
-const styles =({
-	modal: {
-		display: 'block',
-		overflow: 'auto',
-		minWidth: '60%',
-		maxHeight: '80%',
-		paddingRight: '8vw',
-		paddingLeft: '8vw',
-		paddingBottom: '12vw',
-		backgroundColor:'#e2e3e5',
-		color: '#37424a',
-		position: 'absolute',
-		top: '50%',
-		left: '50%',
-		transform: 'translate(-50%, -50%)'
-	},
-	title: {
-		marginBottom:'0',
-		padding: '0',
-	}
-});
-
 export default class SettingsWindow extends Component  {
 	render = () => {
 		return (
 
-			<div style={styles.modal}>
+			<div className={'modal'}>
 
-				<Grid container spacing={16}
-					  justify="space-between"
+				<Grid container spacing={24}
+					  justify={"center"}
 					  alignItems={"center"}
-					  direction={"column"}
+					  direction={"row"}
 				>
 
-					<Grid item md={1} >
-						<h1 style={styles.title}>
+					<Grid container
+						  justify={"center"}
+					>
+						<h1 className={"modal_title"}>
 							Settings
 						</h1>
 					</Grid>
 
-					<Grid item md={1}>
-						<h3 style={styles.title}>
+					<Grid container
+						  justify={"center"}
+					>
+						<h3 className={"modal_title"}>
 							Language selection
 						</h3>
 					</Grid>
 
-					<Grid item xl={3}>
-						<Grid container spacing={8}
-							  direction={"row"}
-							  justify={"center"}
 
-						>
-							<Grid item>
-								<LangButton
-									text={'Norsk'}
-									countryName={'norway'}
-								/>
-							</Grid>
-
-							<Grid item>
-								<LangButton
-									text={'Svenska'}
-									countryName={'sweden'}
-								/>
-							</Grid>
-
-							<Grid item>
-								<LangButton
-									text={'English'}
-									countryName={'uk'}
-								/>
-							</Grid>
-
+					<Grid container
+						  spacing={8}
+						  direction={"row"}
+						  justify={"center"}
+						  alignItems={"center"}
+					>
+						<Grid item>
+							<LangButton
+								text={'Norsk'}
+								countryName={'norway'}
+							/>
 						</Grid>
+
+						<Grid item>
+							<LangButton
+								text={'Svenska'}
+								countryName={'sweden'}
+							/>
+						</Grid>
+
+						<Grid item>
+							<LangButton
+								text={'English'}
+								countryName={'uk'}
+							/>
+						</Grid>
+
 					</Grid>
 
-					<Grid item>
-						<h3 style={styles.title}>
+					<Grid container
+						  justify={"center"}
+
+					>
+						<h3 className={"modal_title"} style={{marginBottom:'0'}}>
 							Personal settings
 						</h3>
 					</Grid>
 
-					<InputFields/>
+					<Grid container
+						  justify={"center"}
+					>
+
+						<InputFields/>
+					</Grid>
 
 				</Grid>
 
-				<div>
-					<Exit/>
-				</div>
+
 			</div>
 		)
 	}
