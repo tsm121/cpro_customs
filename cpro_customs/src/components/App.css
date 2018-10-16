@@ -6,8 +6,8 @@
     global variables (within this file)
  */
 :root {
-  --font-family: Arial, sans-serif;
-  --font-weight: normal;
+    --font-family: Arial, sans-serif;
+    --font-weight: normal;
 }
 
 body {
@@ -73,6 +73,42 @@ transform: translate(-50%, -50%);
     margin: 10px;
     height: 15vw;
     width: 15vw;
+}
+
+.h1Style {
+    font-family: Arial, serif;
+    font-weight: normal;
+    font-size: 5vw;
+    padding-left: 3vw;
+    padding-right: 3v;
+    margin-bottom: 0;
+    text-align: center;
+    color: #ffffff;
+}
+
+.h1Style_secondary {
+    font-family: Arial, serif;
+    font-weight: normal;
+    font-size: 5vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    text-align: center;
+    color: #ffd200;
+}
+
+.h1Style_secondary_big {
+    font-family: Arial, serif;
+    font-weight: normal;
+    font-size: 7vw;
+    padding-left: 3vw;
+    padding-right: 3vw;
+    text-align: center;
+    color: #ffd200;
+}
+
+.QR_code {
+    max-width: 15vmax;
+    max-height: 15vmax;
 }
 
 /*
