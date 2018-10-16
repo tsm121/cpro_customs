@@ -132,6 +132,18 @@ h4.cdp {
     font-size: 3em;
 }
 
+span.cdp_icon_round_label{
+    font-size: 1.75em;
+}
+
+.cdp_button_round {
+    margin-top: 6px !important;
+}
+
+.cdp_input_field {
+    margin: 8px !important;
+}
+
 /*
     icons
  */
@@ -167,7 +179,7 @@ div.cdp_paper_category_sub_selection {
     custom components that are used in multiple other components
  */
 .cdp_img_badge {
-    margin-top: 24px;
+    margin-top: 20px;
     margin-bottom: 8px;
     margin-left: 8px;
     margin-right: 16px;
