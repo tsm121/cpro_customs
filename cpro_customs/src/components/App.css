@@ -66,6 +66,15 @@ transform: translate(-50%, -50%);
 .light .MuiNotchedOutline-error-216 {
     background-color: rgba(256, 51, 77, .4) !important;
 }
+
+.category_button {
+    border-radius: 10px;
+    background-color: white !important;
+    margin: 10px;
+    height: 15vw;
+    width: 15vw;
+}
+
 /*
     <h1>, <h2>, <h3>, <h4>
  */
@@ -76,6 +85,7 @@ h1.cdp, h2.cdp, h3.cdp, h4.cdp {
     padding-right: 3vw;
     margin-bottom: 0;
     text-align: center;
+    text-transform: none;
 }
 
 h1.cdp_primary, h2.cdp_primary, h3.cdp_primary, h4.cdp_primary {
@@ -102,23 +112,23 @@ h4.cdp {
 /*
     text
  */
-span.cdp_white {
+.cdp_white {
     color: white;
 }
-span.cdp_black {
+.cdp_black {
     color: black;
 }
-span.cdp_yellow {
+.cdp_yellow {
     color: #ffd200;
 }
-span.cdp_dark_grey {
+.cdp_dark_grey {
     color: #37424a;
 }
-span.cdp_light_grey {
+.cdp_light_grey {
     color: #e2e3e5;
 }
 
-span.cdp_category_sub_selection {
+.cdp_category_sub_selection {
     font-size: 3em;
 }
 
@@ -179,8 +189,6 @@ div.cdp_paper_category_sub_selection {
     transform: translate(-50%, -50%);
 }
 
-
-
 .modal_title {
     padding: 0;
     margin-bottom: 10px;
@@ -210,45 +218,9 @@ div.cdp_paper_category_sub_selection {
     min-height: 5vmax;
 }
 
-.save_btn  {
+.save_btn {
     background-color: #37424a !important;
     color: #ffd200 !important;
-}
-
-/* ---- sm ---- */
-@media only screen and (max-width: 959px) {
-    h1.cdp {
-        font-size: 60px;
-    }
-    h2.cdp {
-        font-size: 70px;
-    }
-    h3.cdp {
-        font-size: 60px;
-    }
-    h4.cdp {
-        font-size: 50px;
-    }
-
-    img.icon_xs {
-        width: 60px;
-    }
-    img.icon_sm {
-        width: 80px;
-    }
-    img.icon_md {
-        width: 100px;
-    }
-    img.icon_lg {
-        width: 120px;
-    }
-    img.icon_xl {
-        width: 140px;
-    }
-
-    span.cdp_category_sub_selection {
-        font-size: 2em;
-    }
 }
 
 /* ---- xs ---- */
@@ -285,18 +257,59 @@ div.cdp_paper_category_sub_selection {
     span.cdp_category_sub_selection {
         font-size: 1em;
     }
+
+    .category_button {
+        height: 30vw;
+        width: 30vw;
+    }
 }
 
-
+/* ---- sm ---- */
 @media only screen and (max-width: 959px) {
-    /* sm */
+    h1.cdp {
+        font-size: 60px;
+    }
+    h2.cdp {
+        font-size: 70px;
+    }
+    h3.cdp {
+        font-size: 60px;
+    }
+    h4.cdp {
+        font-size: 50px;
+    }
+
+    img.icon_xs {
+        width: 60px;
+    }
+    img.icon_sm {
+        width: 80px;
+    }
+    img.icon_md {
+        width: 100px;
+    }
+    img.icon_lg {
+        width: 120px;
+    }
+    img.icon_xl {
+        width: 140px;
+    }
+
+    span.cdp_category_sub_selection {
+        font-size: 2em;
+    }
+
     .modal {
         min-width: 80%;
     }
+
     .flag_img {
         min-height: 8vmax;
         min-width: 8vmax;
     }
 
+    .category_button {
+        height: 20vw;
+        width: 20vw;
+    }
 }
-

@@ -14,6 +14,7 @@ class NavigationArrow extends Component  {
             showYellowIcon: false,
         };
     }
+
 	handleClick = () => {
         this.props.history.push("persons-in-vehicle");
     };
