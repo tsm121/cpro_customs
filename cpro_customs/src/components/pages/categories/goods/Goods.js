@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
 
 import PageTitle from "../PageTitle";
 
@@ -43,7 +41,6 @@ class Goods extends Component {
 
     render = () => {
         const { currency } = this.state;
-        const { classes } = this.state;
         return (
             <div>
                 <PageTitle title={"Goods"}/>
@@ -96,7 +93,7 @@ class Goods extends Component {
 }
 
 Goods.propTypes = {
-  classes: PropTypes.object.isRequired,
+  // classes: PropTypes.object.isRequired,
 };
 
 export default Goods;

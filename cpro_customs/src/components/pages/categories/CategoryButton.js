@@ -30,7 +30,9 @@ export default class CategoryButton extends Component  {
                           direction={"column"}
                     >
                         <Grid item>
-                            <img className="icon_md" src={require(`assets/img/icons/512x512/${filename}.png`)}
+                            <img className="icon_md"
+                                 src={require(`assets/img/icons/512x512/${filename}.png`)}
+                                 alt={"icon"}
                             />
                         </Grid>
                         <Grid item>

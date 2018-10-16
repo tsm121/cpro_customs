@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
+
 import Grid from '@material-ui/core/Grid';
+
 import CategoryButton from "./CategoryButton";
 import SkipWindow from "./SkipWindow";
 import ArrowButton from "./ArrowButton";
 import {categories} from "./categoryData";
-import Button from '@material-ui/core/Button';
-
 
 const styles =({
     title: {
