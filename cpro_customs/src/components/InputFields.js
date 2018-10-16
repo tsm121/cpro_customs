@@ -108,70 +108,100 @@ export default class InputFields extends Component  {
 		}
 	}
 	render = () => {
-		const {light} = this.props
+		const {light, on_boarding} = this.props
 		const{licencePlateInputError,emailInputError } = this.state
+
+		let cancelBtn
+
+		if(!on_boarding){
+			cancelBtn = <Button
+				variant={'outlined'}
+				style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
+			>
+				Close
+			</Button>
+		} else {
+			cancelBtn = ""
+		}
 
 		return (
 
 			<div>
 				<Grid container
+					  spacing={8}
 					  justify={"center"}
 					  alignItems={"center"}
 					  direction={"row"}
-					  style={{marginTop:'1em'}}
 				>
-					<Grid item>
+					<Grid item
+						  xs={12}
+						  md={6}
+					>
+						<Grid container
+							  justify={"center"}>
 
-						<TextField
-							id="outlined-licence-name"
-							label="License plate"
-							placeholder="AA12345"
-							margin="normal"
-							variant="outlined"
-							style={{margin:'5px', height:'auto'}}
-							className={light ? 'light' : ''}
-							onChange={this.handleLicencePlateInput}
-							error={licencePlateInputError}
-							defaultValue={this.getLicencePlate()}
-						/>
+							<TextField
+								id="outlined-licence-name"
+								label="License plate"
+								placeholder="AA12345"
+								margin="normal"
+								variant="outlined"
+								className={light ? 'light' : ''}
+								onChange={this.handleLicencePlateInput}
+								error={licencePlateInputError}
+								defaultValue={this.getLicencePlate()}
+							/>
+						</Grid>
 					</Grid>
 
-					<Grid item>
-
-						<TextField
-							id="outlined-email-input"
-							label="Email"
-							placeholder="mail@mail.com"
-							type="email"
-							name="email"
-							autoComplete="email"
-							margin="normal"
-							variant="outlined"
-							style={{margin:'5px'}}
-							className={light ? 'light' : ''}
-							onChange={this.handleEmailInput}
-							error={emailInputError}
-							defaultValue={this.getEmailPlate()}
-						/>
+					<Grid item
+						  xs={12}
+						  md={6}
+					>
+						<Grid container
+							  justify={"center"}>
+							<TextField
+								id="outlined-email-input"
+								label="Email"
+								placeholder="mail@mail.com"
+								type="email"
+								name="email"
+								autoComplete="email"
+								margin="normal"
+								variant="outlined"
+								className={light ? 'light' : ''}
+								onChange={this.handleEmailInput}
+								error={emailInputError}
+								defaultValue={this.getEmailPlate()}
+							/>
+						</Grid>
 					</Grid>
 				</Grid>
 
 				<Grid container
+					  spacing={8}
 					  justify={"center"}
 					  alignItems={"center"}
 					  direction={"row"}
-					  style={{marginTop:'1em'}}
+					  style={{marginTop:'2em'}}
 				>
 
+					<Grid item>
+						<Button
+							variant={'outlined'}
+							onClick={this.onClickHandler}
+							style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
+							className={"save_btn"}
+						>
+							{on_boarding ? "Continue" : "Save"}
+						</Button>
+					</Grid>
 
+					<Grid item>
 
-					<Button
-						variant={'outlined'}
-						onClick={this.onClickHandler}
-						style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
-					>
-						Save
-					</Button>
+						{cancelBtn}
+
+					</Grid>
 				</Grid>
 			</div>
 		)

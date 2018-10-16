@@ -32,7 +32,7 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;,
-    transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
 }
 
 .light .MuiInputBase-input-206 {
@@ -66,7 +66,6 @@ body {
 .light .MuiNotchedOutline-error-216 {
     background-color: rgba(256, 51, 77, .4) !important;
 }
-
 /*
     <h1>, <h2>, <h3>, <h4>
  */
@@ -164,6 +163,58 @@ div.cdp_paper_category_sub_selection {
     margin-right: 16px;
 }
 
+.modal {
+    display: block;
+    overflow: auto;
+    min-width: 50%;
+    max-height: 80%;
+    padding-right: 4vw;
+    padding-left: 4vw;
+    padding-bottom: 12vw;
+    background-color:#e2e3e5;
+    color: #37424a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.modal_title {
+    padding: 0;
+    margin-bottom: 10px;
+}
+
+.flag_img {
+    min-height: 9vmin;
+    min-width: 9vmin;
+}
+
+.flag_name {
+    text-align: center;
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+
+.flag_button {
+    border-radius: 0;
+    -webkit-box-shadow:inset 0 0 2px #7d8f9e;
+    -moz-box-shadow:inset 0 0 2px #7d8f9e;
+    box-shadow:inset 0 0 2px #7d8f9e;
+}
+.flag_container {
+    height: auto;
+    width: auto;
+    min-width: 5vmax;
+    min-height: 5vmax;
+}
+
+.save_btn  {
+    background-color: #37424a !important;
+    color: #ffd200 !important;
+}
+
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
     h1.cdp {
@@ -235,3 +286,17 @@ div.cdp_paper_category_sub_selection {
         font-size: 1em;
     }
 }
+
+
+@media only screen and (max-width: 959px) {
+    /* sm */
+    .modal {
+        min-width: 80%;
+    }
+    .flag_img {
+        min-height: 8vmax;
+        min-width: 8vmax;
+    }
+
+}
+
