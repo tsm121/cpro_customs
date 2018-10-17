@@ -6,7 +6,7 @@ import CategoryButton from "./CategoryButton";
 import SkipWindow from "./SkipWindow";
 import ArrowButton from "./ArrowButton";
 import {categories} from "./categoryData";
-import PageTitle from "../PageTitle";
+import "./CategoryStyle.css"
 
 const styles =({
     bottom_line: {
@@ -39,7 +39,7 @@ export default class Categories extends Component  {
                         </h3>
                     </Grid>
 
-                    <Grid item xs={12} sm={9} md={9} style={{paddingBottom:'50px'}}
+                    <Grid item className={"category_grid"} xs={12} sm={9} md={9}
                     >
                         <Grid container
                               spacing={8}
@@ -51,7 +51,7 @@ export default class Categories extends Component  {
                                 <Grid item xs={5} sm={4} md={3} >
                                     <CategoryButton text={category.text}
                                                     filename={category.filename}
-                                                    route={"/categories/animals/pets"}
+                                                    route={"/categories/XXX"}
                                     />
                                 </Grid>
                             ))}
@@ -76,8 +76,8 @@ export default class Categories extends Component  {
                                 />
                             </Grid>
 
-                            <Grid item xs={4} sm={4} md={4} >
-                                <Grid container justify={"flex-end"}  >
+                            <Grid item xs={4} sm={4} md={4}>
+                                <Grid container justify={"flex-end"} >
                                     <SkipWindow/>
                                 </Grid>
                             </Grid>

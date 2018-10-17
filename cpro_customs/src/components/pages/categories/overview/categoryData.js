@@ -11,7 +11,7 @@ export const categories = {
             filename: 'diet'},
         {
             text: 'Goods',
-            filename: 'diet'}
+            filename: 'shopping-cart'}
     ],
 
     secondList: [
@@ -26,7 +26,7 @@ export const categories = {
             filename: 'diet'},
         {
             text: 'Goods',
-            filename: 'diet'},
+            filename: 'shopping-cart'},
         {
             text: 'Animal',
             filename: 'pawprint'},
@@ -38,21 +38,21 @@ export const categories = {
             filename: 'funds'},
         {
             text: 'Vehicles',
-            filename: 'diet'},
+            filename: 'car_black'},
         {
             text: 'Chemicals',
-            filename: 'diet'},
+            filename: 'laboratory'},
         {
             text: 'Plants',
             filename: 'plant'},
         {
             text: 'Fireworks',
-            filename: 'diet'},
+            filename: 'fireworks'},
         {
             text: 'Gifts',
-            filename: 'diet'},
+            filename: 'gift'},
         {
             text: 'Medicine',
-            filename: 'diet'}
+            filename: 'pills'}
     ]
 }

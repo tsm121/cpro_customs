@@ -4,13 +4,9 @@ import Grid from '@material-ui/core/Grid';
 import Button from "@material-ui/core/Button/Button";
 import Modal from "@material-ui/core/Modal/Modal";
 import {withRouter} from "react-router-dom";
+import "./CategoryStyle.css"
 
 const styles =({
-    title: {
-        marginBottom:'1vw',
-        padding: 'calc(10px + vw)',
-        fontSize: '4.5vw'
-    },
     buttonTextModal: {
         fontSize: '2.3vw',
     }
@@ -37,28 +33,24 @@ class SkipWindow extends Component  {
     render() {
         return (
             <div>
-                <Button
+                <Button className={"skip_button"}
+                        style={{backgroundColor: this.state.showYellowIcon ? '#ffd200' : 'white'}}
                         onClick={this.handleOpen}
                         onMouseOver={() => this.nextOnMouseOver()}
                         onMouseOut={() => this.nextOnMouseOut()}
-                        style={{
-                            width: '14vw',
-                            height: '5vw',
-                            marginRight: '1em',
-                            backgroundColor: this.state.showYellowIcon ? '#ffd200' : 'white'
-                        }}
                 >
-                    <h4 className={"cdp cdp_dark_grey"} style={{fontSize:'2em', textAlign: 'center', margin:'0'}}>
+                    <h4 className={"cdp cdp_dark_grey skip_button_text"}>
                         Skip
                     </h4>
                 </Button>
+
                 <Modal
                     aria-labelledby="simple-modal-title"
                     aria-describedby="simple-modal-description"
                     open={this.state.open}
                     onClose={this.handleClose}
                 >
-                    <div className={"modal"}>
+                    <div className={"modal_skip"}>
 
                         <Grid container
                               spacing={0}
@@ -67,23 +59,27 @@ class SkipWindow extends Component  {
                               direction={"row"}
                         >
 
-                            <Grid item xs={12} sm={12} md={12} >
-                                <h4 className={"cdp"} style={styles.title}>Skip declaring</h4>
-                            </Grid>
+                             <Grid item xs={12} sm={12} md={12} >
+                                 <h4 className={"cdp modal_skip_title"} >Skip declaring</h4>
+                             </Grid>
 
-                             <Grid item xl={1}
+                             <Grid item xs={10} sm={10} md={10}
                                    justify={'center'}
-                                   alignItems={"center"}>
-                                 <Button className={"modal_skip_button"}>
-                                     <h2 className={"cdp modal_skip_button_text"} style={styles.buttonTextModal}>
+                                   alignItems={"center"}
+                             >
+                                 <Button className={"modal_button"} >
+                                     <h2 className={"cdp modal_button_text"}>
                                          I'm <span className={"cdp_yellow"}> bringing </span> something with me
                                      </h2>
                                  </Button>
                              </Grid>
 
-                             <Grid item xl={1} justify={'center'} alignItems={"center"}>
-                                 <Button className={"modal_skip_button"}>
-                                     <h2 className={"cdp modal_skip_button_text"} style={styles.buttonTextModal} >
+                             <Grid item xs={10} sm={10} md={10}
+                                   justify={'center'}
+                                   alignItems={"center"}
+                             >
+                                 <Button className={"modal_button"}>
+                                     <h2 className={"cdp modal_button_text"} >
                                          <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>
                                      </h2>
                                  </Button>
