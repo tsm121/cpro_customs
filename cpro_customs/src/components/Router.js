@@ -12,6 +12,7 @@ import Horse from "./pages/categories/animals/Horse";
 import Import from "./pages/categories/animals/Import";
 import Bought from "./pages/categories/animals/Bought";
 import Goods from "./pages/categories/goods/Goods";
+import Checkout from "./pages/checkout/Checkout";
 
 
 /**
@@ -26,6 +27,7 @@ class Router extends Component {
 				<Route exact path='/' component={Home}/>
 				<Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
 				<Route exact path='/on-boarding' component={OnBoarding}/>
+				<Route exact path='/checkout' component={Checkout}/>
 				<Route exact path='/categories' component={Categories} />
                 <Route exact path='/categories' component={Overview}/>
                 <Route exact path='/categories/animals' component={Animals}/>
