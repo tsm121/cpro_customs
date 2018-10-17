@@ -48,7 +48,7 @@ export default class Categories extends Component  {
                               alignItems={'center'}
                         >
                             {(this.renderCategories()).map (category => (
-                                <Grid item xs={5} sm={4} md={3} >
+                                <Grid item xs={5} sm={4} md={3} key={category.text} >
                                     <CategoryButton text={category.text}
                                                     filename={category.filename}
                                                     route={"/categories/XXX"}
@@ -67,8 +67,7 @@ export default class Categories extends Component  {
                         >
                             <Grid item xs={4} sm={4} md={4}></Grid>
 
-                            <Grid item xs={4} sm={4} md={4} alignContent={'center'}
-                             >
+                            <Grid item xs={4} sm={4} md={4} >
                                 <ArrowButton
                                     direction={this.state.more_categories ? "up" : "down"}
                                     text={this.state.more_categories ? "Less categories" : "More categories"}

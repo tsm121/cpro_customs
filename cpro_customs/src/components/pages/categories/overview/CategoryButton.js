@@ -5,14 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import "./CategoryStyle.css"
 
 
-const styles =({
-    h2_size: {
-        fontSize: "2.4vw",
-        margin: "10px",
-    }
-});
-
-
 export default class CategoryButton extends Component  {
     render = () => {
         const { text, filename } = this.props

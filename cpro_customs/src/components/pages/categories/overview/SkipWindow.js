@@ -6,11 +6,6 @@ import Modal from "@material-ui/core/Modal/Modal";
 import {withRouter} from "react-router-dom";
 import "./CategoryStyle.css"
 
-const styles =({
-    buttonTextModal: {
-        fontSize: '2.3vw',
-    }
-});
 
 class SkipWindow extends Component  {
     constructor(props) {
@@ -63,10 +58,7 @@ class SkipWindow extends Component  {
                                  <h4 className={"cdp modal_skip_title"} >Skip declaring</h4>
                              </Grid>
 
-                             <Grid item xs={10} sm={10} md={10}
-                                   justify={'center'}
-                                   alignItems={"center"}
-                             >
+                             <Grid item xs={10} sm={10} md={10} >
                                  <Button className={"modal_button"} >
                                      <h2 className={"cdp modal_button_text"}>
                                          I'm <span className={"cdp_yellow"}> bringing </span> something with me
@@ -74,10 +66,7 @@ class SkipWindow extends Component  {
                                  </Button>
                              </Grid>
 
-                             <Grid item xs={10} sm={10} md={10}
-                                   justify={'center'}
-                                   alignItems={"center"}
-                             >
+                             <Grid item xs={10} sm={10} md={10} >
                                  <Button className={"modal_button"}>
                                      <h2 className={"cdp modal_button_text"} >
                                          <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>
