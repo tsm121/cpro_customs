@@ -26,18 +26,11 @@ export default class VisaPayment extends Component  {
 
 	}
 
-
 	handleChange = name => event => {
 		this.setState({
 			[name]: event.target.value,
 		});
-		this.handlePayment()
 	};
-
-	handlePayment = () => {
-		const {confirmPayment} = this.props
-		confirmPayment()
-	}
 
 	render = () => {
 		const {totalSum, selectedCurrency, paymentComplete} = this.props
@@ -56,8 +49,6 @@ export default class VisaPayment extends Component  {
 					margin="normal"
 					variant="outlined"
 					inputProps={{ maxLength: 16 }}
-
-
 				/>
 
 				<Grid container
@@ -70,7 +61,7 @@ export default class VisaPayment extends Component  {
 					>
 						<TextField
 							fullWidth={true}
-							style={{marginRight:'4px'}}
+							className={"month_input"}
 							id="expire-month"
 							select
 							label="Month"
@@ -81,7 +72,9 @@ export default class VisaPayment extends Component  {
 						>
 
 							{Months.map(option => (
-								<MenuItem key={option.value} value={option.value}>
+								<MenuItem
+									key={option.value}
+									value={option.value}>
 									{option.value}
 								</MenuItem>
 							))}
@@ -95,7 +88,7 @@ export default class VisaPayment extends Component  {
 
 						<TextField
 							fullWidth={true}
-							style={{marginLeft:'4px'}}
+							className={"day_input"}
 							id="expire-day"
 							select
 							label="Day"
@@ -106,7 +99,9 @@ export default class VisaPayment extends Component  {
 						>
 
 							{Days.map(option => (
-								<MenuItem key={option.value} value={option.value}>
+								<MenuItem
+									key={option.value}
+									value={option.value}>
 									{option.value}
 								</MenuItem>
 							))}
@@ -121,8 +116,8 @@ export default class VisaPayment extends Component  {
 					<Grid container
 						  alignItems="center"
 						  justify="center"
-						  xs={6}>
-
+						  className={"payment_CVV_container"}
+					>
 						<TextField
 							fullWidth={true}
 							type="password"
@@ -138,16 +133,17 @@ export default class VisaPayment extends Component  {
 					<Grid container
 						  alignItems="center"
 						  justify="center"
-						  xs={2}>
-
+						  className={"payment_help_container"}
+					>
 						<HelpTip helpText={helpText}/>
-
 					</Grid>
 
 				</Grid>
-				<HandlePayment totalSum={totalSum} selectedCurrency={selectedCurrency} paymentComplete={paymentComplete}/>
-
-
+				<HandlePayment
+					totalSum={totalSum}
+					selectedCurrency={selectedCurrency}
+					paymentComplete={paymentComplete}
+				/>
 			</Grid>
 		)
 	}

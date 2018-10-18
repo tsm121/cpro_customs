@@ -61,33 +61,26 @@ export default class Checkout extends Component  {
 		this.props.history.push("endpage")
 	}
 
-
-
-
-
-
 	render = () => {
-		const {stageSelection, stageVisa, totalSum, selectedCurrency, paymentInProgress} = this.state
+		const {stageSelection, stageVisa, totalSum, selectedCurrency} = this.state
 		return (
 			<Grid container
 				  spacing={8}
 				  justify="center"
 				  alignItems="center"
 				  direction="column"
-
 			>
 				<Card
+					className={"payment_container"}
 					raised={true}
 				>
 					<CardContent
-						style={{minWidth:'20em'}}
+						className={"payment_content_container"}
 					>
 						<Grid container
 							  direction="row"
-
 						>
-
-							<h1 style={{color:'#404040', }}>
+							<h1 className={"payment_title"}>
 								<Button
 									disabled={stageSelection}
 								>

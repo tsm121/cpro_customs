@@ -11,10 +11,6 @@ import Avatar from '@material-ui/core/Avatar';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Divider from '@material-ui/core/Divider';
 
-
-
-
-
 export default class PaymentSelection extends Component  {
 	constructor(props) {
 		super(props);
@@ -74,7 +70,8 @@ export default class PaymentSelection extends Component  {
 	checkMark = () => {
 		return <ListItemIcon>
 			<Icon
-				style={{color:"#4CBB17"}}>
+				className={"payment_check_mark"}
+			>
 				check
 			</Icon>
 		</ListItemIcon>
@@ -108,7 +105,9 @@ export default class PaymentSelection extends Component  {
 					  alignItems={"center"}
 				>
 					<Grid item xs={12}>
-						<List component="nav">
+						<List component="nav"
+							  className={"payment_list"}
+						>
 
 							<Divider/>
 							<ListItem button
@@ -121,7 +120,9 @@ export default class PaymentSelection extends Component  {
 									>
 									</Avatar>
 								</ListItemAvatar>
-								<ListItemText primary="Visa" />
+								<ListItemText primary="Visa"
+											  disableTypography={true}
+								/>
 								{visa ? this.checkMark() : '' }
 							</ListItem>
 							<Divider/>
@@ -135,7 +136,9 @@ export default class PaymentSelection extends Component  {
 									>
 									</Avatar>
 								</ListItemAvatar>
-								<ListItemText primary="MasterCard" />
+								<ListItemText primary="MasterCard"
+											  disableTypography={true}
+								/>
 								{mastercard ? this.checkMark() : '' }
 							</ListItem>
 							<Divider/>
@@ -149,7 +152,9 @@ export default class PaymentSelection extends Component  {
 									>
 									</Avatar>
 								</ListItemAvatar>
-								<ListItemText primary="Vipps" />
+								<ListItemText primary="Vipps"
+											  disableTypography={true}
+								/>
 								{vipps ? this.checkMark() : '' }
 							</ListItem>
 							<Divider/>
@@ -163,16 +168,19 @@ export default class PaymentSelection extends Component  {
 									>
 									</Avatar>
 								</ListItemAvatar>
-								<ListItemText primary="Bitcoin" />
+								<ListItemText primary="Bitcoin"
+											  disableTypography={true}
+								/>
 								{bitcoin ? this.checkMark() : '' }
 							</ListItem>
 
 						</List>
 
 						<List>
-							<ListItem button style={{backgroundColor:"#ffd200"}}>
+							<ListItem button className={"payment_nav_button"}>
 								<ListItemText
-									style={{textAlign:"center", color:"#37424a"}}
+									disableTypography={true}
+									className={"payment_nav_button_text"}
 									primary={"Next"}
 									onClick={this.getSelected}
 								/>

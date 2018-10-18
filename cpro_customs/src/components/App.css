@@ -75,6 +75,56 @@ transform: translate(-50%, -50%);
     width: 15vw;
 }
 
+.payment_title {
+    color: #37424a;
+}
+
+.loading_container {
+    margin-top: 2em;
+}
+
+.payment_button_icon {
+    color: white;
+    font-size: 2.5rem !important;
+}
+
+.payment_nav_button {
+    background-color: #ffd200 !important;
+}
+
+.payment_nav_button_text {
+    text-align: center;
+    font-weight: 600;
+    color: #37424a;
+    font-size: 1.1em;
+    margin: 5px;
+}
+
+.payment_check_mark {
+    color: #4CBB17 !important;
+    font-size: 2em !important;
+}
+
+.payment_list {
+    color: #37424a;
+}
+
+.payment_CVV_container {
+    width: 50% !important;
+}
+
+.payment_help_container {
+    width: 20% !important;
+}
+
+.day_input .MuiNotchedOutline-root-272 {
+    border-radius: 0 4px 4px 0 !important;
+}
+
+.month_input .MuiNotchedOutline-root-272 {
+    border-radius: 4px 0 0 4px !important;
+    border-width: 1px 0 1px 1px;
+}
 /*
     <h1>, <h2>, <h3>, <h4>
  */
@@ -223,6 +273,14 @@ div.cdp_paper_category_sub_selection {
     color: #ffd200 !important;
 }
 
+.payment_container {
+    margin: 10%;
+}
+
+.payment_content_container {
+    min-width: 20em;
+}
+
 /* ---- xs ---- */
 @media only screen and (max-width: 599px) {
     h1.cdp {
@@ -261,6 +319,10 @@ div.cdp_paper_category_sub_selection {
     .category_button {
         height: 30vw;
         width: 30vw;
+    }
+
+    .payment_container {
+        margin-top: 30%;
     }
 }
 
