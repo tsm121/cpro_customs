@@ -16,8 +16,14 @@ export default class Checkout extends Component  {
 			month: '',
 			day: '',
 			selection: '',
-			stageSelection: false,
-			stageVisa: true,
+			stageSelection: true,
+			stageVisa: false,
+			//TODO: Get currency from user selection
+			selectedCurrency:'NOK',
+			//TODO: Get total payment from props or server
+			totalSum:1543.83,
+			paymentInProgress: true,
+			paymentComplete: false,
 		}
 
 	}
@@ -45,11 +51,23 @@ export default class Checkout extends Component  {
 		})
 	}
 
+	paymentComplete = () => {
+
+		this.setState({
+			paymentComplete: true,
+			stageVisa: false,
+		})
+
+		this.props.history.push("endpage")
+	}
+
+
+
 
 
 
 	render = () => {
-		const {stageSelection, stageVisa} = this.state
+		const {stageSelection, stageVisa, totalSum, selectedCurrency, paymentInProgress} = this.state
 		return (
 			<Grid container
 				  spacing={8}
@@ -88,9 +106,19 @@ export default class Checkout extends Component  {
 							  justify="center"
 							  alignItems="center"
 						>
-							{stageVisa ?  (<VisaPayment />) : ""}
+							{stageVisa ?  (
+								<VisaPayment
+									totalSum={totalSum}
+									selectedCurrency={selectedCurrency}
+									paymentComplete={this.paymentComplete}
+								/>)
+								: ""}
 
-							{stageSelection ? (<PaymentSelection handleSelection={this.userSelection}/>) : ''}
+							{stageSelection ? (
+								<PaymentSelection
+									handleSelection={this.userSelection}
+								/>)
+								: ''}
 						</Grid>
 					</CardContent>
 				</Card>

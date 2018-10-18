@@ -91,8 +91,6 @@ export default class PaymentSelection extends Component  {
 		else {
 			//TODO: Give the user a feedback that a selection need to be made
 		}
-
-
 	}
 
 	render = () => {

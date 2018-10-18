@@ -3,14 +3,12 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import Divider from "@material-ui/core/Divider/Divider";
 
 import Months from './months'
 import Days from './days'
 import HelpTip from "../../HelpTip";
-import ListItem from "@material-ui/core/ListItem/ListItem";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-import List from "@material-ui/core/List/List";
-import Divider from "@material-ui/core/Divider/Divider";
+import HandlePayment from "./HandlePayment";
 
 const helpText = `
 Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus. 
@@ -33,9 +31,16 @@ export default class VisaPayment extends Component  {
 		this.setState({
 			[name]: event.target.value,
 		});
+		this.handlePayment()
 	};
 
+	handlePayment = () => {
+		const {confirmPayment} = this.props
+		confirmPayment()
+	}
+
 	render = () => {
+		const {totalSum, selectedCurrency, paymentComplete} = this.props
 		return (
 
 			<Grid container
@@ -140,16 +145,8 @@ export default class VisaPayment extends Component  {
 					</Grid>
 
 				</Grid>
+				<HandlePayment totalSum={totalSum} selectedCurrency={selectedCurrency} paymentComplete={paymentComplete}/>
 
-				<List>
-					<ListItem button style={{backgroundColor:"#ffd200"}}>
-						<ListItemText
-							style={{textAlign:"center", color:"#37424a"}}
-							primary={"Pay"}
-							onClick={this.getSelected}
-						/>
-					</ListItem>
-				</List>
 
 			</Grid>
 		)
