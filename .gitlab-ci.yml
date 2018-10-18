@@ -14,7 +14,6 @@ variables:
   POSTGRES_USER: django
   POSTGRES_PASSWORD: "password"
 
-
 connect:
   image: postgres
   script:
@@ -46,6 +45,7 @@ before_script:
   - echo -e "-------------------------------- INSTALL DJANGO --------------------------------"
   - pip install Django
   - pip install psycopg2
+  - pip install -r requirements.txt  
 
   # Uncomment next line if your Django app needs a JS runtime:
   # - apt-get update -q && apt-get install nodejs -yqq
@@ -74,8 +74,8 @@ test:
   # DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
   script:
   # official way to provide password to psql: http://www.postgresql.org/docs/9.3/static/libpq-envars.html
-  # - export PGPASSWORD=$POSTGRES_PASSWORD
-  # - psql -h "postgres" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT 'OK' AS status;"
+  - export PGPASSWORD=$POSTGRES_PASSWORD
+  - psql -h "postgres" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT 'OK' AS status;"
   - cd cpro_customs/
   - echo -e "{\"DB_PASSWORD\"":" \"password\"}" > secrets.json
   - python manage.py test
