@@ -96,7 +96,7 @@ DATABASES = {
         'NAME': 'database',
         'USER': 'django',
         'PASSWORD': get_secret('DB_PASSWORD'),
-        'HOST': 'localhost',
+        'HOST': 'postgres',
         'PORT': 5432,
     }
 }
