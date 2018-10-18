@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'cpro_customs.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'postgres': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'database',
         'USER': 'django',
