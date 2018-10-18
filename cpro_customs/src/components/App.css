@@ -6,8 +6,8 @@
     global variables (within this file)
  */
 :root {
-  --font-family: Arial, sans-serif;
-  --font-weight: normal;
+    --font-family: Arial, sans-serif;
+    --font-weight: normal;
 }
 
 body {
@@ -92,10 +92,22 @@ transform: translate(-50%, -50%);
     background-color: #ffd200 !important;
 }
 
+.payment_nav_button_disabled {
+    background-color: #37424a !important;
+}
+
 .payment_nav_button_text {
     text-align: center;
     font-weight: 600;
     color: #37424a;
+    font-size: 1.1em;
+    margin: 5px;
+}
+
+.payment_nav_button_text_disabled {
+    text-align: center;
+    font-weight: 600;
+    color: white;
     font-size: 1.1em;
     margin: 5px;
 }

@@ -177,12 +177,27 @@ export default class PaymentSelection extends Component  {
 						</List>
 
 						<List>
-							<ListItem button className={"payment_nav_button"}>
+							<ListItem button
+									  className={mastercard || vipps || bitcoin ?
+										  "payment_nav_button_disabled"
+										  :
+										  "payment_nav_button"
+									  }
+									  onClick={this.getSelected}
+									  disabled={mastercard || vipps || bitcoin}
+							>
 								<ListItemText
 									disableTypography={true}
-									className={"payment_nav_button_text"}
-									primary={"Next"}
-									onClick={this.getSelected}
+									className={mastercard || vipps || bitcoin ?
+										"payment_nav_button_text_disabled"
+										:
+										"payment_nav_button_text"
+									}
+									primary={mastercard || vipps || bitcoin ?
+										"Unavailiable"
+										:
+										"Next"
+									}
 								/>
 							</ListItem>
 						</List>

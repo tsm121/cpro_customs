@@ -92,12 +92,12 @@ export default class HandlePayment extends Component  {
 					>
 						<ListItem button
 								  className={"payment_nav_button"}
+								  onClick={this.handleButtonClick}
 						>
 							<ListItemText
 								disableTypography={true}
 								className={"payment_nav_button_text"}
 								primary={"Pay (" + totalSum + " " + selectedCurrency +")"}
-								onClick={this.handleButtonClick}
 							/>
 						</ListItem>
 					</List>
