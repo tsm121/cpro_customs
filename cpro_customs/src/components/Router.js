@@ -4,8 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 import Home from './pages/home/Home'
 import PersonsInVehicle from './pages/persons-in-vehicle/PersonsInVehicle'
 import OnBoarding from "./pages/on-boarding/OnBoarding";
-import Categories from "./pages/categories/Categories";
-import Overview from './pages/categories/Overview'
+import Categories from "./pages/categories/overview/Categories";
 import Animals from "./pages/categories/animals/Animals";
 import Pet from "./pages/categories/animals/Pet";
 import Horse from "./pages/categories/animals/Horse";
@@ -27,7 +26,6 @@ class Router extends Component {
 				<Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
 				<Route exact path='/on-boarding' component={OnBoarding}/>
 				<Route exact path='/categories' component={Categories} />
-                <Route exact path='/categories' component={Overview}/>
                 <Route exact path='/categories/animals' component={Animals}/>
                 <Route exact path='/categories/animals/pet' component={Pet}/>
                 <Route exact path='/categories/animals/horse' component={Horse}/>
