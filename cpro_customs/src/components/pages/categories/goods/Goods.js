@@ -49,18 +49,21 @@ class Goods extends Component {
                 <PageTitle title={"Goods"}/>
                 <Grid container
                       justify={"center"}
+                      alignItems={"center"}
                       direction={"row"}>
-                    <Grid item xs={11} sm={11} md={8}>
+                    <Grid item xs={11} sm={11} md={8} className={"cdp_sub_selection_max_width_grid_item"}>
                         <Paper className={"cdp_paper_category_sub_selection"}>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <Grid container spacing={16} justify={"center"} alignItems={"center"}>
+                                    <Grid container spacing={8} justify={"center"} alignItems={"center"}>
                                         <Grid item xs={12} sm={5} md={4}>
                                             <Grid container>
                                                 <Grid item xs={3}>
-                                                    <ImgBadge icon={"archive"} badgeContent={0} color={"secondary"}/>
+                                                    <Grid container justify={"center"} alignItems={"center"}>
+                                                        <ImgBadge icon={"archive"} badgeContent={0} color={"secondary"}/>
+                                                    </Grid>
                                                 </Grid>
-                                                <Grid item xs={7}>
+                                                <Grid item xs={9}>
                                                     <TextField
                                                         id={"good_name"}
                                                         className={"cdp_input_field"}
@@ -74,7 +77,7 @@ class Goods extends Component {
                                         </Grid>
                                         <Grid item xs={12} sm={6} md={3}>
                                             <Grid container justify={"center"} alignItems={"center"} spacing={32}>
-                                                <Grid item xs={6}>
+                                                <Grid item xs={7} sm={7} md={7}>
                                                     <TextField
                                                         id={"good_value"}
                                                         className={"cdp_input_field"}
@@ -88,7 +91,7 @@ class Goods extends Component {
                                                         }}
                                                     />
                                                 </Grid>
-                                                <Grid item xs={4}>
+                                                <Grid item xs={5} sm={5} md={5}>
                                                     <TextField
                                                         id={"outlined-select-currency"}
                                                         className={"cdp_input_field"}
