@@ -1,2 +1,0 @@
-dj-database-url==0.3.0
-django-postgrespool==0.3.0
