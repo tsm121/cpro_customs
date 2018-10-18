@@ -67,6 +67,39 @@ transform: translate(-50%, -50%);
     background-color: rgba(256, 51, 77, .4) !important;
 }
 
+.not_found_text {
+    font-weight: normal;
+    font-size: 2vmax;
+    margin: 0;
+    text-align: center;
+    color: #ffffff;
+}
+
+.not_found_text_yellow_big {
+    font-weight: bold;
+    margin:0;
+    font-size: 8vmax;
+    text-align: center;
+    color: #ffd200;
+}
+
+.not_found_text_yellow {
+    font-weight: bold;
+    margin:0;
+    font-size: 2vmax;
+    text-align: center;
+    color: #ffd200;
+}
+
+.not_found_container {
+    width: 80%;
+}
+
+.not_found_icon {
+    font-size: 20vmax !important;
+    color: #ffd200;
+}
+
 
 /*
     <h1>, <h2>, <h3>, <h4>
