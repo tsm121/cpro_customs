@@ -9,6 +9,7 @@ services:
   - postgres:latest      
 
 variables:
+  POSTGRES_HOST: postgres
   POSTGRES_DB: database
   POSTGRES_USER: django
   POSTGRES_PASSWORD: "password"
