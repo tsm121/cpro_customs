@@ -43,9 +43,9 @@ class Good extends Component {
         const {autoFocus} = this.props;
 
         return (
-            <Grid item xs={12} sm={11} md={11} className={"cdp_sub_selection_max_width_grid_item"}>
+            <Grid item xs={12} sm={12} md={12}>
                 <Grid container justify={"center"} alignItems={"center"}>
-                    <Grid item xs={11}>
+                    <Grid item xs={11} className={"cdp_sub_selection_max_width_grid_item"}>
                         <Paper className={"cdp_paper_category_sub_selection"}>
                             <Grid container>
                                 <Grid item xs={12}>

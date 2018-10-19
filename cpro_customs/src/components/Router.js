@@ -14,6 +14,7 @@ import Bought from "./pages/categories/animals/Bought";
 import Goods from "./pages/categories/goods/Goods";
 import Tobacco from "./pages/categories/tobacco/Tobacco";
 import Alcohol from "./pages/categories/alcohol/Alcohol";
+import LightBeer from "./pages/categories/alcohol/LightBeer";
 
 
 /**
@@ -38,6 +39,7 @@ class Router extends Component {
                 <Route exact path='/categories/goods' component={Goods}/>
                 <Route exact path='/categories/tobacco' component={Tobacco}/>
                 <Route exact path='/categories/alcohol' component={Alcohol}/>
+                <Route exact path='/categories/alcohol/light-beer' component={LightBeer}/>
             </Switch>
 		);
 	}

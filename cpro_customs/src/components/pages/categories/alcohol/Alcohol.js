@@ -19,7 +19,7 @@ class Alcohol extends Component {
                             tollInfo1={"7 NOK per bottle (0.33l)"}
                             tollInfo2={"20 NOK per litre"}
                             icon={"beer"}
-                            route={"/categories/alcohol/beer"}
+                            route={"/categories/alcohol/light-beer"}
                         />
                     </Grid>
                     <Grid item xs={12}>
@@ -29,7 +29,7 @@ class Alcohol extends Component {
                             tollInfo1={"7 NOK per bottle (0.33l)"}
                             tollInfo2={"20 NOK per litre"}
                             icon={"beer"}
-                            route={"/categories/alcohol/alcopop"}
+                            route={"/categories/alcohol/beer-and-alcopop"}
                         />
                     </Grid>
                     <Grid item xs={12}>
