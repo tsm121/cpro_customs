@@ -35,10 +35,11 @@ class Good extends Component {
         name: '',
         age: '',
         currency: 'NOK',
+        amount: 0,
     };
 
     render = () => {
-        const {currency} = this.state;
+        const {currency, amount} = this.state;
         const {autoFocus} = this.props;
 
         return (
@@ -53,7 +54,8 @@ class Good extends Component {
                                             <Grid container>
                                                 <Grid item xs={3}>
                                                     <Grid container justify={"center"} alignItems={"center"}>
-                                                        <ImgBadge icon={"archive"} badgeContent={0}
+                                                        <ImgBadge icon={"archive"}
+                                                                  badgeContent={amount}
                                                                   color={"secondary"}/>
                                                     </Grid>
                                                 </Grid>
@@ -93,7 +95,7 @@ class Good extends Component {
                                                         label={"Currency"}
                                                         fullWidth={true}
                                                         value={currency}
-                                                        onChange={this.changeCurrency('currency')}
+                                                        onChange={this.handleChangeCurrency('currency')}
                                                         variant={"outlined"}
                                                     >
                                                         {currencies.map(option => (
@@ -108,20 +110,29 @@ class Good extends Component {
                                         <Grid item xs={12} sm={12} md={5}>
                                             <Grid container spacing={16} justify={"flex-end"} alignItems={"center"}>
                                                 <Grid item>
-                                                    <Button className={"cdp_button_round"} variant="fab"
-                                                            color="secondary">
+                                                    <Button className={"cdp_button_round"}
+                                                            variant="fab"
+                                                            color="secondary"
+                                                            onClick={this.handleDecrementAmount}
+                                                    >
                                                         <RemoveIcon/><span className={"cdp_icon_round_label"}>1</span>
                                                     </Button>
                                                 </Grid>
                                                 <Grid item>
-                                                    <Button className={"cdp_button_round"} variant="fab"
-                                                            color="secondary">
+                                                    <Button className={"cdp_button_round"}
+                                                            variant="fab"
+                                                            color="secondary"
+                                                            onClick={this.handleIncrementAmount}
+                                                    >
                                                         <AddIcon/><span className={"cdp_icon_round_label"}>1</span>
                                                     </Button>
                                                 </Grid>
                                                 <Grid item>
-                                                    <Button className={"cdp_button_round"} variant="fab"
-                                                            color="secondary">
+                                                    <Button className={"cdp_button_round"}
+                                                            variant="fab"
+                                                            color="secondary"
+                                                            onClick={this.handlePlusFiveAmount}
+                                                    >
                                                         <AddIcon/><span className={"cdp_icon_round_label"}>5</span>
                                                     </Button>
                                                 </Grid>
@@ -137,11 +148,32 @@ class Good extends Component {
         );
     };
 
-    changeCurrency = name => event => {
+    handleChangeCurrency = name => event => {
         this.setState({
             [name]: event.target.value,
         });
     };
+
+    handleDecrementAmount = () => {
+        if (this.state.amount <= 0) return;
+        this.setState({
+            amount: this.state.amount - 1,
+        });
+    };
+
+    handleIncrementAmount = () => {
+        this.setState({
+            amount: this.state.amount + 1,
+        });
+    };
+
+    handlePlusFiveAmount = () => {
+        this.setState({
+            amount: this.state.amount + 5,
+        });
+    };
+
+
 
 }
 
