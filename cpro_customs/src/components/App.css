@@ -67,13 +67,6 @@ transform: translate(-50%, -50%);
     background-color: rgba(256, 51, 77, .4) !important;
 }
 
-.category_button {
-    border-radius: 10px;
-    background-color: white !important;
-    margin: 10px;
-    height: 15vw;
-    width: 15vw;
-}
 
 .h1Style {
     font-family: Arial, serif;
@@ -192,6 +185,7 @@ img.cdp_icon_item {
     height: 40px;
 }
 
+
 /*
     material ui elements
  */
@@ -212,8 +206,8 @@ div.cdp_paper_category_sub_selection {
 .modal {
     display: block;
     overflow: auto;
-    min-width: 50%;
-    max-height: 80%;
+    min-width: 50% !important;
+    max-height: 80% !important;
     padding-right: 4vw;
     padding-left: 4vw;
     padding-bottom: 12vw;
@@ -259,6 +253,7 @@ div.cdp_paper_category_sub_selection {
     color: #ffd200 !important;
 }
 
+
 /* ---- xs ---- */
 @media only screen and (max-width: 599px) {
     h1.cdp {
@@ -294,10 +289,6 @@ div.cdp_paper_category_sub_selection {
         font-size: 1em;
     }
 
-    .category_button {
-        height: 30vw;
-        width: 30vw;
-    }
 }
 
 /* ---- sm ---- */
@@ -344,8 +335,4 @@ div.cdp_paper_category_sub_selection {
         min-width: 8vmax;
     }
 
-    .category_button {
-        height: 20vw;
-        width: 20vw;
-    }
 }
