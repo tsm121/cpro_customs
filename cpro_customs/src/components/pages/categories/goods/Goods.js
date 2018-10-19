@@ -62,8 +62,4 @@ class Goods extends Component {
     }
 }
 
-//Goods.propTypes = {
-// classes: PropTypes.object.isRequired,
-//};
-
 export default Goods;
