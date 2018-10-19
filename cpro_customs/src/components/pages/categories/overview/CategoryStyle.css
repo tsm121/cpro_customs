@@ -1,0 +1,176 @@
+/* ************************************************************** */
+/*
+    THIS FILE CONTAINS THE STYLING FOR THE CATEGORY OVERVIEW PAGE
+ */
+/* ************************************************************** */
+
+/* Categories overview page */
+.category_title {
+    padding-bottom: 3.5vw;
+    font-size: 5vw !important;
+}
+
+.category_grid {
+    padding-bottom: 70px
+}
+
+.skip_button {
+    width: 14vw;
+    height: 5vw;
+    margin-right: 1em !important;
+    margin-bottom: 20px !important;
+    border-radius: 0 !important;
+}
+
+.skip_button_text {
+    font-size: 2em !important;
+    margin: 0 !important;
+}
+
+.modal_skip {
+    display: block;
+    overflow: auto;
+    min-width: 50% !important;
+    max-height: 80% !important;
+    padding-right: 4vw;
+    padding-left: 4vw;
+    padding-bottom: 9vw;
+    background-color:#e2e3e5;
+    color: #37424a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.modal_skip_title {
+    margin-bottom: 2vw !important;
+    font-size: 4.5vw !important;
+}
+
+.modal_button {
+    background-color: #37424a !important;
+    width: 42vw;
+    height: 11vw;
+    border-radius: 0 !important;
+    margin-bottom: 2vw !important;
+}
+
+.modal_button_text {
+    white-space: initial;
+    line-height: 1.4;
+    margin: 1vw !important;
+    color: white;
+    font-size: 2.3vw !important;
+}
+
+.arrow_button_text {
+    font-size: 3vw !important;
+}
+
+/* ********************************************* */
+/* Category button */
+.category_button {
+    border-radius: 0 !important;
+    background-color: white !important;
+    margin: 10px !important;
+    height: 14vw;
+    width: 14vw;
+    padding: 1vw;
+    min-height: 10vmin;
+    min-width: 10vmin;
+}
+
+.category_button_text {
+    font-size: 2.4vw !important;
+    margin: 10px !important
+}
+
+img.category_button_img {
+    width: 7vw;
+    min-width: 9vmin;
+}
+
+
+/* ********************************************* */
+/* ---- xs ---- */
+@media only screen and (max-width: 599px) {
+
+    .category_title {
+        padding-bottom: 3.5vw;
+        font-size: 10vw !important;
+    }
+
+    .category_button {
+        margin: 10px !important;
+        height: 35vw;
+        width: 35vw;
+        padding: 1vw;
+    }
+
+    .category_grid {
+        padding-bottom: 10px
+    }
+
+    img.category_button_img {
+        width: 15vw;
+    }
+
+    .category_button_text {
+        font-size: 7vw !important;
+    }
+
+    .skip_button {
+        width: 14vw;
+        height: 5vw;
+        margin-bottom: 10px !important;
+    }
+
+    .skip_button_text {
+        font-size: 1.3em !important;
+        margin: 0 !important;
+    }
+
+    .arrow_button_text {
+        font-size: 5vw !important;
+    }
+
+    .modal_skip {
+        min-width: 80% !important;
+        padding-right: 1vw;
+        padding-left: 1vw;
+    }
+
+    .modal_skip_title {
+        margin-bottom: 2vw !important;
+        font-size: 7vw !important;
+    }
+
+    .modal_button {
+        width: 60vw;
+        height: 30vw;
+        margin: 10px !important;
+    }
+
+    .modal_button_text {
+        line-height: 1.4;
+        margin: 1vw !important;
+        font-size: 5vw !important;
+    }
+
+}
+
+/* ---- sm ---- */
+@media only screen and (max-width: 959px) {
+
+    .category_title {
+        padding-bottom: 3.5vw;
+        font-size: 8vw !important;
+    }
+
+    .category_grid {
+        padding-bottom: 20px;
+        font-size: 5vw !important;
+    }
+
+}
