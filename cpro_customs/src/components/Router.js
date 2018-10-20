@@ -42,13 +42,13 @@ class Router extends Component {
                 <Route exact path='/categories/animals/import' component={Import}/>
                 <Route exact path='/categories/animals/bought' component={Bought}/>
                 <Route exact path='/categories/goods' component={Goods}/>
-                <Route exact path='/categories/tobacco' component={Tobacco}/>
                 <Route exact path='/categories/alcohol' component={Alcohol}/>
                 <Route exact path='/categories/alcohol/light-beer' component={LightBeer}/>
                 <Route exact path='/categories/alcohol/beer-and-alcopop' component={BeerAndAlcopop}/>
                 <Route exact path='/categories/alcohol/wine' component={Wine}/>
                 <Route exact path='/categories/alcohol/fortified-wine' component={FortifiedWine}/>
                 <Route exact path='/categories/alcohol/spirits' component={Spirits}/>
+                <Route exact path='/categories/tobacco' component={Tobacco}/>
             </Switch>
         );
     }

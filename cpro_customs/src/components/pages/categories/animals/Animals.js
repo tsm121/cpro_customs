@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PageTitle from "../PageTitle";
 
-import SubSelection from "../SubSelection";
+import SubSelection from "./SubSelection";
 import Grid from "@material-ui/core/Grid/Grid";
 
 

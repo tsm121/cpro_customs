@@ -5,18 +5,32 @@ import {withRouter} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 
-import beerCanSmall from "../../../../assets/img/icons/512x512/beer_can_small_dark_grey.png";
-import alcopop from "../../../../assets/img/icons/512x512/alcopop_dark_grey.png";
-import wine from "../../../../assets/img/icons/512x512/wine_dark_grey.png";
-import fortifiedWine from "../../../../assets/img/icons/512x512/fortified_wine_dark_grey.png";
-import spirits from "../../../../assets/img/icons/512x512/spirits_dark_grey.png";
+import beerCanSmall from "../../../assets/img/icons/512x512/beer_can_small_dark_grey.png";
+import alcopop from "../../../assets/img/icons/512x512/alcopop_dark_grey.png";
+import wine from "../../../assets/img/icons/512x512/wine_dark_grey.png";
+import fortifiedWine from "../../../assets/img/icons/512x512/fortified_wine_dark_grey.png";
+import spirits from "../../../assets/img/icons/512x512/spirits_dark_grey.png";
+
+import cigarettes from "../../../assets/img/icons/512x512/cigarettes_dark_grey.png"
+import snus from "../../../assets/img/icons/512x512/snus_dark_grey.png";
+import pipe from "../../../assets/img/icons/512x512/pipe_dark_grey.png"
+import cigar from "../../../assets/img/icons/512x512/cigar_dark_grey.png"
+import cigarettePaper from "../../../assets/img/icons/512x512/cigarette_paper_dark_grey.png"
 
 
-class AlcoholCategory extends Component {
+class SubCategory extends Component {
     render = () => {
         const icons = {
-            "beerCanSmall": beerCanSmall, "alcopop": alcopop, "wine": wine, "fortifiedWine": fortifiedWine,
-            "spirits": spirits
+            "beerCanSmall": beerCanSmall,
+            "alcopop": alcopop,
+            "wine": wine,
+            "fortifiedWine": fortifiedWine,
+            "spirits": spirits,
+            "cigarettes": cigarettes,
+            "snus": snus,
+            "pipe": pipe,
+            "cigar": cigar,
+            "cigarettePaper": cigarettePaper,
         };
         const {title, subtitle, tollInfo1, tollInfo2, icon} = this.props;
 
@@ -77,13 +91,13 @@ class AlcoholCategory extends Component {
     };
 }
 
-AlcoholCategory.propTypes = {
+SubCategory.propTypes = {
     title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
-    tollInfo1: PropTypes.string.isRequired,
-    tollInfo2: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    tollInfo1: PropTypes.string,
+    tollInfo2: PropTypes.string,
     icon: PropTypes.string.isRequired,
     route: PropTypes.string.isRequired,
 };
 
-export default withRouter(AlcoholCategory);
+export default withRouter(SubCategory);

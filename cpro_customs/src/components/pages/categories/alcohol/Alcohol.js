@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Grid from "@material-ui/core/Grid/Grid";
 
 import PageTitle from "../PageTitle";
-import AlcoholCategory from "./AlcoholCategory";
+import SubCategory from "../SubCategory";
 
 
 class Alcohol extends Component {
@@ -13,7 +13,7 @@ class Alcohol extends Component {
                 <PageTitle title={"Alcohol"}/>
                 <Grid container spacing={32} direction={"row"}>
                     <Grid item xs={12}>
-                        <AlcoholCategory
+                        <SubCategory
                             title={"Light Beer"}
                             subtitle={"Over 2.5%"}
                             tollInfo1={"7 NOK per bottle (0.33l)"}
@@ -23,7 +23,7 @@ class Alcohol extends Component {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <AlcoholCategory
+                        <SubCategory
                             title={"Beer and Alcopop"}
                             subtitle={"Over 2.5% up to 4.7%"}
                             tollInfo1={"7 NOK per bottle (0.33l)"}
@@ -33,7 +33,7 @@ class Alcohol extends Component {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <AlcoholCategory
+                        <SubCategory
                             title={"Wine"}
                             subtitle={"From 4.7% up to 15%"}
                             tollInfo1={"45 NOK per bottle (0.75l)"}
@@ -43,7 +43,7 @@ class Alcohol extends Component {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <AlcoholCategory
+                        <SubCategory
                             title={"Fortified wine"}
                             subtitle={"From 15% through to 22%"}
                             tollInfo1={"85 NOK per bottle (0.75l)"}
@@ -53,7 +53,7 @@ class Alcohol extends Component {
                         />
                     </Grid>
                     <Grid item xs={12}>
-                        <AlcoholCategory
+                        <SubCategory
                             title={"Spirits"}
                             subtitle={"From 22% through to 60%"}
                             tollInfo1={"230 NOK per bottle (0.7l)"}
