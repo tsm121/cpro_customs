@@ -18,7 +18,7 @@ class Alcohol extends Component {
                             subtitle={"Over 2.5%"}
                             tollInfo1={"7 NOK per bottle (0.33l)"}
                             tollInfo2={"20 NOK per litre"}
-                            icon={"beer"}
+                            icon={"beerCanSmall"}
                             route={"/categories/alcohol/light-beer"}
                         />
                     </Grid>
@@ -28,7 +28,7 @@ class Alcohol extends Component {
                             subtitle={"Over 2.5% up to 4.7%"}
                             tollInfo1={"7 NOK per bottle (0.33l)"}
                             tollInfo2={"20 NOK per litre"}
-                            icon={"beer"}
+                            icon={"beerCanSmall"}
                             route={"/categories/alcohol/beer-and-alcopop"}
                         />
                     </Grid>

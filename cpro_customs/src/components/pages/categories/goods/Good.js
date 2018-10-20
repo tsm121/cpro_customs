@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
+
 import Paper from "@material-ui/core/Paper/Paper";
 import Grid from "@material-ui/core/Grid/Grid";
-import ImgBadge from "../../../ImgBadge";
 import TextField from "@material-ui/core/TextField/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import Button from "@material-ui/core/Button/Button";
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
+
+import ImgBadge from "../../../ImgBadge";
+import PlusMinusButtons from "../PlusMinusButtons";
 
 
 const currencies = [
@@ -108,35 +108,11 @@ class Good extends Component {
                                             </Grid>
                                         </Grid>
                                         <Grid item xs={12} sm={12} md={5}>
-                                            <Grid container spacing={16} justify={"flex-end"} alignItems={"center"}>
-                                                <Grid item>
-                                                    <Button className={"cdp_button_round"}
-                                                            variant="fab"
-                                                            color="secondary"
-                                                            onClick={this.handleDecrementAmount}
-                                                    >
-                                                        <RemoveIcon/><span className={"cdp_icon_round_label"}>1</span>
-                                                    </Button>
-                                                </Grid>
-                                                <Grid item>
-                                                    <Button className={"cdp_button_round"}
-                                                            variant="fab"
-                                                            color="secondary"
-                                                            onClick={this.handleIncrementAmount}
-                                                    >
-                                                        <AddIcon/><span className={"cdp_icon_round_label"}>1</span>
-                                                    </Button>
-                                                </Grid>
-                                                <Grid item>
-                                                    <Button className={"cdp_button_round"}
-                                                            variant="fab"
-                                                            color="secondary"
-                                                            onClick={this.handlePlusFiveAmount}
-                                                    >
-                                                        <AddIcon/><span className={"cdp_icon_round_label"}>5</span>
-                                                    </Button>
-                                                </Grid>
-                                            </Grid>
+                                            <PlusMinusButtons
+                                                handleDecrement={this.handleDecrement.bind(this)}
+                                                handleIncrement={this.handleIncrement.bind(this)}
+                                                handlePlusFive={this.handlePlusFive.bind(this)}
+                                            />
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -154,27 +130,24 @@ class Good extends Component {
         });
     };
 
-    handleDecrementAmount = () => {
+    handleDecrement = () => {
         if (this.state.amount <= 0) return;
         this.setState({
             amount: this.state.amount - 1,
         });
     };
 
-    handleIncrementAmount = () => {
+    handleIncrement = () => {
         this.setState({
             amount: this.state.amount + 1,
         });
     };
 
-    handlePlusFiveAmount = () => {
+    handlePlusFive = () => {
         this.setState({
             amount: this.state.amount + 5,
         });
     };
-
-
-
 }
 
 export default Good;

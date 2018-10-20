@@ -5,7 +5,7 @@ import {withRouter} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 
-import beer from "../../../../assets/img/icons/512x512/beer_dark_grey.png";
+import beerCanSmall from "../../../../assets/img/icons/512x512/beer_can_small_dark_grey.png";
 import alcopop from "../../../../assets/img/icons/512x512/alcopop_dark_grey.png";
 import wine from "../../../../assets/img/icons/512x512/wine_dark_grey.png";
 import fortifiedWine from "../../../../assets/img/icons/512x512/fortified_wine_dark_grey.png";
@@ -15,7 +15,7 @@ import spirits from "../../../../assets/img/icons/512x512/spirits_dark_grey.png"
 class AlcoholCategory extends Component {
     render = () => {
         const icons = {
-            "beer": beer, "alcopop": alcopop, "wine": wine, "fortifiedWine": fortifiedWine,
+            "beerCanSmall": beerCanSmall, "alcopop": alcopop, "wine": wine, "fortifiedWine": fortifiedWine,
             "spirits": spirits
         };
         const {title, subtitle, tollInfo1, tollInfo2, icon} = this.props;
