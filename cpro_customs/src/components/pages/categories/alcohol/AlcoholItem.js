@@ -9,7 +9,6 @@ import ImgBadge from "../../../ImgBadge";
 import PlusMinusButtons from "../PlusMinusButtons";
 
 
-
 class AlcoholItem extends Component {
     state = {
         amount: 0,
