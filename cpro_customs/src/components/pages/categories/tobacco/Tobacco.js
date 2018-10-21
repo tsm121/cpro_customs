@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import PageTitle from "../PageTitle";
+
 import Grid from "@material-ui/core/Grid/Grid";
+
+import PageTitle from "../PageTitle";
 import SubCategory from "../SubCategory";
 
 
@@ -23,7 +25,7 @@ class Tobacco extends Component {
                             title={"Snuff and chewing tobacco"}
                             tollInfo1={"120 NOK per 100 grams"}
                             icon={"snus"}
-                            route={"/categories/tobacco/snus"}
+                            route={"/categories/tobacco/snuff-and-chewing-tobacco"}
                         />
                     </Grid>
                     <Grid item xs={12}>

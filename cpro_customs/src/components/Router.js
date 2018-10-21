@@ -20,6 +20,11 @@ import Wine from "./pages/categories/alcohol/Wine";
 import FortifiedWine from "./pages/categories/alcohol/FortifiedWine";
 import Spirits from "./pages/categories/alcohol/Spirits";
 import withRouter from "react-router/es/withRouter";
+import Cigarettes from "./pages/categories/tobacco/Cigarettes";
+import CigarsAndCigarillos from "./pages/categories/tobacco/CigarsAndCigarillos";
+import SnuffAndChewingTobacco from "./pages/categories/tobacco/SnuffAndChewingTobacco";
+import SmokingTobacco from "./pages/categories/tobacco/SmokingTobacco";
+import CigarettePaperAndSheaths from "./pages/categories/tobacco/CigarettePaperAndSheaths";
 
 
 /**
@@ -49,6 +54,11 @@ class Router extends Component {
                 <Route exact path='/categories/alcohol/fortified-wine' component={FortifiedWine}/>
                 <Route exact path='/categories/alcohol/spirits' component={Spirits}/>
                 <Route exact path='/categories/tobacco' component={Tobacco}/>
+                <Route exact path='/categories/tobacco/cigarettes' component={Cigarettes}/>
+                <Route exact path='/categories/tobacco/cigars-and-cigarillos' component={CigarsAndCigarillos}/>
+                <Route exact path='/categories/tobacco/snuff-and-chewing-tobacco' component={SnuffAndChewingTobacco}/>
+                <Route exact path='/categories/tobacco/smoking-tobacco' component={SmokingTobacco}/>
+                <Route exact path='/categories/tobacco/cigarette-paper-and-sheaths' component={CigarettePaperAndSheaths}/>
             </Switch>
         );
     }

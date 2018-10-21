@@ -9,13 +9,13 @@ import ImgBadge from "../../../ImgBadge";
 import PlusMinusButtons from "../PlusMinusButtons";
 
 
-class AlcoholItem extends Component {
+class TobaccoItem extends Component {
     state = {
         amount: 0,
     };
 
     render = () => {
-        const {amount, icon, pitcher} = this.props;
+        const {amount, icon, otherAmount, unit} = this.props;
         return (
             <Grid item xs={12} sm={12} md={12} style={{paddingBottom: "32px"}}>
                 <Grid container justify={"center"} alignItems={"center"}>
@@ -23,7 +23,7 @@ class AlcoholItem extends Component {
                         <Paper className={"cdp_paper_category_sub_selection"}>
                             <Grid container spacing={8} justify={"center"} alignItems={"center"}>
                                 {
-                                    pitcher
+                                    otherAmount
                                         ?
                                         <Grid item xs={12}>
                                             <Grid container>
@@ -41,13 +41,13 @@ class AlcoholItem extends Component {
                                 <Grid item xs={3} sm={5} md={5}>
                                     <Grid container justify={"center"} alignItems={"center"}>
                                         {
-                                            pitcher
+                                            otherAmount
                                                 ?
                                                 [
                                                     <Grid item xs={12} sm={3} md={2} key={0}>
                                                         <Grid container justify={"center"} alignItems={"center"}>
                                                             <ImgBadge
-                                                                icon={"pitcher"}
+                                                                icon={icon}
                                                                 key={1}
                                                                 badgeContent={this.state.amount}
                                                                 color={"secondary"}
@@ -64,7 +64,7 @@ class AlcoholItem extends Component {
                                                                 id={"good_name"}
                                                                 key={2}
                                                                 className={"cdp_input_field"}
-                                                                label={"Litre"}
+                                                                label={unit}
                                                             />
                                                         </Grid>
                                                     </Grid>,
@@ -82,11 +82,11 @@ class AlcoholItem extends Component {
                                                             />
                                                         </Grid>
                                                     </Grid>,
-                                                    <Grid item xs={12} sm={4} md={3} key={2}>
+                                                    <Grid item xs={12} sm={6} md={4} key={2}>
                                                         <Grid container justify={"center"} alignItems={"center"}>
                                                             <h3 className="cdp_dark_grey" key={1}
-                                                                style={{paddingTop: "10px"}}>
-                                                                {amount}l
+                                                                style={{paddingTop: "10px", textAlign: "center"}}>
+                                                                <span>{amount} {unit}</span>
                                                             </h3>
                                                         </Grid>
                                                     </Grid>,
@@ -130,14 +130,16 @@ class AlcoholItem extends Component {
 }
 
 
-AlcoholItem.propTypes = {
+TobaccoItem.propTypes = {
     amount: PropTypes.number,
     icon: PropTypes.string,
-    pitcher: PropTypes.bool,
+    otherAmount: PropTypes.bool,
+    unit: PropTypes.string,
 };
 
-AlcoholItem.defaultProps = {
-    pitcher: false,
+TobaccoItem.defaultProps = {
+    otherAmount: false,
+    unit: "grams",
 };
 
-export default AlcoholItem;
+export default TobaccoItem;

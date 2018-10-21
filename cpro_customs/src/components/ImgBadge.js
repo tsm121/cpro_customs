@@ -10,6 +10,12 @@ import wineBottleBig from "../assets/img/icons/512x512/wine_bottle_big_dark_grey
 import fortifiedWine from "../assets/img/icons/512x512/fortified_wine_dark_grey.png";
 import spirits from "../assets/img/icons/512x512/spirits_dark_grey.png";
 import pitcher from "../assets/img/icons/512x512/pitcher_dark_grey.png"
+import cigarettes from "../assets/img/icons/512x512/cigarettes_dark_grey.png"
+import snus from "../assets/img/icons/512x512/snus_dark_grey.png";
+import pipe from "../assets/img/icons/512x512/pipe_dark_grey.png"
+import cigar from "../assets/img/icons/512x512/cigar_dark_grey.png"
+import cigarettePaper from "../assets/img/icons/512x512/cigarette_paper_dark_grey.png"
+import weight from "../assets/img/icons/512x512/weight_dark_grey.png"
 
 
 class ImgBadge extends Component {
@@ -22,7 +28,13 @@ class ImgBadge extends Component {
             "wineBottleBig": wineBottleBig,
             "fortifiedWine": fortifiedWine,
             "spirits": spirits,
-            "pitcher": pitcher
+            "pitcher": pitcher,
+            "cigarettes": cigarettes,
+            "snus": snus,
+            "pipe": pipe,
+            "cigar": cigar,
+            "cigarettePaper": cigarettePaper,
+            "weight": weight,
         };
         const {icon, badgeContent, color} = this.props;
 
