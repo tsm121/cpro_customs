@@ -32,11 +32,11 @@ class Transactions(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request, format=None):
-        if(validate(request.data.reference_number)):
+        if(self.validate(request.data['reference_number'])):
             serializer = TransactionSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response({'ID': serializer.data.id_number}, status=status.HTTP_201_CREATED)
+                return Response({'ID': serializer.data['id_number']}, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_402_PAYMENT_REQUIRED)

@@ -3,7 +3,7 @@ from backend import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-        path('backend/', views.TransactionList.as_view()),
+        #path('backend/', views.TransactionList.as_view()),
         path('backend/', views.Transactions.as_view()),
 ]
 
