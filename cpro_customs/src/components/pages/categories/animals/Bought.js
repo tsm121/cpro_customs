@@ -1,43 +1,13 @@
 import React, {Component} from "react";
-import PageTitle from "../PageTitle";
+
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 import TextField from "@material-ui/core/TextField/TextField";
 
-const currencies = [
-    {
-        value: 'NOK',
-        label: 'NOK',
-    },
-    {
-        value: 'EUR',
-        label: '€',
-    },
-    {
-        value: 'USD',
-        label: '$',
-    },
-    {
-        value: 'BTC',
-        label: '฿',
-    },
-];
-
-const species = [
-    {
-        value: 'other',
-        label: 'other',
-    },
-    {
-        value: 'dog',
-        label: 'dog',
-    },
-    {
-        value: 'horse',
-        label: 'horse',
-    },
-];
+import PageTitle from "../PageTitle";
+import {CURRENCIES} from "../../../../data/Currencies";
+import {SPECIES} from "../../../../data/Species";
 
 class Bought extends Component {
     state = {
@@ -104,7 +74,7 @@ class Bought extends Component {
                                                         onChange={this.handleChange('kind')}
                                                         variant={"outlined"}
                                                     >
-                                                        {species.map(option => (
+                                                        {SPECIES.map(option => (
                                                             <MenuItem key={option.value} value={option.value}>
                                                                 {option.label}
                                                             </MenuItem>
@@ -136,7 +106,7 @@ class Bought extends Component {
                                                         onChange={this.handleChange('currency')}
                                                         variant={"outlined"}
                                                     >
-                                                        {currencies.map(option => (
+                                                        {CURRENCIES.map(option => (
                                                             <MenuItem key={option.value} value={option.value}>
                                                                 {option.label}
                                                             </MenuItem>
