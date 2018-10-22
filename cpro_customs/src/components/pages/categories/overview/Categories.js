@@ -47,7 +47,7 @@ export default class Categories extends Component  {
                               justify={'center'}
                               alignItems={'center'}
                         >
-                            {(this.renderCategories()).map (category => (
+                            {(this.renderCategories()).map(category => (
                                 <Grid item xs={5} sm={4} md={3} key={category.text} >
                                     <CategoryButton text={category.text}
                                                     filename={category.filename}
@@ -90,7 +90,7 @@ export default class Categories extends Component  {
         )
     }
 
-    handleOnClickCategories = ()  =>{
+    handleOnClickCategories = ()  => {
         const {more_categories} = this.state
         this.setState({
             more_categories: !more_categories

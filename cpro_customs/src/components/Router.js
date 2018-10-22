@@ -11,6 +11,7 @@ import Horse from "./pages/categories/animals/Horse";
 import Import from "./pages/categories/animals/Import";
 import Bought from "./pages/categories/animals/Bought";
 import Goods from "./pages/categories/goods/Goods";
+import ShoppingCart from "./pages/shopping-cart/ShoppingCart";
 
 
 /**
@@ -32,6 +33,7 @@ class Router extends Component {
                 <Route exact path='/categories/animals/import' component={Import}/>
                 <Route exact path='/categories/animals/bought' component={Bought}/>
                 <Route exact path='/categories/goods' component={Goods}/>
+                <Route exact path='/declaration-list' component={ShoppingCart}/>
             </Switch>
 		);
 	}

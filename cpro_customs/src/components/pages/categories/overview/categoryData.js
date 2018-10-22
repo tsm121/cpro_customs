@@ -32,7 +32,7 @@ export const categories = {
             filename: 'pawprint'},
         {
             text: 'Weapons',
-            filename: 'diet'},
+            filename: 'weapon'},
         {
             text: 'Currency',
             filename: 'funds'},

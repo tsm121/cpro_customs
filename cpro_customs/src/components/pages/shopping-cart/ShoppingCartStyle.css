@@ -1,0 +1,174 @@
+/* ************************************************************** */
+/*
+    THIS FILE CONTAINS THE STYLING FOR THE SHOPPING CART
+ */
+/* ************************************************************** */
+
+/* ShoppingCart */
+
+.shopping_cart_title {
+    font-size: 4.5vw !important;
+    margin: 20px !important;
+    padding-bottom: 10px;
+}
+
+
+/* ********************************************* */
+/* DeclarationTable */
+
+.paper {
+    max-width: 100% !important;
+    padding-right: 1vw;
+}
+
+.declaration_table_header {
+    font-size: 1.7vw !important;
+    margin: 20px !important;
+}
+
+.declaration_table {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+.table_column {
+    color:#37424a !important;
+    font-size: 1vw !important;
+}
+
+.total_text {
+    font-size: 1.2vw !important;
+    color: #37424a;
+}
+
+.declaration_button {
+    background-color: #37424a !important;
+    margin: 15px !important;
+    border-radius: 0 !important;
+}
+
+.declaration_button_text {
+    font-size: 1.5vw !important;
+    margin: 0 !important;
+    padding: 10px;
+}
+
+
+/* ********************************************* */
+/* RemoveButton */
+
+img.remove_button_img {
+    width: 20px;
+}
+
+/* ********************************************* */
+/* IconAndAmount */
+
+.iconAmount_text {
+    font-size: 1.1vw !important;
+    margin: 2px !important
+}
+
+img.iconAmount_img {
+    width: 3vw;
+}
+
+
+/* ********************************************* */
+/* ---- xs ---- */
+@media only screen and (max-width: 599px) {
+
+    .shopping_cart_title {
+        font-size: 8vw !important;
+    }
+
+    .declaration_table_header {
+        font-size: 4.5vw !important;
+        margin-bottom: 5px !important;
+    }
+
+    .paper {
+        width: 80vw !important;
+        padding-right: 4vw;
+        padding-left: 4vw;
+    }
+
+    .table_column {
+        width: 20vw !important;
+        padding: 0 !important;
+    }
+
+    .total_text {
+        font-size: 3vw !important;
+        color: #37424a;
+    }
+
+    .declaration_button_text {
+        font-size: 3.5vw !important;
+        padding: 5px;
+    }
+
+    img.remove_button_img {
+        width: 15px;
+        padding: 0 !important;
+    }
+
+    .iconAmount_text {
+        font-size: 2vw !important;
+        margin: 2px !important
+    }
+
+    img.iconAmount_img {
+        width: 5vw;
+    }
+
+}
+
+/* ---- sm ---- */
+@media only screen and (max-width: 959px) {
+
+    .shopping_cart_title {
+        font-size: 7vw !important;
+    }
+
+    .declaration_table_header {
+        font-size: 3.5vw !important;
+        margin-bottom: 10px !important;
+    }
+
+    .paper {
+        width: 80vw !important;
+        padding-right: 4vw;
+        padding-left: 4vw;
+    }
+
+    .table_column {
+        padding: 0 !important;
+        font-size: 2vw !important;
+    }
+
+    .total_text {
+        font-size: 2.5vw !important;
+        color: #37424a;
+    }
+
+    .declaration_button_text {
+        font-size: 3.5vw !important;
+        padding: 5px;
+    }
+
+    img.remove_button_img {
+        width: 15px;
+        padding: 0 !important;
+    }
+
+    .iconAmount_text {
+        font-size: 2vw !important;
+        margin: 2px !important
+    }
+
+    img.iconAmount_img {
+        width: 6vw;
+    }
+
+}
