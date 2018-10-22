@@ -3,10 +3,10 @@ import { withRouter } from 'react-router-dom';
 
 import { Grid } from "@material-ui/core";
 
-import '../../App.css'
+import '../../../App.css'
 
 
-class NavigationArrow extends Component  {
+class ArrowButton extends Component  {
     constructor(props) {
         super(props);
         // init state
@@ -49,13 +49,13 @@ class NavigationArrow extends Component  {
 
         if (showYellowIcon) {
             return (
-                <h4 className={"cdp"} style={{fontSize:'3vw', color:'#ffd200'}}>
+                <h4 className={"cdp arrow_button_text"} style={{color:'#ffd200'}}>
                     {text}
                 </h4>
             );
         } else {
             return (
-                <h4 className={"cdp"} style={{fontSize:'3vw'}}>
+                <h4 className={"cdp arrow_button_text"}>
                     {text}
                 </h4>
             );
@@ -118,4 +118,4 @@ class NavigationArrow extends Component  {
     }
 }
 
-export default withRouter(NavigationArrow);
+export default withRouter(ArrowButton);

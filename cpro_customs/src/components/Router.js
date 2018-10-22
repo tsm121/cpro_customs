@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom'
+import withRouter from "react-router/es/withRouter";
 
 import Home from './pages/home/Home'
 import PersonsInVehicle from './pages/persons-in-vehicle/PersonsInVehicle'
 import OnBoarding from "./pages/on-boarding/OnBoarding";
-import Categories from "./pages/categories/Categories";
-import Overview from './pages/categories/Overview'
+import Categories from "./pages/categories/overview/Categories";
 import Animals from "./pages/categories/animals/Animals";
 import Pet from "./pages/categories/animals/Pet";
 import Horse from "./pages/categories/animals/Horse";
@@ -19,12 +19,14 @@ import BeerAndAlcopop from "./pages/categories/alcohol/BeerAndAlcopop";
 import Wine from "./pages/categories/alcohol/Wine";
 import FortifiedWine from "./pages/categories/alcohol/FortifiedWine";
 import Spirits from "./pages/categories/alcohol/Spirits";
-import withRouter from "react-router/es/withRouter";
 import Cigarettes from "./pages/categories/tobacco/Cigarettes";
 import CigarsAndCigarillos from "./pages/categories/tobacco/CigarsAndCigarillos";
 import SnuffAndChewingTobacco from "./pages/categories/tobacco/SnuffAndChewingTobacco";
 import SmokingTobacco from "./pages/categories/tobacco/SmokingTobacco";
 import CigarettePaperAndSheaths from "./pages/categories/tobacco/CigarettePaperAndSheaths";
+import NotFound from "./pages/NotFound";
+import Checkout from "./pages/checkout/Checkout";
+import Endpage from "./pages/endpage/Endpage";
 
 
 /**
@@ -40,7 +42,8 @@ class Router extends Component {
                 <Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
                 <Route exact path='/on-boarding' component={OnBoarding}/>
                 <Route exact path='/categories' component={Categories}/>
-                <Route exact path='/categories' component={Overview}/>
+                <Route exact path='/checkout' component={Checkout}/>
+                <Route exact path='/endpage' component={Endpage}/>
                 <Route exact path='/categories/animals' component={Animals}/>
                 <Route exact path='/categories/animals/pet' component={Pet}/>
                 <Route exact path='/categories/animals/horse' component={Horse}/>
@@ -58,7 +61,9 @@ class Router extends Component {
                 <Route exact path='/categories/tobacco/cigars-and-cigarillos' component={CigarsAndCigarillos}/>
                 <Route exact path='/categories/tobacco/snuff-and-chewing-tobacco' component={SnuffAndChewingTobacco}/>
                 <Route exact path='/categories/tobacco/smoking-tobacco' component={SmokingTobacco}/>
-                <Route exact path='/categories/tobacco/cigarette-paper-and-sheaths' component={CigarettePaperAndSheaths}/>
+                <Route exact path='/categories/tobacco/cigarette-paper-and-sheaths'
+                       component={CigarettePaperAndSheaths}/>
+                <Route path="*" component={NotFound}/>
             </Switch>
         );
     }
