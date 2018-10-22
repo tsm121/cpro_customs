@@ -8,7 +8,7 @@ class TransactionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Transaction
-        fields = ('id', 'license_plate', 'date', 'taxes_and_fees', 'reference_number')
+        fields = ('id_number', 'license_plate', 'date', 'taxes_and_fees', 'reference_number')
 
     def create(self, validated_data):
         transaction_product_data = validated_data.pop('transaction_product')
@@ -24,6 +24,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ('type_of_product')
+
 
 class TransactionProductSerializer(serializers.ModelSerializer):
     transaction = TransactionSerializer()

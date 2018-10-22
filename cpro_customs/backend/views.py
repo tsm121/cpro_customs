@@ -45,6 +45,32 @@ class Transactions(APIView):
         #implement validation towards the payment service provider here
         return True
 
+class TransactionDetail(APIView):
+
+    def get_object(self, pk):
+        try:
+            return Transaction.objects.get(pk=pk)
+        except Transaction.DoesNotExist:
+            return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+
+    def get(self, request, pk, format=None):
+        transaction = self.get_object(pk=pk)
+        serializer = TransactionSerializer(transaction)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        transaction = self.get_object(pk=pk)
+        serializer = TransactionSerializer(transaction)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        transaction = self.get_object(pk=pk)
+        transaction.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 '''
 class TransactionDetail(APIView):
     def get(self, request, pk):
