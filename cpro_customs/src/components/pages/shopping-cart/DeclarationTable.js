@@ -61,7 +61,7 @@ class DeclarationTable extends Component{
                     </Table>
                 </Paper>
                 <Paper className={'paper'} style={{marginTop: "20px"}}>
-                    <TotalTable totalSum={1400}/>
+                    <TotalTable totalSum={1400} route={'/checkout'}/>
                 </Paper>
             </div>
         )

@@ -21,7 +21,7 @@ class TotalTable extends Component{
                     </Grid>
                     <Grid item xs={12} sm={12} md={12} >
                         <Button className={"declaration_button"} size={"medium"}
-                                /*onClick={this.onClick}*/
+                                onClick={this.onClick}
                                 onMouseOver={this.onMouseOver}
                                 onMouseOut={this.onMouseOut}
                         >
