@@ -10,7 +10,7 @@ class IconAndAmount extends Component {
         const { filename, amount, unit } = this.props
         return (
             <div>
-                <Grid container
+                <Grid container style={{marginTop: '5px', marginBottom: '5px', padding: '0'}}
                       direction={"column"}
                       justify={"center"}
                       alignItems={"center"}

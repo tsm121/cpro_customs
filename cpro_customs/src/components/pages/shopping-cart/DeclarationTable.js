@@ -32,26 +32,26 @@ class DeclarationTable extends Component{
                     <Table className={"declaration_table"}>
                         <TableHead>
                             <TableRow>
-                                <TableCell key={"icon"} className={"table_column"}> </TableCell>
-                                <TableCell key={"item"} className={"table_column"}>Category</TableCell>
-                                <TableCell numeric key={"value"} className={"table_column"}>Item's value</TableCell>
-                                <TableCell numeric key={"vat"} className={"table_column"}>VAT (25%)</TableCell>
-                                <TableCell numeric key={"duty"} className={"table_column"}>Customs Duty</TableCell>
-                                <TableCell key={"delete"}> </TableCell>
+                                <TableCell key={"icon"} className={"picture_column"}> </TableCell>
+                                <TableCell key={"item"} className={"table_column category_column"}>Category</TableCell>
+                                <TableCell numeric key={"value"} className={"table_column"}>Value</TableCell>
+                                <TableCell numeric key={"vat"} className={"table_column"}>VAT</TableCell>
+                                <TableCell numeric key={"duty"} className={"table_column"}>Fee</TableCell>
+                                <TableCell key={"delete"} className={"exit_column"}> </TableCell>
                             </TableRow>
                         </TableHead>
 
                         <TableBody>
                             {items.map(row => (
                                     <TableRow key={row.id}>
-                                        <TableCell component="th" scope="row" className={"table_column"}>
+                                        <TableCell component="th" scope="row" className={"picture_column"}>
                                             <IconAndAmount filename={row.filename} amount={row.amount} unit={row.unit}/>
                                         </TableCell>
-                                        <TableCell className={"table_column"}>{row.category}</TableCell>
+                                        <TableCell className={"table_column category_column"}>{row.category}</TableCell>
                                         <TableCell numeric className={"table_column"}>{row.value} kr</TableCell>
                                         <TableCell numeric className={"table_column"}>{row.vat} kr</TableCell>
                                         <TableCell numeric className={"table_column"}>{row.duty} kr</TableCell>
-                                        <TableCell className={"table_column"}>
+                                        <TableCell numeric className={"exit_column"} padding={"none"}>
                                             <RemoveButton onClick={() => this.props.onDelete(row.id)} />
                                         </TableCell>
                                     </TableRow>
@@ -60,8 +60,8 @@ class DeclarationTable extends Component{
                         </TableBody>
                     </Table>
                 </Paper>
-                <Paper style={{marginTop: "20px"}}>
-                    <TotalTable totalSum={1400}/>
+                <Paper className={'paper'} style={{marginTop: "20px"}}>
+                    <TotalTable totalSum={1400} route={'/checkout'}/>
                 </Paper>
             </div>
         )
