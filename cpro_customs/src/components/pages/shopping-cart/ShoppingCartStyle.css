@@ -17,12 +17,11 @@
 /* DeclarationTable */
 
 .paper {
-    max-width: 100% !important;
     padding-right: 1vw;
 }
 
 .declaration_table_header {
-    font-size: 1.7vw !important;
+    font-size: 1.7em !important;
     margin: 20px !important;
 }
 
@@ -33,11 +32,25 @@
 
 .table_column {
     color:#37424a !important;
-    font-size: 1vw !important;
+    font-size: 1em !important;
+}
+
+.category_column {
+
+}
+
+.picture_column {
+    width: 12vw;
+    padding: 2px !important;
+    margin-right: 5px !important;
+}
+
+.exit_column {
+    padding: 0 !important;
 }
 
 .total_text {
-    font-size: 1.2vw !important;
+    font-size: 1.2em !important;
     color: #37424a;
 }
 
@@ -70,60 +83,10 @@ img.remove_button_img {
 }
 
 img.iconAmount_img {
-    width: 3vw;
+    width: 3.5em;
 }
-
 
 /* ********************************************* */
-/* ---- xs ---- */
-@media only screen and (max-width: 599px) {
-
-    .shopping_cart_title {
-        font-size: 8vw !important;
-    }
-
-    .declaration_table_header {
-        font-size: 4.5vw !important;
-        margin-bottom: 5px !important;
-    }
-
-    .paper {
-        width: 80vw !important;
-        padding-right: 4vw;
-        padding-left: 4vw;
-    }
-
-    .table_column {
-        width: 20vw !important;
-        padding: 0 !important;
-    }
-
-    .total_text {
-        font-size: 3vw !important;
-        color: #37424a;
-    }
-
-    .declaration_button_text {
-        font-size: 3.5vw !important;
-        padding: 5px;
-    }
-
-    img.remove_button_img {
-        width: 15px;
-        padding: 0 !important;
-    }
-
-    .iconAmount_text {
-        font-size: 2vw !important;
-        margin: 2px !important
-    }
-
-    img.iconAmount_img {
-        width: 5vw;
-    }
-
-}
-
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
 
@@ -132,24 +95,44 @@ img.iconAmount_img {
     }
 
     .declaration_table_header {
-        font-size: 3.5vw !important;
+        font-size: 1.7em !important;
         margin-bottom: 10px !important;
     }
 
     .paper {
-        width: 80vw !important;
+        width: 85vw !important;
         padding-right: 4vw;
         padding-left: 4vw;
     }
 
     .table_column {
         padding: 0 !important;
-        font-size: 2vw !important;
+        font-size: 1em !important;
+    }
+
+    .picture_column {
+        font-size: 0.9em !important;
+        padding: 2px !important;
+        width: 11vw;
+        margin-right: 5px !important;
+    }
+
+    .category_column {
+        width: 14vw !important;
+    }
+
+    .exit_column {
+        width: 4vw;
+        padding-left: 5px !important;
     }
 
     .total_text {
-        font-size: 2.5vw !important;
+        font-size: 2.8vw !important;
         color: #37424a;
+    }
+
+    .declaration_button {
+        margin-bottom: 25px !important;
     }
 
     .declaration_button_text {
@@ -158,17 +141,87 @@ img.iconAmount_img {
     }
 
     img.remove_button_img {
-        width: 15px;
+        width: 17px;
         padding: 0 !important;
     }
 
     .iconAmount_text {
-        font-size: 2vw !important;
+        font-size: 1.2em !important;
         margin: 2px !important
     }
 
     img.iconAmount_img {
-        width: 6vw;
+        width: 3.5em;
+    }
+
+}
+
+
+
+/* ---- xs ---- */
+@media only screen and (max-width: 599px) {
+
+    .shopping_cart_title {
+        font-size: 1.7em !important;
+        padding-bottom: 0 !important;
+    }
+
+    .declaration_table_header {
+        font-size: 1.1em !important;
+        margin-bottom: 5px !important;
+    }
+
+    .paper {
+        width: 100vw !important;
+        border-radius: 0 !important;
+    }
+
+    .table_column {
+        font-size: 0.9em !important;
+        padding: 1vw !important;
+    }
+
+    .picture_column {
+        font-size: 0.9em !important;
+        padding: 0 !important;
+        border-radius: 0;
+        width: 14vw;
+    }
+
+    .category_column {
+        width: 10vw !important;
+    }
+
+    .exit_column {
+        width: 4vw;
+        padding-left: 5px !important;
+    }
+
+    .total_text {
+        font-size: 1em !important;
+    }
+
+    .declaration_button {
+        margin-bottom: 20px !important;
+    }
+
+    .declaration_button_text {
+        font-size: 3.8vw !important;
+        padding: 5px;
+    }
+
+    img.remove_button_img {
+        width: 13px;
+        padding: 0 !important;
+    }
+
+    .iconAmount_text {
+        font-size: 0.8em !important;
+        margin: 2px !important
+    }
+
+    img.iconAmount_img {
+        width: 7.3vw;
     }
 
 }
