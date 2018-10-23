@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
-from backend.models import Transaction
+from backend.models import Transaction, Product
 from backend.serializers import TransactionSerializer
 from django.http import Http404
 from rest_framework.views import APIView
@@ -33,8 +33,13 @@ class Transactions(APIView):
 
     def post(self, request, format=None):
         if(self.validate(request.data['reference_number'])):
+            
+            #product_req = request.data.pop('products')
+            for i in request.data['products']:
+                i['product'] = Product.objects.get(type_of_product=i['product']).pk
             serializer = TransactionSerializer(data=request.data)
             if serializer.is_valid():
+                print(serializer.validated_data)
                 serializer.save()
                 return Response({'ID': serializer.data['id_number']}, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
