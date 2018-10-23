@@ -4,9 +4,9 @@ import {withRouter} from 'react-router-dom';
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 
-import dog from "../../../assets/img/icons/512x512/dog_dark_grey.png"
-import horse from "../../../assets/img/icons/512x512/horse_dark_grey.png"
-import animal from "../../../assets/img/icons/512x512/animal_dark_grey.png"
+import dog from "../../../../assets/img/icons/512x512/dog_dark_grey.png"
+import horse from "../../../../assets/img/icons/512x512/horse_dark_grey.png"
+import animal from "../../../../assets/img/icons/512x512/animal_dark_grey.png"
 
 class SubSelection extends Component {
     render = () => {

@@ -1,11 +1,13 @@
 import React, {Component} from "react";
-import Grid from "@material-ui/core/Grid/Grid";
-import "../../App.css"
+import PropTypes from "prop-types";
 
-const styles =({
-	container: {
-		paddingBottom: '5vw',
-	},
+import Grid from "@material-ui/core/Grid/Grid";
+
+
+const styles = ({
+    container: {
+        paddingBottom: '30px',
+    },
 });
 
 class PageTitle extends Component {
@@ -19,12 +21,16 @@ class PageTitle extends Component {
             >
                 <Grid item>
                     <h1 className={"cdp cdp_primary"}>
-						{title}
-						</h1>
+                        {title}
+                    </h1>
                 </Grid>
             </Grid>
         )
     }
 }
+
+PageTitle.propTypes = {
+    title: PropTypes.string.isRequired,
+};
 
 export default PageTitle;
