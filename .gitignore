@@ -6,3 +6,4 @@ cpro_customs/build
 yarn.lock
 cpro_customs/secrets.json
 cpro_customs/package-lock.json
+.DS_Store
