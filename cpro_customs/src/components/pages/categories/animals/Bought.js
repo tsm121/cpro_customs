@@ -48,7 +48,7 @@ class Bought extends Component {
                                     <Button
                                         className={"cdp_button_round"}
                                         variant="fab"
-                                        color="primary"
+                                        color="white"
                                         onClick={this.handleAddAnimal}
                                     >
                                         <AddIcon/>

@@ -51,7 +51,7 @@ export default class Categories extends Component  {
                                 <Grid item xs={5} sm={4} md={3} key={category.text} >
                                     <CategoryButton text={category.text}
                                                     filename={category.filename}
-                                                    route={"/categories/XXX"}
+                                                    route={category.route}
                                     />
                                 </Grid>
                             ))}

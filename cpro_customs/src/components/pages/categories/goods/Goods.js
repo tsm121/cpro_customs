@@ -30,7 +30,7 @@ class Goods extends Component {
                         <Grid container spacing={8} onClick={this.handleAddGood}>
                             <Grid item xs={12}>
                                 <Grid container justify={"center"} alignItems={"center"}>
-                                    <Button className={"cdp_button_round"} variant="fab" color="primary">
+                                    <Button className={"cdp_button_round"} variant="fab" color="white">
                                         <AddIcon/>
                                     </Button>
                                 </Grid>

@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
+import withRouter from "react-router/es/withRouter";
 
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import "./CategoryStyle.css"
+import PropTypes from "prop-types";
 
 
-export default class CategoryButton extends Component  {
+class CategoryButton extends Component  {
     render = () => {
-        const { text, filename } = this.props
+        const { text, filename } = this.props;
         return (
             <div>
                 <Button className={"category_button"} variant='contained' size={"large"}
-                        /*onClick={this.onClick}*/
+                        onClick={this.onClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
                 >
@@ -35,9 +37,10 @@ export default class CategoryButton extends Component  {
                 </Button>
             </div>
         )
-    }
+    };
 
     onClick = () => {
+        if (this.props.route.length <= 0) return;
         this.props.history.push(this.props.route);
     };
 
@@ -48,5 +51,13 @@ export default class CategoryButton extends Component  {
     onMouseOut = () => {
         document.body.style.cursor = "default";
     };
-
 }
+
+CategoryButton.propTypes = {
+    text: PropTypes.string.isRequired,
+    filename: PropTypes.string.isRequired,
+    route: PropTypes.string.isRequired,
+};
+
+export default withRouter(CategoryButton);
+

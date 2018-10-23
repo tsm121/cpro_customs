@@ -2,57 +2,91 @@ export const categories = {
     firstList: [
         {
             text: 'Alcohol',
-            filename: 'glass-and-bottle-of-wine' },
+            filename: 'glass-and-bottle-of-wine' ,
+            route: '/categories/alcohol',
+        },
         {
             text: 'Tobacco',
-            filename: 'cigarettes-package' },
+            filename: 'cigarettes-package' ,
+            route: '/categories/tobacco',
+        },
         {
             text: 'Food',
-            filename: 'diet'},
+            filename: 'diet',
+            route: '',
+        },
         {
             text: 'Goods',
-            filename: 'shopping-cart'}
+            filename: 'shopping-cart',
+            route: '/categories/goods',
+        }
     ],
 
     secondList: [
         {
             text: 'Alcohol',
-            filename: 'glass-and-bottle-of-wine' },
+            filename: 'glass-and-bottle-of-wine' ,
+            route: '/categories/alcohol',
+        },
         {
             text: 'Tobacco',
-            filename: 'cigarettes-package' },
+            filename: 'cigarettes-package' ,
+            route: '/categories/tobacco',
+        },
         {
             text: 'Food',
-            filename: 'diet'},
+            filename: 'diet',
+            route: '',
+        },
         {
             text: 'Goods',
-            filename: 'shopping-cart'},
+            filename: 'shopping-cart',
+            route: '/categories/goods',
+        },
         {
             text: 'Animal',
-            filename: 'pawprint'},
+            filename: 'pawprint',
+            route: '/categories/animals',
+        },
         {
             text: 'Weapons',
-            filename: 'weapon'},
+            filename: 'weapon',
+            route: '',
+        },
         {
             text: 'Currency',
-            filename: 'funds'},
+            filename: 'funds',
+            route: '',
+        },
         {
             text: 'Vehicles',
-            filename: 'car_black'},
+            filename: 'car_black',
+            route: '',
+        },
         {
             text: 'Chemicals',
-            filename: 'laboratory'},
+            filename: 'laboratory',
+            route: '',
+        },
         {
             text: 'Plants',
-            filename: 'plant'},
+            filename: 'plant',
+            route: '',
+        },
         {
             text: 'Fireworks',
-            filename: 'fireworks'},
+            filename: 'fireworks',
+            route: '',
+        },
         {
             text: 'Gifts',
-            filename: 'gift'},
+            filename: 'gift',
+            route: '',
+        },
         {
             text: 'Medicine',
-            filename: 'pills'}
+            filename: 'pills',
+            route: '',
+        }
     ]
 }
