@@ -313,6 +313,11 @@ div.cdp_sub_selection_max_width_grid_item {
     max-width: 850px;
 }
 
+.cdp_tooltip {
+    size: 5em;
+}
+
+
 /*
     custom components that are used in multiple other components
  */

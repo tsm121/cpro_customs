@@ -9,12 +9,7 @@ import Months from '../../../data/months'
 import Days from '../../../data/days'
 import HelpTip from "../../HelpTip";
 import HandlePayment from "./HandlePayment";
-
-const helpText = `
-Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus. 
-Praesent non nunc mollis, fermentum neque at, semper arcu. 
-Nullam eget est sed sem iaculis gravida eget vitae justo. 
-`;
+import {TOOL_TIP_TEXTS} from "../../../data/ToolTipTexts";
 
 export default class VisaPayment extends Component  {
 	constructor() {
@@ -135,7 +130,7 @@ export default class VisaPayment extends Component  {
 						  justify="center"
 						  className={"payment_help_container"}
 					>
-						<HelpTip helpText={helpText}/>
+						<HelpTip text={TOOL_TIP_TEXTS.payment.visaPayment}/>
 					</Grid>
 
 				</Grid>

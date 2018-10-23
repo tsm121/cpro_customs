@@ -12,11 +12,12 @@ import PageTitle from "../PageTitle";
 
 import {CURRENCIES} from "../../../../data/Currencies";
 import {SPECIES} from "../../../../data/Species";
+import {TOOL_TIP_TEXTS} from "../../../../data/ToolTipTexts";
 import AnimalSelectButton from "./AnimalSelectButton";
 import AddIcon from '@material-ui/icons/Add';
-import PlusMinusButtons from "../PlusMinusButtons";
 import ImgBadge from "../../../ImgBadge";
 import Modal from "@material-ui/core/Modal/Modal";
+import HelpTip from "../../../HelpTip";
 
 
 class Bought extends Component {
@@ -27,9 +28,10 @@ class Bought extends Component {
                 kind: 'other',
                 value: '',
                 currency: 'NOK',
-                amount: 0,
+                amount: 1,
                 contactedNFSA: false,
-                registeredAtNFSA: false
+                registeredAtNFSA: false,
+                horseHasOriginInEU: false,
             },
         ],
         showDogInfoModal: false,
@@ -48,7 +50,7 @@ class Bought extends Component {
                                     <Button
                                         className={"cdp_button_round"}
                                         variant="fab"
-                                        color="white"
+                                        style={{backgroundColor: "white"}}
                                         onClick={this.handleAddAnimal}
                                     >
                                         <AddIcon/>
@@ -200,31 +202,64 @@ class Bought extends Component {
                                                 </Grid>
                                             </Grid>
                                             <Grid container alignItems={"center"}>
-                                                <FormControlLabel
-                                                    control={
-                                                        <Checkbox
-                                                            checked={this.state.animals[key].contactedNFSA}
-                                                            onChange={() => this.handleCheckbox(key, 'contactedNFSA')}
-                                                            color="primary"
-                                                        />
-                                                    }
-                                                    label="I contacted the NFSA"
-                                                />
+                                                <Grid item xs={10}>
+                                                    <FormControlLabel
+                                                        control={
+                                                            <Checkbox
+                                                                checked={this.state.animals[key].contactedNFSA}
+                                                                onChange={() => this.handleCheckbox(key, 'contactedNFSA')}
+                                                                color="primary"
+                                                            />
+                                                        }
+                                                        label="I contacted the NFSA (required)"
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={2}>
+                                                    <HelpTip text={TOOL_TIP_TEXTS.animals.contactedNFSA}
+                                                             placement={"top"}/>
+                                                </Grid>
                                             </Grid>
                                             {
                                                 animals[key].kind === "horse" ?
-                                                    <Grid container alignItems={"center"}>
-                                                        <FormControlLabel
-                                                            control={
-                                                                <Checkbox
-                                                                    checked={this.state.animals[key].registeredAtNFSA}
-                                                                    onChange={() => this.handleCheckbox(key, 'registeredAtNFSA')}
-                                                                    color="primary"
+                                                    [
+                                                        <Grid container alignItems={"center"}>
+                                                            <Grid item xs={10}>
+                                                                <FormControlLabel
+                                                                    control={
+                                                                        <Checkbox
+                                                                            checked={this.state.animals[key].registeredAtNFSA}
+                                                                            onChange={() => this.handleCheckbox(key, 'registeredAtNFSA')}
+                                                                            color="primary"
+                                                                        />
+                                                                    }
+                                                                    label="I am registered at the NFSA (required)"
                                                                 />
-                                                            }
-                                                            label="I am registered at the NFSA"
-                                                        />
-                                                    </Grid>
+                                                            </Grid>
+                                                            <Grid item xs={2}>
+                                                                <HelpTip text={TOOL_TIP_TEXTS.animals.registeredAtNFSA}
+                                                                         placement={"top"}/>
+                                                            </Grid>
+                                                        </Grid>,
+                                                        <Grid container alignItems={"center"}>
+                                                            <Grid item xs={10}>
+                                                                <FormControlLabel
+                                                                    control={
+                                                                        <Checkbox
+                                                                            checked={this.state.animals[key].horseHasOriginInEU}
+                                                                            onChange={() => this.handleCheckbox(key, 'horseHasOriginInEU')}
+                                                                            color="primary"
+                                                                        />
+                                                                    }
+                                                                    label="I have proof that the horse of EU origin (optional)"
+                                                                />
+                                                            </Grid>
+                                                            <Grid item xs={2}>
+                                                                <HelpTip
+                                                                    text={TOOL_TIP_TEXTS.animals.horseHasOriginInEU}
+                                                                    placement={"top"}/>
+                                                            </Grid>
+                                                        </Grid>
+                                                    ]
                                                     :
                                                     ""
                                             }
@@ -244,7 +279,7 @@ class Bought extends Component {
                                                     ""
                                             }
                                             <Grid container>
-                                                <Grid item xs={6}>
+                                                <Grid item>
                                                     <Grid container justify={"flex-start"} alignItems={"center"}>
                                                         <ImgBadge
                                                             icon={animals[key].kind}
@@ -252,23 +287,6 @@ class Bought extends Component {
                                                             color={"secondary"}
                                                         />
                                                     </Grid>
-                                                </Grid>
-                                                <Grid item xs={6}>
-                                                    <Grid container justify={"flex-end"} alignItems={"center"}
-                                                          className={"cdp_sub_selection_max_width_grid_item"}>
-                                                        <Grid item>
-                                                            <PlusMinusButtons
-                                                                showPlusFiveButton={false}
-                                                                handleDecrement={() => {
-                                                                    this.handleDecrement(key)
-                                                                }}
-                                                                handleIncrement={() => {
-                                                                    this.handleIncrement(key)
-                                                                }}
-                                                            />
-                                                        </Grid>
-                                                    </Grid>
-
                                                 </Grid>
                                             </Grid>
                                         </Paper>
