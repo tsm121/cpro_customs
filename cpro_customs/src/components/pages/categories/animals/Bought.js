@@ -16,6 +16,7 @@ import AnimalSelectButton from "./AnimalSelectButton";
 import AddIcon from '@material-ui/icons/Add';
 import PlusMinusButtons from "../PlusMinusButtons";
 import ImgBadge from "../../../ImgBadge";
+import Modal from "@material-ui/core/Modal/Modal";
 
 
 class Bought extends Component {
@@ -31,6 +32,7 @@ class Bought extends Component {
                 registeredAtNFSA: false
             },
         ],
+        showDogInfoModal: false,
     };
 
     render = () => {
@@ -61,6 +63,40 @@ class Bought extends Component {
                         </Grid>
                     </Grid>
                 </Grid>
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={this.state.showDogInfoModal}
+                    onClose={this.handleDogInfoModalClose}
+                >
+                    <div className={'modal'}>
+                        <Grid container spacing={16}
+                              justify={"center"}
+                              alignItems={"center"}
+                              direction={"row"}
+                        >
+                            <Grid container
+                                  justify={"center"}
+                            >
+                                <h1 className={"modal_title"}>
+                                    Info
+                                </h1>
+                            </Grid>
+                            <Grid container
+                                  justify={"center"}
+                            >
+                                <h3 className={"modal_title"}>
+                                    Ban on certain breeds of dogs
+                                </h3>
+                                <p>
+                                    Certain breeds of dogs are regarded as dangerous, and therefore importation to
+                                    Norway is not permitted without a special permit from the police. This means that
+                                    you must apply to the police for a permit to bring the dog into Norway.
+                                </p>
+                            </Grid>
+                        </Grid>
+                    </div>
+                </Modal>
             </div>
         );
     };
@@ -200,7 +236,8 @@ class Bought extends Component {
                                                                 certain breeds of dogs</p>
                                                         </Grid>
                                                         <Grid item xs={4}>
-                                                            <Button> More Info </Button>
+                                                            <Button onClick={this.handleDogInfoModalOpen}> More
+                                                                Info </Button>
                                                         </Grid>
                                                     </Grid>
                                                     :
@@ -320,6 +357,14 @@ class Bought extends Component {
         this.setState({
             animals: animals,
         });
+    };
+
+    handleDogInfoModalOpen = () => {
+        this.setState({showDogInfoModal: true});
+    };
+
+    handleDogInfoModalClose = () => {
+        this.setState({showDogInfoModal: false});
     };
 }
 
