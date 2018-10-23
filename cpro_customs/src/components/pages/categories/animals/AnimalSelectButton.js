@@ -21,6 +21,7 @@ export default class AnimalSelectButton extends Component {
             <div>
                 <Grid container
                       className={"cdp_animal_select_button"}
+                      onClick={this.onClick}
                       onMouseOver={this.onMouseOver}
                       onMouseOut={this.onMouseOut}
                 >
@@ -49,7 +50,7 @@ export default class AnimalSelectButton extends Component {
     };
 
     onClick = () => {
-
+        document.body.style.cursor = "default";
     };
 
     onMouseOver = () => {

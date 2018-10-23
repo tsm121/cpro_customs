@@ -16,6 +16,9 @@ import pipe from "../assets/img/icons/512x512/pipe_dark_grey.png"
 import cigar from "../assets/img/icons/512x512/cigar_dark_grey.png"
 import cigarettePaper from "../assets/img/icons/512x512/cigarette_paper_dark_grey.png"
 import weight from "../assets/img/icons/512x512/weight_dark_grey.png"
+import dog from "../assets/img/icons/512x512/dog_dark_grey.png"
+import horse from "../assets/img/icons/512x512/horse_dark_grey.png"
+import other from "../assets/img/icons/512x512/animal_dark_grey.png"
 
 
 class ImgBadge extends Component {
@@ -35,6 +38,9 @@ class ImgBadge extends Component {
             "cigar": cigar,
             "cigarettePaper": cigarettePaper,
             "weight": weight,
+            "dog": dog,
+            "horse": horse,
+            "other": other,
         };
         const {icon, badgeContent, color} = this.props;
 
