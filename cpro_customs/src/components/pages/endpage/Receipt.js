@@ -21,6 +21,7 @@ export default class Receipt extends Component {
 					<img
 						src={QR_url}
 						className={"QR_code"}
+						alt={"icon"}
 					/>
 				</Grid>
 			</Grid>

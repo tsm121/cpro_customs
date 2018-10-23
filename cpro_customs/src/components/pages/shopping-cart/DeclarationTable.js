@@ -14,7 +14,7 @@ import TotalTable from "./TotalTable";
 class DeclarationTable extends Component{
 
     render = () => {
-        const {items, onDelete} = this.props
+        const {items} = this.props
         return(
             <div>
                 <Paper className={"paper"}>

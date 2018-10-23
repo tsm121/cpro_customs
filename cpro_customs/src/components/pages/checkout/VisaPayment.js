@@ -5,8 +5,8 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from "@material-ui/core/Divider/Divider";
 
-import Months from './months'
-import Days from './days'
+import Months from '../../../data/months'
+import Days from '../../../data/days'
 import HelpTip from "../../HelpTip";
 import HandlePayment from "./HandlePayment";
 

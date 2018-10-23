@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import CategoryButton from "./CategoryButton";
 import SkipWindow from "./SkipWindow";
 import ArrowButton from "./ArrowButton";
-import {categories} from "./categoryData";
+import {categories} from "../../../../data/categoryData";
 import "./CategoryStyle.css"
 
 const styles =({
