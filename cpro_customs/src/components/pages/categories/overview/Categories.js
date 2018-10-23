@@ -10,9 +10,9 @@ import "./CategoryStyle.css"
 
 const styles =({
     bottom_line: {
-    	position:'relative',
+        position:'relative',
         top:'0',
-   		paddingBottom: '1em',
+        paddingBottom: '1em',
     },
 });
 
@@ -20,15 +20,13 @@ export default class Categories extends Component  {
     constructor() {
         super()
         this.state = {
-            more_categories: false
+            more_categories: true
         }
     }
 
     render = () => {
         return (
-            <div>
                 <Grid container
-                      spacing={0}
                       direction={'row'}
                       justify={'center'}
                       alignItems={'center'}
@@ -39,16 +37,16 @@ export default class Categories extends Component  {
                         </h3>
                     </Grid>
 
-                    <Grid item className={"category_grid"} xs={12} sm={9} md={9}
+                    <Grid item className={"category_grid"} xs={12} sm={10} md={9}
                     >
                         <Grid container
-                              spacing={8}
+                              //spacing={8}
                               direction={'row'}
                               justify={'center'}
                               alignItems={'center'}
                         >
                             {(this.renderCategories()).map(category => (
-                                <Grid item xs={5} sm={4} md={3} key={category.text} >
+                                <Grid item xs={5} sm={3} md={3} key={category.text}>
                                     <CategoryButton text={category.text}
                                                     filename={category.filename}
                                                     route={category.route}
@@ -60,7 +58,6 @@ export default class Categories extends Component  {
 
                     <Grid item xs={12} sm={12} md={12} style={styles.bottom_line}>
                         <Grid container
-                              spacing={0}
                               direction={'row'}
                               justify={'space-between'}
                               alignItems={'flex-end'}
@@ -83,7 +80,6 @@ export default class Categories extends Component  {
                         </Grid>
                     </Grid>
                 </Grid>
-            </div>
 
 
 

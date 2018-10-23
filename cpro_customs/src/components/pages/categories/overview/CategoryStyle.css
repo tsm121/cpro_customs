@@ -11,7 +11,7 @@
 }
 
 .category_grid {
-    padding-bottom: 70px
+    padding-bottom: 70px;
 }
 
 .skip_button {
@@ -73,7 +73,7 @@
 .category_button {
     border-radius: 0 !important;
     background-color: white !important;
-    margin: 10px !important;
+    margin: 2vmax !important;
     height: 14vw;
     width: 14vw;
     padding: 1vw;
@@ -88,9 +88,45 @@
 
 img.category_button_img {
     width: 7vw;
-    min-width: 9vmin;
+    min-width: 7vmin;
 }
 
+
+/* ---- sm ---- */
+@media only screen and (max-width: 959px) {
+
+    .category_title {
+        padding-bottom: 3.5vw;
+        font-size: 5vw !important;
+    }
+
+
+    .category_button {
+        margin: 1vmax !important;
+        height: 15vw;
+        width: 15vw;
+    }
+
+    .category_button_text {
+        font-size: 1.3em !important;
+        margin: 5px !important
+
+    }
+
+    img.category_button_img {
+        width: 1vw;
+        min-width: 7vmin;
+    }
+
+    .skip_button {
+        margin-right: 2vmax !important;
+    }
+
+    .skip_button_text {
+        font-size: 1.3em !important;
+        margin: 0 !important;
+    }
+}
 
 /* ********************************************* */
 /* ---- xs ---- */
@@ -98,7 +134,7 @@ img.category_button_img {
 
     .category_title {
         padding-bottom: 3.5vw;
-        font-size: 10vw !important;
+        font-size: 6vw !important;
     }
 
     .category_button {
@@ -155,21 +191,6 @@ img.category_button_img {
     .modal_button_text {
         line-height: 1.4;
         margin: 1vw !important;
-        font-size: 5vw !important;
-    }
-
-}
-
-/* ---- sm ---- */
-@media only screen and (max-width: 959px) {
-
-    .category_title {
-        padding-bottom: 3.5vw;
-        font-size: 8vw !important;
-    }
-
-    .category_grid {
-        padding-bottom: 20px;
         font-size: 5vw !important;
     }
 
