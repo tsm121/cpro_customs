@@ -5,9 +5,12 @@ from django.db import models
 class Transaction(models.Model):
     id_number = models.CharField(max_length=255)
     license_plate = models.CharField(max_length=255)
-    date = models.DateTimeField(default=0)
-    taxes_and_fees = models.FloatField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
+    amount_to_pay = models.DecimalField(default=0, max_digits=20, decimal_places=2)
+    vat = models.DecimalField(default=0, max_digits=5, decimal_places=2)
+    currency = models.CharField(max_length=255)
     reference_number = models.CharField(max_length=255, default=0)
+
 
    # def __str__(self):
    #     return self.text
@@ -21,10 +24,15 @@ class Product(models.Model):
 class TransactionProduct(models.Model):
     transaction = models.ForeignKey(Transaction, related_name='products', on_delete=models.PROTECT, default=None)
     product = models.ForeignKey(Product, related_name='transaction', on_delete=models.PROTECT, default=None)
-    price = models.FloatField(default=0)
-    weight = models.FloatField(default=0, blank=True)
-    volume = models.FloatField(default=0, blank=True)
-    pieces = models.IntegerField(default=0, blank=True)
+    value = models.DecimalField(default=0, max_digits=20, decimal_places=2)
+    amount = models.DecimalField(default=0, max_digits=20, decimal_places=2)
+    unit = models.CharField(max_length=255)
+    breed = models.CharField(max_length=255, blank=True)
+    contacted_NFSA = models.BooleanField(blank=True)
+    registered_NFSA = models.BooleanField(blank=True)
+    of_EU_origin = models.BooleanField(blank=True)
+
+
 
     #def __str__(self):
     #    return self.text
