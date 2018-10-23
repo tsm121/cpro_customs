@@ -92,12 +92,12 @@ WSGI_APPLICATION = 'cpro_customs.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'database',
         'USER': 'django',
         'PASSWORD': get_secret('DB_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '',
+        'HOST': 'postgres',
+        'PORT': 5432,
     }
 }
 

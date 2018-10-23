@@ -1,0 +1,16 @@
+/* Category button */
+div.cdp_animal_select_button {
+    background-color: #e2e3e5;
+    border: 1px solid #e2e3e5;
+}
+
+.cdp_animal_select_button_square {
+    width: 100px !important;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+img.cdp_animal_select_button {
+    padding-top: 10px;
+    width: 50px;
+}
