@@ -22,6 +22,7 @@ class SubSelection extends Component {
                       onClick={this.onClick}
                       onMouseOver={this.onMouseOver}
                       onMouseOut={this.onMouseOut}
+                      className={"cdp_sub_paper_hover"}
                 >
                     <Paper className={"cdp_paper_category_sub_selection"}>
                         <Grid container

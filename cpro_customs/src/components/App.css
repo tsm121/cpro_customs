@@ -56,15 +56,15 @@ transform: translate(- 50 %, - 50 %);
 }
 
 .light label {
-    color: black !important;
+    color: #37424a !important;
 }
 
 .light .MuiInputBase-input-206 MuiOutlinedInput-input-191  {
-    color: black !important;
+    color: #37424a !important;
 }
 
 .light .MuiInputBase-input-206 {
-    color: black !important;
+    color: #37424a !important;
 }
 
 .light fieldset {
@@ -268,8 +268,26 @@ h4.cdp {
 }
 
 .cdp_category_sub_selection {
-    font-size: 3em;
+    font-size: 3.5vmin;
+    margin-left: -2px;
 }
+
+.cdp_sub_sub_title {
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 1.7vmin;
+    color:#888888;
+    font-weight: bold;
+}
+
+.test {
+    background-color: red;
+}
+
+.cdp_sub_info {
+    font-size: 2vmin;
+}
+
 
 span.cdp_icon_round_label {
     font-size: 1.75em;
@@ -287,7 +305,7 @@ span.cdp_icon_round_label {
     icons
  */
 img.icon_xs {
-    width: 80px;
+    width: 11vmin;
 }
 
 img.icon_sm {
@@ -315,7 +333,8 @@ img.cdp_icon_item {
     material ui elements
  */
 div.cdp_paper_category_sub_selection {
-    padding: 25px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 div.cdp_sub_selection_max_width_grid_item {
@@ -325,6 +344,23 @@ div.cdp_sub_selection_max_width_grid_item {
 .cdp_tooltip {
     size: 5em;
 }
+
+.cdp_sub_paper_hover > .MuiPaper-root-14:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200;
+    box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.2),
+    7px 7px 9px 0px rgba(0, 0, 0, 0.14),
+    9px 9px 12px -4px rgba(0, 0, 0, 0.12);
+}
+
+.category_button:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.2),
+    7px 7px 9px 0px rgba(0, 0, 0, 0.14),
+    9px 9px 12px -4px rgba(0, 0, 0, 0.12);
+}
+
 
 
 /*
@@ -419,7 +455,7 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     img.icon_xs {
-        width: 60px;
+        width: 10vmin;
     }
 
     img.icon_sm {
@@ -439,7 +475,15 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     span.cdp_category_sub_selection {
-        font-size: 2em;
+        font-size: 3.5vmin;
+    }
+
+    .cdp_sub_sub_title {
+        font-size: 2vmin;
+    }
+
+    .cdp_sub_info {
+        font-size: 2.3vmin;
     }
 
     .modal {
@@ -481,7 +525,7 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     img.icon_xs {
-        width: 40px;
+        width: 15vmin;
     }
 
     img.icon_sm {
@@ -501,7 +545,15 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     span.cdp_category_sub_selection {
-        font-size: 1em;
+        font-size: 5.2vmin;
+    }
+
+    .cdp_sub_sub_title {
+        font-size: 2.9vmin;
+    }
+
+    .cdp_sub_info {
+        font-size: 4vmin;
     }
 
     .category_button {

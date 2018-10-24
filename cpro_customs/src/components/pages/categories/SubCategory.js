@@ -40,36 +40,53 @@ class SubCategory extends Component {
                   alignItems={"center"}
                   direction={"row"}
             >
-                <Grid item xs={11} sm={10} md={8}
-                      onClick={this.onClick}
-                      onMouseOver={this.onMouseOver}
-                      onMouseOut={this.onMouseOut}
-                      className={"cdp_sub_selection_max_width_grid_item"}
+                <Grid item
+                      xs={11}
+                      sm={10}
+                      md={8}
+                      className={"cdp_sub_paper_hover cdp_sub_selection_max_width_grid_item"}
                 >
-                    <Paper className={"cdp_paper_category_sub_selection"}>
-                        <Grid container alignItems={"center"}>
-                            <Grid item xs={4} sm={3} md={3}>
+                    <Paper
+                        className={"cdp_paper_category_sub_selection"}
+                    >
+                        <Grid container
+                              alignItems={"center"}
+                        >
+                            <Grid item
+                                  xs={4}
+                                  sm={3}
+                                  md={3}>
+
                                 <Grid container
                                       justify={"center"}
                                       alignItems={"center"}
                                 >
-                                    <Grid item xs={7} sm={7} md={8}>
+                                    <Grid item
+                                          xs={7}
+                                          sm={7}
+                                          md={8}
+                                    >
                                         <Grid container>
                                             <Grid item>
                                                 <img className={"icon_xs"}
                                                      src={icons[icon]}
-                                                     alt={"icon"}/>
+                                                     alt={"icon"}
+                                                />
                                             </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={8} sm={9} md={9}>
+                            <Grid item
+                                  xs={8}
+                                  sm={9}
+                                  md={9}
+                            >
                                 <span className={"cdp_category_sub_selection cdp_dark_grey"}>
                                     {title}
                                 </span>
-                                <p className={"cdp_dark_grey"}>{subtitle}</p>
-                                <p className={"cdp_dark_grey"}>{tollInfo1}<br/>{tollInfo2}</p>
+                                <p className={"cdp_dark_grey cdp_sub_sub_title"}>{subtitle}</p>
+                                <p className={"cdp_dark_grey cdp_sub_info"}>{tollInfo1}<br/>{tollInfo2}</p>
                             </Grid>
                         </Grid>
                     </Paper>
