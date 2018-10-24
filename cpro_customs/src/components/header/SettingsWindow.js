@@ -16,7 +16,6 @@ export default class SettingsWindow extends Component  {
 					  alignItems={"center"}
 					  direction={"row"}
 				>
-
 					<Grid container
 						  justify={"center"}
 					>
@@ -79,7 +78,7 @@ export default class SettingsWindow extends Component  {
 						<InputFields/>
 					</Grid>
 
-				</Grid>
+                </Grid>
 
 
 			</div>

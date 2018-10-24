@@ -54,27 +54,39 @@ class SkipWindow extends Component  {
                               direction={"row"}
                         >
 
-                             <Grid item xs={12} sm={12} md={12} >
-                                 <h4 className={"cdp modal_skip_title"} >Skip declaring</h4>
-                             </Grid>
+                            <Grid item xs={12} sm={12} md={12} >
+                                <h2 className={"cdp"} style={{marginBottom: "1vmax"}}>Skip declaring</h2>
+                            </Grid>
 
-                             <Grid item xs={10} sm={10} md={10} >
-                                 <Button className={"modal_button"} >
-                                     <h2 className={"cdp modal_button_text"}>
-                                         I'm <span className={"cdp_yellow"}> bringing </span> something with me
-                                     </h2>
-                                 </Button>
-                             </Grid>
 
-                             <Grid item xs={10} sm={10} md={10} >
-                                 <Button className={"modal_button"}>
-                                     <h2 className={"cdp modal_button_text"} >
-                                         <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>
-                                     </h2>
-                                 </Button>
-                             </Grid>
 
+                            <Grid item xs={10} sm={10} md={10} >
+                                <Grid container
+                                      justify={"center"}
+                                      alignItems={"center"}
+                                >
+                                    <Button className={"modal_button"} >
+                                        <h3 className={"cdp modal_button_text"}>
+                                            I'm <span className={"cdp_yellow"}> bringing </span> something with me
+                                        </h3>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+
+                            <Grid item xs={10} sm={10} md={10} >
+                                <Grid container
+                                      justify={"center"}
+                                      alignItems={"center"}
+                                >
+                                    <Button className={"modal_button"}>
+                                        <h3 className={"cdp modal_button_text"} >
+                                            <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>
+                                        </h3>
+                                    </Button>
+                                </Grid>
+                            </Grid>
                         </Grid>
+
 
                     </div>
                 </Modal>

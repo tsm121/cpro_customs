@@ -10,21 +10,16 @@
     font-size: 5vw !important;
 }
 
-.category_grid {
-    padding-bottom: 70px;
-}
-
 .skip_button {
-    width: 14vw;
-    height: 5vw;
-    margin-right: 1em !important;
-    margin-bottom: 20px !important;
+    margin-right: 3em !important;
     border-radius: 0 !important;
 }
 
 .skip_button_text {
     font-size: 2em !important;
     margin: 0 !important;
+    padding: 0.5em;
+
 }
 
 .modal_skip {
@@ -32,36 +27,31 @@
     overflow: auto;
     min-width: 50% !important;
     max-height: 80% !important;
-    padding-right: 4vw;
-    padding-left: 4vw;
-    padding-bottom: 9vw;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 4em;
     background-color:#e2e3e5;
     color: #37424a;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-.modal_skip_title {
-    margin-bottom: 2vw !important;
-    font-size: 4.5vw !important;
-}
-
-.modal_button {
-    background-color: #37424a !important;
-    width: 42vw;
-    height: 11vw;
-    border-radius: 0 !important;
-    margin-bottom: 2vw !important;
+    outline: none;
 }
 
 .modal_button_text {
-    white-space: initial;
-    line-height: 1.4;
-    margin: 1vw !important;
     color: white;
-    font-size: 2.3vw !important;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0.5vmax;
+}
+
+
+.modal_button {
+    background-color: #37424a !important;
+    width: 40em;
+    border-radius: 0 !important;
+    margin-bottom: 1em !important;
 }
 
 .arrow_button_text {
@@ -119,12 +109,13 @@ img.category_button_img {
     }
 
     .skip_button {
-        margin-right: 2vmax !important;
+        margin-right: 2em !important;
     }
 
     .skip_button_text {
         font-size: 1.3em !important;
         margin: 0 !important;
+        padding: 0.2em;
     }
 }
 
@@ -144,10 +135,6 @@ img.category_button_img {
         padding: 1vw;
     }
 
-    .category_grid {
-        padding-bottom: 10px
-    }
-
     img.category_button_img {
         width: 15vw;
     }
@@ -156,15 +143,11 @@ img.category_button_img {
         font-size: 7vw !important;
     }
 
-    .skip_button {
-        width: 14vw;
-        height: 5vw;
-        margin-bottom: 10px !important;
-    }
 
     .skip_button_text {
         font-size: 1.3em !important;
         margin: 0 !important;
+        padding: 0.2em;
     }
 
     .arrow_button_text {
@@ -186,12 +169,6 @@ img.category_button_img {
         width: 60vw;
         height: 30vw;
         margin: 10px !important;
-    }
-
-    .modal_button_text {
-        line-height: 1.4;
-        margin: 1vw !important;
-        font-size: 5vw !important;
     }
 
 }
