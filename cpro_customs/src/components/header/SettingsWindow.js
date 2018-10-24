@@ -80,7 +80,6 @@ export default class SettingsWindow extends Component  {
 
                 </Grid>
 
-
 			</div>
 		)
 	}
