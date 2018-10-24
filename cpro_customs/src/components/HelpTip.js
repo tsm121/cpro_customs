@@ -17,7 +17,7 @@ const styles = {
         padding: '15px',
         //boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         fontSize: '1em',
-        background: '#37424a',
+        background: '#333333',
     },
 };
 
