@@ -11,8 +11,8 @@ class CigarettePaperAndSheaths extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"290 NOK per 100 grams"}/>
                 <PageTitle title={"Cigarette Paper & Sheaths"}/>
+                <TollInfoBanner text={"290 NOK per 100 grams"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}

@@ -11,8 +11,8 @@ class Cigarettes extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"200 NOK per 100 pieces"}/>
                 <PageTitle title={"Cigarettes"}/>
+                <TollInfoBanner text={"200 NOK per 100 pieces"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}

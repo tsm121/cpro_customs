@@ -11,8 +11,8 @@ class BeerAndAlcopop extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"7 NOK per bottle (0.33l) / 20 NOK per litre"}/>
                 <PageTitle title={"Beer & Alcopop"}/>
+                <TollInfoBanner text={"7 NOK per bottle (0.33l) / 20 NOK per litre"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}

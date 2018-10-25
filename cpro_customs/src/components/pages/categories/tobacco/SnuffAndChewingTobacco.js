@@ -11,8 +11,8 @@ class SnuffAndChewingTobacco extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"120 NOK per 100 grams"}/>
                 <PageTitle title={"Snuff & chewing Tobacco"}/>
+                <TollInfoBanner text={"120 NOK per 100 grams"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}

@@ -11,8 +11,8 @@ class Spirits extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"230 NOK per bottle (0.7l) / 325 NOK per litre"}/>
                 <PageTitle title={"Spirits"}/>
+                <TollInfoBanner text={"230 NOK per bottle (0.7l) / 325 NOK per litre"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}

@@ -11,8 +11,8 @@ class Wine extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"45 NOK per bottle (0.75l) / 60 NOK per litre"}/>
                 <PageTitle title={"Wine"}/>
+                <TollInfoBanner text={"45 NOK per bottle (0.75l) / 60 NOK per litre"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
