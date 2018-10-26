@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+import requests
 
 class TransactionList(APIView):
     authentication_classes = (BasicAuthentication,)
@@ -107,3 +108,12 @@ class TransactionDetail(APIView):
             transaction.delete()
             return HttpResponse(status=204)
 '''
+
+
+class ExchangeRate(APIView):
+
+    def get(self, request, currency):
+        if request.method == 'GET':
+            r = requests.get('https://api.exchangeratesapi.io/latest?base='+currency.upper())
+            data = r.json()
+            return Response(data['rates']['NOK'])
