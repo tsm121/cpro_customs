@@ -280,26 +280,68 @@ h4.cdp {
     font-weight: bold;
 }
 
-.test {
-    background-color: red;
-}
-
 .cdp_sub_info {
     font-size: 2vmin;
 }
 
 
 span.cdp_icon_round_label {
-    font-size: 1.75em;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+.add_remove_icon{
+    font-size: 1.2em !important;
+
+}
+
+.add_unit_icon {
+    font-size: 3vmin !important;
+
 }
 
 .cdp_button_round {
-    margin-top: 6px !important;
+    height: 3.7em !important;
+    width: 3.7em !important;
+    vertical-align: middle;
+    box-shadow: 0 0px !important;
+    margin-right: 2px !important;
+    margin-left: 2px !important;
+}
+
+.cdp_button_round_decrement {
+    height: 3.7em !important;
+    width: 3.7em !important;
+    background-color: white !important;
+    color: #37424a !important;
+    box-shadow: 0 0px !important;
+    border: 1px #37424a solid !important;
+    margin-right: 2px !important;
+    margin-left: 2px !important;
+}
+
+.cdp_button_round:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    color: #37424a !important;
+}
+
+.cdp_button_round_decrement:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    border: none !important;
+    color: #37424a !important;
+}
+
+.goods_container {
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 .cdp_input_field {
     margin: 8px !important;
 }
+
 
 /*
     icons
@@ -338,7 +380,7 @@ div.cdp_paper_category_sub_selection {
 }
 
 div.cdp_sub_selection_max_width_grid_item {
-    max-width: 850px;
+    max-width: 80em;
 }
 
 .cdp_tooltip {
@@ -367,10 +409,7 @@ div.cdp_sub_selection_max_width_grid_item {
     custom components that are used in multiple other components
  */
 .cdp_img_badge {
-    margin-top: 20px;
-    margin-bottom: 8px;
-    margin-left: 8px;
-    margin-right: 16px;
+    margin: 20px 16px 8px 8px;
 }
 
 .modal {
@@ -502,8 +541,37 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     div.cdp_sub_selection_max_width_grid_item {
-        max-width: 600px;
+        max-width: 60em;
     }
+
+    span.cdp_icon_round_label {
+        font-size: 2.3vw;
+    }
+
+    .add_remove_icon{
+        font-size: 1.8vw !important;
+
+    }
+
+    .cdp_button_round {
+        height: 5.5vmin !important;
+        width: 5.5vmin !important;
+        min-width: 5.5vmin !important;
+        min-height: 5.5vmin !important;
+
+    }
+
+    .cdp_button_round_decrement {
+        height: 5.5vmin !important;
+        width: 5.5vmin !important;
+        min-width: 5.5vmin !important;
+        min-height: 5.5vmin !important;
+    }
+
+    .MuiInputBase-input-211 {
+        font-size: 11px !important;
+    }
+
 }
 
 /* ---- xs ---- */
@@ -568,6 +636,34 @@ div.cdp_sub_selection_max_width_grid_item {
     .modal {
         max-width: 80%;
         width: 80%;
+    }
+
+    span.cdp_icon_round_label {
+        font-size: 2.2vmax;
+    }
+
+    .add_remove_icon{
+        font-size: 1.7vmax !important;
+
+    }
+
+    .cdp_button_round {
+        height: 5.4vmax !important;
+        width: 5.4vmax !important;
+    }
+
+    .cdp_button_round_decrement {
+        height: 5.4vmax !important;
+        width: 5.4vmax !important;
+    }
+
+    .MuiInputBase-input-211 {
+        font-size: 14px !important;
+
+    }
+
+    .add_unit_icon {
+        font-size: 5vmin !important;
     }
 }
 
