@@ -473,10 +473,14 @@ div.cdp_sub_selection_max_width_grid_item {
 
 .payment_content_container {
     min-width: 20em;
-}
+}   
 
 .MuiGrid-container-45.MuiGrid-spacing-xs-32-70{
     width: 100% !important;
+}
+
+.MuiGrid-spacing-xs-32-70 {
+    margin: 0 !important;
 }
 
 /* ---- sm ---- */

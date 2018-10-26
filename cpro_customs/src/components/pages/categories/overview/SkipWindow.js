@@ -55,7 +55,7 @@ class SkipWindow extends Component  {
                         >
 
                             <Grid item xs={12} sm={12} md={12} >
-                                <h2 className={"cdp"} style={{marginBottom: "1vmax"}}>Skip declaring</h2>
+                                <h2 className={"cdp"} style={{marginBottom: "1vmax"}}>Skip declaring?</h2>
                             </Grid>
 
 
