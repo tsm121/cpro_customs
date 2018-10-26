@@ -33,36 +33,43 @@ class Transactions(APIView):
 
     def post(self, request, format=None):
         if(self.validate(request.data['reference_number'])):
-            
-            #product_req = request.data.pop('products')
             for i in request.data['products']:
                 i['product'] = Product.objects.get(type_of_product=i['product']).pk
             serializer = TransactionSerializer(data=request.data)
             if serializer.is_valid():
-                print(serializer.validated_data)
                 serializer.save()
-                return Response({'ID': serializer.data['id_number']}, status=status.HTTP_201_CREATED)
+                return Response({'url': 'https://toll.idi.ntnu.no/api/backend/' + serializer.data['id_number']}, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_402_PAYMENT_REQUIRED)
 
     def validate(self, reference_number):
         #implement validation towards the payment service provider here
+        #TODO: implement validation using relevant legislation
         return True
 
 class TransactionDetail(APIView):
 
-    def get_object(self, pk):
+    def get_object(self, uid):
         try:
-            return Transaction.objects.get(pk=pk)
+            return Transaction.objects.get(id_number=uid)
         except Transaction.DoesNotExist:
             return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
-    def get(self, request, pk, format=None):
-        transaction = self.get_object(pk=pk)
+    def get(self, request, uid, format=None):
+        transaction = self.get_object(uid=uid)
         serializer = TransactionSerializer(transaction)
         return Response(serializer.data)
 
+
+class TransactionValidation(APIView):
+
+    def post(self, request, format=None):
+        #TODO: Implement valdiation using relevant legislation
+
+        return Response(True)
+
+'''
     def put(self, request, pk, format=None):
         transaction = self.get_object(pk=pk)
         serializer = TransactionSerializer(transaction)
@@ -75,7 +82,7 @@ class TransactionDetail(APIView):
         transaction = self.get_object(pk=pk)
         transaction.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
+'''
 '''
 class TransactionDetail(APIView):
     def get(self, request, pk):
