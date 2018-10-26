@@ -20,7 +20,7 @@ export default class Categories extends Component  {
     constructor() {
         super()
         this.state = {
-            more_categories: true
+            more_categories: false
         }
     }
 

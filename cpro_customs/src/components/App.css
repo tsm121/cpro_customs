@@ -272,6 +272,10 @@ h4.cdp {
     margin-left: -2px;
 }
 
+.cdp_category_sub_selection_only_title {
+    font-size: 3.5vmin;
+}
+
 .cdp_sub_sub_title {
     margin-top: 0;
     text-transform: uppercase;
