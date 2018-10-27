@@ -11,13 +11,14 @@ class CigarsAndCigarillos extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"290 NOK per 100 grams"}/>
                 <PageTitle title={"Cigars & Cigarillos"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
                       spacing={0}
-                      direction={"row"}>
+                      direction={"row"}
+                >
+                    <TollInfoBanner text={"290 NOK per 100 grams"}/>
                     <TobaccoItem icon={"weight"} otherAmount/>
                 </Grid>
             </div>

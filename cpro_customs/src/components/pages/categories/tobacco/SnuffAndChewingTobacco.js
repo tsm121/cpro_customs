@@ -11,13 +11,14 @@ class SnuffAndChewingTobacco extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"120 NOK per 100 grams"}/>
                 <PageTitle title={"Snuff & chewing Tobacco"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
                       spacing={0}
-                      direction={"row"}>
+                      direction={"row"}
+                >
+                    <TollInfoBanner text={"120 NOK per 100 grams"}/>
                     <TobaccoItem amount={10} unit={"grams"} icon={"snus"}/>
                     <TobaccoItem amount={16.8} unit={"grams"} icon={"snus"}/>
                     <TobaccoItem amount={22} unit={"grams"} icon={"snus"}/>
