@@ -1,99 +1,66 @@
 import React, {Component} from "react";
 
-import PageTitle from "../PageTitle";
-
 import Grid from "@material-ui/core/Grid/Grid";
-import Paper from "@material-ui/core/Paper/Paper";
-import TextField from "@material-ui/core/TextField/TextField";
+import AddIcon from '@material-ui/icons/Add';
+import Button from "@material-ui/core/Button/Button";
 
-import "../../../App.css"
-import ImgBadge from "../../../ImgBadge";
-import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
-import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-
-
-const currencies = [
-    {
-        value: 'USD',
-        label: '$',
-    },
-    {
-        value: 'EUR',
-        label: '€',
-    },
-    {
-        value: 'BTC',
-        label: '฿',
-    },
-    {
-        value: 'JPY',
-        label: '¥',
-    },
-];
+import PageTitle from "../PageTitle";
+import Good from "./Good";
 
 
 class Goods extends Component {
     state = {
-        name: '',
-        age: '',
-        currency: 'KR',
+        additionalGoods: 0,
     };
 
     render = () => {
-        const { currency } = this.state;
         return (
-            <div>
+            <div className={"goods_container"}>
                 <PageTitle title={"Goods"}/>
                 <Grid container
                       justify={"center"}
-                      direction={"row"}>
-                    <Grid item xs={11} sm={11} md={11}>
-                        <Paper className={"cdp_paper_category_sub_selection"}>
-                            <Grid container alignItems={"space-evenly"}>
-                                <Grid item>
-                                    <ImgBadge icon={"archive"} badgeContent={0} color={"secondary"}/>
-                                    <TextField
-                                        id="good_name"
-                                        label="Name"
-                                        margin={"normal"}
-                                        variant="outlined"
-                                    />
-                                    <TextField
-                                        id="outlined-adornment-amount"
-                                        variant="outlined"
-                                        label="Amount"
-                                        placeholder={0}
-                                        InputProps={{
-                                            startAdornment: <InputAdornment position="start">$</InputAdornment>,
-                                        }}
-                                        margin={"normal"}
-                                    />
-                                    <TextField
-                                        id="outlined-select-currency"
-                                        select
-                                        label="Currency"
-                                        value={currency}
-                                        margin={"normal"}
-                                        variant="outlined"
-                                    >
-                                        {currencies.map(option => (
-                                            <MenuItem key={option.value} value={option.value}>
-                                                {option.label}
-                                            </MenuItem>
-                                        ))}
-                                    </TextField>
+                      alignItems={"center"}
+                      spacing={16}
+                      direction={"column"}
+                >
+                    <Good autoFocus={true}/>
+                    {
+                        this.drawAdditionalGoods()
+                    }
+                    <Grid item xs={12} sm={12} md={12}>
+                        <Grid container spacing={8} onClick={this.handleAddGood}>
+                            <Grid item xs={12}>
+                                <Grid container justify={"center"} alignItems={"center"}>
+                                    <Button className={"cdp_button_round"} variant="fab" color="white">
+                                        <AddIcon className={"add_unit_icon"}/>
+                                    </Button>
                                 </Grid>
                             </Grid>
-                        </Paper>
+                            <Grid item xs={12}>
+                                <Grid container justify={"center"} alignItems={"center"}>
+                                    <span>Add good</span>
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </div>
         );
+    };
+
+    handleAddGood = () => {
+        this.setState({
+            additionalGoods: this.state.additionalGoods + 1
+        })
+    };
+
+    drawAdditionalGoods = () => {
+        let goods = [];
+        for (let i = 0; i < this.state.additionalGoods; i++) {
+            goods.push(<Good/>);
+        }
+        return goods;
     }
 }
-
-Goods.propTypes = {
-  // classes: PropTypes.object.isRequired,
-};
 
 export default Goods;

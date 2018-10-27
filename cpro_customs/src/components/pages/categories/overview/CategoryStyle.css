@@ -1,0 +1,174 @@
+/* ************************************************************** */
+/*
+    THIS FILE CONTAINS THE STYLING FOR THE CATEGORY OVERVIEW PAGE
+ */
+/* ************************************************************** */
+
+/* Categories overview page */
+.category_title {
+    padding-bottom: 3.5vw;
+    font-size: 5vw !important;
+}
+
+.skip_button {
+    margin-right: 3em !important;
+    border-radius: 0 !important;
+}
+
+.skip_button_text {
+    font-size: 2em !important;
+    margin: 0 !important;
+    padding: 0.5em;
+
+}
+
+.modal_skip {
+    display: block;
+    overflow: auto;
+    min-width: 50% !important;
+    max-height: 80% !important;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-bottom: 4em;
+    background-color:#e2e3e5;
+    color: #37424a;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    outline: none;
+}
+
+.modal_button_text {
+    color: white;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0.5vmax;
+}
+
+
+.modal_button {
+    background-color: #37424a !important;
+    width: 40em;
+    border-radius: 0 !important;
+    margin-bottom: 1em !important;
+}
+
+.arrow_button_text {
+    font-size: 3vw !important;
+}
+
+/* ********************************************* */
+/* Category button */
+.category_button {
+    border-radius: 0 !important;
+    background-color: white !important;
+    margin: 2vmax !important;
+    height: 14vw;
+    width: 14vw;
+    padding: 1vw;
+    min-height: 10vmin;
+    min-width: 10vmin;
+}
+
+.category_button_text {
+    font-size: 2.4vw !important;
+    margin: 10px !important
+}
+
+img.category_button_img {
+    width: 7vw;
+    min-width: 7vmin;
+}
+
+
+/* ---- sm ---- */
+@media only screen and (max-width: 959px) {
+
+    .category_title {
+        padding-bottom: 3.5vw;
+        font-size: 5vw !important;
+    }
+
+
+    .category_button {
+        margin: 1vmax !important;
+        height: 15vw;
+        width: 15vw;
+    }
+
+    .category_button_text {
+        font-size: 1.3em !important;
+        margin: 5px !important
+
+    }
+
+    img.category_button_img {
+        width: 1vw;
+        min-width: 7vmin;
+    }
+
+    .skip_button {
+        margin-right: 2em !important;
+    }
+
+    .skip_button_text {
+        font-size: 1.3em !important;
+        margin: 0 !important;
+        padding: 0.2em;
+    }
+}
+
+/* ********************************************* */
+/* ---- xs ---- */
+@media only screen and (max-width: 599px) {
+
+    .category_title {
+        padding-bottom: 3.5vw;
+        font-size: 6vw !important;
+    }
+
+    .category_button {
+        margin: 10px !important;
+        height: 35vw;
+        width: 35vw;
+        padding: 1vw;
+    }
+
+    img.category_button_img {
+        width: 15vw;
+    }
+
+    .category_button_text {
+        font-size: 7vw !important;
+    }
+
+
+    .skip_button_text {
+        font-size: 1.3em !important;
+        margin: 0 !important;
+        padding: 0.2em;
+    }
+
+    .arrow_button_text {
+        font-size: 5vw !important;
+    }
+
+    .modal_skip {
+        min-width: 80% !important;
+        padding-right: 1vw;
+        padding-left: 1vw;
+    }
+
+    .modal_skip_title {
+        margin-bottom: 2vw !important;
+        font-size: 7vw !important;
+    }
+
+    .modal_button {
+        width: 60vw;
+        height: 30vw;
+        margin: 10px !important;
+    }
+
+}

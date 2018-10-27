@@ -1,0 +1,227 @@
+/* ************************************************************** */
+/*
+    THIS FILE CONTAINS THE STYLING FOR THE SHOPPING CART
+ */
+/* ************************************************************** */
+
+/* ShoppingCart */
+
+.shopping_cart_title {
+    font-size: 4.5vw !important;
+    margin: 20px !important;
+    padding-bottom: 10px;
+}
+
+
+/* ********************************************* */
+/* DeclarationTable */
+
+.paper {
+    padding-right: 1vw;
+}
+
+.declaration_table_header {
+    font-size: 1.7em !important;
+    margin: 20px !important;
+}
+
+.declaration_table {
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+
+.table_column {
+    color:#37424a !important;
+    font-size: 1em !important;
+}
+
+.category_column {
+
+}
+
+.picture_column {
+    width: 12vw;
+    padding: 2px !important;
+    margin-right: 5px !important;
+}
+
+.exit_column {
+    padding: 0 !important;
+}
+
+.total_text {
+    font-size: 1.2em !important;
+    color: #37424a;
+}
+
+.declaration_button {
+    background-color: #37424a !important;
+    margin: 15px !important;
+    border-radius: 0 !important;
+}
+
+.declaration_button_text {
+    font-size: 1.5vw !important;
+    margin: 0 !important;
+    padding: 10px;
+}
+
+
+/* ********************************************* */
+/* RemoveButton */
+
+img.remove_button_img {
+    width: 20px;
+}
+
+/* ********************************************* */
+/* IconAndAmount */
+
+.iconAmount_text {
+    font-size: 1.1vw !important;
+    margin: 2px !important
+}
+
+img.iconAmount_img {
+    width: 3.5em;
+}
+
+/* ********************************************* */
+/* ---- sm ---- */
+@media only screen and (max-width: 959px) {
+
+    .shopping_cart_title {
+        font-size: 7vw !important;
+    }
+
+    .declaration_table_header {
+        font-size: 1.7em !important;
+        margin-bottom: 10px !important;
+    }
+
+    .paper {
+        width: 85vw !important;
+        padding-right: 4vw;
+        padding-left: 4vw;
+    }
+
+    .table_column {
+        padding: 0 !important;
+        font-size: 1em !important;
+    }
+
+    .picture_column {
+        font-size: 0.9em !important;
+        padding: 2px !important;
+        width: 11vw;
+        margin-right: 5px !important;
+    }
+
+    .category_column {
+        width: 14vw !important;
+    }
+
+    .exit_column {
+        width: 4vw;
+        padding-left: 5px !important;
+    }
+
+    .total_text {
+        font-size: 2.8vw !important;
+        color: #37424a;
+    }
+
+    .declaration_button {
+        margin-bottom: 25px !important;
+    }
+
+    .declaration_button_text {
+        font-size: 3.5vw !important;
+        padding: 5px;
+    }
+
+    img.remove_button_img {
+        width: 17px;
+        padding: 0 !important;
+    }
+
+    .iconAmount_text {
+        font-size: 1.2em !important;
+        margin: 2px !important
+    }
+
+    img.iconAmount_img {
+        width: 3.5em;
+    }
+
+}
+
+
+
+/* ---- xs ---- */
+@media only screen and (max-width: 599px) {
+
+    .shopping_cart_title {
+        font-size: 1.7em !important;
+        padding-bottom: 0 !important;
+    }
+
+    .declaration_table_header {
+        font-size: 1.1em !important;
+        margin-bottom: 5px !important;
+    }
+
+    .paper {
+        width: 100vw !important;
+        border-radius: 0 !important;
+    }
+
+    .table_column {
+        font-size: 0.9em !important;
+        padding: 1vw !important;
+    }
+
+    .picture_column {
+        font-size: 0.9em !important;
+        padding: 0 !important;
+        border-radius: 0;
+        width: 14vw;
+    }
+
+    .category_column {
+        width: 10vw !important;
+    }
+
+    .exit_column {
+        width: 4vw;
+        padding-left: 5px !important;
+    }
+
+    .total_text {
+        font-size: 1em !important;
+    }
+
+    .declaration_button {
+        margin-bottom: 20px !important;
+    }
+
+    .declaration_button_text {
+        font-size: 3.8vw !important;
+        padding: 5px;
+    }
+
+    img.remove_button_img {
+        width: 13px;
+        padding: 0 !important;
+    }
+
+    .iconAmount_text {
+        font-size: 0.8em !important;
+        margin: 2px !important
+    }
+
+    img.iconAmount_img {
+        width: 7.3vw;
+    }
+
+}
