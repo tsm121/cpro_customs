@@ -15,13 +15,14 @@ class Goods extends Component {
 
     render = () => {
         return (
-            <div>
+            <div className={"goods_container"}>
                 <PageTitle title={"Goods"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
-                      spacing={32}
-                      direction={"column"}>
+                      spacing={16}
+                      direction={"column"}
+                >
                     <Good autoFocus={true}/>
                     {
                         this.drawAdditionalGoods()
@@ -31,7 +32,7 @@ class Goods extends Component {
                             <Grid item xs={12}>
                                 <Grid container justify={"center"} alignItems={"center"}>
                                     <Button className={"cdp_button_round"} variant="fab" color="white">
-                                        <AddIcon/>
+                                        <AddIcon className={"add_unit_icon"}/>
                                     </Button>
                                 </Grid>
                             </Grid>

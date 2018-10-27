@@ -9,87 +9,80 @@ import SettingsButton from "./SettingsButton";
 
 
 class Header extends Component  {
-	constructor() {
-		super();
+    constructor() {
+        super();
 
-		this.state = {
-			showSettingsModal: false,
-		}
-	}
+        this.state = {
+            showSettingsModal: false,
+        }
+    }
 
-	/**
-	 * This method is used to trigger opening this Modal.
-	 */
-	openModal = () => {
-		this.setState({showSettingsModal: true});
-	}
+    /**
+     * This method is used to trigger opening this Modal.
+     */
+    openModal = () => {
+        this.setState({showSettingsModal: true});
+    }
 
-	/**
-	 * This method is used to trigger closing this Modal.
-	 */
-	closeModal = () => {
-		this.setState({showSettingsModal: false})
-	}
+    /**
+     * This method is used to trigger closing this Modal.
+     */
+    closeModal = () => {
+        this.setState({showSettingsModal: false})
+    }
 
-	render = () => {
-		const {pathname} = this.props.location;
-		return (
-			<FormControl fullWidth={true}>
-				<AppBar position="static"
-						color="primary"
-						style={{backgroundColor:'#e2e3e5', color:'#37424a'}}
-				>
-					<Toolbar>
-						<Grid container
-							  spacing={16}
-							  justify="space-between"
-							  alignItems={"center"}
-						>
-							<Grid item xs={2}>
-								{/* do not show back button when on landing page */}
-								{pathname === "/" ? null :
-									<Grid container
-										  justify={"center"}
-										  alignItems={"center"}
-									>
-										<BackButton/>
-									</Grid>
-								}
-							</Grid>
-							<Grid item xs={8}>
-								<Grid container
-									  justify={"center"}
-									  alignItems={"center"}
-								>
-									<h3>Norwegian Customs</h3>
-								</Grid>
-							</Grid>
-							<Grid item xs={2}>
-								<Grid container
-									  justify={"center"}
-									  alignItems={"center"}
-								>
-									<SettingsButton onClick={this.openModal}/>
-								</Grid>
-							</Grid>
-						</Grid>
-					</Toolbar>
-				</AppBar>
+    render = () => {
+        const {pathname} = this.props.location;
+        return (
+            <FormControl fullWidth={true}>
+                <AppBar position="static"
+                        color="primary"
+                        style={{backgroundColor:'#e2e3e5', color:'#37424a'}}
+                >
+                    <Toolbar>
+                        <Grid container
+                              spacing={16}
+                              justify="space-between"
+                              alignItems={"center"}
+                        >
+                            <Grid item xs={2}>
+                                {/* do not show back button when on landing page */}
+                                {pathname === "/" ? null :
+                                    <Grid container
+                                          justify={"center"}
+                                          alignItems={"center"}
+                                    >
+                                        <BackButton/>
+                                    </Grid>
+                                }
+                            </Grid>
 
-				<Modal
-					aria-labelledby="simple-modal-title"
-					aria-describedby="simple-modal-description"
-					open={this.state.showSettingsModal}
-					onClose={this.closeModal}
-				>
-					<div>
-						<SettingsWindow/>
-					</div>
-				</Modal>
+                            <Grid item xs={2}>
+                                <Grid container
+                                      justify={"center"}
+                                      alignItems={"center"}
+                                >
+                                    <SettingsButton onClick={this.openModal}/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Toolbar>
+                </AppBar>
 
-			</FormControl>
-		)
-	}
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={this.state.showSettingsModal}
+                    onClose={this.closeModal}
+                >
+                    <div>
+                        <SettingsWindow/>
+                    </div>
+                </Modal>
+
+            </FormControl>
+        )
+    }
 }
 
 export default withRouter(Header);

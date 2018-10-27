@@ -1,16 +1,29 @@
 /* Category button */
 div.cdp_animal_select_button {
-    background-color: #e2e3e5;
-    border: 1px solid #e2e3e5;
-}
-
-.cdp_animal_select_button_square {
-    width: 100px !important;
-    padding-left: 10px;
-    padding-right: 10px;
+    background-color: white;
 }
 
 img.cdp_animal_select_button {
-    padding-top: 10px;
-    width: 50px;
+    width: 4em;
+    margin-left: 4vmin;
+    margin-right: 4vmin;
+}
+
+.cdp_animal_select_button {
+    padding-top: 1.5vmin;
+}
+
+.cdp_animal_select_button:hover {
+    transition: background-color 300ms ease-in-out;
+    background-color: #ffd200;
+    border-radius: 0.2em;
+
+}
+
+div.cdp_paper_category_sub_selection {
+    padding: 3vmin;
+}
+
+.bought_paper_container {
+    width: 31.5em;
 }
