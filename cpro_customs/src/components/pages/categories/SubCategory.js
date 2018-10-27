@@ -48,6 +48,7 @@ class SubCategory extends Component {
                 >
                     <Paper
                         className={"cdp_paper_category_sub_selection"}
+                        onClick={this.onClick}
                     >
                         <Grid container
                               alignItems={"center"}

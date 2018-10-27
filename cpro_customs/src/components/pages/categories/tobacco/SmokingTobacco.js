@@ -11,13 +11,14 @@ class SmokingTobacco extends Component {
     render = () => {
         return (
             <div>
-                <TollInfoBanner text={"290 NOK per 100 grams"}/>
                 <PageTitle title={"Smoking Tobacco"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
                       spacing={0}
-                      direction={"row"}>
+                      direction={"row"}
+                >
+                    <TollInfoBanner text={"290 NOK per 100 grams"}/>
                     <TobaccoItem amount={250} unit={"grams"} icon={"weight"}/>
                     <TobaccoItem amount={50} unit={"grams"} icon={"weight"}/>
                     <TobaccoItem unit={"grams"} icon={"weight"} otherAmount/>
