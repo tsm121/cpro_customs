@@ -10,7 +10,7 @@ class Animals extends Component {
         return (
             <div>
                 <PageTitle title={"Animals"}/>
-                <Grid container spacing={32} direction={"column"}>
+                <Grid container spacing={8} direction={"column"}>
                     <Grid item>
                         <SubSelection
                             text={"I am travelling with my pet"}

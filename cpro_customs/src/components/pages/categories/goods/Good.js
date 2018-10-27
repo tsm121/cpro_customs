@@ -43,23 +43,28 @@ class Good extends Component {
         const {autoFocus} = this.props;
 
         return (
-            <Grid item xs={12} sm={12} md={12}>
+            <Grid item xs={12} sm={12} md={12} >
                 <Grid container justify={"center"} alignItems={"center"}>
-                    <Grid item xs={11} className={"cdp_sub_selection_max_width_grid_item"}>
+                    <Grid item xs={12} className={"cdp_sub_selection_max_width_grid_item"}>
                         <Paper className={"cdp_paper_category_sub_selection"}>
                             <Grid container>
                                 <Grid item xs={12}>
-                                    <Grid container spacing={8} justify={"center"} alignItems={"center"}>
-                                        <Grid item xs={12} sm={5} md={3}>
+                                    <Grid container spacing={8}
+                                          ustify={"center"}
+                                          alignItems={"center"}
+                                    >
+                                        <Grid item xs={12} sm={4} md={5}>
                                             <Grid container>
-                                                <Grid item xs={3}>
+                                                <Grid item xs={3} sm={3}>
                                                     <Grid container justify={"center"} alignItems={"center"}>
                                                         <ImgBadge icon={"archive"}
                                                                   badgeContent={amount}
-                                                                  color={"secondary"}/>
+                                                                  color={"secondary"}
+                                                        />
                                                     </Grid>
                                                 </Grid>
-                                                <Grid item xs={9}>
+                                                <Grid item xs={8} sm={9}
+                                                >
                                                     <TextField
                                                         id={"good_name"}
                                                         className={"cdp_input_field"}
@@ -71,9 +76,9 @@ class Good extends Component {
                                                 </Grid>
                                             </Grid>
                                         </Grid>
-                                        <Grid item xs={12} sm={6} md={4}>
+                                        <Grid item xs={12} sm={5} md={4}>
                                             <Grid container justify={"center"} alignItems={"center"} spacing={32}>
-                                                <Grid item xs={7} sm={6} md={6}>
+                                                <Grid item xs={7} sm={6} md={7}>
                                                     <TextField
                                                         id={"good_value"}
                                                         className={"cdp_input_field"}
@@ -87,7 +92,7 @@ class Good extends Component {
                                                         }}
                                                     />
                                                 </Grid>
-                                                <Grid item xs={5} sm={6} md={6}>
+                                                <Grid item xs={5} sm={6} md={5}>
                                                     <TextField
                                                         id={"outlined-select-currency"}
                                                         className={"cdp_input_field"}
@@ -107,7 +112,7 @@ class Good extends Component {
                                                 </Grid>
                                             </Grid>
                                         </Grid>
-                                        <Grid item xs={12} sm={12} md={5}>
+                                        <Grid item xs={12} sm={3} md={3}>
                                             <PlusMinusButtons
                                                 handleDecrement={this.handleDecrement.bind(this)}
                                                 handleIncrement={this.handleIncrement.bind(this)}

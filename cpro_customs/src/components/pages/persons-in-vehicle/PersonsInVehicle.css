@@ -3,6 +3,8 @@ div.personContainer {
 }
 
 div.personPaper {
-    padding: 20px;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    width: auto;
 }
 

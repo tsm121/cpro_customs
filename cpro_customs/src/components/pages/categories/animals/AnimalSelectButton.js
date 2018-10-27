@@ -18,34 +18,32 @@ export default class AnimalSelectButton extends Component {
     render = () => {
         const {text, icon} = this.props;
         return (
-            <div>
-                <Grid container
-                      className={"cdp_animal_select_button"}
-                      onClick={this.onClick}
-                      onMouseOver={this.onMouseOver}
-                      onMouseOut={this.onMouseOut}
-                >
-                    <Grid item xs={12}>
-                        <Grid container justify={"center"} alignItems={"center"}>
-                            <div className={"cdp_animal_select_button_square"}>
-                                <Grid container direction={"column"} justify={"center"} alignItems={"center"}>
-                                    <Grid item xs={12}>
-                                        <Grid container justify={"center"} alignItems={"center"}>
-                                            <img className={"cdp_animal_select_button"} src={icons[icon]}
-                                                 alt={"icon"}/>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Grid container justify={"center"} alignItems={"center"}>
-                                            <h3 className={"cdp_dark_grey"}>{text}</h3>
-                                        </Grid>
+            <Grid container
+                  className={"cdp_animal_select_button"}
+                  onClick={this.onClick}
+                  onMouseOver={this.onMouseOver}
+                  onMouseOut={this.onMouseOut}
+            >
+                <Grid item xs={12}>
+                    <Grid container justify={"center"} alignItems={"center"}>
+                        <div className={"cdp_animal_select_button_square"}>
+                            <Grid container direction={"column"} justify={"center"} alignItems={"center"}>
+                                <Grid item xs={12}>
+                                    <Grid container justify={"center"} alignItems={"center"}>
+                                        <img className={"cdp_animal_select_button"} src={icons[icon]}
+                                             alt={"icon"}/>
                                     </Grid>
                                 </Grid>
-                            </div>
-                        </Grid>
+                                <Grid item xs={12}>
+                                    <Grid container justify={"center"} alignItems={"center"}>
+                                        <h3 className={"cdp_dark_grey"}>{text}</h3>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </div>
                     </Grid>
                 </Grid>
-            </div>
+            </Grid>
         )
     };
 

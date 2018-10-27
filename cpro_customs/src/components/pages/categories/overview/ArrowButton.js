@@ -18,7 +18,6 @@ class ArrowButton extends Component  {
     render = () => {
         return (
             <Grid container
-                  spacing={0}
                   justify="center"
                   alignItems="center"
                   direction="column"

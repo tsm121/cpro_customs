@@ -22,33 +22,32 @@ class SubSelection extends Component {
                       onClick={this.onClick}
                       onMouseOver={this.onMouseOver}
                       onMouseOut={this.onMouseOut}
+                      className={"cdp_sub_paper_hover"}
                 >
-                    <Paper className={"cdp_paper_category_sub_selection"}>
+                    <Paper className={"cdp_category_sub_selection_only_title"} style={{padding:"0.3em"}}>
                         <Grid container
                               justify={"flex-start"}
                               alignItems={"center"}
-                              spacing={0}
                         >
                             <Grid item xs={4} sm={3} md={3}>
                                 <Grid container
                                       justify={"flex-end"}
                                       alignItems={"center"}
                                 >
-                                    <Grid item xs={7} sm={7} md={8}>
+                                    <Grid item xs={7} sm={7} md={9}>
                                         <Grid container>
                                             <Grid item>
                                                 <img className={"icon_xs"}
-                                                 src={icons[icon]}
-                                                 alt={"icon"}/>
+                                                     src={icons[icon]}
+                                                     alt={"icon"}/>
                                             </Grid>
                                         </Grid>
                                     </Grid>
-                                    <Grid item xs={3} sm={3} md={2}></Grid>
                                 </Grid>
                             </Grid>
                             <Grid item xs={8} sm={9} md={9}>
-                                    <span className={"cdp_category_sub_selection cdp_dark_grey"}>
-                                        {text}
+                                    <span className={"cdp_category_sub_selection_only_title cdp_dark_grey"}>
+                                        <h3 className={"cdp_category_sub_selection_only_title cdp_dark_grey"}>{text}</h3>
                                     </span>
                             </Grid>
                         </Grid>

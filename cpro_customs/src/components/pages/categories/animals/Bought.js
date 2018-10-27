@@ -113,16 +113,16 @@ class Bought extends Component {
                 arr.push(
                     <Grid item>
                         <Grid container justify={"center"} alignItems={"center"}>
-                            <Grid item>
+                            <Grid item className={"bought_paper_container"}>
                                 <Grid container alignItems={"center"} justify={"center"}>
                                     <Grid item xs={11}>
                                         <Paper className={"cdp_paper_category_sub_selection"}>
                                             <Grid container justify={"center"} alignItems={"center"}>
                                                 <h3 className={"cdp_dark_grey"}>Which kind of animal did you buy?</h3>
                                             </Grid>
-                                            <Grid container justify={"center"} alignItems={"center"} spacing={32}>
+                                            <Grid container justify={"center"} alignItems={"center"}>
                                                 <Grid item xs={4} onClick={() => this.handleSelectKind(key, "dog")}>
-                                                    <AnimalSelectButton text={"Dog"} icon={"dog"}/>
+                                                    <AnimalSelectButton text={"Dog"} icon={"dog"} />
                                                 </Grid>
                                                 <Grid item xs={4} onClick={() => this.handleSelectKind(key, "horse")}>
                                                     <AnimalSelectButton text={"Horse"} icon={"horse"}/>
@@ -143,7 +143,7 @@ class Bought extends Component {
                     <Grid item>
                         <Grid container justify={"center"}
                               alignItems={"center"}>
-                            <Grid item>
+                            <Grid item className={"bought_paper_container"}>
                                 <Grid container justify={"center"} alignItems={"center"} direction={"row"}>
                                     <Grid item xs={11}>
                                         <Paper className={"cdp_paper_category_sub_selection"}>

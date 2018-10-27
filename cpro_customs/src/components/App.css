@@ -17,6 +17,15 @@ body {
 
 }
 
+a {
+    outline : none;
+}
+
+a img {
+    outline : none;
+}
+
+
 .header {
     background-color: white !important;
 }
@@ -47,15 +56,15 @@ transform: translate(- 50 %, - 50 %);
 }
 
 .light label {
-    color: black !important;
+    color: #37424a !important;
 }
 
 .light .MuiInputBase-input-206 MuiOutlinedInput-input-191  {
-    color: black !important;
+    color: #37424a !important;
 }
 
 .light .MuiInputBase-input-206 {
-    color: black !important;
+    color: #37424a !important;
 }
 
 .light fieldset {
@@ -102,9 +111,9 @@ transform: translate(- 50 %, - 50 %);
 .h1Style {
     font-family: Arial, serif;
     font-weight: normal;
-    font-size: 5vw;
+    font-size: 7vmin;
     padding-left: 3vw;
-    padding-right: 3 v;
+    padding-right: 3vw;
     margin-bottom: 0;
     text-align: center;
     color: #ffffff;
@@ -113,7 +122,7 @@ transform: translate(- 50 %, - 50 %);
 .h1Style_secondary {
     font-family: Arial, serif;
     font-weight: normal;
-    font-size: 5vw;
+    font-size: 8vmin;
     padding-left: 3vw;
     padding-right: 3vw;
     text-align: center;
@@ -220,15 +229,15 @@ h1.cdp_secondary, h2.cdp_secondary, h3.cdp_secondary, h4.cdp_secondary {
 }
 
 h1.cdp {
-    font-size: 100px;
+    font-size: 8vmin;
 }
 
 h2.cdp {
-    font-size: 90px;
+    font-size: 7vmin;
 }
 
 h3.cdp {
-    font-size: 80px;
+    font-size: 4vmin;
 }
 
 h4.cdp {
@@ -259,30 +268,94 @@ h4.cdp {
 }
 
 .cdp_category_sub_selection {
-    font-size: 3em;
+    font-size: 3.5vmin;
+    margin-left: -2px;
 }
 
+.cdp_category_sub_selection_only_title {
+    font-size: 3.5vmin;
+}
+
+.cdp_sub_sub_title {
+    margin-top: 0;
+    text-transform: uppercase;
+    font-size: 1.7vmin;
+    color:#888888;
+    font-weight: bold;
+}
+
+.cdp_sub_info {
+    font-size: 2vmin;
+}
+
+
 span.cdp_icon_round_label {
-    font-size: 1.75em;
+    font-size: 1.5em;
+    font-weight: 100;
+}
+
+.add_remove_icon{
+    font-size: 1.2em !important;
+
+}
+
+.add_unit_icon {
+    font-size: 3vmin !important;
+
 }
 
 .cdp_button_round {
-    margin-top: 6px !important;
+    height: 3.7em !important;
+    width: 3.7em !important;
+    vertical-align: middle;
+    box-shadow: 0 0px !important;
+    margin-right: 2px !important;
+    margin-left: 2px !important;
+}
+
+.cdp_button_round_decrement {
+    height: 3.7em !important;
+    width: 3.7em !important;
+    background-color: white !important;
+    color: #37424a !important;
+    box-shadow: 0 0px !important;
+    border: 1px #37424a solid !important;
+    margin-right: 2px !important;
+    margin-left: 2px !important;
+}
+
+.cdp_button_round:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    color: #37424a !important;
+}
+
+.cdp_button_round_decrement:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    border: none !important;
+    color: #37424a !important;
+}
+
+.goods_container {
+    margin-left: 2em;
+    margin-right: 2em;
 }
 
 .cdp_input_field {
     margin: 8px !important;
 }
 
+
 /*
     icons
  */
 img.icon_xs {
-    width: 80px;
+    width: 11vmin;
 }
 
 img.icon_sm {
-    width: 100px;
+    width: 5.5em;
 }
 
 img.icon_md {
@@ -294,7 +367,7 @@ img.icon_lg {
 }
 
 img.icon_xl {
-    width: 160px;
+    width: 120px;
 }
 
 img.cdp_icon_item {
@@ -306,36 +379,51 @@ img.cdp_icon_item {
     material ui elements
  */
 div.cdp_paper_category_sub_selection {
-    padding: 25px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 div.cdp_sub_selection_max_width_grid_item {
-    max-width: 850px;
+    max-width: 80em;
 }
 
 .cdp_tooltip {
     size: 5em;
 }
 
+.cdp_sub_paper_hover > .MuiPaper-root-14:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200;
+    box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.2),
+    7px 7px 9px 0px rgba(0, 0, 0, 0.14),
+    9px 9px 12px -4px rgba(0, 0, 0, 0.12);
+}
+
+.category_button:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.2),
+    7px 7px 9px 0px rgba(0, 0, 0, 0.14),
+    9px 9px 12px -4px rgba(0, 0, 0, 0.12);
+}
+
+
 
 /*
     custom components that are used in multiple other components
  */
 .cdp_img_badge {
-    margin-top: 20px;
-    margin-bottom: 8px;
-    margin-left: 8px;
-    margin-right: 16px;
+    margin: 20px 16px 8px 8px;
 }
 
 .modal {
     display: block;
     overflow: auto;
-    min-width: 50% !important;
+    max-width: 40%;
     max-height: 80% !important;
-    padding-right: 4vw;
-    padding-left: 4vw;
-    padding-bottom: 12vw;
+    padding-right: 2vmax;
+    padding-left: 2vmax;
+    padding-bottom: 3vmax;
     background-color: #e2e3e5;
     color: #37424a;
     position: absolute;
@@ -385,24 +473,28 @@ div.cdp_sub_selection_max_width_grid_item {
 
 .payment_content_container {
     min-width: 20em;
-}
+}   
 
 .MuiGrid-container-45.MuiGrid-spacing-xs-32-70{
     width: 100% !important;
 }
 
+.MuiGrid-spacing-xs-32-70 {
+    margin: 0 !important;
+}
+
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
     h1.cdp {
-        font-size: 60px;
+        font-size: 6vmin;
     }
 
     h2.cdp {
-        font-size: 70px;
+        font-size: 5vmin;
     }
 
     h3.cdp {
-        font-size: 60px;
+        font-size: 4.5vmin;
     }
 
     h4.cdp {
@@ -410,11 +502,11 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     img.icon_xs {
-        width: 60px;
+        width: 10vmin;
     }
 
     img.icon_sm {
-        width: 80px;
+        width: 4.5em;
     }
 
     img.icon_md {
@@ -426,15 +518,24 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     img.icon_xl {
-        width: 140px;
+        width: 90px;
     }
 
     span.cdp_category_sub_selection {
-        font-size: 2em;
+        font-size: 3.5vmin;
+    }
+
+    .cdp_sub_sub_title {
+        font-size: 2vmin;
+    }
+
+    .cdp_sub_info {
+        font-size: 2.3vmin;
     }
 
     .modal {
-        min-width: 80%;
+        max-width: 70%;
+        width:70%;
     }
 
     .flag_img {
@@ -448,22 +549,51 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     div.cdp_sub_selection_max_width_grid_item {
-        max-width: 600px;
+        max-width: 60em;
     }
+
+    span.cdp_icon_round_label {
+        font-size: 2.3vw;
+    }
+
+    .add_remove_icon{
+        font-size: 1.8vw !important;
+
+    }
+
+    .cdp_button_round {
+        height: 5.5vmin !important;
+        width: 5.5vmin !important;
+        min-width: 5.5vmin !important;
+        min-height: 5.5vmin !important;
+
+    }
+
+    .cdp_button_round_decrement {
+        height: 5.5vmin !important;
+        width: 5.5vmin !important;
+        min-width: 5.5vmin !important;
+        min-height: 5.5vmin !important;
+    }
+
+    .MuiInputBase-input-211 {
+        font-size: 11px !important;
+    }
+
 }
 
 /* ---- xs ---- */
 @media only screen and (max-width: 599px) {
     h1.cdp {
-        font-size: 40px;
+        font-size: 7vmin;
     }
 
     h2.cdp {
-        font-size: 60px;
+        font-size: 6vmin;
     }
 
     h3.cdp {
-        font-size: 50px;
+        font-size: 4.5vmin;
     }
 
     h4.cdp {
@@ -471,11 +601,11 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     img.icon_xs {
-        width: 40px;
+        width: 15vmin;
     }
 
     img.icon_sm {
-        width: 50px;
+        width: 3em;
     }
 
     img.icon_md {
@@ -487,11 +617,19 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     img.icon_xl {
-        width: 80px;
+        width: 60px;
     }
 
     span.cdp_category_sub_selection {
-        font-size: 1em;
+        font-size: 5.2vmin;
+    }
+
+    .cdp_sub_sub_title {
+        font-size: 2.9vmin;
+    }
+
+    .cdp_sub_info {
+        font-size: 4vmin;
     }
 
     .category_button {
@@ -501,6 +639,39 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .payment_container {
         margin-top: 30%;
+    }
+
+    .modal {
+        max-width: 80%;
+        width: 80%;
+    }
+
+    span.cdp_icon_round_label {
+        font-size: 2.2vmax;
+    }
+
+    .add_remove_icon{
+        font-size: 1.7vmax !important;
+
+    }
+
+    .cdp_button_round {
+        height: 5.4vmax !important;
+        width: 5.4vmax !important;
+    }
+
+    .cdp_button_round_decrement {
+        height: 5.4vmax !important;
+        width: 5.4vmax !important;
+    }
+
+    .MuiInputBase-input-211 {
+        font-size: 14px !important;
+
+    }
+
+    .add_unit_icon {
+        font-size: 5vmin !important;
     }
 }
 
