@@ -12,17 +12,18 @@ class Spirits extends Component {
         return (
             <div>
                 <PageTitle title={"Spirits"}/>
-                <TollInfoBanner text={"230 NOK per bottle (0.7l) / 325 NOK per litre"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
                       spacing={0}
-                      direction={"row"}>
-                    <AlcoholItem amount={0.35} icon={"spirits"} />
+                      direction={"row"}
+                >
+                    <TollInfoBanner text={"230 NOK per bottle (0.7l) / 325 NOK per litre"}/>
+                    <AlcoholItem amount={0.35} icon={"spirits"}/>
                     <AlcoholItem amount={0.5} icon={"spirits"}/>
                     <AlcoholItem amount={0.7} icon={"spirits"}/>
                     <AlcoholItem amount={1} icon={"spirits"}/>
-                    <AlcoholItem pitcher />
+                    <AlcoholItem pitcher/>
                 </Grid>
             </div>
         );

@@ -12,16 +12,17 @@ class FortifiedWine extends Component {
         return (
             <div>
                 <PageTitle title={"Fortified Wine"}/>
-                <TollInfoBanner text={"85 NOK per bottle (0.75l) / 115 NOK per litre"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
                       spacing={0}
-                      direction={"row"}>
-                    <AlcoholItem amount={0.375} icon={"wineBottleSmall"} />
+                      direction={"row"}
+                >
+                    <TollInfoBanner text={"85 NOK per bottle (0.75l) / 115 NOK per litre"}/>
+                    <AlcoholItem amount={0.375} icon={"wineBottleSmall"}/>
                     <AlcoholItem amount={0.5} icon={"fortifiedWine"}/>
                     <AlcoholItem amount={0.75} icon={"fortifiedWine"}/>
-                    <AlcoholItem pitcher />
+                    <AlcoholItem pitcher/>
                 </Grid>
             </div>
         );

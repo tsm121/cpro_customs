@@ -12,12 +12,13 @@ class Cigarettes extends Component {
         return (
             <div>
                 <PageTitle title={"Cigarettes"}/>
-                <TollInfoBanner text={"200 NOK per 100 pieces"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
                       spacing={0}
-                      direction={"row"}>
+                      direction={"row"}
+                >
+                    <TollInfoBanner text={"200 NOK per 100 pieces"}/>
                     <TobaccoItem amount={200} unit={"pieces"} icon={"cigarettes"}/>
                     <TobaccoItem amount={20} unit={"pieces"} icon={"cigarettes"}/>
                     <TobaccoItem unit={"pieces"} icon={"cigarettes"} otherAmount/>
