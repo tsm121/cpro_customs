@@ -65,9 +65,43 @@ class TransactionDetail(APIView):
 
 class TransactionValidation(APIView):
 
+
+    ########## ALCOHOL ##########
+
+    def alcohol_validate(self, product, litre_cost, bottle_cost):
+        if product['unit'] == 'litre':
+            return product['vat'] == product['amount']*litre_cost
+        elif product['unit'] == 'bottle':
+            return product['vat'] == product['amount']*bottle_cost
+
+    ########## TOBACCO ##########
+    def tobacco_validate(self, product, unit_cost):
+        return product['vat'] == (product['amount']/100)*unit_cost
+
+
+    ########## SWITCH IMPLEMENTATION ##########
+    def switch(self, product):
+        return {
+            # 'light_beer': self.alcohol_validate(product, 20, 7),
+            'beer_and_alcopop': self.alcohol_validate(product, 20, 7),
+            'wine': self.alcohol_validate(product, 60, 45),
+            'fortified_wine': self.alcohol_validate(product, 115, 85),
+            'spirits': self.alcohol_validate(product, 325, 230),
+            'cigarettes': self.tobacco_validate(product, 290),
+            'snuff_and_chewing_tobacco': self.tobacco_validate(product, 120),
+            'smoking_tobacco': self.tobacco_validate(product, 290),
+            'cigars_and_cigarillos': self.tobacco_validate(product, 290),
+            'cigarette_paper_and_sheaths': self.tobacco_validate(product, 5),
+
+        }[product['type_of_product']]
+
     def post(self, request, format=None):
         #TODO: Implement valdiation using relevant legislation
+        #TODO: Implement for goods and animals
 
+        for product in request.data['products']:
+            if not self.switch(product):
+                return Response(False)
         return Response(True)
 
 '''
