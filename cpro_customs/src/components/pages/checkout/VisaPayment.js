@@ -15,8 +15,8 @@ export default class VisaPayment extends Component  {
 	constructor() {
 		super();
 		this.state = {
-			month: '',
-			day: '',
+			month: '10',
+			day: '2021',
 		}
 
 	}
@@ -41,6 +41,7 @@ export default class VisaPayment extends Component  {
 					id="card-number"
 					label="Card number"
 					placeholder="1234 1234 1234 1234"
+					value={"5523 1234 5678 9010"}
 					margin="normal"
 					variant="outlined"
 					inputProps={{ maxLength: 16 }}
@@ -54,39 +55,13 @@ export default class VisaPayment extends Component  {
 					<Grid item
 						  xs={6}
 					>
-						<TextField
-							fullWidth={true}
-							className={"month_input"}
-							id="expire-month"
-							select
-							label="Month"
-							margin="normal"
-							variant="outlined"
-							value={this.state.month}
-							onChange={this.handleChange('month')}
-						>
-
-							{Months.map(option => (
-								<MenuItem
-									key={option.value}
-									value={option.value}>
-									{option.value}
-								</MenuItem>
-							))}
-
-						</TextField>
-					</Grid>
-
-					<Grid item
-						  xs={6}
-					>
 
 						<TextField
 							fullWidth={true}
 							className={"day_input"}
 							id="expire-day"
 							select
-							label="Day"
+							label="Year"
 							margin="normal"
 							variant="outlined"
 							value={this.state.day}
@@ -101,6 +76,30 @@ export default class VisaPayment extends Component  {
 								</MenuItem>
 							))}
 
+						</TextField>
+					</Grid>
+
+					<Grid item
+						  xs={6}
+					>
+						<TextField
+							fullWidth={true}
+							className={"month_input"}
+							id="expire-month"
+							select
+							label="Month"
+							margin="normal"
+							variant="outlined"
+							value={this.state.month}
+							onChange={this.handleChange('month')}
+						>
+							{Months.map(option => (
+								<MenuItem
+									key={option.value}
+									value={option.value}>
+									{option.value}
+								</MenuItem>
+							))}
 						</TextField>
 					</Grid>
 				</Grid>
@@ -118,6 +117,7 @@ export default class VisaPayment extends Component  {
 							type="password"
 							id="security-code"
 							label="CVV code"
+							value={737}
 							placeholder="123"
 							margin="normal"
 							variant="outlined"

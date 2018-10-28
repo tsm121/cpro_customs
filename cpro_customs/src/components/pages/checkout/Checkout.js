@@ -21,7 +21,7 @@ export default class Checkout extends Component  {
 			//TODO: Get currency from user selection
 			selectedCurrency:'NOK',
 			//TODO: Get total payment from props or server
-			totalSum:1543.83,
+			totalSum:2500,
 			paymentInProgress: true,
 			paymentComplete: false,
 		}
