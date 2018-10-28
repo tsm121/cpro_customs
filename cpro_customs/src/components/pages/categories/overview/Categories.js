@@ -7,6 +7,7 @@ import SkipWindow from "./SkipWindow";
 import ArrowButton from "./ArrowButton";
 import {categories} from "../../../../data/categoryData";
 import "./CategoryStyle.css"
+import {withRouter} from "react-router-dom";
 
 const styles =({
     bottom_line: {
@@ -16,7 +17,7 @@ const styles =({
     },
 });
 
-export default class Categories extends Component  {
+class Categories extends Component  {
     constructor() {
         super()
         this.state = {
@@ -62,7 +63,7 @@ export default class Categories extends Component  {
                           justify={'space-between'}
                           alignItems={'flex-end'}
                     >
-                        <Grid item xs={4} sm={4} md={4}></Grid>
+                        <Grid item xs={4} sm={4} md={4}> </Grid>
 
                         <Grid item xs={4} sm={4} md={4} >
                             <ArrowButton
@@ -74,14 +75,12 @@ export default class Categories extends Component  {
 
                         <Grid item xs={4} sm={4} md={4}>
                             <Grid container justify={"flex-end"} >
-                                <SkipWindow/>
+                                <SkipWindow route={'/endpage'}/>
                             </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-
-
 
         )
     }
@@ -104,3 +103,5 @@ export default class Categories extends Component  {
         }
     }
 }
+
+export default withRouter(Categories);
