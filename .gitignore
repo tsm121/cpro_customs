@@ -7,3 +7,4 @@ yarn.lock
 cpro_customs/secrets.json
 cpro_customs/package-lock.json
 .DS_Store
+cpro_customs/backend/migrations/
