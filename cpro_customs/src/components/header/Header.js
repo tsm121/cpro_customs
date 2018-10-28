@@ -6,6 +6,7 @@ import { AppBar, Toolbar, Grid, FormControl, Modal } from '@material-ui/core';
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
+import HeaderButton from "./HeaderButton";
 
 
 class Header extends Component  {
@@ -62,6 +63,7 @@ class Header extends Component  {
                                       justify={"center"}
                                       alignItems={"center"}
                                 >
+                                    <HeaderButton icon={"shopping_cart"} onClick={() => {this.props.history.push("/declaration-list");}}/>
                                     <SettingsButton onClick={this.openModal}/>
                                 </Grid>
                             </Grid>

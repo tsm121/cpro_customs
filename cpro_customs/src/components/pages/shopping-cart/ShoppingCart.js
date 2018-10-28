@@ -15,9 +15,7 @@ class ShoppingCart extends Component  {
         super(props);
         this.state = {
             items: [
-                createRows('Bought a dog abroad', 'dog_dark_grey', 2, "", 18000, 4500, 0),
-                createRows('Meat', 'diet', 5, "kg", 4420, 200, 0),
-                createRows('Wine', 'glass-and-bottle-of-wine', 2, 'L', 350, 0, 0)
+                createRows('Bought a dog abroad', 'dog_dark_grey', 1, "", 10000, 2500, 0),
             ]
         };
         this.deleteItem = this.deleteItem.bind(this);
