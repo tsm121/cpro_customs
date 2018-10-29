@@ -32,7 +32,7 @@ class PersonsInVehicle extends Component {
 					  direction="column"
 				>
 					<Grid item xl={12}>
-						<h1 className={"cdp cdp_primary"}>For how many persons do you want to declare goods?</h1>
+						<h1 className={"cdp cdp_primary"}>For how many people do you want to declare goods?</h1>
 					</Grid>
 
 					<Grid container
