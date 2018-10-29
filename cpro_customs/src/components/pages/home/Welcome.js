@@ -12,7 +12,7 @@ export default class Welcome extends Component  {
             >
                 <Grid item>
                     <h2 className={"cdp cdp_primary"}>
-                        You are approaching the Norwegian boarder
+                        You are approaching the Norwegian border
                     </h2>
                 </Grid>
                 <Grid item>
