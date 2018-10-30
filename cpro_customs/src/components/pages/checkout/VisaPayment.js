@@ -43,7 +43,10 @@ export default class VisaPayment extends Component  {
 					placeholder="1234 1234 1234 1234"
 					margin="normal"
 					variant="outlined"
-					inputProps={{ maxLength: 16 }}
+                    type={"number"}
+                    onInput={(e)=>{
+                        e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,16)
+                    }}
 				/>
 
 				<Grid container
@@ -121,7 +124,10 @@ export default class VisaPayment extends Component  {
 							placeholder="123"
 							margin="normal"
 							variant="outlined"
-							inputProps={{ maxLength: 3 }}
+                            type={"number"}
+                            onInput={(e)=>{
+                                e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,3)
+                            }}
 						/>
 					</Grid>
 
