@@ -25,8 +25,8 @@ export default class CookieNotification extends Component  {
 
                     <Grid item>
 
-                        <p>This application stores your e-mail and<br/> licence plate locally on your unit.</p>
-                        <p> This information is used by the Norwegian Customs<br/> to match your declaration with your car when crossing the border.</p>
+                        <p className={"modal_paragraph"}>This application stores your e-mail and<br/> licence plate locally on your unit.</p>
+                        <p className={"modal_paragraph"}> This information is used by the Norwegian Customs<br/> to match your declaration with your car when crossing the border.</p>
 
                     </Grid>
 
