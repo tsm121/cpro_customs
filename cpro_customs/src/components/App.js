@@ -21,6 +21,11 @@ class App extends Component {
         };
     }
 
+    only_for_testing() {
+        this.addAlcohol('Beer', 0.5, 6);
+        this.addAlcohol('Beer', 0.3, 6);
+    }
+
     /*
      * bind the functions
      * TODO: This is necessary, but why?

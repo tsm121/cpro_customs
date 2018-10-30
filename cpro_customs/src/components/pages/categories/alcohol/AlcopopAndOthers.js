@@ -7,7 +7,7 @@ import PageTitle from "../PageTitle";
 import AlcoholItem from "./AlcoholItem";
 
 
-class BeerAndAlcopop extends Component {
+class AlcopopAndOthers extends Component {
     render = () => {
         return (
             <div>
@@ -28,4 +28,4 @@ class BeerAndAlcopop extends Component {
     }
 }
 
-export default BeerAndAlcopop;
+export default AlcopopAndOthers;

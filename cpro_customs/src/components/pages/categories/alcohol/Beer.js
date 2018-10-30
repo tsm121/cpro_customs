@@ -7,11 +7,11 @@ import AlcoholItem from "./AlcoholItem";
 import TollInfoBanner from "../TollInfoBanner";
 
 
-class LightBeer extends Component {
+class Beer extends Component {
     render = () => {
         return (
             <div>
-                <PageTitle title={"Light Beer"}/>
+                <PageTitle title={"Beer"}/>
                 <Grid container
                       justify={"center"}
                       alignItems={"center"}
@@ -28,4 +28,4 @@ class LightBeer extends Component {
     };
 }
 
-export default LightBeer;
+export default Beer;
