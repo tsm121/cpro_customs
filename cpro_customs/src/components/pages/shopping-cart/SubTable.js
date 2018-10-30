@@ -8,7 +8,8 @@ import Table from "@material-ui/core/Table/Table";
 import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
-import {CartContext} from "../../CartContext";
+import {GlobalState} from "../../global_state/GlobalState";
+import Button from "@material-ui/core/Button/Button";
 
 
 class SubTable extends Component{
@@ -16,7 +17,7 @@ class SubTable extends Component{
         const { isPayTable } = this.props
         return(
             <div>
-                <CartContext.Consumer>
+                <GlobalState.Consumer>
                     {cart => (
                         <div>
                             <h4 className={"cdp cdp_dark_grey declaration_table_sub_header"}>
@@ -36,8 +37,10 @@ class SubTable extends Component{
                                 </TableHead>
 
                                 <TableBody>
-                                    {cart.items.map((item, index) => (
-                                        <TableRow key={item.id}>
+                                    <Button onClick={() => cart.addGoodToCart('kitchen', 5000, 'NOK', 1)}> Add Good</Button>
+                                    {cart.products.map((item, index) => (
+                                        <TableRow key={item.uid}>
+                                            {item.uid}
                                             <TableCell component="th" scope="row" className={"picture_column"}>
                                                 <IconAndAmount filename={item.filename} amount={item.amount} unit={item.unit}/>
                                             </TableCell>
@@ -55,7 +58,7 @@ class SubTable extends Component{
                             </Table>
                         </div>
                     )}
-                </CartContext.Consumer>
+                </GlobalState.Consumer>
             </div>
         )
     }

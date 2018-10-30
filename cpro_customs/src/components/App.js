@@ -1,69 +1,120 @@
-import React, { Component } from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
+import React, {Component} from 'react';
+import {MuiThemeProvider} from '@material-ui/core/styles';
 //import { withStyles } from '@material-ui/core/styles';
-import { CartContext } from "./CartContext";
 
-import theme from'../material-theme'
+import theme from '../material-theme'
 
+import {GlobalState} from "./global_state/GlobalState";
 import './App.css';
 import Header from './header/Header'
 import Router from './Router'
 
 
-let id = 0;
+let productId = 0;
+
 function createRows(category, filename, amount, unit, value, vat, duty) {
-    id++;
-    return {id, category, filename, amount, unit, value, vat, duty};
+    productId++;
+    return {id: productId, category, filename, amount, unit, value, vat, duty};
 }
 
 /**
  * The entry point to the SPA
  */
 class App extends Component {
-    state = {
-        items: [
-            createRows('Bought a dog abroad', 'dog_dark_grey', 2, "", 18000, 4500, 0)
-        ]
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: [],
+            amount_to_pay: 0,
+        };
+    }
 
     onAddToCart = this.onAddToCart.bind(this);
     onAddToCart(p) {
+        p['id'] = productId++;
         this.setState({
-            items: [...this.state.items, p]
+            products: [...this.state.products, p]
         });
     }
 
-    onRemoveFromCart = this.onRemoveFromCart.bind(this);
-    onRemoveFromCart(i) {
-        console.log("cart")
-        const newArray = [...this.state.items];
-        newArray.splice(i, 1);
-
+    removeProductFromCart = this.removeProductFromCart.bind(this);
+    removeProductFromCart(id) {
+        const {products} = this.state;
+        // TODO: delete product with this id from products
         this.setState({
-            items: newArray
+            items: products
         });
     }
 
-	render() {
-		return (
-            <CartContext.Provider
+    addGoodToCart = this.addGoodToCart.bind(this);
+    addGoodToCart(name, value, currency, amount) {
+        let good = {
+            "product": "Goods",
+            "name": name,
+            "value": value,
+            "currency": currency,
+            "amount": amount,
+        };
+        this.onAddToCart(good);
+    }
+
+    addAlcoholToCart = this.addAlcoholToCart.bind(this);
+    addAlcoholToCart(type, value, amount) {
+        let item = {
+            "product": type,
+            "value": value,
+            "unit": "litre",
+            "amount": amount,
+        };
+        this.onAddToCart(item);
+    }
+
+    /**
+     * Searches for an alcohol item in the global state
+     */
+    getAlcoholFromCart = this.getAlcoholFromCart.bind(this);
+    getAlcoholFromCart(category, value, pitcher) {
+        const {products} = this.state;
+        if (pitcher) {
+            products.forEach((item) => {
+                if (item.product === category && item.pitcher) {
+                    return item;
+                }
+            });
+        } else {
+            products.forEach((item) => {
+                if (item.product === category && item.value === value) {
+                    return item;
+                }
+            });
+        }
+        return null;
+    }
+
+
+    render() {
+        return (
+            <GlobalState.Provider
                 value={{
-                    items: this.state.items,
+                    products: this.state.products,
+                    amount_to_pay: this.state.amount_to_pay,
                     onAddToCart: this.onAddToCart,
-                    onRemoveFromCart: this.onRemoveFromCart
+                    onRemoveFromCart: this.onRemoveFromCart,
+                    addGoodToCart: this.addGoodToCart,
+                    getAlcoholFromCart: this.getAlcoholFromCart,
                 }}
             >
-		    <div>
-                <MuiThemeProvider theme={theme}>
-                    {/* put components that shall be displayed on every page here */}
-                    <Header/>
-                    {/* handles dynamic component loading */}
-                    <Router/>
-                </MuiThemeProvider>
-            </div>
-            </CartContext.Provider>
-		);
-	}
+                <div>
+                    <MuiThemeProvider theme={theme}>
+                        {/* put components that shall be displayed on every page here */}
+                        <Header/>
+                        {/* handles dynamic component loading */}
+                        <Router/>
+                    </MuiThemeProvider>
+                </div>
+            </GlobalState.Provider>
+        );
+    }
 }
 
 //export default withStyles()(App);
