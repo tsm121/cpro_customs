@@ -11,6 +11,7 @@ function createRows(category, filename, amount, unit, value, vat, duty) {
 
 
 class ShoppingCart extends Component  {
+    // NEEDS LOGIC TO SPLIT THE GLOBAL LIST IN TWO
     constructor(props) {
         super(props);
         this.state = {
@@ -20,9 +21,7 @@ class ShoppingCart extends Component  {
                 createRows('Wine', 'glass-and-bottle-of-wine', 2, 'L', 350, 0, 0)
             ]
         };
-        this.deleteItem = this.deleteItem.bind(this);
     }
-
 
     render = () => {
         return (
@@ -41,18 +40,12 @@ class ShoppingCart extends Component  {
                     <Grid item >
                         <DeclarationTable
                             items={this.state.items}
-                            onDelete={ this.deleteItem }/>
+                        />
                     </Grid>
                 </Grid>
             </div>
         )
     }
-
-    deleteItem(id) {
-        this.setState((prevState) => ({
-            items: prevState.items.filter(item => item.id !== id),
-        }))
-    };
 
 }
 
