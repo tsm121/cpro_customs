@@ -65,6 +65,12 @@ class AlcoholItem extends Component {
                                                                 key={2}
                                                                 className={"cdp_input_field"}
                                                                 label={"Litre"}
+                                                                type={"number"}
+                                                                onInput={(e)=>{
+                                                                    e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,2)
+                                                                }}
+                                                                min={0}
+
                                                             />
                                                         </Grid>
                                                     </Grid>,

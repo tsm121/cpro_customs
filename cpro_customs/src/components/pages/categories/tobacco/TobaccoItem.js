@@ -65,6 +65,10 @@ class TobaccoItem extends Component {
                                                                 key={2}
                                                                 className={"cdp_input_field"}
                                                                 label={unit}
+                                                                type={"number"}
+                                                                onInput={(e)=>{
+                                                                    e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,6)
+                                                                }}
                                                             />
                                                         </Grid>
                                                     </Grid>,
