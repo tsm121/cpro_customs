@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import update from 'immutability-helper';
+
 import {MuiThemeProvider} from '@material-ui/core/styles';
 
 import theme from '../material-theme'
@@ -22,8 +24,7 @@ class App extends Component {
     }
 
     only_for_testing() {
-        this.addAlcohol('Beer', 0.5, 6);
-        this.addAlcohol('Beer', 0.3, 6);
+        this.addAlcohol("Beer", 0.5, 6);
     }
 
     /*
@@ -31,21 +32,66 @@ class App extends Component {
      * TODO: This is necessary, but why?
      */
     addProduct = this.addProduct.bind(this);
+    updateProduct = this.updateProduct.bind(this);
+    getProduct = this.getProduct.bind(this);
     removeProduct = this.removeProduct.bind(this);
     addGood = this.addGood.bind(this);
     addAlcohol = this.addAlcohol.bind(this);
     getAlcohol = this.getAlcohol.bind(this);
+    only_for_testing = this.only_for_testing.bind(this);
+    findProductIndexById = this.findProductIndexById.bind(this);
 
     /**
      * Adds a product to products
      * @param product - the product to be added
+     * @return the id of the product
      */
     addProduct(product) {
-        product['id'] =  this.state.productIdCounter;
+        product['id'] = this.state.productIdCounter;
         this.setState({
             productIdCounter: product['id'] + 1,
             products: [...this.state.products, product]
         });
+        return product['id'];
+    }
+
+    /**
+     * Updates a specific field of a product
+     * @param id - the id of the product
+     * @param field - the field to be updated, e.g. "amount"
+     * @param value - the new value
+     */
+    // TODO: function does not work yet!
+    updateProduct(id, field, value) {
+        let index = this.findProductIndexById(id);
+        if (index === -1) return;
+        const products = update(this.state.products, {
+            index: {field: {$set: value}},
+        });
+        this.setState({
+            products: products,
+        });
+    }
+
+    /**
+     * Returns a product
+     * @param id - the id of the product
+     * @returns the product object, if id is found, else null
+     */
+    getProduct(id) {
+        let index = this.findProductIndexById(id);
+        if (index === -1) return null;
+        return this.state.products[index];
+    }
+
+    findProductIndexById(id) {
+        const {products} = this.state;
+        for (let i = 0; i < products.length; ++i) {
+            if (products[i].id === id) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -80,23 +126,24 @@ class App extends Component {
             "currency": currency,
             "amount": amount,
         };
-        this.onAddToCart(good);
+        this.addProduct(good);
     }
 
     /**
      * Adds alcohol of specific type to products
-     * @param type - type of alcohol, e.g. "lightBeer"
-     * @param value - how many litres, e.g. 0.5
+     * @param type - type of alcohol, e.g. "Beer"
+     * @param liters - how many litres, e.g. 0.5
      * @param amount - amount of items, e.g. 6
+     * @return the id of the product
      */
-    addAlcohol(type, value, amount) {
+    addAlcohol(type, liters, amount) {
         let item = {
             "product": type,
-            "value": value,
+            "value": liters,
             "unit": "litre",
             "amount": amount,
         };
-        this.onAddToCart(item);
+        return this.addProduct(item);
     }
 
     /**
@@ -108,17 +155,17 @@ class App extends Component {
     getAlcohol(category, value, pitcher) {
         const {products} = this.state;
         if (pitcher) {
-            products.forEach((item) => {
-                if (item.product === category && item.pitcher) {
-                    return item;
+            for (let i = 0; i < products.length; ++i) {
+                if (products[i].product.localeCompare(category) === 0 && products[i].pitcher) {
+                    return products[i];
                 }
-            });
+            }
         } else {
-            products.forEach((item) => {
-                if (item.product === category && item.value === value) {
-                    return item;
+            for (let i = 0; i < products.length; ++i) {
+                if (products[i].product.localeCompare(category) === 0 && products[i].value === value) {
+                    return products[i];
                 }
-            });
+            }
         }
         return null;
     }
@@ -129,10 +176,15 @@ class App extends Component {
                 value={{
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
-                    onAddToCart: this.onAddToCart,
-                    onRemoveFromCart: this.onRemoveFromCart,
-                    addGoodToCart: this.addGoodToCart,
-                    getAlcoholFromCart: this.getAlcoholFromCart,
+                    addProduct: this.addProduct,
+                    updateProduct: this.updateProduct,
+                    getProduct: this.getProduct,
+                    removeProduct: this.removeProduct,
+                    addGood: this.addGood,
+                    addAlcohol: this.addAlcohol,
+                    getAlcohol: this.getAlcohol,
+                    only_for_testing: this.only_for_testing,
+                    findProductIndexById: this.findProductIndexById,
                 }}
             >
                 <div>
