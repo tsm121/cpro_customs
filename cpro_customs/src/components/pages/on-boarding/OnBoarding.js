@@ -3,6 +3,8 @@ import NavigationArrow from "../../NavigationArrow";
 import InputFields from "../../InputFields";
 
 import Grid from '@material-ui/core/Grid';
+import {Modal} from "@material-ui/core";
+import CookieNotification from "./CookieNotification";
 
 const h1Style = {
 	fontFamily: 'Arial, serif',
@@ -26,6 +28,28 @@ const h1Style_secondary = {
 };
 
 export default class OnBoarding extends Component  {
+    constructor() {
+        super();
+
+        this.state = {
+            showCookieModal: true,
+        }
+    }
+
+    /**
+     * This method is used to trigger opening this Modal.
+     */
+    openModal = () => {
+        this.setState({showCookieModal: true});
+    }
+
+    /**
+     * This method is used to trigger closing this Modal.
+     */
+    closeModal = () => {
+        this.setState({showCookieModal: false})
+    }
+
 	render = () => {
 		return (
 
@@ -52,6 +76,18 @@ export default class OnBoarding extends Component  {
 					</Grid>
 
 				</Grid>
+
+                <Modal
+                    open={this.state.showCookieModal}
+                    onClose={this.closeModal}
+                    disableBackdropClick={true}
+                    disableEscapeKeyDown={true}
+                >
+                    <CookieNotification
+                        closeModal={this.closeModal}
+
+                    />
+                </Modal>
 
 				<NavigationArrow direction={"down"}/>
 			</div>
