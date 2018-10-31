@@ -5,6 +5,8 @@ import InputFields from "../../InputFields";
 import Grid from '@material-ui/core/Grid';
 import {Modal} from "@material-ui/core";
 import CookieNotification from "./CookieNotification";
+import {withRouter} from "react-router-dom";
+
 
 const h1Style = {
 	fontFamily: 'Arial, serif',
@@ -27,7 +29,7 @@ const h1Style_secondary = {
 	color: '#ffd200'
 };
 
-export default class OnBoarding extends Component  {
+class OnBoarding extends Component  {
     constructor() {
         super();
 
@@ -72,25 +74,28 @@ export default class OnBoarding extends Component  {
 					<Grid item
 						  style={{marginTop:'5%'}}
 					>
-						<InputFields light={true} on_boarding={true} />
+						<InputFields
+                            light={true}
+                            on_boarding={true}
+                        />
 					</Grid>
 
 				</Grid>
 
                 <Modal
                     open={this.state.showCookieModal}
-                    onClose={this.closeModal}
                     disableBackdropClick={true}
                     disableEscapeKeyDown={true}
+                    disableAutoFocus={true}
+                    onClose={this.closeModal}
                 >
                     <CookieNotification
                         closeModal={this.closeModal}
-
                     />
                 </Modal>
 
-				<NavigationArrow direction={"down"}/>
-			</div>
+            </div>
 		)
 	}
 }
+export default withRouter(OnBoarding);

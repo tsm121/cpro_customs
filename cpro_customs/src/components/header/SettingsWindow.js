@@ -7,6 +7,7 @@ import InputFields from "../InputFields";
 
 export default class SettingsWindow extends Component  {
 	render = () => {
+	    const {closeModal} = this.props
 		return (
 
 			<div className={'modal'}>
@@ -75,7 +76,9 @@ export default class SettingsWindow extends Component  {
 						  justify={"center"}
 					>
 
-						<InputFields/>
+						<InputFields
+                            closeModal={closeModal}
+                        />
 					</Grid>
 
                 </Grid>

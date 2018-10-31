@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid/Grid";
 import Button from "@material-ui/core/Button/Button";
+import NavigationArrow from "./NavigationArrow";
 
 var userData = {
 	licencePlate:'',
@@ -15,6 +16,7 @@ export default class InputFields extends Component  {
 		this.state = {
 			licencePlateInputError: false,
 			emailInputError: false,
+            inputValid: false,
 
 		}
 	}
@@ -25,21 +27,32 @@ export default class InputFields extends Component  {
 				licencePlate: '',
 				email: ''
 			}
-		}
+		} else {
+		    userData.licencePlate = JSON.parse(localStorage.getItem('userData')).licencePlate
+            userData.email = JSON.parse(localStorage.getItem('userData')).email
+        }
 	}
 
 	onClickHandler = ()=> {
 		const {licencePlateInputError, emailInputError} = this.state
+        const {closeModal, on_boarding} = this.props
 
 		if (!licencePlateInputError && !emailInputError) {
 			localStorage.setItem('userData', JSON.stringify(userData))
+            this.setState({
+                inputValid: true,
+            })
+            if (!on_boarding){
+                closeModal()
+            }
 		}
 	}
 
 	toggleEmailInput = (error) => {
 		if (error) {
 			this.setState({
-				emailInputError: true
+				emailInputError: true,
+                inputValid: false,
 			})
 		} else {
 			this.setState({
@@ -52,7 +65,8 @@ export default class InputFields extends Component  {
 	toggleLicencePlateInput = (error) => {
 		if (error) {
 			this.setState({
-				licencePlateInputError: true
+				licencePlateInputError: true,
+                inpudValid: false,
 			})
 		} else {
 			this.setState({
@@ -108,15 +122,16 @@ export default class InputFields extends Component  {
 		}
 	}
 	render = () => {
-		const {light, on_boarding} = this.props
-		const{licencePlateInputError,emailInputError } = this.state
+		const {light, on_boarding, closeModal} = this.props
+		const{licencePlateInputError,emailInputError, inputValid } = this.state
 
 		let cancelBtn
 
 		if(!on_boarding){
-			cancelBtn = <Button
-				variant={'outlined'}
+		    cancelBtn = <Button
+                variant={'outlined'}
 				style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
+                onClick={closeModal}
 			>
 				Close
 			</Button>
@@ -183,7 +198,7 @@ export default class InputFields extends Component  {
 					  justify={"center"}
 					  alignItems={"center"}
 					  direction={"row"}
-					  style={{marginTop:'2em'}}
+					  style={{marginTop:'1em', marginBottom:'1em'}}
 				>
 
 					<Grid item>
@@ -192,18 +207,24 @@ export default class InputFields extends Component  {
 							onClick={this.onClickHandler}
 							style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
 							className={"save_btn"}
+							color={"secondary"}
 						>
-							{on_boarding ? "Continue" : "Save"}
+							Save
 						</Button>
 					</Grid>
 
-					<Grid item>
+					<Grid item style={on_boarding ? {display:"none"} : {display:"unset"}}>
 
 						{cancelBtn}
 
 					</Grid>
 				</Grid>
-			</div>
+
+                {inputValid && on_boarding? <NavigationArrow direction={"down"} page={"persons-in-vehicle"}/> : ''}
+
+
+
+            </div>
 		)
 	}
 }
