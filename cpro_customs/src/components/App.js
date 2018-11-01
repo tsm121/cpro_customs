@@ -133,14 +133,16 @@ class App extends Component {
      * @param type - type of alcohol, e.g. "Beer"
      * @param liters - how many litres, e.g. 0.5
      * @param amount - amount of items, e.g. 6
+     * @param isPitcher - true when pitcher
      * @return the id of the product
      */
-    addAlcohol(type, liters, amount) {
+    addAlcohol(type, liters, amount, isPitcher) {
         let item = {
             "product": type,
             "value": liters,
             "unit": "litre",
             "amount": amount,
+            "isPitcher": isPitcher,
         };
         return this.addProduct(item);
     }
@@ -155,7 +157,7 @@ class App extends Component {
         const {products} = this.state;
         if (pitcher) {
             for (let i = 0; i < products.length; ++i) {
-                if (products[i].product.localeCompare(category) === 0 && products[i].pitcher) {
+                if (products[i].product.localeCompare(category) === 0 && products[i].isPitcher) {
                     return products[i];
                 }
             }

@@ -35,32 +35,32 @@ class Beer extends Component {
 
     drawItems = (globalState) => {
         let options = [
-            {category: "Beer", value: 0.33, pitcher: false, icon: "beerCanSmall"},
-            {category: "Beer", value: 0.5, pitcher: false, icon: "beerCanBig"},
-            {category: "Beer", value: 0, pitcher: true},
+            {category: "Beer", value: 0.33, isPitcher: false, icon: "beerCanSmall"},
+            {category: "Beer", value: 0.5, isPitcher: false, icon: "beerCanBig"},
+            {category: "Beer", value: '', isPitcher: true, icon: null},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
-            let product = globalState.getAlcohol(options[i].category, options[i].value, options[i].pitcher);
-            console.log("product:");
-            console.log(product);
+            let product = globalState.getAlcohol(options[i].category, options[i].value, options[i].isPitcher);
             if (product !== null) {
                 items.push(
                     <AlcoholItem
+                        key={items.length}
                         type={"Beer"}
-                        value={options[i].value}
-                        amount={product.amount}
-                        pitcher={options[i].pitcher}
+                        isPitcher={options[i].isPitcher}
                         icon={options[i].icon}
+                        value={product !== null ? product.value : options[i].value}
+                        amount={product.amount}
                         productId={product.id}
                     />
                 )
             } else {
                 items.push(
                     <AlcoholItem
+                        key={items.length}
                         type={"Beer"}
                         value={options[i].value}
-                        pitcher={options[i].pitcher}
+                        isPitcher={options[i].isPitcher}
                         icon={options[i].icon}
                     />
                 )
