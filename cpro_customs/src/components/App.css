@@ -25,6 +25,10 @@ a img {
     outline : none;
 }
 
+:focus {
+    outline: 0 !important;
+}
+
 
 .header {
     background-color: white !important;
@@ -207,6 +211,13 @@ transform: translate(- 50 %, - 50 %);
     border-width: 1px 0 1px 1px;
 }
 
+.modal_paragraph {
+    font-size: 2.3vmin;
+    text-align: center;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
 /*
     <h1>, <h2>, <h3>, <h4>
  */
@@ -241,7 +252,7 @@ h3.cdp {
 }
 
 h4.cdp {
-    font-size: 70px;
+    font-size: 5vmin;
 }
 
 /*
@@ -498,7 +509,7 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     h4.cdp {
-        font-size: 50px;
+        font-size: 4.5vmin;
     }
 
     img.icon_xs {
@@ -580,6 +591,10 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 11px !important;
     }
 
+    .modal_paragraph {
+        font-size: 2.4vmin;
+    }
+
 }
 
 /* ---- xs ---- */
@@ -597,7 +612,7 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     h4.cdp {
-        font-size: 40px;
+        font-size: 5.5vmin;
     }
 
     img.icon_xs {
@@ -644,6 +659,7 @@ div.cdp_sub_selection_max_width_grid_item {
     .modal {
         max-width: 80%;
         width: 80%;
+        top:40%;
     }
 
     span.cdp_icon_round_label {
@@ -672,6 +688,10 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .add_unit_icon {
         font-size: 5vmin !important;
+    }
+
+    .modal_paragraph {
+        font-size: 3.5vmin;
     }
 }
 
