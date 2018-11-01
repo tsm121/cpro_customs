@@ -98,7 +98,8 @@ export default class HandlePayment extends Component  {
 								disableTypography={true}
 								className={"payment_nav_button_text"}
 								primary={"Pay (" + totalSum + " " + selectedCurrency +")"}
-							/>
+
+                            />
 						</ListItem>
 					</List>
 				</Grid>

@@ -19,6 +19,7 @@ export default class PaymentSelection extends Component  {
 			mastercard: false,
 			vipps: false,
 			bitcoin: false,
+			selected: false,
 		}
 	}
 
@@ -33,6 +34,7 @@ export default class PaymentSelection extends Component  {
 					mastercard: false,
 					vipps: false,
 					bitcoin: false,
+                    selected: true,
 				})
 				break
 			}
@@ -42,6 +44,7 @@ export default class PaymentSelection extends Component  {
 					mastercard: true,
 					vipps: false,
 					bitcoin: false,
+                    selected: false,
 				})
 				break
 			}
@@ -51,6 +54,7 @@ export default class PaymentSelection extends Component  {
 					mastercard: false,
 					vipps: true,
 					bitcoin: false,
+                    selected: false,
 				})
 				break
 			}
@@ -60,6 +64,7 @@ export default class PaymentSelection extends Component  {
 					mastercard: false,
 					vipps: false,
 					bitcoin: true,
+                    selected: false,
 				})
 				break
 			}
@@ -91,7 +96,7 @@ export default class PaymentSelection extends Component  {
 	}
 
 	render = () => {
-		const {visa, mastercard, vipps, bitcoin} = this.state
+		const {visa, mastercard, vipps, bitcoin, selected} = this.state
 		return (
 
 			<Grid container
@@ -184,7 +189,7 @@ export default class PaymentSelection extends Component  {
 										  "payment_nav_button"
 									  }
 									  onClick={this.getSelected}
-									  disabled={mastercard || vipps || bitcoin}
+									  disabled={mastercard || vipps || bitcoin || !selected}
 							>
 								<ListItemText
 									disableTypography={true}
