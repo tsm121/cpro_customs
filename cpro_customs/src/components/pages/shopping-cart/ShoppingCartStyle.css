@@ -25,14 +25,23 @@
     margin: 20px !important;
 }
 
+.declaration_table_sub_header {
+    font-size: 1.1em !important;
+    margin: 10px !important;
+    font-weight: bold !important;
+    text-align: left !important;
+}
+
 .declaration_table {
     font-family: Arial, sans-serif;
     font-weight: normal;
+    margin-bottom: 2.5em !important;
 }
 
 .table_column {
     color:#37424a !important;
     font-size: 1em !important;
+    width: 4em !important;
 }
 
 .category_column {
@@ -168,6 +177,12 @@ img.iconAmount_img {
 
     .declaration_table_header {
         font-size: 1.1em !important;
+        margin-bottom: 5px !important;
+    }
+
+    .declaration_table_sub_header {
+        font-size: 1em !important;
+        margin-top: 15px !important;
         margin-bottom: 5px !important;
     }
 

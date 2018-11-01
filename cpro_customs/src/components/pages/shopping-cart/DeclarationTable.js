@@ -10,6 +10,7 @@ import IconAndAmount from "./IconAndAmount";
 import RemoveButton from "./RemoveButton";
 import Grid from "@material-ui/core/Grid/Grid";
 import TotalTable from "./TotalTable";
+import SubTable from "./SubTable";
 
 class DeclarationTable extends Component{
 
@@ -27,38 +28,12 @@ class DeclarationTable extends Component{
                                 Items you are bringing with you
                             </h3>
                         </Grid>
+
                     </Grid>
 
-                    <Table className={"declaration_table"}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell key={"icon"} className={"picture_column"}> </TableCell>
-                                <TableCell key={"item"} className={"table_column category_column"}>Category</TableCell>
-                                <TableCell numeric key={"value"} className={"table_column"}>Value</TableCell>
-                                <TableCell numeric key={"vat"} className={"table_column"}>VAT</TableCell>
-                                <TableCell numeric key={"duty"} className={"table_column"}>Fee</TableCell>
-                                <TableCell key={"delete"} className={"exit_column"}> </TableCell>
-                            </TableRow>
-                        </TableHead>
+                    <SubTable isPayTable={true} payItems={items}/>
+                    <SubTable isPayTable={false} freeItems={items}/>
 
-                        <TableBody>
-                            {items.map(row => (
-                                    <TableRow key={row.id}>
-                                        <TableCell component="th" scope="row" className={"picture_column"}>
-                                            <IconAndAmount filename={row.filename} amount={row.amount} unit={row.unit}/>
-                                        </TableCell>
-                                        <TableCell className={"table_column category_column"}>{row.category}</TableCell>
-                                        <TableCell numeric className={"table_column"}>{row.value} kr</TableCell>
-                                        <TableCell numeric className={"table_column"}>{row.vat} kr</TableCell>
-                                        <TableCell numeric className={"table_column"}>{row.duty} kr</TableCell>
-                                        <TableCell numeric className={"exit_column"} padding={"none"}>
-                                            <RemoveButton onClick={() => this.props.onDelete(row.id)} />
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                            };
-                        </TableBody>
-                    </Table>
                 </Paper>
                 <Paper className={'paper'} style={{marginTop: "20px"}}>
                     <TotalTable totalSum={1400} route={'/checkout'}/>

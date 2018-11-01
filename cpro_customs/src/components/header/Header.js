@@ -70,8 +70,6 @@ class Header extends Component  {
                 </AppBar>
 
                 <Modal
-                    aria-labelledby="simple-modal-title"
-                    aria-describedby="simple-modal-description"
                     open={this.state.showSettingsModal}
                     onClose={this.closeModal}
                 >
