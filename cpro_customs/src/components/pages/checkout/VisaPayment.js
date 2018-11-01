@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Divider from "@material-ui/core/Divider/Divider";
 
 import Months from '../../../data/months'
-import Days from '../../../data/days'
+import Years from '../../../data/years'
 import HelpTip from "../../HelpTip";
 import HandlePayment from "./HandlePayment";
 import {TOOL_TIP_TEXTS} from "../../../data/ToolTipTexts";
@@ -16,7 +16,7 @@ export default class VisaPayment extends Component  {
 		super();
 		this.state = {
 			month: '',
-			day: '',
+			year: '',
 		}
 
 	}
@@ -83,17 +83,17 @@ export default class VisaPayment extends Component  {
 
 						<TextField
 							fullWidth={true}
-							className={"day_input"}
-							id="expire-day"
+							className={"year_input"}
+							id="expire-year"
 							select
-							label="Day"
+							label="Year"
 							margin="normal"
 							variant="outlined"
-							value={this.state.day}
-							onChange={this.handleChange('day')}
+							value={this.state.year}
+							onChange={this.handleChange('year')}
 						>
 
-							{Days.map(option => (
+							{Years.map(option => (
 								<MenuItem
 									key={option.value}
 									value={option.value}>

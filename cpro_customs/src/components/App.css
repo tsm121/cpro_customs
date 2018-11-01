@@ -209,7 +209,7 @@ transform: translate(- 50 %, - 50 %);
     width: 20% !important;
 }
 
-.day_input .MuiNotchedOutline-root-272 {
+.year_input .MuiNotchedOutline-root-272 {
     border-radius: 0 4px 4px 0 !important;
 }
 
@@ -218,7 +218,7 @@ transform: translate(- 50 %, - 50 %);
     border-width: 1px 0 1px 1px;
 }
 
-p {
+.modal_paragraph {
     font-size: 2.3vmin;
     text-align: center;
     margin-left: 1em;
@@ -259,7 +259,7 @@ h3.cdp {
 }
 
 h4.cdp {
-    font-size: 4.5vmin;
+    font-size: 5vmin;
 }
 
 /*
@@ -598,7 +598,7 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 11px !important;
     }
 
-    p {
+    .modal_paragraph {
         font-size: 2.4vmin;
     }
 
@@ -701,7 +701,7 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 5vmin !important;
     }
 
-    p {
+    .modal_paragraph {
         font-size: 3.5vmin;
     }
 }
