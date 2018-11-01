@@ -61,12 +61,11 @@ class App extends Component {
      * @param field - the field to be updated, e.g. "amount"
      * @param value - the new value
      */
-    // TODO: function does not work yet!
     updateProduct(id, field, value) {
         let index = this.findProductIndexById(id);
         if (index === -1) return;
         const products = update(this.state.products, {
-            index: {field: {$set: value}},
+            [index]: {[field]: {$set: value}},
         });
         this.setState({
             products: products,

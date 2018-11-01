@@ -15,7 +15,6 @@ class AlcoholItem extends Component {
         productId: this.props.productId,
         amount: this.props.amount,
         pitcherValue: 0,
-
     };
 
     render = () => {
@@ -125,11 +124,15 @@ class AlcoholItem extends Component {
     // TODO: add handler for pitcher value changes!
 
 
+    /**
+     * Decrements the amount
+     * @param globalState
+     */
     handleDecrement = (globalState) => {
         if (this.state.amount <= 0) {
             return;
         }
-        const {id} = this.props.productId;
+        const id = this.props.productId;
         // product is removed from cart
         if (this.state.amount === 1 && this.state.product !== null) {
             globalState.removeProduct(id);
@@ -146,17 +149,22 @@ class AlcoholItem extends Component {
         }
     };
 
+    /**
+     * Increments the amount
+     * @param globalState
+     * @param incr - how much shall the amount be incremented
+     */
     handleIncrement = (globalState, incr) => {
         // product is added to cart
         if (this.state.amount === 0) {
-            const id = globalState.addAlcohol(this.props.type, this.props.value, 1);
+            const id = globalState.addAlcohol(this.props.type, this.props.value, incr);
             this.setState({
                 productId: id,
             });
         // product is updated in cart
         } else {
-            const {id} = this.props.productId;
-            globalState.updateProduct(id, "amount", this.state.amount + 1);
+            const id = this.state.productId;
+            globalState.updateProduct(id, "amount", this.state.amount + incr);
         }
         this.setState({
             amount: this.state.amount + incr,

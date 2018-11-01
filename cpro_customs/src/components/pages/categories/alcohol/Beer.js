@@ -42,12 +42,28 @@ class Beer extends Component {
         let items = [];
         for (let i = 0; i < options.length; ++i) {
             let product = globalState.getAlcohol(options[i].category, options[i].value, options[i].pitcher);
+            console.log("product:");
+            console.log(product);
             if (product !== null) {
-                items.push(<AlcoholItem type={"Beer"} value={options[i].value} amount={product.amount} pitcher={options[i].pitcher}
-                                        icon={options[i].icon} productId={product.id}/>)
+                items.push(
+                    <AlcoholItem
+                        type={"Beer"}
+                        value={options[i].value}
+                        amount={product.amount}
+                        pitcher={options[i].pitcher}
+                        icon={options[i].icon}
+                        productId={product.id}
+                    />
+                )
             } else {
-                items.push(<AlcoholItem type={"Beer"} value={options[i].value} pitcher={options[i].pitcher}
-                                        icon={options[i].icon}/>)
+                items.push(
+                    <AlcoholItem
+                        type={"Beer"}
+                        value={options[i].value}
+                        pitcher={options[i].pitcher}
+                        icon={options[i].icon}
+                    />
+                )
             }
         }
         return items;
