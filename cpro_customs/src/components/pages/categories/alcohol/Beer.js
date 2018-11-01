@@ -23,9 +23,6 @@ class Beer extends Component {
                         >
                             <TollInfoBanner text={"7 NOK per bottle (0.33l) / 20 NOK per litre"}/>
                             {this.drawItems(globalState)}
-                            {/*<AlcoholItem amount={0.33} icon={"beerCanSmall"}/>
-                            <AlcoholItem amount={0.5} icon={"beerCanBig"}/>
-                            <AlcoholItem pitcher/>*/}
                         </Grid>
                     </div>
                 )}
