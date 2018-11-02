@@ -119,7 +119,7 @@ class App extends Component {
      */
     addGood(name, value, currency, amount) {
         let good = {
-            "product": "Goods",
+            "type": "Goods",
             "name": name,
             "value": value,
             "currency": currency,
@@ -138,7 +138,7 @@ class App extends Component {
      */
     addAlcohol(type, liters, amount, isPitcher) {
         let item = {
-            "product": type,
+            "type": type,
             "value": liters,
             "unit": "litre",
             "amount": amount,
@@ -149,21 +149,21 @@ class App extends Component {
 
     /**
      * Searches for an alcohol item in the global state
-     * @param category - type of alcohol, e.g. "lightBeer"
+     * @param type - type of alcohol, e.g. "lightBeer"
      * @param value - how many litres, e.g. 0.5
      * @param pitcher - boolean, true if its a pitcher item
      */
-    getAlcohol(category, value, pitcher) {
+    getAlcohol(type, value, pitcher) {
         const {products} = this.state;
         if (pitcher) {
             for (let i = 0; i < products.length; ++i) {
-                if (products[i].product.localeCompare(category) === 0 && products[i].isPitcher) {
+                if (products[i].type.localeCompare(type) === 0 && products[i].isPitcher) {
                     return products[i];
                 }
             }
         } else {
             for (let i = 0; i < products.length; ++i) {
-                if (products[i].product.localeCompare(category) === 0 && products[i].value === value) {
+                if (products[i].type.localeCompare(type) === 0 && products[i].value === value) {
                     return products[i];
                 }
             }

@@ -10,7 +10,7 @@ import './ShoppingCartStyle.css';
 class IconAndAmount extends Component {
 
     render = () => {
-        const { category, amount, unit } = this.props;
+        const { type, amount, unit } = this.props;
         const icons = {
             "Beer": "beer_can_big_dark_grey",
             // TODO: add other icons. The idea is that the icon gets selected based on the category of the item
@@ -25,7 +25,7 @@ class IconAndAmount extends Component {
                 >
                     <Grid item>
                         <img className={"iconAmount_img"}
-                             src={require(`assets/img/icons/512x512/${icons[category]}.png`)}
+                             src={require(`assets/img/icons/512x512/${icons[type]}.png`)}
                              alt={"icon"}
                         />
                     </Grid>
@@ -43,7 +43,7 @@ class IconAndAmount extends Component {
 
 
 IconAndAmount.propTypes = {
-    category: PropTypes.string.required,
+    type: PropTypes.string.required,
     amount: PropTypes.number.required,
     unit: PropTypes.string.required,
 };
