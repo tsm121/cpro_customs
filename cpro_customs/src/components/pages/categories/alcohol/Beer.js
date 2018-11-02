@@ -7,7 +7,6 @@ import AlcoholItem from "./AlcoholItem";
 import TollInfoBanner from "../TollInfoBanner";
 import {GlobalState} from "../../../global_state/GlobalState";
 import SnackBarNotification from "../../../SnackBarNotification";
-import Button from "@material-ui/core/Button/Button";
 
 
 class Beer extends Component {

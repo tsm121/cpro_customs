@@ -10,8 +10,6 @@ class SnackBarNotification extends Component {
     render = () => {
         return (
             <div>
-                Open: {this.props.open ? "true" : "false"}
-                Message: {this.props.message}
                 <Snackbar
                     anchorOrigin={{
                         vertical: 'bottom',
@@ -41,8 +39,9 @@ class SnackBarNotification extends Component {
     };
 }
 
-SnackBarNotification.propTypes = {};
-
-SnackBarNotification.defaultProps = {};
+SnackBarNotification.propTypes = {
+    open: PropTypes.bool,
+    message: PropTypes.string,
+};
 
 export default SnackBarNotification;
