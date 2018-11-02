@@ -104,9 +104,9 @@ class AlcoholItem extends Component {
                                         </Grid>
                                         <Grid item xs={9} sm={7} md={7}>
                                             <PlusMinusButtons
-                                                handleDecrement={this.handleDecrement.bind(this, globalState)}
-                                                handleIncrement={this.handleIncrement.bind(this, globalState, 1)}
-                                                handlePlusFive={this.handleIncrement.bind(this, globalState, 5)}
+                                                handleDecrement={() => this.handleDecrement(globalState)}
+                                                handleIncrement={() => this.handleIncrement(globalState, 1)}
+                                                handlePlusFive={() => this.handleIncrement(globalState, 5)}
                                             />
                                         </Grid>
                                     </Grid>
@@ -215,13 +215,11 @@ AlcoholItem.propTypes = {
     value: PropTypes.any,
     icon: PropTypes.string,
     isPitcher: PropTypes.bool,
-    isInCart: PropTypes.bool,
     amount: PropTypes.number,
 };
 
 AlcoholItem.defaultProps = {
     isPitcher: false,
-    isInCart: false,
     amount: 0,
 };
 
