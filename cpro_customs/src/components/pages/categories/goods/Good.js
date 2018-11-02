@@ -89,7 +89,7 @@ class Good extends Component {
                                                         fullWidth={true}
                                                         type={"number"}
                                                         onInput={(e)=>{
-                                                            e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,7)
+                                                            e.target.value = Math.max(0, parseFloat(e.target.value) ).toString().slice(0,9)
                                                         }}
                                                         placeholder={"0"}
                                                         InputProps={{
