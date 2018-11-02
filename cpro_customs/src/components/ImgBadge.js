@@ -19,6 +19,7 @@ import weight from "../assets/img/icons/512x512/weight_dark_grey.png"
 import dog from "../assets/img/icons/512x512/dog_dark_grey.png"
 import horse from "../assets/img/icons/512x512/horse_dark_grey.png"
 import other from "../assets/img/icons/512x512/animal_dark_grey.png"
+import shoppingCart from "../assets/img/icons/512x512/shopping-cart_dark_grey.png"
 
 
 class ImgBadge extends Component {
@@ -41,11 +42,19 @@ class ImgBadge extends Component {
             "dog": dog,
             "horse": horse,
             "other": other,
+            "shoppingCart": shoppingCart,
         };
-        const {icon, badgeContent, color} = this.props;
-
+        const {icon, badgeContent, color, onClick, onMouseOver, onMouseOut} = this.props;
         return (
-            <Badge className="cdp_img_badge" badgeContent={badgeContent} color={color} style={this.props.style}>
+            <Badge
+                className="cdp_img_badge"
+                badgeContent={badgeContent}
+                color={color}
+                style={this.props.style}
+                onClick={onClick}
+                onMouseOver={onMouseOver}
+                onMouseOut={onMouseOut}
+            >
                 <img
                     className={"cdp_icon_item"}
                     src={icons[icon]}

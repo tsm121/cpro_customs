@@ -39,10 +39,10 @@ class SubTable extends Component{
                                 <TableBody>
                                     <Button onClick={() => cart.addGoodToCart('kitchen', 5000, 'NOK', 1)}> Add Good</Button>
                                     {cart.products.map((item, index) => (
-                                        <TableRow key={item.uid}>
-                                            {item.uid}
+                                        <TableRow key={item.id}>
+                                            {item.id}
                                             <TableCell component="th" scope="row" className={"picture_column"}>
-                                                <IconAndAmount filename={item.filename} amount={item.amount} unit={item.unit}/>
+                                                <IconAndAmount icon={item.category} amount={item.amount} unit={item.unit}/>
                                             </TableCell>
                                             <TableCell className={"table_column category_column"}>{item.category}</TableCell>
                                             <TableCell numeric className={"table_column"}>{item.value} kr</TableCell>

@@ -6,6 +6,8 @@ import { AppBar, Toolbar, Grid, FormControl, Modal } from '@material-ui/core';
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
+import HeaderButton from "./HeaderButton";
+import ShoppingCartButton from "./ShoppingCartButton";
 
 
 class Header extends Component  {
@@ -62,6 +64,7 @@ class Header extends Component  {
                                       justify={"center"}
                                       alignItems={"center"}
                                 >
+                                    <ShoppingCartButton/>
                                     <SettingsButton onClick={this.openModal}/>
                                 </Grid>
                             </Grid>
