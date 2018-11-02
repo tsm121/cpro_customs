@@ -31,7 +31,7 @@ a img {
 
 
 .header_container{
-    margin-bottom: 1.5em !important;
+    margin-bottom: 3em !important;
 }
 
 .header_bar {
@@ -601,11 +601,6 @@ div.cdp_sub_selection_max_width_grid_item {
     p {
         font-size: 2.4vmin;
     }
-
-    .header_container {
-        margin-bottom: 3em !important;
-    }
-
 }
 
 /* ---- xs ---- */
