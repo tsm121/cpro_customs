@@ -501,6 +501,15 @@ div.cdp_sub_selection_max_width_grid_item {
     margin: 0 !important;
 }
 
+.checkbox_container{
+    padding-top: 2em;
+}
+
+.checkbox_label svg {
+    width: 5vmin !important;
+    height: 5vmin !important;
+    color: #ffd200;
+}
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
     h1.cdp {

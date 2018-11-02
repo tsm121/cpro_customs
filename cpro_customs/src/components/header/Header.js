@@ -6,6 +6,7 @@ import { AppBar, Toolbar, Grid, FormControl, Modal } from '@material-ui/core';
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
+import InputFields from "../InputFields";
 
 
 class Header extends Component  {
@@ -62,7 +63,9 @@ class Header extends Component  {
                                       justify={"center"}
                                       alignItems={"center"}
                                 >
-                                    <SettingsButton onClick={this.openModal}/>
+                                    <SettingsButton
+                                        onClick={this.openModal}
+                                    />
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -74,7 +77,9 @@ class Header extends Component  {
                     onClose={this.closeModal}
                 >
                     <div>
-                        <SettingsWindow/>
+                        <SettingsWindow
+                            closeModal={this.closeModal}
+                        />
                     </div>
                 </Modal>
 
