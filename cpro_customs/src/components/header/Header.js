@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {withRouter} from "react-router";
 
-import { AppBar, Toolbar, Grid, FormControl, Modal } from '@material-ui/core';
+import {AppBar, Toolbar, Grid, FormControl, Modal} from '@material-ui/core';
 
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
 import HeaderButton from "./HeaderButton";
 import ShoppingCartButton from "./ShoppingCartButton";
+import {GlobalState} from "../global_state/GlobalState";
 
-
-class Header extends Component  {
+class Header extends Component {
     constructor() {
         super();
 
@@ -39,7 +39,7 @@ class Header extends Component  {
             <FormControl fullWidth={true}>
                 <AppBar position="static"
                         color="primary"
-                        style={{backgroundColor:'#e2e3e5', color:'#37424a'}}
+                        style={{backgroundColor: '#e2e3e5', color: '#37424a'}}
                 >
                     <Toolbar>
                         <Grid container
@@ -64,7 +64,11 @@ class Header extends Component  {
                                       justify={"center"}
                                       alignItems={"center"}
                                 >
-                                    <ShoppingCartButton/>
+                                    <GlobalState.Consumer>
+                                        {globalState => (
+                                            globalState.products.length > 0 ? <ShoppingCartButton/> : ""
+                                        )}
+                                    </GlobalState.Consumer>
                                     <SettingsButton onClick={this.openModal}/>
                                 </Grid>
                             </Grid>
