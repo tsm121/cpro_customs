@@ -36,20 +36,6 @@ class Beer extends Component {
                               spacing={0}
                               direction={"row"}
                         >
-                            <Grid item xs={12} sm={12} md={12}>
-                                <Grid container justify={"center"} alignItems={"center"}>
-                                    <Grid item xs={11} className={"cdp_sub_selection_max_width_grid_item"}>
-                                        <Grid container>
-                                            <Grid item xs={12}
-                                                  style={{backgroundColor: "#e2e3e5", paddingLeft: "10px"}}>
-                                                <Grid container justify={"flex-end"} alignItems={"flex-start"}>
-                                                    <Button className={"cdp_yellow"} onClick={() => this.removeAllBeer(globalState)}>Clear</Button>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
                             <TollInfoBanner text={"7 NOK per bottle (0.33l) / 20 NOK per litre"}/>
                             {this.drawItems(globalState)}
                         </Grid>
