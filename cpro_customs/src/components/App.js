@@ -28,9 +28,9 @@ class App extends Component {
     }
 
     /*
-     * bind the functions
-     * TODO: This is necessary, but why?
+     * bind functions to be able to change the App.js state
      */
+    totalAmount = this.totalAmount.bind(this);
     addProduct = this.addProduct.bind(this);
     updateProduct = this.updateProduct.bind(this);
     getProduct = this.getProduct.bind(this);
@@ -40,6 +40,20 @@ class App extends Component {
     getAlcohol = this.getAlcohol.bind(this);
     only_for_testing = this.only_for_testing.bind(this);
     findProductIndexById = this.findProductIndexById.bind(this);
+    removeAllElementsOfType = this.removeAllElementsOfType.bind(this);
+
+    /**
+     * Counts the total amount of items
+     * @return {number}
+     */
+    totalAmount() {
+        const {products} = this.state;
+        let amount = 0;
+        for (let i = 0; i < products.length; ++i) {
+            amount += products[i].amount;
+        }
+        return amount;
+    }
 
     /**
      * Adds a product to products
@@ -171,12 +185,29 @@ class App extends Component {
         return null;
     }
 
+    /**
+     * Removes all products of a certain type
+     * @param type - the product type, e.g. "Beer"
+     */
+    removeAllElementsOfType(type) {
+        let {products} = this.state;
+        for (let i = 0; i < products.length; ++i) {
+            if (products[i].type.localeCompare(type) === 0) {
+                products.splice(i, 1);
+            }
+        }
+    }
+
     render() {
         return (
             <GlobalState.Provider
+                /*
+                    provide state and functions
+                 */
                 value={{
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
+                    totalAmount: this.totalAmount,
                     addProduct: this.addProduct,
                     updateProduct: this.updateProduct,
                     getProduct: this.getProduct,
@@ -186,6 +217,7 @@ class App extends Component {
                     getAlcohol: this.getAlcohol,
                     only_for_testing: this.only_for_testing,
                     findProductIndexById: this.findProductIndexById,
+                    removeAllElementsOfType: this.removeAllElementsOfType,
                 }}
             >
                 <div>

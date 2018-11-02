@@ -137,8 +137,9 @@ class AlcoholItem extends Component {
             if (value === '') {
                 globalState.removeProduct(id);
                 this.setState({
-                   amount: 0,
+                    amount: 0,
                 });
+                this.props.showNotification("Removed 1x " + value + "l " + this.props.type + " from your declaration list");
             // update product value
             } else {
                 globalState.updateProduct(id, "value", value);
@@ -150,6 +151,7 @@ class AlcoholItem extends Component {
                 productId: id,
                 amount: 1,
             });
+            this.props.showNotification("Added 1x " + value + "l " + this.props.type + " to your declaration list");
         }
     };
 
@@ -162,6 +164,7 @@ class AlcoholItem extends Component {
         if (this.state.amount <= 0) {
             return;
         }
+        this.props.showNotification("Removed 1x " + this.state.value + "l " + this.props.type + " from your declaration list");
         const id = this.state.productId;
         // product is removed from cart
         if (this.state.amount === 1 && this.state.product !== null) {
@@ -172,10 +175,10 @@ class AlcoholItem extends Component {
             });
             if (this.props.isPitcher) {
                 this.setState({
-                value: '',
-            });
+                    value: '',
+                });
             }
-        // product is updated in cart
+            // product is updated in cart
         } else {
             globalState.updateProduct(id, "amount", this.state.amount - 1);
             this.setState({
@@ -191,7 +194,7 @@ class AlcoholItem extends Component {
      */
     handleIncrement = (globalState, incr) => {
         if (this.state.value === '') return;
-
+        this.props.showNotification("Added " + incr + "x " + this.state.value + "l " + this.props.type + " to your declaration list");
         // product is added to cart
         if (this.state.amount === 0) {
             const id = globalState.addAlcohol(this.props.type, this.state.value, incr, this.props.isPitcher);
