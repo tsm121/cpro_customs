@@ -18,10 +18,13 @@ export const TOOL_TIP_TEXTS = {
     payment: {
         visaPayment:
             `
-            Aliquam eget finibus ante, non facilisis lectus. Sed vitae dignissim est, vel aliquam tellus. 
-            Praesent non nunc mollis, fermentum neque at, semper arcu. 
-            Nullam eget est sed sem iaculis gravida eget vitae justo. 
+            CVV for Visa is the final three digits of the number printed on the signature strip on the back of your card. 
             `,
 
+    },
+    personsInVehicle: {
+        abroad:
+        'The value limit is NOK 6,000 or NOK 3,000 if you have been outside of Norway for less than 24 hours.' +
+            'This value limit is the sum total of the items you have bought, including the alcohol and tobacco quota.',
     }
 };

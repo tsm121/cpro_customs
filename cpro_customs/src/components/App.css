@@ -202,7 +202,7 @@ transform: translate(- 50 %, - 50 %);
     width: 20% !important;
 }
 
-.day_input .MuiNotchedOutline-root-272 {
+.year_input .MuiNotchedOutline-root-272 {
     border-radius: 0 4px 4px 0 !important;
 }
 
@@ -494,6 +494,15 @@ div.cdp_sub_selection_max_width_grid_item {
     margin: 0 !important;
 }
 
+.checkbox_container{
+    padding-top: 2em;
+}
+
+.checkbox_label svg {
+    width: 5vmin !important;
+    height: 5vmin !important;
+    color: #ffd200;
+}
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
     h1.cdp {
