@@ -67,7 +67,7 @@ class TobaccoItem extends Component {
                                                                 label={unit}
                                                                 type={"number"}
                                                                 onInput={(e)=>{
-                                                                    e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,6)
+                                                                    e.target.value = Math.max(0, parseFloat(e.target.value) ).toString().slice(0,8)
                                                                 }}
                                                             />
                                                         </Grid>

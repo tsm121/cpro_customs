@@ -67,7 +67,7 @@ class AlcoholItem extends Component {
                                                                 label={"Litre"}
                                                                 type={"number"}
                                                                 onInput={(e)=>{
-                                                                    e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,2)
+                                                                    e.target.value = Math.max(0, parseFloat(e.target.value) ).toString().slice(0,6)
                                                                 }}
                                                                 min={0}
 
