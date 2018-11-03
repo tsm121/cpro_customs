@@ -53,18 +53,18 @@ class Beer extends Component {
 
     drawItems = (globalState) => {
         let options = [
-            {category: "Beer", value: 0.33, isPitcher: false, icon: "beerCanSmall"},
-            {category: "Beer", value: 0.5, isPitcher: false, icon: "beerCanBig"},
-            {category: "Beer", value: '', isPitcher: true, icon: "pitcher"},
+            {type: "Beer", value: 0.33, isPitcher: false, icon: "beerCanSmall"},
+            {type: "Beer", value: 0.5, isPitcher: false, icon: "beerCanBig"},
+            {type: "Beer", value: '', isPitcher: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
-            let product = globalState.getAlcohol(options[i].category, options[i].value, options[i].isPitcher);
+            let product = globalState.getAlcohol(options[i].type, options[i].value, options[i].isPitcher);
             if (product !== null) {
                 items.push(
                     <AlcoholItem
                         key={items.length}
-                        type={"Beer"}
+                        type={options[i].type}
                         isPitcher={options[i].isPitcher}
                         icon={options[i].icon}
                         value={product !== null ? product.value : options[i].value}
@@ -77,7 +77,7 @@ class Beer extends Component {
                 items.push(
                     <AlcoholItem
                         key={items.length}
-                        type={"Beer"}
+                        type={options[i].type}
                         value={options[i].value}
                         isPitcher={options[i].isPitcher}
                         icon={options[i].icon}

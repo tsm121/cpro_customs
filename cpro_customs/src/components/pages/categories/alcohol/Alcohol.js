@@ -4,8 +4,6 @@ import Grid from "@material-ui/core/Grid/Grid";
 
 import PageTitle from "../PageTitle";
 import SubCategory from "../SubCategory";
-import Button from "@material-ui/core/Button/Button";
-import {GlobalState} from "../../../context/GlobalState";
 
 
 class Alcohol extends Component {
@@ -13,14 +11,6 @@ class Alcohol extends Component {
         return (
             <div>
                 <PageTitle title={"Alcohol"}/>
-                <GlobalState.Consumer>
-                    {globalState => (
-                        <div>
-                            <Button onClick={globalState.only_for_testing}>Add Alcohol to shopping cart</Button>
-                            <Button onClick={() => console.log(globalState.products)}>Print global state</Button>
-                        </div>
-                    )}
-                </GlobalState.Consumer>
                 <Grid container spacing={32} direction={"row"}>
                     <Grid item xs={12}>
                         <SubCategory
