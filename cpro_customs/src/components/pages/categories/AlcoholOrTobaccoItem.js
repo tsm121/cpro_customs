@@ -5,12 +5,12 @@ import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
 import TextField from "@material-ui/core/TextField/TextField";
 
-import ImgBadge from "../../../ImgBadge";
-import PlusMinusButtons from "../PlusMinusButtons";
-import {GlobalState} from "../../../context/GlobalState";
+import ImgBadge from "../../ImgBadge";
+import PlusMinusButtons from "./PlusMinusButtons";
+import {GlobalState} from "../../context/GlobalState";
 
 
-class AlcoholItem extends Component {
+class AlcoholOrTobaccoItem extends Component {
     state = {
         productId: this.props.productId,
         amount: this.props.amount,
@@ -19,7 +19,7 @@ class AlcoholItem extends Component {
     };
 
     render = () => {
-        const {value, icon, isPitcher} = this.props;
+        const {value, icon, isOtherAmount} = this.props;
         return (
             <GlobalState.Consumer>
                 {globalState => (
@@ -29,7 +29,7 @@ class AlcoholItem extends Component {
                                 <Paper className={"cdp_paper_category_sub_selection"}>
                                     <Grid container spacing={8} justify={"center"} alignItems={"center"}>
                                         {
-                                            isPitcher
+                                            isOtherAmount
                                                 ?
                                                 <Grid item xs={12}>
                                                     <Grid container>
@@ -47,14 +47,14 @@ class AlcoholItem extends Component {
                                         <Grid item xs={3} sm={5} md={5}>
                                             <Grid container justify={"center"} alignItems={"center"}>
                                                 {
-                                                    isPitcher
+                                                    isOtherAmount
                                                         ?
                                                         [
                                                             <Grid item xs={12} sm={3} md={2} key={0}>
                                                                 <Grid container justify={"center"}
                                                                       alignItems={"center"}>
                                                                     <ImgBadge
-                                                                        icon={"pitcher"}
+                                                                        icon={icon}
                                                                         badgeContent={this.state.amount}
                                                                         color={"secondary"}
                                                                         style={{
@@ -72,7 +72,7 @@ class AlcoholItem extends Component {
                                                                         value={this.state.value}
                                                                         onChange={(e) => this.handlePitcherValueChange(globalState, e)}
                                                                         className={"cdp_input_field"}
-                                                                        label={"Litre"}
+                                                                        label={this.props.unit.toLocaleLowerCase()}
                                                                     />
                                                                 </Grid>
                                                             </Grid>,
@@ -95,7 +95,7 @@ class AlcoholItem extends Component {
                                                                       alignItems={"center"}>
                                                                     <h3 className="cdp_dark_grey"
                                                                         style={{paddingTop: "10px"}}>
-                                                                        {value}l
+                                                                        {value} {this.props.unit}
                                                                     </h3>
                                                                 </Grid>
                                                             </Grid>,
@@ -109,8 +109,8 @@ class AlcoholItem extends Component {
                                                 handleIncrement={() => this.handleIncrement(globalState, 1)}
                                                 handlePlusFive={() => this.handleIncrement(globalState, 5)}
                                                 disableMinusButton={this.state.amount === 0}
-                                                disablePlusButton={this.props.isPitcher && this.state.value === ''}
-                                                disablePlusFiveButton={this.props.isPitcher && this.state.value === ''}
+                                                disablePlusButton={this.props.isOtherAmount && this.state.value === ''}
+                                                disablePlusFiveButton={this.props.isOtherAmount && this.state.value === ''}
                                             />
                                         </Grid>
                                     </Grid>
@@ -190,7 +190,7 @@ class AlcoholItem extends Component {
                 amount: this.state.amount - 1,
                 productId: null,
             });
-            if (this.props.isPitcher) {
+            if (this.props.isOtherAmount) {
                 this.setState({
                     value: '',
                     updateTriggered: false,
@@ -215,7 +215,7 @@ class AlcoholItem extends Component {
         this.showAddedNotification(incr);
         // product is added to cart
         if (this.state.amount === 0) {
-            const id = globalState.addAlcohol(this.props.type, this.state.value, incr, this.props.isPitcher, this.props.icon);
+            const id = globalState.addAlcoholOrTobacco(this.props.unit, this.props.type, this.state.value, incr, this.props.isOtherAmount, this.props.icon);
             this.setState({
                 productId: id,
             });
@@ -234,7 +234,7 @@ class AlcoholItem extends Component {
      * @param incr - the amount
      */
     showAddedNotification = (incr) => {
-        this.props.showNotification("Added " + incr + "x " + this.state.value + "l "
+        this.props.showNotification("Added " + incr + "x " + this.state.value + " " + this.props.unit + " of "
             + this.props.type.toLocaleLowerCase() + " to your declaration list");
     };
 
@@ -242,7 +242,7 @@ class AlcoholItem extends Component {
      * Shows a notification, stating that an item has been removed from cart
      */
     showRemovedNotification = () => {
-        this.props.showNotification("Removed 1x " + this.state.value + "l "
+        this.props.showNotification("Removed 1x " + this.state.value + " " + this.props.unit + " of "
             + this.props.type.toLocaleLowerCase() + " from your declaration list");
     };
 
@@ -250,7 +250,7 @@ class AlcoholItem extends Component {
      * Shows a notification, stating that an item has been removed from cart
      */
     showRemovedNotificationWithValue = (value) => {
-        this.props.showNotification("Removed 1x " + value + "l "
+        this.props.showNotification("Removed 1x " + value + " " + this.props.unit + " of "
             + this.props.type.toLocaleLowerCase() + " from your declaration list");
     };
 
@@ -258,24 +258,24 @@ class AlcoholItem extends Component {
      * Shows a notification, stating that an item has been updated in cart
      */
     showUpdateNotification = (oldValue, newValue) => {
-        this.props.showNotification("Updated " + this.props.type.toLocaleLowerCase() + " from " + oldValue + "l to "
-            + newValue + "l  in your declaration list");
+        this.props.showNotification("Updated " + this.props.type.toLocaleLowerCase() + " from " + oldValue + " "
+            + this.props.unit +  " to " + newValue + " " + this.props.unit + " in your declaration list");
     }
 
 }
 
 
-AlcoholItem.propTypes = {
+AlcoholOrTobaccoItem.propTypes = {
     product: PropTypes.object,
     value: PropTypes.any,
     icon: PropTypes.string,
-    isPitcher: PropTypes.bool,
+    isOtherAmount: PropTypes.bool,
     amount: PropTypes.number,
 };
 
-AlcoholItem.defaultProps = {
-    isPitcher: false,
+AlcoholOrTobaccoItem.defaultProps = {
+    isOtherAmount: false,
     amount: 0,
 };
 
-export default AlcoholItem;
+export default AlcoholOrTobaccoItem;

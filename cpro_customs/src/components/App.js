@@ -23,10 +23,6 @@ class App extends Component {
         };
     }
 
-    only_for_testing() {
-        this.addAlcohol("Beer", 0.5, 6);
-    }
-
     /*
      * bind functions to be able to change the App.js state
      */
@@ -36,9 +32,8 @@ class App extends Component {
     getProduct = this.getProduct.bind(this);
     removeProduct = this.removeProduct.bind(this);
     addGood = this.addGood.bind(this);
-    addAlcohol = this.addAlcohol.bind(this);
-    getAlcohol = this.getAlcohol.bind(this);
-    only_for_testing = this.only_for_testing.bind(this);
+    addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
+    getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
     findProductIndexById = this.findProductIndexById.bind(this);
     removeAllElementsOfType = this.removeAllElementsOfType.bind(this);
 
@@ -143,21 +138,22 @@ class App extends Component {
     }
 
     /**
-     * Adds alcohol of specific type to products
-     * @param type - type of alcohol, e.g. "Beer"
-     * @param liters - how many litres, e.g. 0.5
-     * @param amount - amount of items, e.g. 6
-     * @param isPitcher - true when pitcher
+     * Adds alcohol/tobacco of specific type to products
+     * @param unit - either "litres" or "pieces"
+     * @param type - type of alcohol/tobacco, e.g. "Beer" or "Cigarettes"
+     * @param value - how many pieces/litres per item, e.g. 20 or 0.5
+     * @param amount - amount of items, e.g. 3
+     * @param isOtherAmount - true, if user can choose the value himself
      * @param icon - the icon name
      * @return the id of the product
      */
-    addAlcohol(type, liters, amount, isPitcher, icon) {
+    addAlcoholOrTobacco(unit, type, value, amount, isOtherAmount, icon) {
         let item = {
+            "unit": unit,
             "type": type,
-            "value": liters,
-            "unit": "litre",
+            "value": value,
             "amount": amount,
-            "isPitcher": isPitcher,
+            "isOtherAmount": isOtherAmount,
             "icon": icon,
         };
         return this.addProduct(item);
@@ -165,15 +161,15 @@ class App extends Component {
 
     /**
      * Searches for an alcohol item in the global state
-     * @param type - type of alcohol, e.g. "lightBeer"
-     * @param value - how many litres, e.g. 0.5
-     * @param pitcher - boolean, true if its a pitcher item
+     * @param type - type of alcohol/tobacco, e.g. "Beer" or "Cigarettes"
+     * @param value - how many litres, e.g. 0.5 or 20
+     * @param isOtherAmount - boolean, true if its a other amount item
      */
-    getAlcohol(type, value, pitcher) {
+    getAlcoholOrTobacco(type, value, isOtherAmount) {
         const {products} = this.state;
-        if (pitcher) {
+        if (isOtherAmount) {
             for (let i = 0; i < products.length; ++i) {
-                if (products[i].type.localeCompare(type) === 0 && products[i].isPitcher) {
+                if (products[i].type.localeCompare(type) === 0 && products[i].isOtherAmount) {
                     return products[i];
                 }
             }
@@ -215,8 +211,8 @@ class App extends Component {
                     getProduct: this.getProduct,
                     removeProduct: this.removeProduct,
                     addGood: this.addGood,
-                    addAlcohol: this.addAlcohol,
-                    getAlcohol: this.getAlcohol,
+                    addAlcoholOrTobacco: this.addAlcoholOrTobacco,
+                    getAlcoholOrTobacco: this.getAlcoholOrTobacco,
                     only_for_testing: this.only_for_testing,
                     findProductIndexById: this.findProductIndexById,
                     removeAllElementsOfType: this.removeAllElementsOfType,

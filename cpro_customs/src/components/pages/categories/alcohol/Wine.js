@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import Grid from "@material-ui/core/Grid/Grid";
 
 import PageTitle from "../PageTitle";
-import AlcoholItem from "./AlcoholItem";
+import AlcoholOrTobaccoItem from "../AlcoholOrTobaccoItem";
 import TollInfoBanner from "../TollInfoBanner";
 import {closeNotification, exitNotification, showNotification} from "../../../context/NotificationContext";
 import SnackBarNotification from "../../../SnackBarNotification";
@@ -53,20 +53,20 @@ class Wine extends Component {
 
     drawItems = (globalState) => {
         let options = [
-            {type: "Wine", value: 0.375, isPitcher: false, icon: "wineBottleSmall"},
-            {type: "Wine", value: 0.75, isPitcher: false, icon: "wineBottleBig"},
-            {type: "Wine", value: 1.5, isPitcher: false, icon: "wineBottleBig"},
-            {type: "Wine", value: '', isPitcher: true, icon: "pitcher"},
+            {type: "Wine", value: 0.375, isOtherAmount: false, icon: "wineBottleSmall"},
+            {type: "Wine", value: 0.75, isOtherAmount: false, icon: "wineBottleBig"},
+            {type: "Wine", value: 1.5, isOtherAmount: false, icon: "wineBottleBig"},
+            {type: "Wine", value: '', isOtherAmount: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
-            let product = globalState.getAlcohol(options[i].type, options[i].value, options[i].isPitcher);
+            let product = globalState.getAlcoholOrTobacco(options[i].type, options[i].value, options[i].isOtherAmount);
             if (product !== null) {
                 items.push(
-                    <AlcoholItem
+                    <AlcoholOrTobaccoItem
                         key={items.length}
                         type={options[i].type}
-                        isPitcher={options[i].isPitcher}
+                        isOtherAmount={options[i].isOtherAmount}
                         icon={options[i].icon}
                         value={product !== null ? product.value : options[i].value}
                         amount={product.amount}
@@ -76,11 +76,11 @@ class Wine extends Component {
                 )
             } else {
                 items.push(
-                    <AlcoholItem
+                    <AlcoholOrTobaccoItem
                         key={items.length}
                         type={options[i].type}
                         value={options[i].value}
-                        isPitcher={options[i].isPitcher}
+                        isOtherAmount={options[i].isOtherAmount}
                         icon={options[i].icon}
                         amount={0}
                         showNotification={this.showNotification}

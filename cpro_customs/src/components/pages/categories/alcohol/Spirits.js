@@ -3,7 +3,7 @@ import React, {Component} from "react";
 import Grid from "@material-ui/core/Grid/Grid";
 
 import PageTitle from "../PageTitle";
-import AlcoholItem from "./AlcoholItem";
+import AlcoholOrTobaccoItem from "../AlcoholOrTobaccoItem";
 import TollInfoBanner from "../TollInfoBanner";
 import {closeNotification, exitNotification, showNotification} from "../../../context/NotificationContext";
 import SnackBarNotification from "../../../SnackBarNotification";
@@ -53,21 +53,21 @@ class Spirits extends Component {
 
     drawItems = (globalState) => {
         let options = [
-            {type: "Spirits", value: 0.35, isPitcher: false, icon: "spirits"},
-            {type: "Spirits", value: 0.5, isPitcher: false, icon: "spirits"},
-            {type: "Spirits", value: 0.7, isPitcher: false, icon: "spirits"},
-            {type: "Spirits", value: 1, isPitcher: false, icon: "spirits"},
-            {type: "Spirits", value: '', isPitcher: true, icon: "pitcher"},
+            {type: "Spirits", value: 0.35, isOtherAmount: false, icon: "spirits"},
+            {type: "Spirits", value: 0.5, isOtherAmount: false, icon: "spirits"},
+            {type: "Spirits", value: 0.7, isOtherAmount: false, icon: "spirits"},
+            {type: "Spirits", value: 1, isOtherAmount: false, icon: "spirits"},
+            {type: "Spirits", value: '', isOtherAmount: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
-            let product = globalState.getAlcohol(options[i].type, options[i].value, options[i].isPitcher);
+            let product = globalState.getAlcoholOrTobacco(options[i].type, options[i].value, options[i].isOtherAmount);
             if (product !== null) {
                 items.push(
-                    <AlcoholItem
+                    <AlcoholOrTobaccoItem
                         key={items.length}
                         type={options[i].type}
-                        isPitcher={options[i].isPitcher}
+                        isOtherAmount={options[i].isOtherAmount}
                         icon={options[i].icon}
                         value={product !== null ? product.value : options[i].value}
                         amount={product.amount}
@@ -77,11 +77,11 @@ class Spirits extends Component {
                 )
             } else {
                 items.push(
-                    <AlcoholItem
+                    <AlcoholOrTobaccoItem
                         key={items.length}
                         type={options[i].type}
                         value={options[i].value}
-                        isPitcher={options[i].isPitcher}
+                        isOtherAmount={options[i].isOtherAmount}
                         icon={options[i].icon}
                         amount={0}
                         showNotification={this.showNotification}

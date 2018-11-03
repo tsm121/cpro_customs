@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid/Grid";
 
 import TollInfoBanner from "../TollInfoBanner";
 import PageTitle from "../PageTitle";
-import AlcoholItem from "./AlcoholItem";
+import AlcoholOrTobaccoItem from "../AlcoholOrTobaccoItem";
 import SnackBarNotification from "../../../SnackBarNotification";
 import {GlobalState} from "../../../context/GlobalState";
 import {showNotification, closeNotification, exitNotification} from "../../../context/NotificationContext";
@@ -53,19 +53,19 @@ class AlcopopAndOthers extends Component {
 
     drawItems = (globalState) => {
         let options = [
-            {type: "Alcopop and others", value: 0.33, isPitcher: false, icon: "beerCanSmall"},
-            {type: "Alcopop and others", value: 0.5, isPitcher: false, icon: "beerCanBig"},
-            {type: "Alcopop and others", value: '', isPitcher: true, icon: "pitcher"},
+            {type: "Alcopop and others", value: 0.33, isOtherAmount: false, icon: "beerCanSmall"},
+            {type: "Alcopop and others", value: 0.5, isOtherAmount: false, icon: "beerCanBig"},
+            {type: "Alcopop and others", value: '', isOtherAmount: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
-            let product = globalState.getAlcohol(options[i].type, options[i].value, options[i].isPitcher);
+            let product = globalState.getAlcoholOrTobacco(options[i].type, options[i].value, options[i].isOtherAmount);
             if (product !== null) {
                 items.push(
-                    <AlcoholItem
+                    <AlcoholOrTobaccoItem
                         key={items.length}
                         type={options[i].type}
-                        isPitcher={options[i].isPitcher}
+                        isOtherAmount={options[i].isOtherAmount}
                         icon={options[i].icon}
                         value={product !== null ? product.value : options[i].value}
                         amount={product.amount}
@@ -75,11 +75,11 @@ class AlcopopAndOthers extends Component {
                 )
             } else {
                 items.push(
-                    <AlcoholItem
+                    <AlcoholOrTobaccoItem
                         key={items.length}
                         type={options[i].type}
                         value={options[i].value}
-                        isPitcher={options[i].isPitcher}
+                        isOtherAmount={options[i].isOtherAmount}
                         icon={options[i].icon}
                         amount={0}
                         showNotification={this.showNotification}
