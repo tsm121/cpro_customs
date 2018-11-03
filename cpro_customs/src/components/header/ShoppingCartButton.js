@@ -17,7 +17,7 @@ class ShoppingCartButton extends Component {
                         onMouseOut={this.onMouseOut}
                     >
                         <Badge
-                            badgeContent={globalState.products.length}
+                            badgeContent={globalState.totalAmount()}
                             color={"secondary"}
                         >
                             <Icon>
