@@ -15,6 +15,7 @@ class AlcoholItem extends Component {
         productId: this.props.productId,
         amount: this.props.amount,
         value: this.props.value,
+        updateTriggered: false,
     };
 
     render = () => {
@@ -66,17 +67,13 @@ class AlcoholItem extends Component {
                                                             <Grid item xs={12} sm={6} md={4} key={1}>
                                                                 <Grid container justify={"center"}
                                                                       alignItems={"center"}>
-                                                                    <div
-                                                                        onBlur={(e) => this.handlePitcherValueGlobalChange(globalState, e)}
-                                                                    >
-                                                                        <TextField
-                                                                            id={"good_name"}
-                                                                            value={this.state.value}
-                                                                            onChange={(e) => this.handlePitcherValueChange(e)}
-                                                                            className={"cdp_input_field"}
-                                                                            label={"Litre"}
-                                                                        />
-                                                                    </div>
+                                                                    <TextField
+                                                                        id={"good_name"}
+                                                                        value={this.state.value}
+                                                                        onChange={(e) => this.handlePitcherValueChange(globalState, e)}
+                                                                        className={"cdp_input_field"}
+                                                                        label={"Litre"}
+                                                                    />
                                                                 </Grid>
                                                             </Grid>,
                                                         ]
@@ -131,44 +128,50 @@ class AlcoholItem extends Component {
      * @param globalState
      * @param event - the event containing the value
      */
-    handlePitcherValueChange = (event) => {
+    handlePitcherValueChange = (globalState, event) => {
         const value = event.target.value;
-        // change local state
-        this.setState({
-            value: value,
-        });
-    };
+        const old = this.state.value;
 
-    /**
-     * Handles pitcher value change. Updates local and global state
-     * @param globalState
-     * @param event - the event containing the value
-     */
-    handlePitcherValueGlobalChange = (globalState, event) => {
-        const value = event.target.value;
-        // change local state
-        this.setState({
-            value: value,
-        });
-        // change product in global state as well
-        if (this.state.amount > 0) {
+        // value has been removed completely
+        if (value.localeCompare('') === 0) {
+            this.setState({
+                value: '',
+            });
             const id = this.state.productId;
-            const notificationValue = globalState.getProduct(id).value;
-            // remove product and set amount to 0
-            if (value === '') {
+            if (id !== null) {
+                const notificationValue = globalState.getProduct(id).value;
                 globalState.removeProduct(id);
                 this.setState({
                     amount: 0,
                 });
                 this.showRemovedNotificationWithValue(notificationValue);
-                // update product value
-            } else {
-                globalState.updateProduct(id, "value", value);
-                this.showUpdateNotification();
             }
+            return;
+        }
+
+        // value has been changed
+        // change local state
+        this.setState({
+            value: value,
+        });
+        // change global
+        if (this.state.amount > 0 && !this.state.updateTriggered) {
+            this.setState({
+                updateTriggered: true,
+            });
+            setTimeout(() => {
+                    if (this.state.amount > 0) {
+                        const id = this.state.productId;
+                        globalState.updateProduct(id, "value", this.state.value);
+                        this.showUpdateNotification(old, this.state.value);
+                        this.setState({
+                            updateTriggered: false,
+                        });
+                    }
+                }, 2000
+            );
         }
     };
-
 
     /**
      * Decrements the amount
@@ -190,6 +193,7 @@ class AlcoholItem extends Component {
             if (this.props.isPitcher) {
                 this.setState({
                     value: '',
+                    updateTriggered: false,
                 });
             }
             // product is updated in cart
@@ -250,9 +254,12 @@ class AlcoholItem extends Component {
             + this.props.type.toLocaleLowerCase() + " from your declaration list");
     };
 
-    showUpdateNotification = () => {
-        this.props.showNotification("Updated " + this.props.type.toLocaleLowerCase() + " to " + this.state.value + "l "
-            + " in your declaration list");
+    /**
+     * Shows a notification, stating that an item has been updated in cart
+     */
+    showUpdateNotification = (oldValue, newValue) => {
+        this.props.showNotification("Updated " + this.props.type.toLocaleLowerCase() + " from " + oldValue + "l to "
+            + newValue + "l " + " in your declaration list");
     }
 
 }
