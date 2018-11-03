@@ -75,8 +75,7 @@ class Cigarettes extends Component {
             )
         }
         return items;
-    }
-    ;
+    };
 }
 
 export default Cigarettes;
