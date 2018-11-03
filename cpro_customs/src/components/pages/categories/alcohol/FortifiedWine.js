@@ -53,40 +53,27 @@ class FortifiedWine extends Component {
 
     drawItems = (globalState) => {
         let options = [
-            {type: "Fortified wine", value: 0.375, isOtherAmount: false, icon: "wineBottleSmall"},
-            {type: "Fortified wine", value: 0.5, isOtherAmount: false, icon: "fortifiedWine"},
-            {type: "Fortified wine", value: 0.75, isOtherAmount: false, icon: "fortifiedWine"},
-            {type: "Fortified wine", value: '', isOtherAmount: true, icon: "pitcher"},
+            {unit: "litres", type: "Fortified wine", value: 0.375, isOtherAmount: false, icon: "wineBottleSmall"},
+            {unit: "litres", type: "Fortified wine", value: 0.5, isOtherAmount: false, icon: "fortifiedWine"},
+            {unit: "litres", type: "Fortified wine", value: 0.75, isOtherAmount: false, icon: "fortifiedWine"},
+            {unit: "litres", type: "Fortified wine", value: '', isOtherAmount: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
             let product = globalState.getAlcoholOrTobacco(options[i].type, options[i].value, options[i].isOtherAmount);
-            if (product !== null) {
-                items.push(
-                    <AlcoholOrTobaccoItem
-                        key={items.length}
-                        type={options[i].type}
-                        isOtherAmount={options[i].isOtherAmount}
-                        icon={options[i].icon}
-                        value={product !== null ? product.value : options[i].value}
-                        amount={product.amount}
-                        productId={product.id}
-                        showNotification={this.showNotification}
-                    />
-                )
-            } else {
-                items.push(
-                    <AlcoholOrTobaccoItem
-                        key={items.length}
-                        type={options[i].type}
-                        value={options[i].value}
-                        isOtherAmount={options[i].isOtherAmount}
-                        icon={options[i].icon}
-                        amount={0}
-                        showNotification={this.showNotification}
-                    />
-                )
-            }
+            items.push(
+                <AlcoholOrTobaccoItem
+                    key={items.length}
+                    unit={options[i].unit}
+                    type={options[i].type}
+                    isOtherAmount={options[i].isOtherAmount}
+                    icon={options[i].icon}
+                    value={product !== null ? product.value : options[i].value}
+                    amount={product !== null ? product.amount : 0}
+                    productId={product !== null ? product.id : null}
+                    showNotification={this.showNotification}
+                />
+            )
         }
         return items;
     };
