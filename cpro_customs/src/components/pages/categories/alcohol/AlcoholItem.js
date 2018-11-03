@@ -140,18 +140,10 @@ class AlcoholItem extends Component {
                     amount: 0,
                 });
                 this.showRemovedNotification();
-            // update product value
+                // update product value
             } else {
                 globalState.updateProduct(id, "value", value);
             }
-        // add product to global state
-        } else {
-            const id = globalState.addAlcohol(this.props.type, value, 1, this.props.isPitcher);
-            this.setState({
-                productId: id,
-                amount: 1,
-            });
-            this.showAddedNotification(1);
         }
     };
 
