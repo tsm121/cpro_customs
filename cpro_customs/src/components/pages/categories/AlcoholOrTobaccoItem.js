@@ -183,8 +183,8 @@ class AlcoholOrTobaccoItem extends Component {
         }
         this.showRemovedNotification();
         const id = this.state.productId;
-        // product is removed from cart
         if (this.state.amount === 1 && this.state.product !== null) {
+            // remove product from cart
             globalState.removeProduct(id);
             this.setState({
                 amount: this.state.amount - 1,
@@ -196,8 +196,8 @@ class AlcoholOrTobaccoItem extends Component {
                     updateTriggered: false,
                 });
             }
-            // product is updated in cart
         } else {
+            // update product in cart
             globalState.updateProduct(id, "amount", this.state.amount - 1);
             this.setState({
                 amount: this.state.amount - 1,
@@ -208,7 +208,7 @@ class AlcoholOrTobaccoItem extends Component {
     /**
      * Increments the amount
      * @param globalState
-     * @param incr - how much shall the amount be incremented
+     * @param incr - how much the amount is incremented
      */
     handleIncrement = (globalState, incr) => {
         if (this.state.value === '') return;
@@ -248,6 +248,7 @@ class AlcoholOrTobaccoItem extends Component {
 
     /**
      * Shows a notification, stating that an item has been removed from cart
+     * @param value - the value
      */
     showRemovedNotificationWithValue = (value) => {
         this.props.showNotification("Removed 1x " + value + " " + this.props.unit + " of "
@@ -256,6 +257,8 @@ class AlcoholOrTobaccoItem extends Component {
 
     /**
      * Shows a notification, stating that an item has been updated in cart
+     * @param oldValue - the old value
+     * @param newValue - the new value
      */
     showUpdateNotification = (oldValue, newValue) => {
         this.props.showNotification("Updated " + this.props.type.toLocaleLowerCase() + " from " + oldValue + " "

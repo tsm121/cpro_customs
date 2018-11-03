@@ -32,6 +32,7 @@ class App extends Component {
     getProduct = this.getProduct.bind(this);
     removeProduct = this.removeProduct.bind(this);
     addGood = this.addGood.bind(this);
+    getGoods = this.getGoods.bind(this);
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
     findProductIndexById = this.findProductIndexById.bind(this);
@@ -71,6 +72,7 @@ class App extends Component {
      * @param value - the new value
      */
     updateProduct(id, field, value) {
+        if (id === undefined || id === null) throw "id undefined or null";
         let index = this.findProductIndexById(id);
         if (index === -1) return;
         const products = update(this.state.products, {
@@ -128,13 +130,27 @@ class App extends Component {
      */
     addGood(name, value, currency, amount) {
         let good = {
-            "type": "Goods",
+            "type": "Good",
             "name": name,
             "value": value,
             "currency": currency,
             "amount": amount,
         };
-        this.addProduct(good);
+        return this.addProduct(good);
+    }
+
+    /**
+     *
+     */
+    getGoods() {
+        const {products} = this.state;
+        let goods = [];
+        for (let i = 0; i < products.length; ++i) {
+            if (products[i].type.localeCompare('Good') === 0) {
+                goods.push(products[i]);
+            }
+        }
+        return goods;
     }
 
     /**
@@ -211,6 +227,7 @@ class App extends Component {
                     getProduct: this.getProduct,
                     removeProduct: this.removeProduct,
                     addGood: this.addGood,
+                    getGoods: this.getGoods,
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
                     only_for_testing: this.only_for_testing,
