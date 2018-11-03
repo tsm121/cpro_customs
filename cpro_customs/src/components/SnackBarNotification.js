@@ -30,7 +30,7 @@ function MySnackbarContent(props) {
                 <IconButton
                     key="close"
                     aria-label="Close"
-                    color="black"
+                    color="default"
                     onClick={onExited}
                 >
                     <CloseIcon/>
