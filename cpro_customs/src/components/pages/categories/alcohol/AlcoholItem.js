@@ -139,7 +139,7 @@ class AlcoholItem extends Component {
                 this.setState({
                     amount: 0,
                 });
-                this.props.showNotification("Removed 1x " + value + "l " + this.props.type + " from your declaration list");
+                this.showRemovedNotification();
             // update product value
             } else {
                 globalState.updateProduct(id, "value", value);
@@ -151,7 +151,7 @@ class AlcoholItem extends Component {
                 productId: id,
                 amount: 1,
             });
-            this.props.showNotification("Added 1x " + value + "l " + this.props.type + " to your declaration list");
+            this.showAddedNotification(1);
         }
     };
 
@@ -164,7 +164,7 @@ class AlcoholItem extends Component {
         if (this.state.amount <= 0) {
             return;
         }
-        this.props.showNotification("Removed 1x " + this.state.value + "l " + this.props.type + " from your declaration list");
+        this.showRemovedNotification();
         const id = this.state.productId;
         // product is removed from cart
         if (this.state.amount === 1 && this.state.product !== null) {
@@ -194,7 +194,7 @@ class AlcoholItem extends Component {
      */
     handleIncrement = (globalState, incr) => {
         if (this.state.value === '') return;
-        this.props.showNotification("Added " + incr + "x " + this.state.value + "l " + this.props.type + " to your declaration list");
+        this.showAddedNotification(incr);
         // product is added to cart
         if (this.state.amount === 0) {
             const id = globalState.addAlcohol(this.props.type, this.state.value, incr, this.props.isPitcher);
@@ -210,6 +210,25 @@ class AlcoholItem extends Component {
             amount: this.state.amount + incr,
         });
     };
+
+    /**
+     * Shows a notification, stating that items as been added to cart
+     * @param incr - the amount
+     */
+    showAddedNotification = (incr) => {
+        this.props.showNotification("Added " + incr + "x " + this.state.value + "l "
+            + this.props.type.toLocaleLowerCase() + " to your declaration list");
+    };
+
+    /**
+     * Shows a notification, stating that an item has been removed from cart
+     */
+    showRemovedNotification = () => {
+        this.props.showNotification("Removed 1x " + this.state.value + "l "
+            + this.props.type.toLocaleLowerCase() + " from your declaration list");
+    };
+
+
 }
 
 
