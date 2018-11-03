@@ -4,7 +4,7 @@ import update from 'immutability-helper';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 
 import theme from '../material-theme'
-import {GlobalState} from "./global_state/GlobalState";
+import {GlobalState} from "./context/GlobalState";
 import Header from './header/Header'
 import Router from './Router'
 import './App.css';

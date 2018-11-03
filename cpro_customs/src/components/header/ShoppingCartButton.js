@@ -3,7 +3,7 @@ import {withRouter} from "react-router";
 
 import {Icon, IconButton} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge/Badge";
-import {GlobalState} from "../global_state/GlobalState";
+import {GlobalState} from "../context/GlobalState";
 
 
 class ShoppingCartButton extends Component {

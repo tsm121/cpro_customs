@@ -8,7 +8,7 @@ import Table from "@material-ui/core/Table/Table";
 import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
-import {GlobalState} from "../../global_state/GlobalState";
+import {GlobalState} from "../../context/GlobalState";
 import Button from "@material-ui/core/Button/Button";
 
 

@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField/TextField";
 
 import ImgBadge from "../../../ImgBadge";
 import PlusMinusButtons from "../PlusMinusButtons";
-import {GlobalState} from "../../../global_state/GlobalState";
+import {GlobalState} from "../../../context/GlobalState";
 
 
 class AlcoholItem extends Component {

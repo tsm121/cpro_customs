@@ -5,7 +5,8 @@ import Grid from "@material-ui/core/Grid/Grid";
 import PageTitle from "../PageTitle";
 import AlcoholItem from "./AlcoholItem";
 import TollInfoBanner from "../TollInfoBanner";
-import {GlobalState} from "../../../global_state/GlobalState";
+import {GlobalState} from "../../../context/GlobalState";
+import {showNotification, closeNotification, exitNotification} from "../../../context/NotificationContext";
 import SnackBarNotification from "../../../SnackBarNotification";
 
 
@@ -18,9 +19,9 @@ class Beer extends Component {
             openNotification: false,
             notificationMessage: "",
         };
-        this.closeNotification = this.closeNotification.bind(this);
-        this.exitNotification = this.exitNotification.bind(this);
-        this.showNotification = this.showNotification.bind(this);
+        this.showNotification = showNotification.bind(this);
+        this.closeNotification = closeNotification.bind(this);
+        this.exitNotification = exitNotification.bind(this);
     }
 
     render = () => {
@@ -50,7 +51,7 @@ class Beer extends Component {
         );
     };
 
-    drawItems = (globalState) => {
+    drawItems = (globalState, notificationContext) => {
         let options = [
             {category: "Beer", value: 0.33, isPitcher: false, icon: "beerCanSmall"},
             {category: "Beer", value: 0.5, isPitcher: false, icon: "beerCanBig"},
@@ -89,58 +90,7 @@ class Beer extends Component {
         return items;
     };
 
-    /**
-     * Handles show notification
-     * @param message - the notification message being displayed
-     * @return {Function}
-     */
-    showNotification = message => {
-        // only show notification if the queue is not too full
-        if (this.notificationQueue.length <= 1) {
-            this.notificationQueue.push(message);
-        }
-        if (this.state.openNotification) {
-            // immediately begin dismissing current message
-            // to start showing new one
-            this.setState({openNotification: false});
-        } else {
-            this.processQueue();
-        }
-    };
 
-    /**
-     * Handles close notification
-     * @param event
-     * @param reason
-     */
-    closeNotification = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
-        this.setState({openNotification: false});
-    };
-
-    /**
-     * Handles exit snackbar notification
-     */
-    exitNotification = () => {
-        this.processQueue();
-    };
-
-
-    /**
-     * Shows next notification if there is one, else hides snackbar
-     */
-    processQueue = () => {
-        if (this.notificationQueue.length > 0) {
-            this.setState({
-                notificationMessage: this.notificationQueue.shift(),
-                openNotification: true,
-            });
-        } else {
-            this.setState({openNotification: false});
-        }
-    };
 }
 
 export default Beer;

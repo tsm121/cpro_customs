@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid/Grid";
 import PageTitle from "../PageTitle";
 import SubCategory from "../SubCategory";
 import Button from "@material-ui/core/Button/Button";
-import {GlobalState} from "../../../global_state/GlobalState";
+import {GlobalState} from "../../../context/GlobalState";
 
 
 class Alcohol extends Component {
