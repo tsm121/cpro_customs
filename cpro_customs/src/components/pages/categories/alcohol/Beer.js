@@ -89,12 +89,6 @@ class Beer extends Component {
         return items;
     };
 
-    removeAllBeer = (globalState) => {
-        // reset global state
-        globalState.removeAllElementsOfType('Beer');
-        this.forceUpdate();
-    };
-
     /**
      * Handles show notification
      * @param message - the notification message being displayed

@@ -6,7 +6,6 @@ import {AppBar, Toolbar, Grid, FormControl, Modal} from '@material-ui/core';
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
-import HeaderButton from "./HeaderButton";
 import ShoppingCartButton from "./ShoppingCartButton";
 import {GlobalState} from "../global_state/GlobalState";
 
