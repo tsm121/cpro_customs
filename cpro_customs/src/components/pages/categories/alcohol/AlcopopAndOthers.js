@@ -55,7 +55,7 @@ class AlcopopAndOthers extends Component {
         let options = [
             {category: "Alcopop and others", value: 0.33, isPitcher: false, icon: "beerCanSmall"},
             {category: "Alcopop and others", value: 0.5, isPitcher: false, icon: "beerCanBig"},
-            {category: "Alcopop and others", value: '', isPitcher: true, icon: null},
+            {category: "Alcopop and others", value: '', isPitcher: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
