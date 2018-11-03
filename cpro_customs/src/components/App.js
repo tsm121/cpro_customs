@@ -148,15 +148,17 @@ class App extends Component {
      * @param liters - how many litres, e.g. 0.5
      * @param amount - amount of items, e.g. 6
      * @param isPitcher - true when pitcher
+     * @param icon - the icon name
      * @return the id of the product
      */
-    addAlcohol(type, liters, amount, isPitcher) {
+    addAlcohol(type, liters, amount, isPitcher, icon) {
         let item = {
             "type": type,
             "value": liters,
             "unit": "litre",
             "amount": amount,
             "isPitcher": isPitcher,
+            "icon": icon,
         };
         return this.addProduct(item);
     }

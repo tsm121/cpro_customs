@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 
@@ -10,12 +10,28 @@ import './ShoppingCartStyle.css';
 class IconAndAmount extends Component {
 
     render = () => {
-        const { type, amount, unit } = this.props;
+        const {icon, amount, unit} = this.props;
         const icons = {
-            "Beer": "beer_can_big_dark_grey",
-            // TODO: add other icons. The idea is that the icon gets selected based on the category of the item
-            // TODO: the category string has to be passed trough this.props.category to this component
+            "archive": "archive_dark_grey",
+            "beerCanSmall": "beer_can_small_dark_grey",
+            "beerCanBig": "beer_can_big_dark_grey",
+            "wineBottleSmall": "wine_dark_grey",
+            "wineBottleBig": "wine_bottle_big_dark_grey",
+            "fortifiedWine": "fortified_wine_dark_grey",
+            "spirits": "spirits_dark_grey",
+            "pitcher": "pitcher_dark_grey",
+            "cigarettes": "cigarettes_dark_grey",
+            "snus": "snus_dark_grey",
+            "pipe": "pipe_dark_grey",
+            "cigar": "cigar_dark_grey",
+            "cigarettePaper": "cigarette_paper_dark_grey",
+            "weight": "weight_dark_grey",
+            "dog": "dog_dark_grey",
+            "horse": "horse_dark_grey",
+            "other": "animal_dark_grey",
+            "shoppingCart": "shopping-cart_dark_grey.png",
         };
+
         return (
             <div>
                 <Grid container style={{marginTop: '5px', marginBottom: '5px', padding: '0'}}
@@ -25,7 +41,7 @@ class IconAndAmount extends Component {
                 >
                     <Grid item>
                         <img className={"iconAmount_img"}
-                             src={require(`assets/img/icons/512x512/${icons[type]}.png`)}
+                             src={require(`assets/img/icons/512x512/${icons[icon]}.png`)}
                              alt={"icon"}
                         />
                     </Grid>
@@ -48,8 +64,6 @@ IconAndAmount.propTypes = {
     unit: PropTypes.string.required,
 };
 
-IconAndAmount.defaultProps = {
-
-};
+IconAndAmount.defaultProps = {};
 
 export default withRouter(IconAndAmount);

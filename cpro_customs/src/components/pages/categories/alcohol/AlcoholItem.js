@@ -189,7 +189,7 @@ class AlcoholItem extends Component {
         this.showAddedNotification(incr);
         // product is added to cart
         if (this.state.amount === 0) {
-            const id = globalState.addAlcohol(this.props.type, this.state.value, incr, this.props.isPitcher);
+            const id = globalState.addAlcohol(this.props.type, this.state.value, incr, this.props.isPitcher, this.props.icon);
             this.setState({
                 productId: id,
             });

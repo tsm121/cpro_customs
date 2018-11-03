@@ -42,7 +42,7 @@ class SubTable extends Component{
                                         <TableRow key={item.id}>
                                             {item.id}
                                             <TableCell component="th" scope="row" className={"picture_column"}>
-                                                <IconAndAmount type={item.type} amount={item.amount} unit={item.unit}/>
+                                                <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
                                             </TableCell>
                                             <TableCell className={"table_column category_column"}>{item.category}</TableCell>
                                             <TableCell numeric className={"table_column"}>{item.value} kr</TableCell>

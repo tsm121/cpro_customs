@@ -51,11 +51,11 @@ class Beer extends Component {
         );
     };
 
-    drawItems = (globalState, notificationContext) => {
+    drawItems = (globalState) => {
         let options = [
             {category: "Beer", value: 0.33, isPitcher: false, icon: "beerCanSmall"},
             {category: "Beer", value: 0.5, isPitcher: false, icon: "beerCanBig"},
-            {category: "Beer", value: '', isPitcher: true, icon: null},
+            {category: "Beer", value: '', isPitcher: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
