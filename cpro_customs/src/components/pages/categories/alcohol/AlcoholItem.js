@@ -107,6 +107,9 @@ class AlcoholItem extends Component {
                                                 handleDecrement={() => this.handleDecrement(globalState)}
                                                 handleIncrement={() => this.handleIncrement(globalState, 1)}
                                                 handlePlusFive={() => this.handleIncrement(globalState, 5)}
+                                                disableMinusButton={this.state.amount === 0}
+                                                disablePlusButton={this.props.isPitcher && this.state.value === ''}
+                                                disablePlusFiveButton={this.props.isPitcher && this.state.value === ''}
                                             />
                                         </Grid>
                                     </Grid>
