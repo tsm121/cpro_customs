@@ -259,7 +259,7 @@ class AlcoholItem extends Component {
      */
     showUpdateNotification = (oldValue, newValue) => {
         this.props.showNotification("Updated " + this.props.type.toLocaleLowerCase() + " from " + oldValue + "l to "
-            + newValue + "l " + " in your declaration list");
+            + newValue + "l  in your declaration list");
     }
 
 }
