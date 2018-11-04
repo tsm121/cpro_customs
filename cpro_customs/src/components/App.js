@@ -135,6 +135,7 @@ class App extends Component {
             "value": value,
             "currency": currency,
             "amount": amount,
+            "icon": "good",
         };
         return this.addProduct(good);
     }

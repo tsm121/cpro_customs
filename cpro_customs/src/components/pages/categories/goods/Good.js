@@ -17,6 +17,7 @@ import update from "immutability-helper";
 class Good extends Component {
     state = {
         good: this.props.good,
+        updateTriggered: false,
     };
 
     render = () => {
@@ -101,7 +102,6 @@ class Good extends Component {
                                                     </Grid>
                                                 </Grid>
                                                 <Grid item xs={12} sm={3} md={3}>
-                                                    {good.id}
                                                     <PlusMinusButtons
                                                         handleDecrement={() => this.handleDecrement(globalState)}
                                                         handleIncrement={() => this.handleIncrement(globalState, 1)}
@@ -134,17 +134,40 @@ class Good extends Component {
     /**
      * Handles change of "name", "value" and "currency"
      * @param globalState
-     * @param name
+     * @param field - the field that will be changed
      * @return {Function}
      */
-    handleChange = (globalState, name) => event => {
-        const value = event.target.value;
+    handleChange = (globalState, field) => event => {
+        const newValue = event.target.value;
+        const oldGood = this.state.good;
+        const {id, amount} = this.state.good;
+
+        // change locally
         const good = update(this.state.good, {
-            [name]: {$set: value},
+            [field]: {$set: newValue},
         });
         this.setState({
             good: good,
         });
+
+        // change globally
+        if (amount > 0) {
+            globalState.updateProduct(id, field, this.state.good[field]);
+            if (!this.state.updateTriggered) {
+                this.setState({
+                    updateTriggered: true,
+                });
+                setTimeout(() => {
+                        if (amount > 0) {
+                            this.showUpdateNotification(oldGood);
+                            this.setState({
+                                updateTriggered: false,
+                            });
+                        }
+                    }, 2000
+                );
+            }
+        }
     };
 
     /**
@@ -152,20 +175,23 @@ class Good extends Component {
      * @param globalState
      */
     handleDecrement(globalState) {
-        const {id, name, value, amount, currency} = this.state.good;
+        const {id, amount} = this.state.good;
         if (amount <= 0) return;
         if (amount === 1 && id !== null) {
             // remove product from cart
             globalState.removeProduct(id);
+            this.showDecrementNotification();
         } else {
             // update product in cart
             globalState.updateProduct(id, "amount", amount - 1);
+            // and locally
             const good = update(this.state.good, {
                 amount: {$set: amount - 1},
             });
             this.setState({
                 good: good,
             });
+            this.showDecrementNotification();
         }
     };
 
@@ -203,11 +229,35 @@ class Good extends Component {
         this.showAddedNotification(incr);
     };
 
+    /**
+     * Shows a notification stating that the good has been added to cart
+     * @param incr - how much amount was added
+     */
     showAddedNotification(incr) {
         const {good} = this.state;
         this.props.showNotification("Added " + incr + "x " + good.name + " with value of " + good.value
             + " " + good.currency + " to your declaration list");
     };
+
+    /**
+     * Shows a notification stating that the amount of the good has been decremented
+     */
+    showDecrementNotification() {
+        const {good} = this.state;
+        this.props.showNotification("Removed 1x " + good.name + " with value of " + good.value
+            + " " + good.currency + " from your declaration list");
+    }
+
+    /**
+     * Shows a notification, stating that an item has been updated in cart
+     * @param oldGood - the state of the good before update was initiated
+     */
+    showUpdateNotification = (oldGood) => {
+        const {name, value, currency} = this.state.good;
+        let message = "Changed " + oldGood.name + " " + oldGood.value + " " + oldGood.currency
+            + " to " + name + " " + value + " " + currency + " in your declaration list";
+        this.props.showNotification(message);
+    }
 
 }
 

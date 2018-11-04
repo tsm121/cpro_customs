@@ -30,6 +30,7 @@ class IconAndAmount extends Component {
             "horse": "horse_dark_grey",
             "other": "animal_dark_grey",
             "shoppingCart": "shopping-cart_dark_grey.png",
+            "good" : "archive_dark_grey",
         };
 
         return (
