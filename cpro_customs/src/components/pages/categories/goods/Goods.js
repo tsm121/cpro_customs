@@ -70,7 +70,7 @@ class Goods extends Component {
         for (let i = 0; i < goods.length; i++) {
             items.push(
                 <Good
-                    key={i}
+                    key={goods[i].id}
                     good={goods[i]}
                     showNotification={this.showNotification}
                 />

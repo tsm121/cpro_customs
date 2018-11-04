@@ -157,19 +157,30 @@ class App extends Component {
         return goods;
     }
 
+    /**
+     * TODO add docu
+     * @param kind
+     * @param value
+     * @param currency
+     * @param amount
+     * @param contactedNFSA
+     * @param registeredAtNFSA
+     * @param horseHasOriginInEU
+     * @return {*|the}
+     */
     addBoughtAnimal(kind, value, currency, amount, contactedNFSA, registeredAtNFSA, horseHasOriginInEU) {
-        let boughtAnimal = {
-            type: "Bought Animal",
-            kind: kind,
-            value: value,
-            currency: currency,
-            amount: amount,
-            contactedNFSA: contactedNFSA,
-            registeredAtNFSA: registeredAtNFSA,
-            horseHasOriginInEU: horseHasOriginInEU,
-            icon: kind.localeCompare("other") === 0 ? "animal" : kind,
+        let animal = {
+            "type": "Bought Animal",
+            "kind": kind,
+            "value": value,
+            "currency": currency,
+            "amount": amount,
+            "contactedNFSA": contactedNFSA,
+            "registeredAtNFSA": registeredAtNFSA,
+            "horseHasOriginInEU": horseHasOriginInEU,
+            "icon": kind.localeCompare("other") === 0 ? "animal" : kind,
         };
-        return this.addProduct(boughtAnimal);
+        return this.addProduct(animal);
     }
 
     /**

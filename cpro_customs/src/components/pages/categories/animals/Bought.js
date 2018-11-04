@@ -6,12 +6,10 @@ import Modal from "@material-ui/core/Modal/Modal";
 import PageTitle from "../PageTitle";
 import BoughtItem from "./BoughtItem";
 import {GlobalState} from "../../../context/GlobalState";
+import Button from "@material-ui/core/Button/Button";
 
 
 class Bought extends Component {
-    state = {
-        showDogInfoModal: false,
-    };
 
     constructor(props) {
         super(props);
@@ -29,15 +27,24 @@ class Bought extends Component {
                 {globalState => (
                     <div>
                         <PageTitle title={"I bought an animal abroad"}/>
-                        <Grid container direction={"column"} spacing={16}>
+                        <Grid container
+                              justify={"center"}
+                              alignItems={"center"}
+                              spacing={16}
+                              direction={"column"}
+                        >
+                            <Button onClick={() => {console.log(globalState.products);}}>
+                                Print global state
+                            </Button>
                             {this.drawBoughtItems(globalState)}
                             <BoughtItem
+                                key={-1}
+                                kindSelected={false}
                                 animal={{
-                                    kindSelected: false,
                                     kind: 'other',
                                     value: '',
                                     currency: 'NOK',
-                                    amount: 1,
+                                    amount: 0,
                                     contactedNFSA: false,
                                     registeredAtNFSA: false,
                                     horseHasOriginInEU: false,
@@ -87,53 +94,19 @@ class Bought extends Component {
     };
 
     drawBoughtItems = (globalState) => {
-        const animals = globalState.getBoughtAnimals();
         let items = [];
+        const animals = globalState.getBoughtAnimals();
         for (let i = 0; i < animals.length; i++) {
-            console.log(i);
-            console.log(animals[i]);
             items.push(
                 <BoughtItem
-                    key={i}
+                    key={animals[i].id}
+                    kindSelected={true}
                     animal={animals[i]}
                     showInfoModal={this.handleDogInfoModalOpen}
                 />
             );
         }
         return items;
-    };
-
-    handleAddAnimal = () => {
-        let animals = this.state.animals;
-        animals.push({
-            kindSelected: false,
-            kind: 'other',
-            value: '',
-            currency: 'NOK',
-            amount: 0,
-            contactedNFSA: false,
-            registeredAtNFSA: false
-        });
-        this.setState({
-            animals: animals,
-        });
-    };
-
-    handleDecrement = (key) => {
-        if (this.state.animals[key].amount <= 0) return;
-        let animals = this.state.animals;
-        animals[key].amount = animals[key].amount - 1;
-        this.setState({
-            animals: animals,
-        });
-    };
-
-    handleIncrement = (key) => {
-        let animals = this.state.animals;
-        animals[key].amount = animals[key].amount + 1;
-        this.setState({
-            animals: animals,
-        });
     };
 
     handleDogInfoModalOpen = () => {

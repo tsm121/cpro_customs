@@ -201,12 +201,11 @@ class Good extends Component {
      * @param incr - how much the amount is incremented
      */
     handleIncrement = (globalState, incr) => {
-        const {name, value, currency, amount} = this.state.good;
-        let id = this.state.good.id;
+        const {id, name, value, currency, amount} = this.state.good;
         if (amount === 0) {
             // this is the special case of the good element not being in global state !
             // product is added to cart
-            id = globalState.addGood(name, value, currency, incr);
+            globalState.addGood(name, value, currency, incr);
             // reset state of this special "new good"
             this.setState({
                 good: {
