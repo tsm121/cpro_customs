@@ -27,16 +27,19 @@ class App extends Component {
      * bind functions to be able to change the App.js state
      */
     totalAmount = this.totalAmount.bind(this);
+    findProductIndexById = this.findProductIndexById.bind(this);
+    removeAllElementsOfType = this.removeAllElementsOfType.bind(this);
     addProduct = this.addProduct.bind(this);
     updateProduct = this.updateProduct.bind(this);
     getProduct = this.getProduct.bind(this);
     removeProduct = this.removeProduct.bind(this);
     addGood = this.addGood.bind(this);
     getGoods = this.getGoods.bind(this);
+    addBoughtAnimal = this.addBoughtAnimal.bind(this);
+    getBoughtAnimals = this.getBoughtAnimals.bind(this);
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
-    findProductIndexById = this.findProductIndexById.bind(this);
-    removeAllElementsOfType = this.removeAllElementsOfType.bind(this);
+
 
     /**
      * Counts the total amount of items
@@ -141,7 +144,7 @@ class App extends Component {
     }
 
     /**
-     *
+     * Returns all goods
      */
     getGoods() {
         const {products} = this.state;
@@ -152,6 +155,35 @@ class App extends Component {
             }
         }
         return goods;
+    }
+
+    addBoughtAnimal(kind, value, currency, amount, contactedNFSA, registeredAtNFSA, horseHasOriginInEU) {
+        let boughtAnimal = {
+            type: "Bought Animal",
+            kind: kind,
+            value: value,
+            currency: currency,
+            amount: amount,
+            contactedNFSA: contactedNFSA,
+            registeredAtNFSA: registeredAtNFSA,
+            horseHasOriginInEU: horseHasOriginInEU,
+            icon: kind.localeCompare("other") === 0 ? "animal" : kind,
+        };
+        return this.addProduct(boughtAnimal);
+    }
+
+    /**
+     * Returns all bought animals
+     */
+    getBoughtAnimals() {
+        const {products} = this.state;
+        let boughtAnimals = [];
+        for (let i = 0; i < products.length; ++i) {
+            if (products[i].type.localeCompare('Bought Animal') === 0) {
+                boughtAnimals.push(products[i]);
+            }
+        }
+        return boughtAnimals;
     }
 
     /**
@@ -223,17 +255,19 @@ class App extends Component {
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
                     totalAmount: this.totalAmount,
+                    findProductIndexById: this.findProductIndexById,
+                    removeAllElementsOfType: this.removeAllElementsOfType,
                     addProduct: this.addProduct,
                     updateProduct: this.updateProduct,
                     getProduct: this.getProduct,
                     removeProduct: this.removeProduct,
                     addGood: this.addGood,
                     getGoods: this.getGoods,
+                    addBoughtAnimal: this.addBoughtAnimal,
+                    getBoughtAnimals: this.getBoughtAnimals,
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
-                    only_for_testing: this.only_for_testing,
-                    findProductIndexById: this.findProductIndexById,
-                    removeAllElementsOfType: this.removeAllElementsOfType,
+
                 }}
             >
                 <div>
