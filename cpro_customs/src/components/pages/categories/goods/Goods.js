@@ -20,7 +20,6 @@ class Goods extends Component {
         this.state = {
             openNotification: false,
             notificationMessage: "",
-            showEmptyGood: true,
         };
         this.showNotification = showNotification.bind(this);
         this.closeNotification = closeNotification.bind(this);
@@ -39,6 +38,9 @@ class Goods extends Component {
                         <Button onClick={() => {
                             this.forceUpdate();
                         }}>Force Update</Button>
+                        <Button onClick={() => {
+                            this.addAGoodToGlobalState(globalState);
+                        }}>Add a good to globalstate</Button>
                         <Grid container
                               justify={"center"}
                               alignItems={"center"}
@@ -47,40 +49,15 @@ class Goods extends Component {
                         >
                             {this.drawItems(globalState)}
                             <Good
-                                key={9999}
+                                key={-1}
                                 good={{
                                     "name": '',
                                     "value": '',
                                     "currency": 'NOK',
-                                    amount: 0,
+                                    "amount": 0,
                                 }}
                                 showNotification={this.showNotification}
                             />
-                            <Grid item xs={12} sm={12} md={12}>
-                                <Grid container spacing={8} onClick={this.handleNewGood}>
-                                    <Grid item xs={12}>
-                                        <Grid container justify={"center"} alignItems={"center"}>
-                                            <Button
-                                                className={"cdp_button_round"}
-                                                variant="fab"
-                                                color="default"
-                                                disabled={this.state.showEmptyGood}
-                                            >
-                                                <AddIcon className={"add_unit_icon"}/>
-                                            </Button>
-                                        </Grid>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Grid container justify={"center"} alignItems={"center"}>
-                                            {
-                                                !this.state.showEmptyGood ?
-                                                    <span>New good</span>
-                                                    : ""
-                                            }
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
                         </Grid>
                         <SnackBarNotification
                             open={this.state.openNotification}
@@ -94,12 +71,9 @@ class Goods extends Component {
         );
     };
 
-    /*
-    handleNewGood = () => {
-        this.setState({
-            showEmptyGood: !this.state.showEmptyGood,
-        });
-    };*/
+    addAGoodToGlobalState = (globalState) => {
+        globalState.addGood("Test", Math.random(), 'NOK', 3);
+    };
 
     drawItems = (globalState) => {
         let items = [];

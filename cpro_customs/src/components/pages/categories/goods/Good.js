@@ -108,14 +108,14 @@ class Good extends Component {
                                                         handlePlusFive={() => this.handleIncrement(globalState, 5)}
                                                         disableMinusButton={good.amount === 0}
                                                         disablePlusButton={
-                                                            good.name.localeCompare('') === 0
-                                                            || good.value.localeCompare('') === 0
-                                                            || good.value.localeCompare('0') === 0
+                                                            good.name === ''
+                                                            || good.value === ''
+                                                            || good.value === '0'
                                                         }
                                                         disablePlusFiveButton={
-                                                            good.name.localeCompare('') === 0
-                                                            || good.value.localeCompare('') === 0
-                                                            || good.value.localeCompare('0') === 0
+                                                            good.name === ''
+                                                            || good.value === ''
+                                                            || good.value === '0'
                                                         }
                                                     />
                                                 </Grid>
@@ -178,6 +178,7 @@ class Good extends Component {
         const {name, value, currency, amount} = this.state.good;
         let id = this.state.good.id;
         if (amount === 0) {
+            // this is the special case of the good element not being in global state !
             // product is added to cart
             id = globalState.addGood(name, value, currency, incr);
             // reset state of this special "new good"
