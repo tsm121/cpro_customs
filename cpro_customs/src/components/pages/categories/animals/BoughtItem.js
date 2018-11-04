@@ -226,8 +226,13 @@ class BoughtItem extends Component {
                                                             <PlusMinusButtons
                                                                 handleDecrement={() => this.handleDecrement(globalState)}
                                                                 handleIncrement={() => this.handleIncrement(globalState)}
-                                                                disableMinusButton={false}
-                                                                disablePlusButton={false}
+                                                                disableMinusButton={animal.amount === 0}
+                                                                disablePlusButton={
+                                                                    animal.name === ''
+                                                                    || animal.value === '' || animal.value === '0'
+                                                                    || !animal.contactedNFSA
+                                                                    || (animal.kind.localeCompare("horse") === 0 && !animal.registeredAtNFSA)
+                                                                }
                                                                 showPlusFiveButton={false}
                                                             />
                                                         </Grid>
