@@ -6,18 +6,25 @@ import Modal from "@material-ui/core/Modal/Modal";
 import PageTitle from "../PageTitle";
 import BoughtItem from "./BoughtItem";
 import {GlobalState} from "../../../context/GlobalState";
-import Button from "@material-ui/core/Button/Button";
+import {closeNotification, exitNotification, showNotification} from "../../../context/NotificationContext";
+import SnackBarNotification from "../../../SnackBarNotification";
 
 
 class Bought extends Component {
+    notificationQueue = [];
 
     constructor(props) {
         super(props);
         this.state = {
             showDogInfoModal: false,
+            openNotification: false,
+            notificationMessage: "",
         };
 
         this.handleDogInfoModalOpen = this.handleDogInfoModalOpen.bind(this);
+        this.showNotification = showNotification.bind(this);
+        this.closeNotification = closeNotification.bind(this);
+        this.exitNotification = exitNotification.bind(this);
     }
 
 
@@ -33,9 +40,6 @@ class Bought extends Component {
                               spacing={16}
                               direction={"column"}
                         >
-                            <Button onClick={() => {console.log(globalState.products);}}>
-                                Print global state
-                            </Button>
                             {this.drawBoughtItems(globalState)}
                             <BoughtItem
                                 key={-1}
@@ -50,6 +54,7 @@ class Bought extends Component {
                                     horseHasOriginInEU: false,
                                 }}
                                 showInfoModal={this.handleDogInfoModalOpen}
+                                showNotification={this.showNotification}
                             />
                         </Grid>
                         <Modal
@@ -87,6 +92,12 @@ class Bought extends Component {
                                 </Grid>
                             </div>
                         </Modal>
+                        <SnackBarNotification
+                            open={this.state.openNotification}
+                            message={this.state.notificationMessage}
+                            onClose={this.closeNotification}
+                            onExited={this.exitNotification}
+                        />
                     </div>
                 )}
             </GlobalState.Consumer>
@@ -103,6 +114,7 @@ class Bought extends Component {
                     kindSelected={true}
                     animal={animals[i]}
                     showInfoModal={this.handleDogInfoModalOpen}
+                    showNotification={this.showNotification}
                 />
             );
         }

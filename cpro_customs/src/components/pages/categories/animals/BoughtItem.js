@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import update from "immutability-helper";
 
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from "@material-ui/core/Paper/Paper";
@@ -17,7 +18,6 @@ import {CURRENCIES} from "../../../../data/Currencies";
 import {TOOL_TIP_TEXTS} from "../../../../data/ToolTipTexts";
 import PlusMinusButtons from "../PlusMinusButtons";
 import {GlobalState} from "../../../context/GlobalState";
-import update from "immutability-helper";
 
 
 class BoughtItem extends Component {
@@ -150,7 +150,7 @@ class BoughtItem extends Component {
                                                 {
                                                     animal.kind === "horse" ?
                                                         [
-                                                            <Grid container alignItems={"center"}>
+                                                            <Grid container alignItems={"center"} key={0}>
                                                                 <Grid item xs={10}>
                                                                     <FormControlLabel
                                                                         control={
@@ -169,7 +169,7 @@ class BoughtItem extends Component {
                                                                         placement={"top"}/>
                                                                 </Grid>
                                                             </Grid>,
-                                                            <Grid container alignItems={"center"}>
+                                                            <Grid container alignItems={"center"} key={1}>
                                                                 <Grid item xs={10}>
                                                                     <FormControlLabel
                                                                         control={
@@ -344,18 +344,30 @@ class BoughtItem extends Component {
         this.showAddedNotification();
     };
 
-    showRemovedNotification() {
-        // TODO
+    /**
+     * Shows a notification stating that the animal has been added to cart
+     */
+    showAddedNotification() {
+        const {animal} = this.state;
+        this.props.showNotification("Added 1x " + animal.kind + " with value of " + animal.value
+            + " " + animal.currency + " to your declaration list");
     }
 
-    showAddedNotification() {
-        // TODO
+    /**
+     * Shows a notification stating that the amount of the animal has been decremented
+     */
+    showRemovedNotification() {
+        const {animal} = this.state;
+        this.props.showNotification("Removed 1x " + animal.kind + " with value of " + animal.value
+            + " " + animal.currency + " from your declaration list");
     }
 }
 
 BoughtItem.propTypes = {
     animal: PropTypes.object,
+    kindSelected: PropTypes.bool,
     showInfoModal: PropTypes.any,
+    showNotification: PropTypes.any,
 };
 
 export default BoughtItem;

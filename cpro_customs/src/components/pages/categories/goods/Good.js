@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import update from "immutability-helper";
+import PropTypes from "prop-types";
 
 import Paper from "@material-ui/core/Paper/Paper";
 import Grid from "@material-ui/core/Grid/Grid";
@@ -8,10 +10,8 @@ import MenuItem from "@material-ui/core/MenuItem/MenuItem";
 
 import ImgBadge from "../../../ImgBadge";
 import PlusMinusButtons from "../PlusMinusButtons";
-
 import {CURRENCIES} from "../../../../data/Currencies";
 import {GlobalState} from "../../../context/GlobalState";
-import update from "immutability-helper";
 
 
 class Good extends Component {
@@ -259,5 +259,10 @@ class Good extends Component {
     }
 
 }
+
+Good.propTypes = {
+    good: PropTypes.object,
+    showNotification: PropTypes.any,
+};
 
 export default Good;
