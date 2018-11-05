@@ -1,15 +1,16 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {withRouter} from "react-router";
 
-import { AppBar, Toolbar, Grid, FormControl, Modal } from '@material-ui/core';
+import {AppBar, Toolbar, Grid, FormControl, Modal} from '@material-ui/core';
 
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
+import ShoppingCartButton from "./ShoppingCartButton";
+import {GlobalState} from "../context/GlobalState";
 import InputFields from "../InputFields";
 
-
-class Header extends Component  {
+class Header extends Component {
     constructor() {
         super();
 
@@ -58,14 +59,24 @@ class Header extends Component  {
                                 }
                             </Grid>
 
-                            <Grid item xs={2}>
+                            <Grid item xs={4}>
                                 <Grid container
                                       justify={"center"}
                                       alignItems={"center"}
                                 >
-                                    <SettingsButton
-                                        onClick={this.openModal}
-                                    />
+                                    <Grid item xs={12} sm={7} md={7}>
+                                        <Grid container
+                                              justify={"flex-end"}
+                                              alignItems={"center"}
+                                        >
+                                            <GlobalState.Consumer>
+                                                {globalState => (
+                                                    globalState.products.length > 0 ? <ShoppingCartButton/> : ""
+                                                )}
+                                            </GlobalState.Consumer>
+                                            <SettingsButton onClick={this.openModal}/>
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>

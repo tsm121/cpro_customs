@@ -18,17 +18,16 @@ body {
 }
 
 a {
-    outline : none;
+    outline: none;
 }
 
 a img {
-    outline : none;
+    outline: none;
 }
 
 :focus {
     outline: 0 !important;
 }
-
 
 .header_container{
     margin-bottom: 3em !important;
@@ -298,7 +297,7 @@ h4.cdp {
     margin-top: 0;
     text-transform: uppercase;
     font-size: 1.7vmin;
-    color:#888888;
+    color: #888888;
     font-weight: bold;
 }
 
@@ -306,13 +305,12 @@ h4.cdp {
     font-size: 2vmin;
 }
 
-
 span.cdp_icon_round_label {
     font-size: 1.5em;
     font-weight: 100;
 }
 
-.add_remove_icon{
+.add_remove_icon {
     font-size: 1.2em !important;
 
 }
@@ -342,6 +340,13 @@ span.cdp_icon_round_label {
     margin-left: 2px !important;
 }
 
+.cdp_button_round_decrement:disabled,
+.cdp_button_round_decrement[disabled] {
+    background-color: white !important;
+    color: #e2e3e5 !important;
+    border: 1px #e2e3e5 solid !important;
+}
+
 .cdp_button_round:hover {
     transition: all 300ms ease-in-out;
     background-color: #ffd200 !important;
@@ -363,7 +368,6 @@ span.cdp_icon_round_label {
 .cdp_input_field {
     margin: 8px !important;
 }
-
 
 /*
     icons
@@ -424,8 +428,6 @@ div.cdp_sub_selection_max_width_grid_item {
     7px 7px 9px 0px rgba(0, 0, 0, 0.14),
     9px 9px 12px -4px rgba(0, 0, 0, 0.12);
 }
-
-
 
 /*
     custom components that are used in multiple other components
@@ -491,9 +493,9 @@ div.cdp_sub_selection_max_width_grid_item {
 
 .payment_content_container {
     min-width: 20em;
-}   
+}
 
-.MuiGrid-container-45.MuiGrid-spacing-xs-32-70{
+.MuiGrid-container-45.MuiGrid-spacing-xs-32-70 {
     width: 100% !important;
 }
 
@@ -562,7 +564,7 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .modal {
         max-width: 70%;
-        width:70%;
+        width: 70%;
     }
 
     .flag_img {
@@ -583,7 +585,7 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 2.3vw;
     }
 
-    .add_remove_icon{
+    .add_remove_icon {
         font-size: 1.8vw !important;
 
     }
@@ -674,14 +676,14 @@ div.cdp_sub_selection_max_width_grid_item {
     .modal {
         max-width: 80%;
         width: 80%;
-        top:40%;
+        top: 40%;
     }
 
     span.cdp_icon_round_label {
         font-size: 2.2vmax;
     }
 
-    .add_remove_icon{
+    .add_remove_icon {
         font-size: 1.7vmax !important;
 
     }
