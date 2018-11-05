@@ -9,7 +9,7 @@ class TotalTable extends Component{
         const { totalSum } = this.props
         return(
             <div>
-                <Grid container
+                <Grid container style={{marginBottom: '30px'}}
                       direction={"column"}
                       alignItems={"center"}
                       justify={"center"}
