@@ -14,7 +14,7 @@ import Button from "@material-ui/core/Button/Button";
 
 class SubTable extends Component{
     render = () => {
-        const { isPayTable } = this.props
+        const { isPayTable, payItems, freeItems } = this.props
         return(
             <div>
                 <GlobalState.Consumer>
@@ -38,9 +38,8 @@ class SubTable extends Component{
 
                                 <TableBody>
                                     <Button onClick={() => cart.addGoodToCart('kitchen', 5000, 'NOK', 1)}> Add Good</Button>
-                                    {cart.products.map((item, index) => (
-                                        <TableRow key={item.uid}>
-                                            {item.uid}
+                                    {(this.renderItems()).map((item, index) => (
+                                        <TableRow key={item.id}>
                                             <TableCell component="th" scope="row" className={"picture_column"}>
                                                 <IconAndAmount filename={item.filename} amount={item.amount} unit={item.unit}/>
                                             </TableCell>

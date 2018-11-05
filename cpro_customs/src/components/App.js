@@ -11,7 +11,6 @@ import Router from './Router'
 
 
 let productId = 0;
-
 function createRows(category, filename, amount, unit, value, vat, duty) {
     productId++;
     return {id: productId, category, filename, amount, unit, value, vat, duty};

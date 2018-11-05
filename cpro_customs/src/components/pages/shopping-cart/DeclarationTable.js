@@ -8,7 +8,7 @@ import SubTable from "./SubTable";
 class DeclarationTable extends Component{
 
     render = () => {
-        const {items} = this.props
+        const {items, payItems, freeItems} = this.props
         return(
             <div>
                 <Paper className={"paper"}>
@@ -24,8 +24,8 @@ class DeclarationTable extends Component{
 
                     </Grid>
 
-                    <SubTable isPayTable={true} payItems={items}/>
-                    <SubTable isPayTable={false} freeItems={items}/>
+                    <SubTable isPayTable={true} payItems={payItems} freeItems={freeItems}/>
+                    <SubTable isPayTable={false} payItems={payItems} freeItems={freeItems}/>
 
                 </Paper>
                 <Paper className={'paper'} style={{marginTop: "20px"}}>
