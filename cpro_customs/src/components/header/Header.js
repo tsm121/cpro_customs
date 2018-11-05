@@ -8,6 +8,7 @@ import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
 import ShoppingCartButton from "./ShoppingCartButton";
 import {GlobalState} from "../context/GlobalState";
+import InputFields from "../InputFields";
 
 class Header extends Component {
     constructor() {
@@ -35,10 +36,10 @@ class Header extends Component {
     render = () => {
         const {pathname} = this.props.location;
         return (
-            <FormControl fullWidth={true}>
+            <FormControl fullWidth={true} className={"header_container"}>
                 <AppBar position="static"
                         color="primary"
-                        style={{backgroundColor: '#e2e3e5', color: '#37424a'}}
+                        className={"header_bar"}
                 >
                     <Toolbar>
                         <Grid container
@@ -87,7 +88,9 @@ class Header extends Component {
                     onClose={this.closeModal}
                 >
                     <div>
-                        <SettingsWindow/>
+                        <SettingsWindow
+                            closeModal={this.closeModal}
+                        />
                     </div>
                 </Modal>
 
