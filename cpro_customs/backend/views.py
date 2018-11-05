@@ -67,7 +67,6 @@ class TransactionValidation(APIView):
 
 
     ########## ALCOHOL ##########
-
     def alcohol_validate(self, product, litre_cost, bottle_cost):
         if product['unit'] == 'litre':
             return product['vat'] == product['amount']*litre_cost
@@ -80,9 +79,9 @@ class TransactionValidation(APIView):
 
 
     ########## SWITCH IMPLEMENTATION ##########
-    def switch(self, product):
+    def vat_switch(self, product):
         return {
-            # 'light_beer': self.alcohol_validate(product, 20, 7),
+            'light_beer': self.alcohol_validate(product, 20, 7),
             'beer_and_alcopop': self.alcohol_validate(product, 20, 7),
             'wine': self.alcohol_validate(product, 60, 45),
             'fortified_wine': self.alcohol_validate(product, 115, 85),
@@ -95,13 +94,94 @@ class TransactionValidation(APIView):
 
         }[product['type_of_product']]
 
+
     def post(self, request, format=None):
         #TODO: Implement valdiation using relevant legislation
         #TODO: Implement for goods and animals
 
-        for product in request.data['products']:
-            if not self.switch(product):
+        total_value = 0 # The total value of the imported items, excluding fees and vat
+        total_vat = 0 # The total vat for the imported items (i.e. 290 NOK per 100 cigarettes)
+        total_fees = 0 # Total amount of fees for the imported items (i.e. 5000 NOK to import a horse)
+        mva = 0 # The mva for exceeding the total value limit
+
+        total_value_limit = 6000
+
+        low_alcohol_limit = 27 # The max limit for importing alcoholic beverages with less than 22%
+        high_alcohol_limit = 4 # The max limit for importing alcoholic beverages with more than 22%
+        tobacco_limit = 500 # The max limit for number of units of tobacco
+        cigarettes_limit = 400 # The max limit for number of cigarettes
+        cigarette_paper_sheath_limit = 400 # The max limit for number of cigarette papers/sheaths
+
+        cost_per_horse = 5000 # The static cost for importing a horse
+
+
+        data = request.data
+
+        for product in data['products']:
+            if not self.vat_switch(product):
                 return Response(False)
+            total_vat = product['vat']
+
+            # Amount limit validation
+            # Tobacco
+            if product['type_of_product'] == 'light_beer':
+                if product['amount'] > low_alcohol_limit:
+                    return Response(False)
+                low_alcohol_limit -= product['amount']
+            elif product['type_of_product'] == 'beer_and_alcopop':
+                if product['amount'] > low_alcohol_limit:
+                    return Response(False)
+                low_alcohol_limit -= product['amount']
+            elif product['type_of_product'] == 'wine':
+                if product['amount'] > low_alcohol_limit:
+                    return Response(False)
+                low_alcohol_limit -= product['amount']
+            elif product['type_of_product'] == 'fortified_wine':
+                if product['amount'] > low_alcohol_limit:
+                    return Response(False)
+                low_alcohol_limit -= product['amount']
+            elif product['type_of_product'] == 'spirits':
+                if product['amount'] > high_alcohol_limit:
+                    return Response(False)
+
+            # Alcohol
+            elif product['type_of_product'] == 'cigarettes':
+                if product['amount'] > cigarettes_limit:
+                    return Response(False)
+            elif product['type_of_product'] == 'snuff_and_chewing_tobacco':
+                if product['amount'] > tobacco_limit:
+                    return Response(False)
+                tobacco_limit -= product['amount']
+            elif product['type_of_product'] == 'smoking_tobacco':
+                if product['amount'] > tobacco_limit:
+                    return Response(False)
+                tobacco_limit -= product['amount']
+            elif product['type_of_product'] == 'cigars_and_cigarillos':
+                if product['amount'] > tobacco_limit:
+                    return Response(False)
+                tobacco_limit -= product['amount']
+            elif product['type_of_product'] == 'cigarette_paper_and_sheaths':
+                if product['amount'] > cigarette_paper_sheath_limit:
+                    return Response(False)
+
+            # Fee validation
+            # Animal
+            if product['type_of_product'] == 'horse':
+                if product['fee'] != product['amount']*cost_per_horse:
+                    return Response(False)
+                total_fees += product['fee']
+
+            total_value += product['value']
+
+
+        if totale_value > total_value_limit:
+            mva = (total_value-total_value_limit)*0.25
+            if product['mva'] != mva:
+                return Response(False)
+
+
+        #TODO: create the Transaction in the database
+
         return Response(True)
 
 '''
