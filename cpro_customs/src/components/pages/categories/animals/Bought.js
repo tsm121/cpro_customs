@@ -181,6 +181,10 @@ class Bought extends Component {
                                                         onChange={this.handleChange(key, 'value')}
                                                         variant="outlined"
                                                         style={{paddingLeft: "8px"}}
+                                                        type={"number"}
+                                                        onInput={(e)=>{
+                                                            e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,7)
+                                                        }}
                                                     />
                                                 </Grid>
                                                 <Grid item>

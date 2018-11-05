@@ -72,6 +72,8 @@ class Good extends Component {
                                                         variant={"outlined"}
                                                         autoFocus={autoFocus}
                                                         fullWidth={true}
+                                                        inputProps={{ maxLength: 25 }}
+
                                                     />
                                                 </Grid>
                                             </Grid>
@@ -85,6 +87,10 @@ class Good extends Component {
                                                         variant={"outlined"}
                                                         label={"Value"}
                                                         fullWidth={true}
+                                                        type={"number"}
+                                                        onInput={(e)=>{
+                                                            e.target.value = Math.max(0, parseFloat(e.target.value) ).toString().slice(0,9)
+                                                        }}
                                                         placeholder={"0"}
                                                         InputProps={{
                                                             startAdornment: <InputAdornment
