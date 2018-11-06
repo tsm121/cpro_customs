@@ -1,65 +1,82 @@
 import React, {Component} from "react";
 
 import Grid from "@material-ui/core/Grid/Grid";
-import AddIcon from '@material-ui/icons/Add';
-import Button from "@material-ui/core/Button/Button";
 
 import PageTitle from "../PageTitle";
 import Good from "./Good";
+import {closeNotification, exitNotification, showNotification} from "../../../context/NotificationContext";
+import SnackBarNotification from "../../../SnackBarNotification";
+import {GlobalState} from "../../../context/GlobalState";
 
 
 class Goods extends Component {
-    state = {
-        additionalGoods: 0,
-    };
+    notificationQueue = [];
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            openNotification: false,
+            notificationMessage: "",
+        };
+        this.showNotification = showNotification.bind(this);
+        this.closeNotification = closeNotification.bind(this);
+        this.exitNotification = exitNotification.bind(this);
+    }
 
     render = () => {
         return (
-            <div className={"goods_container"}>
-                <PageTitle title={"Goods"}/>
-                <Grid container
-                      justify={"center"}
-                      alignItems={"center"}
-                      spacing={16}
-                      direction={"column"}
-                >
-                    <Good autoFocus={true}/>
-                    {
-                        this.drawAdditionalGoods()
-                    }
-                    <Grid item xs={12} sm={12} md={12}>
-                        <Grid container spacing={8} onClick={this.handleAddGood}>
-                            <Grid item xs={12}>
-                                <Grid container justify={"center"} alignItems={"center"}>
-                                    <Button className={"cdp_button_round"} variant="fab" color="white">
-                                        <AddIcon className={"add_unit_icon"}/>
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <Grid container justify={"center"} alignItems={"center"}>
-                                    <span>Add good</span>
-                                </Grid>
-                            </Grid>
+            <GlobalState.Consumer>
+                {globalState => (
+                    <div className={"goods_container"}>
+                        <PageTitle title={"Goods"}/>
+                        <Grid container
+                              justify={"center"}
+                              alignItems={"center"}
+                              spacing={16}
+                              direction={"column"}
+                        >
+                            {this.drawItems(globalState)}
+                            <Good
+                                key={-1}
+                                good={{
+                                    "name": '',
+                                    "value": '',
+                                    "currency": 'NOK',
+                                    "amount": 0,
+                                }}
+                                showNotification={this.showNotification}
+                            />
                         </Grid>
-                    </Grid>
-                </Grid>
-            </div>
+                        <SnackBarNotification
+                            open={this.state.openNotification}
+                            message={this.state.notificationMessage}
+                            onClose={this.closeNotification}
+                            onExited={this.exitNotification}
+                        />
+                    </div>
+                )}
+            </GlobalState.Consumer>
         );
     };
 
-    handleAddGood = () => {
-        this.setState({
-            additionalGoods: this.state.additionalGoods + 1
-        })
-    };
-
-    drawAdditionalGoods = () => {
-        let goods = [];
-        for (let i = 0; i < this.state.additionalGoods; i++) {
-            goods.push(<Good/>);
+    /**
+     * Draws the goods from global state
+     * @param globalState
+     * @return {Array} containing <Good/> items
+     */
+    drawItems = (globalState) => {
+        let items = [];
+        const goods = globalState.getGoods();
+        for (let i = 0; i < goods.length; i++) {
+            items.push(
+                <Good
+                    key={goods[i].id}
+                    good={goods[i]}
+                    showNotification={this.showNotification}
+                />
+            );
         }
-        return goods;
+        return items;
     }
 }
 

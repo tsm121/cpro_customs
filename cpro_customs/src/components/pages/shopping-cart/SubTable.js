@@ -8,7 +8,7 @@ import Table from "@material-ui/core/Table/Table";
 import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
-import {GlobalState} from "../../global_state/GlobalState";
+import {GlobalState} from "../../context/GlobalState";
 import Button from "@material-ui/core/Button/Button";
 
 
@@ -40,7 +40,7 @@ class SubTable extends Component{
                                     {(this.renderItems()).map((item, index) => (
                                         <TableRow key={item.id}>
                                             <TableCell component="th" scope="row" className={"picture_column"}>
-                                                <IconAndAmount filename={item.filename} amount={item.amount} unit={item.unit}/>
+                                                <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
                                             </TableCell>
                                             <TableCell className={"table_column category_column"}>{item.product}</TableCell>
                                             <TableCell numeric className={"table_column"}>{item.value} kr</TableCell>

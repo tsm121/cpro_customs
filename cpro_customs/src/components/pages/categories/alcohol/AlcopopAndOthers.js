@@ -2,15 +2,15 @@ import React, {Component} from "react";
 
 import Grid from "@material-ui/core/Grid/Grid";
 
-import PageTitle from "../PageTitle";
 import TollInfoBanner from "../TollInfoBanner";
-import {closeNotification, exitNotification, showNotification} from "../../../context/NotificationContext";
+import PageTitle from "../PageTitle";
+import AlcoholOrTobaccoItem from "../AlcoholOrTobaccoItem";
 import SnackBarNotification from "../../../SnackBarNotification";
 import {GlobalState} from "../../../context/GlobalState";
-import AlcoholOrTobaccoItem from "../AlcoholOrTobaccoItem";
+import {showNotification, closeNotification, exitNotification} from "../../../context/NotificationContext";
 
 
-class CigarsAndCigarillos extends Component {
+class AlcopopAndOthers extends Component {
     notificationQueue = [];
 
     constructor(props) {
@@ -19,9 +19,9 @@ class CigarsAndCigarillos extends Component {
             openNotification: false,
             notificationMessage: "",
         };
-        this.showNotification = showNotification.bind(this);
         this.closeNotification = closeNotification.bind(this);
         this.exitNotification = exitNotification.bind(this);
+        this.showNotification = showNotification.bind(this);
     }
 
     render = () => {
@@ -29,14 +29,14 @@ class CigarsAndCigarillos extends Component {
             <GlobalState.Consumer>
                 {globalState => (
                     <div>
-                        <PageTitle title={"Cigars & Cigarillos"}/>
+                        <PageTitle title={"Alcopop & others"}/>
                         <Grid container
                               justify={"center"}
                               alignItems={"center"}
                               spacing={0}
                               direction={"row"}
                         >
-                            <TollInfoBanner text={"290 NOK per 100 grams"}/>
+                            <TollInfoBanner text={"7 NOK per bottle (0.33l) / 20 NOK per litre"}/>
                             {this.drawItems(globalState)}
                         </Grid>
                         <SnackBarNotification
@@ -51,9 +51,11 @@ class CigarsAndCigarillos extends Component {
         );
     };
 
-     drawItems = (globalState) => {
+    drawItems = (globalState) => {
         let options = [
-            {unit: "grams", type: "Cigars and Cigarillos", value: '', isOtherAmount: true, icon: "cigar"},
+            {unit: "litres", type: "Alcopop and others", value: 0.33, isOtherAmount: false, icon: "beerCanSmall"},
+            {unit: "litres", type: "Alcopop and others", value: 0.5, isOtherAmount: false, icon: "beerCanBig"},
+            {unit: "litres", type: "Alcopop and others", value: '', isOtherAmount: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
@@ -76,4 +78,4 @@ class CigarsAndCigarillos extends Component {
     };
 }
 
-export default CigarsAndCigarillos;
+export default AlcopopAndOthers;

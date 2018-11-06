@@ -14,8 +14,8 @@ import Bought from "./pages/categories/animals/Bought";
 import Goods from "./pages/categories/goods/Goods";
 import Tobacco from "./pages/categories/tobacco/Tobacco";
 import Alcohol from "./pages/categories/alcohol/Alcohol";
-import LightBeer from "./pages/categories/alcohol/LightBeer";
-import BeerAndAlcopop from "./pages/categories/alcohol/BeerAndAlcopop";
+import Beer from "./pages/categories/alcohol/Beer";
+import AlcopopAndOthers from "./pages/categories/alcohol/AlcopopAndOthers";
 import Wine from "./pages/categories/alcohol/Wine";
 import FortifiedWine from "./pages/categories/alcohol/FortifiedWine";
 import Spirits from "./pages/categories/alcohol/Spirits";
@@ -53,8 +53,8 @@ class Router extends Component {
                 <Route exact path='/categories/goods' component={Goods}/>
                 <Route exact path='/declaration-list' component={StateWrapper}/>
                 <Route exact path='/categories/alcohol' component={Alcohol}/>
-                <Route exact path='/categories/alcohol/light-beer' component={LightBeer}/>
-                <Route exact path='/categories/alcohol/beer-and-alcopop' component={BeerAndAlcopop}/>
+                <Route exact path='/categories/alcohol/beer' component={Beer}/>
+                <Route exact path='/categories/alcohol/alcopop-and-others' component={AlcopopAndOthers}/>
                 <Route exact path='/categories/alcohol/wine' component={Wine}/>
                 <Route exact path='/categories/alcohol/fortified-wine' component={FortifiedWine}/>
                 <Route exact path='/categories/alcohol/spirits' component={Spirits}/>

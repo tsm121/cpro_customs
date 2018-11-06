@@ -14,22 +14,22 @@ class Alcohol extends Component {
                 <Grid container spacing={32} direction={"row"}>
                     <Grid item xs={12}>
                         <SubCategory
-                            title={"Light Beer"}
+                            title={"Beer"}
                             subtitle={"Over 2.5%"}
                             tollInfo1={"7 NOK per bottle (0.33l)"}
                             tollInfo2={"20 NOK per litre"}
                             icon={"beerCanSmall"}
-                            route={"/categories/alcohol/light-beer"}
+                            route={"/categories/alcohol/beer"}
                         />
                     </Grid>
                     <Grid item xs={12}>
                         <SubCategory
-                            title={"Beer and Alcopop"}
+                            title={"Alcopop and others"}
                             subtitle={"Over 2.5% up to 4.7%"}
                             tollInfo1={"7 NOK per bottle (0.33l)"}
                             tollInfo2={"20 NOK per litre"}
                             icon={"beerCanSmall"}
-                            route={"/categories/alcohol/beer-and-alcopop"}
+                            route={"/categories/alcohol/alcopop-and-others"}
                         />
                     </Grid>
                     <Grid item xs={12}>
