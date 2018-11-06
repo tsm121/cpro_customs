@@ -21,6 +21,7 @@ class CategoryButton extends Component  {
                           direction={"column"}
                           justify={"center"}
                           alignItems={"center"}
+                          alignContent={"center"}
                     >
                         <Grid item >
                             <img className={"category_button_img"}
