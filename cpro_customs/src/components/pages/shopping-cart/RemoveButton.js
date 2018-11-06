@@ -34,6 +34,6 @@ export default class RemoveButton extends Component  {
 
 }
 
-RemoveButton.propTypes = {
+/*RemoveButton.propTypes = {
     onDelete: PropTypes.func.isRequired
-};
+};*/

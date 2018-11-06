@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {GlobalState} from "../../global_state/GlobalState";
+import {GlobalState} from "../../context/GlobalState";
 import ShoppingCart from "./ShoppingCart";
 
 

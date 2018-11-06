@@ -47,7 +47,7 @@ class SubTable extends Component{
                                             <TableCell numeric className={"table_column"}>{isPayTable ? item.vat + " kr" : ""}</TableCell>
                                             <TableCell numeric className={"table_column"}>{isPayTable ? item.duty + " kr" : ""}</TableCell>
                                             <TableCell numeric className={"exit_column"} padding={"none"}>
-                                                <RemoveButton onDelete={() => cart.onRemoveFromCart(index)} />
+                                                <RemoveButton /*onDelete={() => cart.onRemoveFromCart(index)}*/ />
                                             </TableCell>
                                         </TableRow>
                                     ))
