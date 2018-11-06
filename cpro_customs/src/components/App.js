@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {MuiThemeProvider} from '@material-ui/core/styles';
-//import { withStyles } from '@material-ui/core/styles';
 
 import theme from '../material-theme'
 
@@ -11,10 +10,6 @@ import Router from './Router'
 
 
 let productId = 0;
-function createRows(category, filename, amount, unit, value, vat, duty) {
-    productId++;
-    return {id: productId, category, filename, amount, unit, value, vat, duty};
-}
 
 /**
  * The entry point to the SPA
@@ -116,5 +111,4 @@ class App extends Component {
     }
 }
 
-//export default withStyles()(App);
 export default (App);

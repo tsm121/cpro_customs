@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import {withRouter} from "react-router-dom";
 import DeclarationTable from "./DeclarationTable";
-import {GlobalState} from "../../global_state/GlobalState";
 
 let id = 0;
 function createRows(product, filename, amount, unit, value, vat, duty) {
@@ -26,14 +25,16 @@ class ShoppingCart extends Component {
         payItems: []
     };
 
+    componentDidMount (){
+        // const {globalState} = this.props
+        //Todo: Change this.state.items to globalState
+        this.splitList(this.state.items)
+    }
+
     render = () => {
         return (
             <div>
-                {this.splitList(this.state.items)}
-                <GlobalState.Consumer>
-                    {globalState => (
                         <div>
-                            /*{() => this.splitList(globalState.products)}*/
                             <Grid container
                                   direction={'column'}
                                   justify={'center'}
@@ -55,7 +56,6 @@ class ShoppingCart extends Component {
                             </Grid>
                         </div>
                     )}
-                </GlobalState.Consumer>
             </div>
         )
     }
@@ -101,6 +101,8 @@ class ShoppingCart extends Component {
         // Calculating the different total amounts based on category
         {products.map(item => {
             switch (item.product) {
+                default:
+                    break;
                 case "Beer":
                     totalBeer += item.value * item.amount;
                     break;
@@ -132,7 +134,7 @@ class ShoppingCart extends Component {
                     totalCigars += item.value * item.amount;
                     hasTobacco = true;
                     break;
-            }
+            } return null
         })
         }
 
@@ -251,17 +253,16 @@ class ShoppingCart extends Component {
         console.log(freeItems)
         console.log(payItems)
 
-        /*{this.setFreeAndPayItems(freeItems, payItems)}*/ //NOT WORKING - WHY??
+        {this.setFreeAndPayItems(freeItems, payItems)}
 
-        console.log(this.state.freeItems)
-        console.log(this.state.payItems)
+
     }
 
     setFreeAndPayItems (newFreeItems, newPayItems){
-        this.setState(prevState => ({
-            freeItems: [...prevState.freeItems, newFreeItems],
-            payItems: [...prevState.payItems, newPayItems]
-        }))
+        this.setState({
+            freeItems: newFreeItems,
+            payItems: newPayItems,
+        })
     }
 }
 
@@ -270,4 +271,7 @@ function tooMuchTobacco(cigarettes, snuff, smoking, cigars){
     return !((otherTobacco === 0 && cigarettes <= 200) || (cigarettes === 0 && otherTobacco <= 250));
 }
 
+
 export default withRouter(ShoppingCart);
+
+

@@ -8,7 +8,7 @@ import SubTable from "./SubTable";
 class DeclarationTable extends Component{
 
     render = () => {
-        const {items, payItems, freeItems} = this.props
+        const {payItems, freeItems} = this.props
         return(
             <div>
                 <Paper className={"paper"}>

@@ -24,10 +24,10 @@ import CigarsAndCigarillos from "./pages/categories/tobacco/CigarsAndCigarillos"
 import SnuffAndChewingTobacco from "./pages/categories/tobacco/SnuffAndChewingTobacco";
 import SmokingTobacco from "./pages/categories/tobacco/SmokingTobacco";
 import CigarettePaperAndSheaths from "./pages/categories/tobacco/CigarettePaperAndSheaths";
-import ShoppingCart from "./pages/shopping-cart/ShoppingCart";
 import Checkout from "./pages/checkout/Checkout";
 import Endpage from "./pages/endpage/Endpage";
 import NotFound from "./pages/NotFound";
+import StateWrapper from "./pages/shopping-cart/StateWrapper";
 
 
 /**
@@ -51,7 +51,7 @@ class Router extends Component {
                 <Route exact path='/categories/animals/import' component={Import}/>
                 <Route exact path='/categories/animals/bought' component={Bought}/>
                 <Route exact path='/categories/goods' component={Goods}/>
-                <Route exact path='/declaration-list' component={ShoppingCart}/>
+                <Route exact path='/declaration-list' component={StateWrapper}/>
                 <Route exact path='/categories/alcohol' component={Alcohol}/>
                 <Route exact path='/categories/alcohol/light-beer' component={LightBeer}/>
                 <Route exact path='/categories/alcohol/beer-and-alcopop' component={BeerAndAlcopop}/>
