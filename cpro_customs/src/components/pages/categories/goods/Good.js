@@ -74,6 +74,10 @@ class Good extends Component {
                                                                 value={good.value}
                                                                 onChange={this.handleChange(globalState, 'value')}
                                                                 fullWidth={true}
+                                                                type={"number"}
+                                                                onInput={(e) => {
+                                                                    e.target.value = Math.max(0, parseFloat(e.target.value)).toString().slice(0, 9)
+                                                                }}
                                                                 placeholder={"0"}
                                                                 InputProps={{
                                                                     startAdornment: <InputAdornment

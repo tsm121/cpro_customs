@@ -91,9 +91,8 @@ export default class InputFields extends Component  {
 
 	handleLicencePlateInput = (event) =>{
 		var input = event.target.value
-		let re = /(^[a-zA-Z]{2}[0-9]{5})$/
 
-		if (re.test(input)){
+		if (input.length > 5){
 			userData.licencePlate = input
 			setTimeout(this.toggleLicencePlateInput(false),1000)
 
@@ -158,7 +157,7 @@ export default class InputFields extends Component  {
 							<TextField
 								id="outlined-licence-name"
 								label="License plate"
-								placeholder="AA12345"
+								placeholder="eg. AA12345"
 								margin="normal"
 								variant="outlined"
 								className={light ? 'light' : ''}
