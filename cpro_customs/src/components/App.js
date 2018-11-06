@@ -42,6 +42,19 @@ class App extends Component {
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
     setHasPaid = this.setHasPaid.bind(this);
     setProducts = this.setProducts.bind(this);
+    resetState = this.resetState.bind(this);
+
+    /**
+     * Resets the global state to the initial state
+     */
+    resetState() {
+        this.setState({
+            products: [],
+            amount_to_pay: 0,
+            productIdCounter: 0,
+            hasPaid: false,
+        });
+    }
 
 
     /**
@@ -304,6 +317,7 @@ class App extends Component {
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
                     setHasPaid: this.setHasPaid,
                     setProducts: this.setProducts,
+                    resetState: this.resetState,
                 }}
             >
                 <div>

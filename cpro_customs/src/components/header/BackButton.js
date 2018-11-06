@@ -18,7 +18,7 @@ class BackButton extends Component {
                 {globalState => (
                     <div>
                         <HeaderButton icon={"keyboard_arrow_left"}
-                                      onClick={() => {globalState.hasPaid ? this.goToMainPage() : this.goBack()}}/>
+                                      onClick={() => {globalState.hasPaid ? this.goToMainPage(globalState) : this.goBack()}}/>
                     </div>
                 )}
             </GlobalState.Consumer>
@@ -29,8 +29,11 @@ class BackButton extends Component {
         this.props.history.goBack();
     }
 
-    goToMainPage() {
-        console.log("here");
+    goToMainPage(globalState) {
+        // reset global state
+        globalState.resetState();
+
+        // route to main page
         this.props.history.replace("/")
     }
 }
