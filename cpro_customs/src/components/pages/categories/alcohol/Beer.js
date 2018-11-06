@@ -3,14 +3,14 @@ import React, {Component} from "react";
 import Grid from "@material-ui/core/Grid/Grid";
 
 import PageTitle from "../PageTitle";
-import TollInfoBanner from "../TollInfoBanner";
-import {closeNotification, exitNotification, showNotification} from "../../../context/NotificationContext";
-import SnackBarNotification from "../../../SnackBarNotification";
-import {GlobalState} from "../../../context/GlobalState";
 import AlcoholOrTobaccoItem from "../AlcoholOrTobaccoItem";
+import TollInfoBanner from "../TollInfoBanner";
+import {GlobalState} from "../../../context/GlobalState";
+import {showNotification, closeNotification, exitNotification} from "../../../context/NotificationContext";
+import SnackBarNotification from "../../../SnackBarNotification";
 
 
-class CigarsAndCigarillos extends Component {
+class Beer extends Component {
     notificationQueue = [];
 
     constructor(props) {
@@ -29,14 +29,14 @@ class CigarsAndCigarillos extends Component {
             <GlobalState.Consumer>
                 {globalState => (
                     <div>
-                        <PageTitle title={"Cigars & Cigarillos"}/>
+                        <PageTitle title={"Beer"}/>
                         <Grid container
                               justify={"center"}
                               alignItems={"center"}
                               spacing={0}
                               direction={"row"}
                         >
-                            <TollInfoBanner text={"290 NOK per 100 grams"}/>
+                            <TollInfoBanner text={"7 NOK per bottle (0.33l) / 20 NOK per litre"}/>
                             {this.drawItems(globalState)}
                         </Grid>
                         <SnackBarNotification
@@ -51,9 +51,11 @@ class CigarsAndCigarillos extends Component {
         );
     };
 
-     drawItems = (globalState) => {
+    drawItems = (globalState) => {
         let options = [
-            {unit: "grams", type: "Cigars and Cigarillos", value: '', isOtherAmount: true, icon: "cigar"},
+            {unit: "litres", type: "Beer", value: 0.33, isOtherAmount: false, icon: "beerCanSmall"},
+            {unit: "litres", type: "Beer", value: 0.5, isOtherAmount: false, icon: "beerCanBig"},
+            {unit: "litres", type: "Beer", value: '', isOtherAmount: true, icon: "pitcher"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {
@@ -74,6 +76,8 @@ class CigarsAndCigarillos extends Component {
         }
         return items;
     };
+
+
 }
 
-export default CigarsAndCigarillos;
+export default Beer;
