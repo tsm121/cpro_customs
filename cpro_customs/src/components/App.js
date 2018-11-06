@@ -41,6 +41,7 @@ class App extends Component {
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
     setHasPaid = this.setHasPaid.bind(this);
+    setProducts = this.setProducts.bind(this);
 
 
     /**
@@ -268,6 +269,16 @@ class App extends Component {
         })
     }
 
+    /**
+     * Setter to set products
+     * @param value - the new array
+     */
+    setProducts(value) {
+        this.setState({
+            products: value,
+        })
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -292,6 +303,7 @@ class App extends Component {
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
                     setHasPaid: this.setHasPaid,
+                    setProducts: this.setProducts,
                 }}
             >
                 <div>

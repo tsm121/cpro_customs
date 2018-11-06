@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {withRouter} from "react-router";
 
 import {AppBar, FormControl, Grid, Modal, Toolbar} from '@material-ui/core';
+import Button from "@material-ui/core/Button/Button";
 
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
