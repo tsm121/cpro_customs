@@ -34,28 +34,28 @@ class ShoppingCart extends Component {
     render = () => {
         return (
             <div>
-                        <div>
-                            <Grid container
-                                  direction={'column'}
-                                  justify={'center'}
-                                  alignItems={'center'}
-                            >
-                                <Grid item xs={12} sm={12} md={12}>
-                                    <h3 className={"cdp shopping_cart_title"}>
-                                        Declaration <span className={"cdp_yellow"}> list </span>
-                                    </h3>
-                                </Grid>
+                <div>
+                    <Grid container
+                          direction={'column'}
+                          justify={'center'}
+                          alignItems={'center'}
+                    >
+                        <Grid item xs={12} sm={12} md={12}>
+                            <h3 className={"cdp shopping_cart_title"}>
+                                Declaration <span className={"cdp_yellow"}> list </span>
+                            </h3>
+                        </Grid>
 
-                                <Grid item>
-                                    <DeclarationTable
-                                        items={this.state.items}
-                                        payItems={this.state.items}
-                                        freeItems={this.state.items}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </div>
-                    )}
+                        <Grid item>
+                            <DeclarationTable
+                                items={this.state.items}
+                                payItems={this.state.payItems}
+                                freeItems={this.state.freeItems}
+                            />
+                        </Grid>
+                    </Grid>
+                </div>
+                )}
             </div>
         )
     }
@@ -65,10 +65,13 @@ class ShoppingCart extends Component {
      * @param products - the global list with products
      */
     splitList = (products) => {
-        {this.splitAlcohol(products)}
+        {this.splitAlcoholAndTobacco(products)}
+
+        // TODO: Implement logic for everything else but alcohol and tobacco
+
     }
 
-    splitAlcohol = (products) => {
+    splitAlcoholAndTobacco = (products) => {
         /*
         RULES ALCOHOL AND TOBACCO:
         Spirit: 1 liter (or 1.5 liters of wine/beer)
@@ -255,7 +258,6 @@ class ShoppingCart extends Component {
 
         {this.setFreeAndPayItems(freeItems, payItems)}
 
-
     }
 
     setFreeAndPayItems (newFreeItems, newPayItems){
@@ -271,6 +273,13 @@ function tooMuchTobacco(cigarettes, snuff, smoking, cigars){
     return !((otherTobacco === 0 && cigarettes <= 200) || (cigarettes === 0 && otherTobacco <= 250));
 }
 
+function calculateFee(product){
+
+}
+
+function calculateVAT(value){
+
+}
 
 export default withRouter(ShoppingCart);
 
