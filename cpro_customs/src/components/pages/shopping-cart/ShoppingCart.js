@@ -84,6 +84,9 @@ class ShoppingCart extends Component {
     splitList = (products) => {
         {this.splitAlcoholAndTobacco(products)}
 
+        //Sending POST-req to server.
+        this.validateData()
+
         // TODO: Implement logic for everything else but alcohol and tobacco
 
     }
@@ -280,6 +283,45 @@ class ShoppingCart extends Component {
             payItems: newPayItems,
         })
     }
+
+    validateData = () => {
+
+        console.log("fetching")
+
+        const username = "react";
+        const password = "f$rSn6ydLk3s6XM3nJQ#17bqgfD0i";
+
+
+        fetch("https://toll.idi.ntnu.no/api/backend/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
+            },
+            body: JSON.stringify({
+                "id_number": "0",
+                "license_plate": "AAA000",
+                "date": "2018-30-19T15:17:21.198799+02:00",
+                "amount_to_pay": "2500",
+                "reference_number": "2",
+                "currency": "NOK",
+                "products": [
+                    {
+                        "product": "dog",
+                        "value": "10000",
+                        "amount": "1",
+                        "unit": "pieces",
+                        "fee": "0",
+                        "contacted_NFSA": true,
+                        "vat": "25",
+                        "currency": "NOK"
+                    }
+                ]
+            })
+        }).then(promise => promise.json())
+            .then(getUrl => console.log(getUrl.url))
+    }
+
 }
 
 function tooMuchTobacco(cigarettes, snuff, smoking, cigars){
@@ -290,6 +332,8 @@ function tooMuchTobacco(cigarettes, snuff, smoking, cigars){
 function calculateFee(product){
 
 }
+
+
 
 function calculateVAT(value){
 
