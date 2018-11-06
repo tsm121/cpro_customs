@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import {withRouter} from "react-router";
 
-import {AppBar, Toolbar, Grid, FormControl, Modal} from '@material-ui/core';
+import {AppBar, FormControl, Grid, Modal, Toolbar} from '@material-ui/core';
+import Button from "@material-ui/core/Button/Button";
 
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
 import ShoppingCartButton from "./ShoppingCartButton";
 import {GlobalState} from "../context/GlobalState";
-import InputFields from "../InputFields";
+
 
 class Header extends Component {
     constructor() {
@@ -36,65 +37,66 @@ class Header extends Component {
     render = () => {
         const {pathname} = this.props.location;
         return (
-            <FormControl fullWidth={true} className={"header_container"}>
-                <AppBar position="static"
-                        color="primary"
-                        className={"header_bar"}
-                >
-                    <Toolbar>
-                        <Grid container
-                              spacing={16}
-                              justify="space-between"
-                              alignItems={"center"}
+            <GlobalState.Consumer>
+                {globalState => (
+                    <FormControl fullWidth={true} className={"header_container"}>
+                        <AppBar position="static"
+                                color="primary"
+                                className={"header_bar"}
                         >
-                            <Grid item xs={2}>
-                                {/* do not show back button when on landing page */}
-                                {pathname === "/" ? null :
-                                    <Grid container
-                                          justify={"center"}
-                                          alignItems={"center"}
-                                    >
-                                        <BackButton/>
-                                    </Grid>
-                                }
-                            </Grid>
-
-                            <Grid item xs={4}>
+                            <Toolbar>
                                 <Grid container
-                                      justify={"center"}
+                                      spacing={16}
+                                      justify="space-between"
                                       alignItems={"center"}
                                 >
-                                    <Grid item xs={12} sm={7} md={7}>
+                                    <Grid item xs={2}>
+                                        {/* do not show back button when on landing page */}
+                                        {pathname === "/" ? null :
+                                            <Grid container
+                                                  justify={"center"}
+                                                  alignItems={"center"}
+                                            >
+                                                <BackButton/>
+                                            </Grid>
+                                        }
+                                    </Grid>
+
+                                    <Grid item xs={4}>
                                         <Grid container
-                                              justify={"flex-end"}
+                                              justify={"center"}
                                               alignItems={"center"}
                                         >
-                                            <GlobalState.Consumer>
-                                                {globalState => (
-                                                    globalState.products.length > 0 ? <ShoppingCartButton/> : ""
-                                                )}
-                                            </GlobalState.Consumer>
-                                            <SettingsButton onClick={this.openModal}/>
+                                            <Grid item xs={12} sm={7} md={7}>
+                                                <Grid container
+                                                      justify={"flex-end"}
+                                                      alignItems={"center"}
+                                                >
+                                                    {globalState.products.length > 0 && !globalState.hasPaid ?
+                                                        <ShoppingCartButton/> : ""}
+                                                    <SettingsButton onClick={this.openModal}/>
+                                                </Grid>
+                                            </Grid>
                                         </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
-                        </Grid>
-                    </Toolbar>
-                </AppBar>
+                            </Toolbar>
+                        </AppBar>
 
-                <Modal
-                    open={this.state.showSettingsModal}
-                    onClose={this.closeModal}
-                >
-                    <div>
-                        <SettingsWindow
-                            closeModal={this.closeModal}
-                        />
-                    </div>
-                </Modal>
+                        <Modal
+                            open={this.state.showSettingsModal}
+                            onClose={this.closeModal}
+                        >
+                            <div>
+                                <SettingsWindow
+                                    closeModal={this.closeModal}
+                                />
+                            </div>
+                        </Modal>
 
-            </FormControl>
+                    </FormControl>
+                )}
+            </GlobalState.Consumer>
         )
     }
 }

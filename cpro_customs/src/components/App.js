@@ -20,6 +20,7 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            hasPaid: false,
         };
     }
 
@@ -39,6 +40,21 @@ class App extends Component {
     getBoughtAnimals = this.getBoughtAnimals.bind(this);
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
+    setHasPaid = this.setHasPaid.bind(this);
+    setProducts = this.setProducts.bind(this);
+    resetState = this.resetState.bind(this);
+
+    /**
+     * Resets the global state to the initial state
+     */
+    resetState() {
+        this.setState({
+            products: [],
+            amount_to_pay: 0,
+            productIdCounter: 0,
+            hasPaid: false,
+        });
+    }
 
 
     /**
@@ -256,6 +272,26 @@ class App extends Component {
         }
     }
 
+    /**
+     * Setter for setting hasPaid property
+     * @param value - a boolean
+     */
+    setHasPaid(value) {
+        this.setState({
+            hasPaid: value,
+        })
+    }
+
+    /**
+     * Setter to set products
+     * @param value - the new array
+     */
+    setProducts(value) {
+        this.setState({
+            products: value,
+        })
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -266,6 +302,7 @@ class App extends Component {
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
                     totalAmount: this.totalAmount,
+                    hasPaid: this.state.hasPaid,
                     findProductIndexById: this.findProductIndexById,
                     removeAllElementsOfType: this.removeAllElementsOfType,
                     addProduct: this.addProduct,
@@ -278,7 +315,9 @@ class App extends Component {
                     getBoughtAnimals: this.getBoughtAnimals,
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
-
+                    setHasPaid: this.setHasPaid,
+                    setProducts: this.setProducts,
+                    resetState: this.resetState,
                 }}
             >
                 <div>
