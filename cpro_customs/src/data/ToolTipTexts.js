@@ -1,5 +1,5 @@
 export const TOOL_TIP_TEXTS = {
-    animals: {
+    animal: {
         contactedNFSA:
             `
             If you want to import an animal to Norway, you must contact the Norwegian Food Safety Authority.

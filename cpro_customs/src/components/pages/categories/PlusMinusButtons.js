@@ -10,7 +10,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 class PlusMinusButtons extends Component {
 
     render = () => {
-        const {showMinusButton, showPlusButton, showPlusFiveButton} = this.props;
+        const {showMinusButton, showPlusButton, showPlusFiveButton, disablePlusButton, disableMinusButton, disablePlusFiveButton} = this.props;
         return (
             <Grid container justify={"center"} alignItems={"center"} spacing={0} >
                 {
@@ -20,6 +20,7 @@ class PlusMinusButtons extends Component {
                                 className={"cdp_button_round_decrement"}
                                 variant="fab"
                                 color="primary"
+                                disabled={disableMinusButton}
                                 onClick={this.props.handleDecrement}
                             >
                                 <RemoveIcon className={"add_remove_icon"}/><span className={"cdp_icon_round_label"}>1</span>
@@ -35,6 +36,7 @@ class PlusMinusButtons extends Component {
                                 className={"cdp_button_round"}
                                 variant="fab"
                                 color="primary"
+                                disabled={disablePlusButton}
                                 onClick={this.props.handleIncrement}
                             >
                                 <AddIcon className={"add_remove_icon"}/><span className={"cdp_icon_round_label"}>1</span>
@@ -50,6 +52,7 @@ class PlusMinusButtons extends Component {
                                 className={"cdp_button_round"}
                                 variant="fab"
                                 color="primary"
+                                disabled={disablePlusFiveButton}
                                 onClick={this.props.handlePlusFive}
                             >
                                 <AddIcon className={"add_remove_icon"}/><span className={"cdp_icon_round_label"}>5</span>
