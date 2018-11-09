@@ -9,7 +9,7 @@ import SubCategory from "../SubCategory";
 class Alcohol extends Component {
     render = () => {
         return (
-            <div>
+            <div className={"react-transition swipe-up"}>
                 <PageTitle title={"Alcohol"}/>
                 <Grid container spacing={32} direction={"row"}>
                     <Grid item xs={12}>

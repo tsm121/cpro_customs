@@ -28,7 +28,7 @@ class Beer extends Component {
         return (
             <GlobalState.Consumer>
                 {globalState => (
-                    <div>
+                    <div className={"react-transition swipe-up"}>
                         <PageTitle title={"Beer"}/>
                         <Grid container
                               justify={"center"}

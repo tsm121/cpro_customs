@@ -10,7 +10,7 @@ export default class SettingsWindow extends Component  {
 	    const {closeModal} = this.props
 		return (
 
-			<div className={'modal'}>
+			<div className={'modal react-transition fade-in'}>
 
 				<Grid container spacing={24}
 					  justify={"center"}

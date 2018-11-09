@@ -8,6 +8,7 @@ import {GlobalState} from "./context/GlobalState";
 import Header from './header/Header'
 import Router from './Router'
 import './App.css';
+import './react-transitions.css'
 
 
 /**
@@ -320,7 +321,7 @@ class App extends Component {
                     resetState: this.resetState,
                 }}
             >
-                <div>
+                <div className="transition-container">
                     <MuiThemeProvider theme={theme}>
                         {/* put components that shall be displayed on every page here */}
                         <Header/>

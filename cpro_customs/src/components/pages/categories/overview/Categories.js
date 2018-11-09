@@ -31,6 +31,7 @@ class Categories extends Component  {
                   direction={'row'}
                   justify={'center'}
                   alignItems={'center'}
+                  className={"react-transition swipe-right"}
             >
                 <Grid item xs={12} sm={12} md={12} >
                     <h3 className={"cdp category_title"}>
@@ -39,6 +40,7 @@ class Categories extends Component  {
                 </Grid>
 
                 <Grid item xs={12} sm={10} md={9}
+
                 >
                     <Grid container
                         //spacing={8}
@@ -47,7 +49,8 @@ class Categories extends Component  {
                           alignItems={'center'}
                     >
                         {(this.renderCategories()).map(category => (
-                            <Grid item xs={5} sm={3} md={3} key={category.text}>
+                            <Grid item xs={5} sm={3} md={3} key={category.text} className={"react-transition fade-in"}
+                                  style={{animationDuration: '1s'}}>
                                 <CategoryButton text={category.text}
                                                 filename={category.filename}
                                                 route={category.route}

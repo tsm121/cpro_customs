@@ -46,7 +46,7 @@ class PersonsInVehicle extends Component {
         const {showYellowIcon, amountPersonsShown, overADay} = this.state;
         const {classes} = this.props
         return (
-            <div>
+            <div className={"react-transition swipe-right"}>
                 <Grid container
                       spacing={0}
                       justify="center"

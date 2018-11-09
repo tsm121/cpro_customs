@@ -45,7 +45,7 @@ class SkipWindow extends Component  {
                     open={this.state.open}
                     onClose={this.handleClose}
                 >
-                    <div className={"modal_skip"}>
+                    <div className={"modal_skip react-transition fade-in"}>
 
                         <Grid container
                               spacing={0}
