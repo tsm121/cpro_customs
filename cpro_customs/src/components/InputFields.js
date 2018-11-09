@@ -129,6 +129,7 @@ export default class InputFields extends Component  {
 		if(!on_boarding){
 		    cancelBtn = <Button
                 variant={'outlined'}
+                size={"large"}
 				style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
                 onClick={closeModal}
 			>
@@ -203,6 +204,7 @@ export default class InputFields extends Component  {
 					<Grid item>
 						<Button
 							variant={'outlined'}
+							size={"large"}
 							onClick={this.onClickHandler}
 							style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
 							className={"save_btn"}

@@ -512,6 +512,11 @@ div.cdp_sub_selection_max_width_grid_item {
     height: 5vmin !important;
     color: #ffd200;
 }
+
+.language_disabled img {
+    filter: greyscale(100%);
+    -webkit-filter: grayscale(100%);
+}
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
     h1.cdp {
