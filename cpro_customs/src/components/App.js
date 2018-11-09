@@ -91,7 +91,7 @@ class App extends Component {
      * @param value - the new value
      */
     updateProduct(id, field, value) {
-        if (id === undefined || id === null) throw "id undefined or null";
+        if (id === undefined || id === null) throw ( "id undefined or null", undefined);
         let index = this.findProductIndexById(id);
         if (index === -1) return;
         const products = update(this.state.products, {

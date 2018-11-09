@@ -5,11 +5,6 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import Receipt from "./Receipt";
 
 export default class Endpage extends Component {
-    constructor(props) {
-        super(props);
-
-    }
-
     render = () => {
         //TODO: Uncomment this when QR_url gets sent as a prop from checkout
         //const {QR_url} = this.props
