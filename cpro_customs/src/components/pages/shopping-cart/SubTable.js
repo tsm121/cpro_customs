@@ -31,7 +31,7 @@ class SubTable extends Component{
                                         <TableCell key={"item"} className={"table_column category_column"}>Category</TableCell>
                                         <TableCell numeric key={"value"} className={"table_column"}>Value</TableCell>
                                         <TableCell numeric key={"vat"} className={"table_column"}>{isPayTable ? "VAT" : ""}</TableCell>
-                                        <TableCell numeric key={"duty"} className={"table_column"}>{isPayTable ? "Fee" : ""}</TableCell>
+                                        <TableCell numeric key={"fee"} className={"table_column"}>{isPayTable ? "Fee" : ""}</TableCell>
                                         <TableCell key={"delete"} className={"exit_column"}> </TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -104,7 +104,7 @@ class SubTable extends Component{
         const {isPayTable} = this.props
         let string = '';
         if (isPayTable){
-            string += item.duty + " ";
+            string += item.fee + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {
@@ -122,9 +122,10 @@ class SubTable extends Component{
             case "Fortified wine":
             case "Spirits":
             case "Cigarettes":
-            case "Snuff & chewing Tobacco":
+            case "Snuff & chewing tobacco":
             case "Smoking tobacco":
             case "Cigars and Cigarillos":
+            case "Cigarette paper and sheets":
                 return true;
             default:
                 return false;
