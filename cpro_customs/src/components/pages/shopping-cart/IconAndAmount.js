@@ -60,11 +60,12 @@ class IconAndAmount extends Component {
 }
 
 
-IconAndAmount.propTypes = {
-    type: PropTypes.string.required,
+/*IconAndAmount.propTypes = {
+    icon: PropTypes.string.required,
     amount: PropTypes.number.required,
     unit: PropTypes.string.required,
 };
+*/
 
 IconAndAmount.defaultProps = {};
 

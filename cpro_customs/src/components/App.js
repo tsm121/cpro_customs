@@ -19,6 +19,7 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            overADay: false,
         };
     }
 
@@ -38,6 +39,7 @@ class App extends Component {
     getBoughtAnimals = this.getBoughtAnimals.bind(this);
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
+    setOverADay = this.setOverADay.bind(this);
 
 
     /**
@@ -255,6 +257,12 @@ class App extends Component {
         }
     }
 
+    setOverADay() {
+        this.setState({
+            overADay: true
+        })
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -264,6 +272,7 @@ class App extends Component {
                 value={{
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
+                    overADay: this.state.overADay,
                     totalAmount: this.totalAmount,
                     findProductIndexById: this.findProductIndexById,
                     removeAllElementsOfType: this.removeAllElementsOfType,
@@ -277,7 +286,7 @@ class App extends Component {
                     getBoughtAnimals: this.getBoughtAnimals,
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
-
+                    setOverADay: this.setOverADay,
                 }}
             >
                 <div>

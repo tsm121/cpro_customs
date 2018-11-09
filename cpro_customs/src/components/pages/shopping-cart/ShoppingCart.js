@@ -4,27 +4,17 @@ import {withRouter} from "react-router-dom";
 import DeclarationTable from "./DeclarationTable";
 
 let id = 0;
-function createAlcoholAndTobacco(product, icon, amount, unit, value, vat, duty) {
+function createAlcoholAndTobacco(type, icon, amount, unit, value, vat, duty) {
     id++;
-    return {id, product, icon, amount, unit, value, vat, duty};
-}
-
-function createBoughtAnimal(kind, value, currency, amount, contactedNFSA, registeredAtNFSA, horseHasOriginInEU) {
-    id++;
-    return {id, kind, value, currency, amount, contactedNFSA, registeredAtNFSA, horseHasOriginInEU};
-}
-
-function createGoods(productName, currency, value, amount, pay){
-    id++;
-    let VAT = 0;
-    if (pay) calculateVAT(value)
-    return {id, productName, currency, value, VAT};
+    return {id, type, icon, amount, unit, value, vat, duty};
 }
 
 class ShoppingCart extends Component {
     state = {
         items: [
             createAlcoholAndTobacco('Bought a dog abroad', "dog", 2, "", 18000, 4500, 0),
+            createAlcoholAndTobacco('Kitchen', 'archive', 1, '', 20000, 0, 0),
+            createAlcoholAndTobacco('Some good', 'archive', 3, '', 1500, 0, 0),
             createAlcoholAndTobacco('Wine', "wineBottleBig", 2, 'L', 0.75, 0, 0),
             createAlcoholAndTobacco('Wine', "wineBottleBig", 4, 'L', 1.5, 0, 0),
             createAlcoholAndTobacco('Spirit', "spirits", 2, "L", 1, 0, 0),
@@ -45,49 +35,129 @@ class ShoppingCart extends Component {
         })}
 
         //Todo: Change this.state.items to globalState
-        this.splitList(this.state.items)
+        this.splitList(globalState)
     }
 
     render = () => {
         return (
             <div>
-                <div>
-                    <Grid container
-                          direction={'column'}
-                          justify={'center'}
-                          alignItems={'center'}
-                    >
-                        <Grid item xs={12} sm={12} md={12}>
-                            <h3 className={"cdp shopping_cart_title"}>
-                                Declaration <span className={"cdp_yellow"}> list </span>
-                            </h3>
-                        </Grid>
-
-                        <Grid item>
-                            <DeclarationTable
-                                items={this.state.items}
-                                payItems={this.state.payItems}
-                                freeItems={this.state.freeItems}
-                            />
-                        </Grid>
+                <Grid container
+                      direction={'column'}
+                      justify={'center'}
+                      alignItems={'center'}
+                >
+                    <Grid item xs={12} sm={12} md={12}>
+                        <h3 className={"cdp shopping_cart_title"}>
+                            Declaration <span className={"cdp_yellow"}> list </span>
+                        </h3>
                     </Grid>
-                </div>
-                )}
+
+                    <Grid item>
+                        <DeclarationTable
+                            items={this.state.items}
+                            payItems={this.state.payItems}
+                            freeItems={this.state.freeItems}
+                        />
+                    </Grid>
+                </Grid>
             </div>
         )
     }
 
     /**
      * Splits the global list in two based on the customs rules and updates the local state with these lists
-     * @param products - the global list with products
+     * @param globalState - the global state containing information about products (list) and overADay (boolean)
      */
-    splitList = (products) => {
-        {this.splitAlcoholAndTobacco(products)}
+    splitList = (globalState) => {
+        let alcoholAndTobacco = [];
+        let other = [];
+
+        // Splits products, alcohol and tobacco vs. everything else
+        {globalState.products.map(item => {
+            switch (item.type) {
+                case "Beer":
+                case "Alcopop and others":
+                case "Wine":
+                case "Fortified wine":
+                case "Spirit":
+                case "Cigarettes":
+                case "Snuff & chewing Tobacco":
+                case "Smoking tobacco":
+                case "Cigars and cigarillos":
+                    alcoholAndTobacco.push(item);
+                    break;
+                default:
+                    other.push(item);
+                    break;
+            } return null
+        })
+        }
+
+        console.log(alcoholAndTobacco)
+        console.log(other)
+
+        // Sort the "other" list based on value, descending order
+        other.sort(function(a, b) {
+            return parseFloat(b.value) - parseFloat(a.value);
+        });
+
+        // Split alcohol and tobacco into into free and pay and setting the local state
+        {this.splitAlcoholAndTobacco(alcoholAndTobacco)}
+
+        // Add the rest of the items to either freeList or payList
+        let valueLimit = 3000;
+        if (globalState.overADay) valueLimit = 6000;
+
+        let freeItems = [];
+        let payItems = [];
+
+        let currentValue = 0;
+        for (let item of other){
+            if (item.value > valueLimit){
+                payItems.push(item);
+            } else {
+                if (item.amount > 1){
+                    // have more of the same item
+                    let amountLeft = item.amount;
+                    while (amountLeft > 0){
+                        if (amountLeft * item.value + currentValue <= valueLimit){
+                            let freeItem = JSON.parse(JSON.stringify(item));
+                            freeItem.amount = amountLeft;
+                            freeItems.push(freeItem);
+                            currentValue += amountLeft*item.value;
+
+                            if (item.amount - amountLeft > 0) {
+                                let payItem = JSON.parse(JSON.stringify(item));
+                                payItem.amount = item.amount - amountLeft;
+                                payItems.push(payItem);
+                            }
+                            amountLeft = 0;
+
+                        } else {
+                            amountLeft--;
+                        }
+                    }
+                } else {
+                    // only one of the current item
+                    if (item.value + currentValue <= valueLimit) {
+                        freeItems.push(item);
+                        currentValue += item.value;
+                    } else {
+                        payItems.push(item);
+                    }
+                }
+            }
+        }
+
+        // Setting the state so that it contains the other elements
+        this.setState(prevState => ({
+            freeItems: [...prevState.freeItems, ...freeItems],
+            payItems: [...prevState.payItems, ...payItems]
+        }))
+
 
         //Sending POST-req to server.
-        this.validateData()
-
-        // TODO: Implement logic for everything else but alcohol and tobacco
+        //this.validateData()
 
     }
 
@@ -123,7 +193,7 @@ class ShoppingCart extends Component {
 
         // Calculating the different total amounts based on category
         {products.map(item => {
-            switch (item.product) {
+            switch (item.type) {
                 default:
                     break;
                 case "Beer":
@@ -305,6 +375,7 @@ class ShoppingCart extends Component {
                 "amount_to_pay": "2500",
                 "reference_number": "2",
                 "currency": "NOK",
+                "overADay": false,
                 "products": [
                     {
                         "product": "dog",
@@ -330,9 +401,22 @@ function tooMuchTobacco(cigarettes, snuff, smoking, cigars){
 }
 
 function calculateFee(product){
+    /*
+    ---------------- RULES: ---------------------
+    Beer, alcopop:          20 kr per liter
+    Wine:                   60 kr per liter
+    Fortified wine:         115 kr per liter
+    Spirits:                325 kr per liter
+    Cigarettes:             290 kr per 100 pieces
+    Snus:                   120 kr per 100 grams
+    Smoking tabacco/cigars: 290 kr per 100 grams
+    Cigarette paper:        5 kr per 100 pieces
+
+     */
+
+
 
 }
-
 
 
 function calculateVAT(value){

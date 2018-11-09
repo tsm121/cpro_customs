@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {GlobalState} from "../../context/GlobalState";
-import Button from "@material-ui/core/Button/Button";
 
 
 class SubTable extends Component{
@@ -42,7 +41,7 @@ class SubTable extends Component{
                                             <TableCell component="th" scope="row" className={"picture_column"}>
                                                 <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
                                             </TableCell>
-                                            <TableCell className={"table_column category_column"}>{item.product}</TableCell>
+                                            <TableCell className={"table_column category_column"}>{item.type}</TableCell>
                                             <TableCell numeric className={"table_column"}>{item.value} kr</TableCell>
                                             <TableCell numeric className={"table_column"}>{isPayTable ? item.vat + " kr" : ""}</TableCell>
                                             <TableCell numeric className={"table_column"}>{isPayTable ? item.duty + " kr" : ""}</TableCell>
