@@ -29,11 +29,20 @@ class DeclarationTable extends Component{
 
                 </Paper>
                 <Paper className={'paper'} style={{marginTop: "20px"}}>
-                    <TotalTable totalSum={1400} route={'/checkout'}/>
+                    <TotalTable totalSum={this.getTotalDuty(payItems)} route={'/checkout'}/>
                 </Paper>
             </div>
         )
     };
+
+    getTotalDuty = (payItems) => {
+        let sum = 0;
+        {payItems.map(item => {
+            if (item.vat !== undefined) sum += item.vat;
+            if (item.fee !== undefined) sum += item.fee;
+        })}
+        return sum;
+    }
 }
 
 export default withRouter(DeclarationTable);

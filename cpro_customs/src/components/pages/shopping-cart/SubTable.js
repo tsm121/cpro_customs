@@ -103,7 +103,7 @@ class SubTable extends Component{
     renderFee = (item) => {
         const {isPayTable} = this.props
         let string = '';
-        if (isPayTable){
+        if (isPayTable && !item.horseHasOriginInEU){
             string += item.fee + " ";
             if (item.currency !== undefined){
                 string += item.currency

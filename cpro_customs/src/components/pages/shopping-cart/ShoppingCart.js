@@ -29,15 +29,19 @@ class ShoppingCart extends Component {
     componentDidMount (){
         const {globalState} = this.props
 
-        console.log(globalState)
+        /*console.log(globalState)
         {globalState.products.map(item => {
             console.log(item)
         })}
+        */
 
-        this.splitList(globalState)
+        this.splitListAndCalculateFees(globalState)
+
     }
 
     render = () => {
+        console.log(this.state.freeItems)
+        console.log(this.state.payItems)
         return (
             <div>
                 <Grid container
@@ -67,7 +71,7 @@ class ShoppingCart extends Component {
      * Splits the global list in two based on the customs rules and updates the local state with these lists
      * @param globalState - the global state containing information about products (list) and overADay (boolean)
      */
-    splitList = (globalState) => {
+    splitListAndCalculateFees = (globalState) => {
         let alcoholAndTobacco = [];
         let other = [];
 
@@ -93,9 +97,6 @@ class ShoppingCart extends Component {
         })
         }
 
-        console.log(alcoholAndTobacco)
-        console.log(other)
-
         // Sort the "other" list based on value, descending order
         other.sort(function(a, b) {
             return parseFloat(b.value) - parseFloat(a.value);
@@ -113,18 +114,18 @@ class ShoppingCart extends Component {
 
         let currentValue = 0;
         for (let item of other){
-            if (item.value > valueLimit){
+            if (parseInt(item.value) > valueLimit){
                 payItems.push(item);
             } else {
                 if (item.amount > 1){
                     // have more of the same item
                     let amountLeft = item.amount;
                     while (amountLeft > 0){
-                        if (amountLeft * item.value + currentValue <= valueLimit){
+                        if (amountLeft * parseInt(item.value) + currentValue <= valueLimit){
                             let freeItem = JSON.parse(JSON.stringify(item));
                             freeItem.amount = amountLeft;
                             freeItems.push(freeItem);
-                            currentValue += amountLeft*item.value;
+                            currentValue += amountLeft * parseInt(item.value);
 
                             if (item.amount - amountLeft > 0) {
                                 let payItem = JSON.parse(JSON.stringify(item));
@@ -139,9 +140,9 @@ class ShoppingCart extends Component {
                     }
                 } else {
                     // only one of the current item
-                    if (item.value + currentValue <= valueLimit) {
+                    if (parseInt(item.value) + currentValue <= valueLimit) {
                         freeItems.push(item);
-                        currentValue += item.value;
+                        currentValue += parseInt(item.value);
                     } else {
                         payItems.push(item);
                     }
@@ -149,12 +150,13 @@ class ShoppingCart extends Component {
             }
         }
 
+        this.calculateFeesAndVAT(payItems);
+
         // Setting the state so that it contains the other elements
         this.setState(prevState => ({
             freeItems: [...prevState.freeItems, ...freeItems],
             payItems: [...prevState.payItems, ...payItems]
         }))
-
 
         //Sending POST-req to server.
         //this.validateData()
@@ -316,7 +318,7 @@ class ShoppingCart extends Component {
                 totalPaper, 'sheets', 1));
             }
         }
-        
+
 
         // Tobacco
         if (tooMuchTobacco(totalCigarettes, totalSnuff, totalSmoking, totalCigars)) {
@@ -360,16 +362,76 @@ class ShoppingCart extends Component {
             if (totalCigars > 0) freeItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 1));
         }
 
-        {this.setFreeAndPayItems(freeItems, payItems)}
+        this.calculateFeesAndVAT(payItems);
+        console.log(payItems);
 
-    }
-
-    setFreeAndPayItems (newFreeItems, newPayItems){
         this.setState({
-            freeItems: newFreeItems,
-            payItems: newPayItems,
+            freeItems: freeItems,
+            payItems: payItems
         })
+
     }
+
+
+    /**
+     * Adds parameters/keys  for fee and VAT in every item that needs to be paid for
+     @param: payItems - The local state list containing all the items the user must pay for
+     */
+    calculateFeesAndVAT = (payItems) => {
+        /*
+        ---------------- RULES: ---------------------
+        Beer, alcopop:          20 kr per liter
+        Wine:                   60 kr per liter
+        Fortified wine:         115 kr per liter
+        Spirits:                325 kr per liter
+        Cigarettes:             290 kr per 100 pieces
+        Snuff:                  120 kr per 100 grams
+        Smoking tabacco/cigars: 290 kr per 100 grams
+        Cigarette paper:        5 kr per 100 pieces
+
+
+        --------------------------------------------
+        */
+
+        {payItems.map(item => {
+            switch (item.type) {
+                case "Beer":
+                case "Alcopop and others":
+                    item.fee = item.amount * 20;
+                    break;
+                case "Wine":
+                    item.fee = item.amount * 60;
+                    break;
+                case "Fortified wine":
+                    item.fee = item.amount * 115;
+                    break;
+                case "Spirits":
+                    item.fee = item.amount * 325;
+                    break;
+                case "Cigarettes":
+                case "Smoking tobacco":
+                case "Cigars and Cigarillos":
+                    item.fee = item.amount/100 * 290;
+                    break;
+                case "Snuff & chewing tobacco":
+                    item.fee = item.amount/100 * 120;
+                    break;
+                case "Cigarette paper and sheets":
+                    item.fee = item.amount/100 * 5;
+                    break;
+                case "Bought Animal":
+                    if (item.kind === "horse" && !item.horseHasOriginInEU){
+                        item.fee = 5000 * item.amount; // 5000 fee per horse
+                    }
+                default:
+                    item.vat = 0.25 * parseInt(item.value) * item.amount;
+                    break;
+            }
+        })
+        }
+        return payItems;
+    };
+
 
     validateData = () => {
 
@@ -408,27 +470,6 @@ class ShoppingCart extends Component {
             })
         }).then(promise => promise.json())
             .then(getUrl => console.log(getUrl.url))
-    }
-
-    /**
-     * Adds a parameter/key in every item that need to be paid for containing the fee and VAT
-    @param: payItems - The local state list containing all the items the user must pay for
-     */
-    calculateFeesAndVAT = (payItems) => {
-        /*
-        ---------------- RULES: ---------------------
-        Beer, alcopop:          20 kr per liter
-        Wine:                   60 kr per liter
-        Fortified wine:         115 kr per liter
-        Spirits:                325 kr per liter
-        Cigarettes:             290 kr per 100 pieces
-        Snus:                   120 kr per 100 grams
-        Smoking tabacco/cigars: 290 kr per 100 grams
-        Cigarette paper:        5 kr per 100 pieces
-
-
-        --------------------------------------------
-        */
     }
 
 }
