@@ -50,7 +50,8 @@ class IconAndAmount extends Component {
 
                     <Grid item>
                         <h4 className={"cdp cdp_dark_grey iconAmount_text"}>
-                            {unit !== "" ? amount + " " + unit : "x" + amount}
+                            {unit !== "" && unit !== undefined ? Number.parseFloat(amount).toPrecision(3) + " "
+                                + unit : "x" + amount}
                         </h4>
                     </Grid>
                 </Grid>
@@ -58,14 +59,6 @@ class IconAndAmount extends Component {
         )
     }
 }
-
-
-/*IconAndAmount.propTypes = {
-    icon: PropTypes.string.required,
-    amount: PropTypes.number.required,
-    unit: PropTypes.string.required,
-};
-*/
 
 IconAndAmount.defaultProps = {};
 

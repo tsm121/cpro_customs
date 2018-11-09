@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {GlobalState} from "../../context/GlobalState";
+import {categories} from "../../../data/categoryData";
 
 
 class SubTable extends Component{
@@ -17,7 +18,7 @@ class SubTable extends Component{
         return(
             <div>
                 <GlobalState.Consumer>
-                    {cart => (
+                    {globalState => (
                         <div>
                             <h4 className={"cdp cdp_dark_grey declaration_table_sub_header"}>
                                 Items <span className={"cdp_yellow"}> {isPayTable ? "over" : "under"} </span>the quota:
@@ -36,15 +37,17 @@ class SubTable extends Component{
                                 </TableHead>
 
                                 <TableBody>
-                                    {(this.renderItems()).map((item, index) => (
+                                    {(this.renderItems()).map(item => (
                                         <TableRow key={item.id}>
                                             <TableCell component="th" scope="row" className={"picture_column"}>
                                                 <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
                                             </TableCell>
-                                            <TableCell className={"table_column category_column"}>{item.type}</TableCell>
-                                            <TableCell numeric className={"table_column"}>{item.value} kr</TableCell>
-                                            <TableCell numeric className={"table_column"}>{isPayTable ? item.vat + " kr" : ""}</TableCell>
-                                            <TableCell numeric className={"table_column"}>{isPayTable ? item.duty + " kr" : ""}</TableCell>
+                                            <TableCell className={"table_column category_column"}>
+                                                {item.type}
+                                            </TableCell>
+                                            <TableCell numeric className={"table_column"}>{this.renderValue(item)}</TableCell>
+                                            <TableCell numeric className={"table_column"}>{this.renderVAT(item)}</TableCell>
+                                            <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
                                             <TableCell numeric className={"exit_column"} padding={"none"}>
                                                 <RemoveButton /*onDelete={() => cart.onRemoveFromCart(index)}*/ />
                                             </TableCell>
@@ -67,6 +70,64 @@ class SubTable extends Component{
 
         } else {
             return freeItems
+        }
+    }
+
+    renderValue = (item) => {
+        let string = '';
+        if (!this.isAlcoholOrTobacco(item.type)){
+            string += item.value * item.amount + " ";
+            if (item.currency !== undefined){
+                string += item.currency
+            } else {
+                string += "NOK"
+            }
+        }
+        return string;
+    }
+
+    renderVAT = (item) => {
+        const {isPayTable} = this.props
+        let string = '';
+        if (isPayTable && !this.isAlcoholOrTobacco(item.type)){
+            string += item.vat + " ";
+            if (item.currency !== undefined){
+                string += item.currency
+            } else {
+                string += "NOK"
+            }
+        }
+        return string;
+    }
+
+    renderFee = (item) => {
+        const {isPayTable} = this.props
+        let string = '';
+        if (isPayTable){
+            string += item.duty + " ";
+            if (item.currency !== undefined){
+                string += item.currency
+            } else {
+                string += "NOK"
+            }
+        }
+        return string;
+    }
+
+    isAlcoholOrTobacco = (type) => {
+        switch (type) {
+            case "Beer":
+            case "Alcopop and others":
+            case "Wine":
+            case "Fortified wine":
+            case "Spirits":
+            case "Cigarettes":
+            case "Snuff & chewing Tobacco":
+            case "Smoking tobacco":
+            case "Cigars and Cigarillos":
+                return true;
+            default:
+                return false;
         }
     }
 }
