@@ -85,6 +85,7 @@ class PersonsInVehicle extends Component {
                                                         require(`assets/img/icons/128x128/person_black.png`)}
                                                          alt="icon"
                                                     />
+
                                                 </Grid>
                                             ))
                                     }
