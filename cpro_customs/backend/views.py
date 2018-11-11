@@ -11,6 +11,11 @@ from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 import requests
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+import copy
 
 class TransactionList(APIView):
     authentication_classes = (BasicAuthentication,)
@@ -31,15 +36,23 @@ class TransactionList(APIView):
 class Transactions(APIView):
     authentication_classes = (BasicAuthentication,)
     permission_classes = (IsAuthenticated,)
+    
 
     def post(self, request, format=None):
         if(self.validate(request.data['reference_number'])):
+            request_data = copy.deepcopy(request.data)
+            if "email" in request.data:
+                to_address = request.data.pop("email")
+            else:
+                to_address = False
             for i in request.data['products']:
                 i['product'] = Product.objects.get(type_of_product=i['product']).pk
             serializer = TransactionSerializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response({'url': 'https://toll.idi.ntnu.no/api/backend/' + serializer.data['id_number']}, status=status.HTTP_201_CREATED)
+                if to_address:
+                    self.send_email(to_address, request_data)
+                return Response({'url': 'https://toll.idi.ntnu.no/api/backend/transaction/' + serializer.data['id_number']}, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response(serializer.errors, status=status.HTTP_402_PAYMENT_REQUIRED)
@@ -48,6 +61,27 @@ class Transactions(APIView):
         #implement validation towards the payment service provider here
         #TODO: implement validation using relevant legislation
         return True
+
+    def send_email(self, address, content):
+        #do nothing
+        sender = settings.EMAIL_HOST_USER
+        subject = "Receipt for customs declaration"
+        html_body = render_to_string('email/mail_template.html', self.parse_content(content))
+        plain_body = strip_tags(html_body) 
+        send_mail(subject, plain_body, sender, [address], html_message=html_body, fail_silently=False)
+        return 
+
+    def parse_content(self, content):
+        parsed = content
+        parsed['date'] = parsed['date'].split('T')[0] + " " + parsed['date'].split('T')[1].split(':')[0] + ":" + parsed['date'].split('T')[1].split(':')[1] 
+        for product in parsed['products']:
+            for j in product:
+                if isinstance(product[j], bool):
+                    if product[j]:
+                        product[j] = "Yes"
+                    else:
+                        product[j] = "No"
+        return parsed
 
 class TransactionDetail(APIView):
 
