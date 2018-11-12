@@ -134,7 +134,7 @@ class App extends Component {
      */
     addGood(name, value, currency, amount) {
         let good = {
-            "type": "Good",
+            "type": "Goods",
             "name": name,
             "value": value,
             "currency": currency,
@@ -151,7 +151,7 @@ class App extends Component {
         const {products} = this.state;
         let goods = [];
         for (let i = 0; i < products.length; ++i) {
-            if (products[i].type.localeCompare('Good') === 0) {
+            if (products[i].type.localeCompare('Goods') === 0) {
                 goods.push(products[i]);
             }
         }

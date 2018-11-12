@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid';
 import {withRouter} from "react-router-dom";
 import DeclarationTable from "./DeclarationTable";
+import {calculateFeesAndVAT} from "./logic/calculateFeeAndVAT";
 
 let id = 0;
 function createAlcoholAndTobacco(type, icon, amount, unit, value) {
@@ -28,15 +29,7 @@ class ShoppingCart extends Component {
 
     componentDidMount (){
         const {globalState} = this.props
-
-        /*console.log(globalState)
-        {globalState.products.map(item => {
-            console.log(item)
-        })}
-        */
-
         this.splitListAndCalculateFees(globalState)
-
     }
 
     render = () => {
@@ -150,7 +143,7 @@ class ShoppingCart extends Component {
             }
         }
 
-        this.calculateFeesAndVAT(payItems);
+        calculateFeesAndVAT(payItems);
 
         // Setting the state so that it contains the other elements
         this.setState(prevState => ({
@@ -362,7 +355,7 @@ class ShoppingCart extends Component {
             if (totalCigars > 0) freeItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 1));
         }
 
-        this.calculateFeesAndVAT(payItems);
+        calculateFeesAndVAT(payItems);
         console.log(payItems);
 
         this.setState({
@@ -370,106 +363,6 @@ class ShoppingCart extends Component {
             payItems: payItems
         })
 
-    }
-
-
-    /**
-     * Adds parameters/keys  for fee and VAT in every item that needs to be paid for
-     @param: payItems - The local state list containing all the items the user must pay for
-     */
-    calculateFeesAndVAT = (payItems) => {
-        /*
-        ---------------- RULES: ---------------------
-        Beer, alcopop:          20 kr per liter
-        Wine:                   60 kr per liter
-        Fortified wine:         115 kr per liter
-        Spirits:                325 kr per liter
-        Cigarettes:             290 kr per 100 pieces
-        Snuff:                  120 kr per 100 grams
-        Smoking tabacco/cigars: 290 kr per 100 grams
-        Cigarette paper:        5 kr per 100 pieces
-
-
-        --------------------------------------------
-        */
-
-        {payItems.map(item => {
-            switch (item.type) {
-                case "Beer":
-                case "Alcopop and others":
-                    item.fee = item.amount * 20;
-                    break;
-                case "Wine":
-                    item.fee = item.amount * 60;
-                    break;
-                case "Fortified wine":
-                    item.fee = item.amount * 115;
-                    break;
-                case "Spirits":
-                    item.fee = item.amount * 325;
-                    break;
-                case "Cigarettes":
-                case "Smoking tobacco":
-                case "Cigars and Cigarillos":
-                    item.fee = item.amount/100 * 290;
-                    break;
-                case "Snuff & chewing tobacco":
-                    item.fee = item.amount/100 * 120;
-                    break;
-                case "Cigarette paper and sheets":
-                    item.fee = item.amount/100 * 5;
-                    break;
-                case "Bought Animal":
-                    if (item.kind === "horse" && !item.horseHasOriginInEU){
-                        item.fee = 5000 * item.amount; // 5000 fee per horse
-                    }
-                default:
-                    item.vat = 0.25 * parseInt(item.value) * item.amount;
-                    break;
-            }
-        })
-        }
-        return payItems;
-    };
-
-
-    validateData = () => {
-
-        console.log("fetching")
-
-        const username = "react";
-        const password = "f$rSn6ydLk3s6XM3nJQ#17bqgfD0i";
-
-
-        fetch("https://toll.idi.ntnu.no/api/backend/", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
-            },
-            body: JSON.stringify({
-                "id_number": "0",
-                "license_plate": "AAA000",
-                "date": "2018-30-19T15:17:21.198799+02:00",
-                "amount_to_pay": "2500",
-                "reference_number": "2",
-                "currency": "NOK",
-                "overADay": false,
-                "products": [
-                    {
-                        "product": "dog",
-                        "value": "10000",
-                        "amount": "1",
-                        "unit": "pieces",
-                        "fee": "0",
-                        "contacted_NFSA": true,
-                        "vat": "25",
-                        "currency": "NOK"
-                    }
-                ]
-            })
-        }).then(promise => promise.json())
-            .then(getUrl => console.log(getUrl.url))
     }
 
 }
