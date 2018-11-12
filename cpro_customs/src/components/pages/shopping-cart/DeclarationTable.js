@@ -33,7 +33,7 @@ class DeclarationTable extends Component {
 
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
-                            <TotalTable onClickValidate={this.onClickValidateData(globalState)}
+                            <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
                                         totalSum={this.getTotalDuty(payItems)} route={'/checkout'}
                             />
                         </Paper>
@@ -85,20 +85,21 @@ class DeclarationTable extends Component {
             "currency": "NOK",
             "overADay": globalState.overADay,
             "products": this.fixFormatting(productList)
-        }
+        };
 
-        console.log(validateData(jsonResponse))
-    }
+        validateData(jsonResponse);
+    };
+
 
     fixFormatting = (productList) => {
         let productListCopy = JSON.parse(JSON.stringify(productList)); //copying the list to make changes
         for (let item of productListCopy) {
             if ('kind' in item){
-                item.product = item.kind;
+                item.product = item.kind.toLowerCase();
                 delete item.kind;
                 delete item.type;
             } else {
-                item.product = item.type;
+                item.product = item.type.toLowerCase();
                 delete item.type;
             }
 
@@ -111,6 +112,7 @@ class DeclarationTable extends Component {
 
             if (!('fee' in item)) item.fee = 0;
             if (item.unit === "L") item.unit = "litre";
+            if (!('unit' in item)) item.unit = "pieces";
             if ('isOtherAmount' in item) delete item.isOtherAmount;
             if ('currency' in item) delete item.currency;
 
@@ -153,17 +155,6 @@ class DeclarationTable extends Component {
         "contacted_NFSA": Boolean,
         "registered_NFSA" Boolean,
         "of_EU_origin": Boolean
-
-
-amount: "1"
-contactedNFSA: true
-fee: "0"
-horseHasOriginInEU: true
-kind: "horse"
-product: "Bought Animal"
-registeredAtNFSA: true
-value: "18000"
-vat: "25"
          */
 
     }

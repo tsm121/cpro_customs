@@ -12,29 +12,17 @@ function createAlcoholAndTobacco(type, icon, amount, unit, value) {
 
 class ShoppingCart extends Component {
     state = {
-        items: [
-            createAlcoholAndTobacco('Bought a dog abroad', "dog", 2, "", 18000),
-            createAlcoholAndTobacco('Kitchen', 'archive', 1, '', 20000),
-            createAlcoholAndTobacco('Some good', 'archive', 3, '', 1500),
-            createAlcoholAndTobacco('Wine', "wineBottleBig", 2, 'L', 0.75),
-            createAlcoholAndTobacco('Wine', "wineBottleBig", 4, 'L', 1.5),
-            createAlcoholAndTobacco('Spirit', "spirits", 2, "L", 1),
-            createAlcoholAndTobacco('Fortified wine', "fortifiedWine", 2, 'L', 0.75),
-            createAlcoholAndTobacco('Cigarettes', "cigarettes", 200, 'pieces', 1),
-            createAlcoholAndTobacco('Snuff & chewing tobacco', "snus", 100, 'g', 1),
-        ],
         freeItems: [],
-        payItems: []
+        payItems: [],
+        IDs: {},
     };
 
     componentDidMount (){
-        const {globalState} = this.props
+        const {globalState} = this.props;
         this.splitListAndCalculateFees(globalState)
     }
 
     render = () => {
-        console.log(this.state.freeItems)
-        console.log(this.state.payItems)
         return (
             <div>
                 <Grid container
@@ -50,7 +38,6 @@ class ShoppingCart extends Component {
 
                     <Grid item>
                         <DeclarationTable
-                            items={this.state.items}
                             payItems={this.state.payItems}
                             freeItems={this.state.freeItems}
                         />
@@ -186,6 +173,18 @@ class ShoppingCart extends Component {
         let totalCigars = 0;
         let totalPaper = 0;
         let hasTobacco = false;
+        let IDs = {
+            beer: [],
+            alcopop: [],
+            wine: [],
+            spirits: [],
+            fortifiedWine: [],
+            cigarettes: [],
+            snuff: [],
+            smoking: [],
+            cigars: [],
+            papers: []
+        };
 
         // Calculating the different total amounts based on category
         {products.map(item => {
@@ -194,37 +193,47 @@ class ShoppingCart extends Component {
                     break;
                 case "Beer":
                     totalBeer += item.value * item.amount;
+                    IDs.beer.push(item.id);
                     break;
                 case "Alcopop and others":
                     totalAlcopop += item.value * item.amount;
+                    IDs.alcopop.push(item.id);
                     break;
                 case "Wine":
                     totalWine += item.value * item.amount;
+                    IDs.wine.push(item.id);
                     break;
                 case "Fortified wine":
                     totalFortifiedWine += item.value * item.amount;
+                    IDs.fortifiedWine.push(item.id);
                     break;
                 case "Spirits":
                     totalSpirit += item.value * item.amount;
+                    IDs.spirits.push(item.id);
                     break;
                 case "Cigarettes":
                     totalCigarettes += item.value * item.amount;
+                    IDs.cigarettes.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Snuff & chewing tobacco":
                     totalSnuff += item.value * item.amount;
+                    IDs.snuff.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Smoking tobacco":
                     totalSmoking += item.value * item.amount;
+                    IDs.smoking.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Cigars and Cigarillos":
                     totalCigars += item.value * item.amount;
+                    IDs.cigars.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Cigarette paper and sheets":
                     totalPaper += item.value * item.amount;
+                    IDs.papers.push(item.id);
                     break;
             } return null
         })
@@ -356,7 +365,6 @@ class ShoppingCart extends Component {
         }
 
         calculateFeesAndVAT(payItems);
-        console.log(payItems);
 
         this.setState({
             freeItems: freeItems,

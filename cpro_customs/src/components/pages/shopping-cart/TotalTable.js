@@ -37,6 +37,8 @@ class TotalTable extends Component{
 
 
     onClick = () => {
+        const {onClickValidate} = this.props;
+        console.log(onClickValidate());
         this.props.history.push(this.props.route);
     };
 

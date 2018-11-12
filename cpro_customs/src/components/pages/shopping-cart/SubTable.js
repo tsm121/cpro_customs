@@ -48,7 +48,7 @@ class SubTable extends Component{
                                         <TableCell numeric className={"table_column"}>{this.renderVAT(item)}</TableCell>
                                         <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
                                         <TableCell numeric className={"exit_column"} padding={"none"}>
-                                            <RemoveButton /*onDelete={() => cart.onRemoveFromCart(index)}*/ />
+                                            <RemoveButton onDelete={() => this.removeItem(item.id, globalState)} />
                                         </TableCell>
                                     </TableRow>
                                 ))
@@ -59,6 +59,10 @@ class SubTable extends Component{
                 )}
             </GlobalState.Consumer>
         )
+    }
+
+    removeItem = (id, globalState) => {
+
     }
 
     renderItems = () => {
