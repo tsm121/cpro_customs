@@ -39,6 +39,7 @@ class ShoppingCart extends Component {
                         <DeclarationTable
                             payItems={this.state.payItems}
                             freeItems={this.state.freeItems}
+                            globalState={this.props.globalState}
                         />
                     </Grid>
                 </Grid>

@@ -9,6 +9,12 @@ import {GlobalState} from "../../context/GlobalState";
 
 class DeclarationTable extends Component {
 
+    componentDidMount() {
+        const {payItems, globalState} = this.props;
+        console.log(payItems);
+        globalState.setAmountToPay(this.getTotalDuty(payItems));
+    }
+
     render = () => {
         const {payItems, freeItems} = this.props
         return (
@@ -34,7 +40,6 @@ class DeclarationTable extends Component {
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
                             <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
-                                        globalState = {globalState}
                                         route={'/checkout'}
                             />
                         </Paper>
@@ -80,7 +85,7 @@ class DeclarationTable extends Component {
             "license_plate": JSON.parse(localStorage.getItem('userData')).licencePlate,
             "email": JSON.parse(localStorage.getItem('userData')).email,
             "date": "2018-30-19T15:17:21.198799+02:00",
-            "amount_to_pay": this.getTotalDuty(payItems),
+            "amount_to_pay": globalState.amount_to_pay,
             "reference_number": "1",
             "currency": "NOK",
             "overADay": globalState.overADay,
@@ -88,8 +93,6 @@ class DeclarationTable extends Component {
         };
 
         validateData(jsonResponse);
-
-        globalState.setAmountToPay(this.getTotalDuty(payItems));
     };
 
 
