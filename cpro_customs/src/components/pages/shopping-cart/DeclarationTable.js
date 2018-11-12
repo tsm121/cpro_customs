@@ -34,7 +34,8 @@ class DeclarationTable extends Component {
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
                             <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
-                                        totalSum={this.getTotalDuty(payItems)} route={'/checkout'}
+                                        globalState = {globalState}
+                                        route={'/checkout'}
                             />
                         </Paper>
                     </div>
@@ -45,14 +46,13 @@ class DeclarationTable extends Component {
 
     getTotalDuty = (payItems) => {
         let sum = 0;
-        {
-            payItems.map(item => {
+        {payItems.map(item => {
                 if (item.vat !== undefined) sum += item.vat;
                 if (item.fee !== undefined) sum += item.fee;
             })
         }
         return sum;
-    }
+    };
 
     onClickValidateData = (globalState) => {
         const {payItems, freeItems} = this.props;
@@ -88,6 +88,8 @@ class DeclarationTable extends Component {
         };
 
         validateData(jsonResponse);
+
+        globalState.setAmountToPay(this.getTotalDuty(payItems));
     };
 
 

@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {GlobalState} from "../../context/GlobalState";
-import {categories} from "../../../data/categoryData";
 
 
 class SubTable extends Component{
@@ -92,7 +91,7 @@ class SubTable extends Component{
         const {isPayTable} = this.props
         let string = '';
         if (isPayTable && !this.isAlcoholOrTobacco(item.type)){
-            string += item.vat + " ";
+            string += item.vat.toFixed(2) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {
@@ -106,7 +105,7 @@ class SubTable extends Component{
         const {isPayTable} = this.props
         let string = '';
         if (isPayTable && item.fee !== undefined){
-            string += item.fee + " ";
+            string += item.fee.toFixed(2) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {

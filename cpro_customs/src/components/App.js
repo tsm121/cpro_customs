@@ -40,6 +40,7 @@ class App extends Component {
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
     setOverADay = this.setOverADay.bind(this);
+    setAmountToPay = this.setAmountToPay.bind(this);
 
 
     /**
@@ -263,6 +264,12 @@ class App extends Component {
         })
     }
 
+    setAmountToPay(toPay){
+        this.setState({
+            amount_to_pay: toPay
+        })
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -287,6 +294,7 @@ class App extends Component {
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
                     setOverADay: this.setOverADay,
+                    setAmountToPay: this.setAmountToPay,
                 }}
             >
                 <div>

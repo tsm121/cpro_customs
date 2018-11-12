@@ -1,8 +1,6 @@
 import React from 'react'
 
 export const validateData = (allData) => {
-    console.log(allData)
-
     console.log("fetching")
 
     const username = "react";
