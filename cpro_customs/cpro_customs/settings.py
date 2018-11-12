@@ -121,6 +121,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+TEST_RUNNER = 'backend.test_runner.NoDbTestRunner'
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
