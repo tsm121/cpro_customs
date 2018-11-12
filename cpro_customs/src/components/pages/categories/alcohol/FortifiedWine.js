@@ -26,7 +26,7 @@ class FortifiedWine extends Component {
 
     render = () => {
         return (
-             <GlobalState.Consumer>
+            <GlobalState.Consumer>
                 {globalState => (
                     <div>
                         <PageTitle title={"Fortified Wine"}/>

@@ -85,6 +85,7 @@ class PersonsInVehicle extends Component {
                                                         require(`assets/img/icons/128x128/person_black.png`)}
                                                          alt="icon"
                                                     />
+
                                                 </Grid>
                                             ))
                                     }
@@ -107,38 +108,38 @@ class PersonsInVehicle extends Component {
                         </Grid>
 
                         <Grid container
-                                  direction={"row"}
-                                  alignItems={"center"}
-                                  justify={"center"}
+                              direction={"row"}
+                              alignItems={"center"}
+                              justify={"center"}
+                        >
+                            <Grid item
+                                  className={"checkbox_container"}
                             >
-                                <Grid item
-                                      className={"checkbox_container"}
-                                >
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
-                                                checked={overADay}
-                                                onChange={this.handleChecked}
-                                                value="overADay"
-                                                color="secondary"
-                                            />
-                                        }
-                                        label=' "I have been abroad more than 24 hours" '
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={overADay}
+                                            onChange={this.handleChecked}
+                                            value="overADay"
+                                            color="secondary"
+                                        />
+                                    }
+                                    label=' "I have been abroad more than 24 hours" '
 
-                                        classes={{
-                                            label: classes.checkbox_label,
-                                        }}
-                                        className={"checkbox_label"}
-                                    />
-
-                                </Grid>
-
-                                <Grid item style={{marginTop:"35px"}}
-                                >
-                                    <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"} light={true}/>
-                                </Grid>
+                                    classes={{
+                                        label: classes.checkbox_label,
+                                    }}
+                                    className={"checkbox_label"}
+                                />
 
                             </Grid>
+
+                            <Grid item style={{marginTop:"35px"}}
+                            >
+                                <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"} light={true}/>
+                            </Grid>
+
+                        </Grid>
 
                     </Grid>
                     <NavigationArrow direction={"right"} page={"categories"}/>
