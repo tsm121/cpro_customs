@@ -18,7 +18,7 @@ class TransactionProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = TransactionProduct
-        fields = ('value', 'fee', 'amount', 'unit', 'product', 'vat', 'breed', 'contacted_NFSA', 'registered_NFSA', 'of_EU_origin' )
+        fields = ('value', 'fee', 'amount', 'unit', 'product', 'vat', 'breed', 'contacted_NFSA', 'registered_NFSA', 'of_EU_origin', 'name' )
 
 
 class TransactionSerializer(serializers.ModelSerializer):

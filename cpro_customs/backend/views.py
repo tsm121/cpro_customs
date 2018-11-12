@@ -16,6 +16,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 import copy
+import datetime
 
 class TransactionList(APIView):
     authentication_classes = (BasicAuthentication,)
@@ -40,6 +41,7 @@ class Transactions(APIView):
 
     def post(self, request, format=None):
         if(self.validate(request.data['reference_number'])):
+            request.data["date"] = datetime.datetime.now()
             request_data = copy.deepcopy(request.data)
             if "email" in request.data:
                 to_address = request.data.pop("email")
@@ -73,7 +75,8 @@ class Transactions(APIView):
 
     def parse_content(self, content):
         parsed = content
-        parsed['date'] = parsed['date'].split('T')[0] + " " + parsed['date'].split('T')[1].split(':')[0] + ":" + parsed['date'].split('T')[1].split(':')[1] 
+        parsed['date'] = parsed['date'].strftime("%Y-%m-%d %H:%M:%S")
+        parsed['date'] = parsed['date'].split(' ')[0] + " " + parsed['date'].split(' ')[1].split(':')[0] + ":" + parsed['date'].split(' ')[1].split(':')[1] 
         for product in parsed['products']:
             for j in product:
                 if isinstance(product[j], bool):

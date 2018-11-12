@@ -33,7 +33,7 @@ class TransactionProduct(models.Model):
     contacted_NFSA = models.NullBooleanField(blank=True)
     registered_NFSA = models.NullBooleanField(blank=True)
     of_EU_origin = models.NullBooleanField(blank=True)
-
+    name = models.CharField(max_length=255, blank=True)
 
 
     #def __str__(self):
