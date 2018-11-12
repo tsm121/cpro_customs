@@ -5,6 +5,23 @@
 /*
     global variables (within this file)
  */
+
+
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: local('Material Icons'), url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Arial', sans-serif;
+    font-display: swap;
+    font-weight: normal;
+}
+
 :root {
     --font-family: Arial, sans-serif;
     --font-weight: normal;

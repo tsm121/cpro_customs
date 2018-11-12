@@ -7,7 +7,9 @@ class SettingsButton extends Component  {
 	render = () => {
 		const {onClick} = this.props;
 		return (
-			<HeaderButton icon={"settings"} onClick={onClick}/>
+			<HeaderButton icon={"settings"}
+						  onClick={onClick}
+            />
 		);
 	};
 }

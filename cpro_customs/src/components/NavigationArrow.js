@@ -51,14 +51,14 @@ class NavigationArrow extends Component  {
 			        return (
                         <img className="icon_xl"
                              src={require("assets/img/icons/512x512/arrow_down_yellow.png")}
-                             alt="icon"
+                             alt="arrow-down-yellow"
                         />
                     );
                 } else {
 			        return (
                         <img className="icon_xl"
                              src={require("assets/img/icons/512x512/arrow_down_white.png")}
-                             alt="icon"
+                             alt="arrow-down-white"
                         />
                     );
                 }
@@ -67,14 +67,14 @@ class NavigationArrow extends Component  {
 			        return (
                         <img className="icon_xl"
                              src={require("assets/img/icons/512x512/arrow_right_yellow.png")}
-                             alt="icon"
+                             alt="arrow-right-yellow"
                         />
                     );
                 } else {
 			        return (
                         <img className="icon_xl"
                              src={require("assets/img/icons/512x512/arrow_right_white.png")}
-                             alt="icon"
+                             alt="arrow-right-white"
                         />
                     );
                 }

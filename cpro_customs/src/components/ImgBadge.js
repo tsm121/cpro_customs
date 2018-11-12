@@ -40,7 +40,7 @@ class ImgBadge extends Component {
                 <img
                     className={"cdp_icon_item"}
                     src={require(`assets/img/icons/512x512/${icons[icon]}.png`)}
-                    alt={"icon"}
+                    alt={icon.toString() + "-icon"}
                 />
             </Badge>
         );

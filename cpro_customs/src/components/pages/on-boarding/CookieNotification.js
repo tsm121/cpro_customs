@@ -42,6 +42,9 @@ export default class CookieNotification extends Component  {
                                     onClick={closeModal}
                                     variant={"contained"}
                                     color={"primary"}
+                                    role="button"
+                                    type="submit"
+                                    value="I-agree"
                                 >
                                     I agree
                                 </Button>
@@ -52,6 +55,9 @@ export default class CookieNotification extends Component  {
                                 <Button href={"https://www.toll.no/en/"}
                                         variant={"contained"}
                                         color={"secondary"}
+                                        role="button"
+                                        type="submit"
+                                        value="i-dont-agree"
                                 >
                                     I don't agree
                                 </Button>

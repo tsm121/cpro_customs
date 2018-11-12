@@ -83,7 +83,7 @@ class PersonsInVehicle extends Component {
                                                     <img className="icon_sm" src={showYellowIcon[value] ?
                                                         require(`assets/img/icons/128x128/person_yellow.png`) :
                                                         require(`assets/img/icons/128x128/person_black.png`)}
-                                                         alt="icon"
+                                                         alt={value.toString() + "-persons-icon"}
                                                     />
                                                 </Grid>
                                             ))
@@ -97,7 +97,7 @@ class PersonsInVehicle extends Component {
                                             >
                                                 <img className="icon_sm"
                                                      src={require(`assets/img/icons/128x128/plus_black.png`)}
-                                                     alt="icon"
+                                                     alt="add-person-icon"
                                                 />
                                             </Grid>
                                             : null

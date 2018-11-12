@@ -202,7 +202,12 @@ class BoughtItem extends Component {
                                                                             certain breeds of dogs</span>
                                                             </Grid>
                                                             <Grid item xs={4}>
-                                                                <Button onClick={this.props.showInfoModal}> More
+                                                                <Button
+                                                                    onClick={this.props.showInfoModal}
+                                                                    role="button"
+                                                                    type="submit"
+                                                                    value="more-info"
+                                                                > More
                                                                     Info </Button>
                                                             </Grid>
                                                         </Grid>

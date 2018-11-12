@@ -32,6 +32,9 @@ function MySnackbarContent(props) {
                     aria-label="Close"
                     color="default"
                     onClick={onExited}
+                    role="button"
+                    type="submit"
+                    value="close-popup-message"
                 >
                     <CloseIcon/>
                 </IconButton>,

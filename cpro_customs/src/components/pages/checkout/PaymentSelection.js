@@ -117,6 +117,9 @@ export default class PaymentSelection extends Component  {
 							<Divider/>
 							<ListItem button
 									  onClick={() => this.handleOnClickEvent("visa")}
+                                      role="button"
+                                      type="submit"
+                                      value="select-visa"
 							>
 								<ListItemAvatar>
 									<Avatar
@@ -133,6 +136,9 @@ export default class PaymentSelection extends Component  {
 							<Divider/>
 							<ListItem button
 									  onClick={() => this.handleOnClickEvent("mastercard")}
+                                      role="button"
+                                      type="submit"
+                                      value="select-mastercard"
 							>
 								<ListItemAvatar>
 									<Avatar
@@ -149,6 +155,9 @@ export default class PaymentSelection extends Component  {
 							<Divider/>
 							<ListItem button
 									  onClick={() => this.handleOnClickEvent("vipps")}
+                                      role="button"
+                                      type="submit"
+                                      value="select-vipps"
 							>
 								<ListItemAvatar>
 									<Avatar
@@ -165,6 +174,9 @@ export default class PaymentSelection extends Component  {
 							<Divider/>
 							<ListItem button
 									  onClick={() => this.handleOnClickEvent("bitcoin")}
+                                      role="button"
+                                      type="submit"
+                                      value="select-bitcoin"
 							>
 								<ListItemAvatar>
 									<Avatar
@@ -190,6 +202,9 @@ export default class PaymentSelection extends Component  {
 									  }
 									  onClick={this.getSelected}
 									  disabled={mastercard || vipps || bitcoin || !selected}
+                                      role="button"
+                                      type="submit"
+                                      value="select-payment"
 							>
 								<ListItemText
 									disableTypography={true}

@@ -37,7 +37,14 @@ class SubTable extends Component{
                                 </TableHead>
 
                                 <TableBody>
-                                    <Button onClick={() => cart.addGoodToCart('kitchen', 5000, 'NOK', 1)}> Add Good</Button>
+                                    <Button
+                                        onClick={() => cart.addGoodToCart('kitchen', 5000, 'NOK', 1)}
+                                        role="button"
+                                        type="submit"
+                                        value="add-good-to-cart"
+                                    >
+                                        Add Good
+                                    </Button>
                                     {cart.products.map((item, index) => (
                                         <TableRow key={item.id}>
                                             {item.id}

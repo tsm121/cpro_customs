@@ -90,6 +90,9 @@ export default class Checkout extends Component {
                             <h1 className={"payment_title"}>
                                 <Button
                                     disabled={stageSelection}
+                                    role="button"
+                                    type="submit"
+                                    value="go-back-payment"
                                 >
                                     <Icon
                                         onClick={this.handleGoBackButton}

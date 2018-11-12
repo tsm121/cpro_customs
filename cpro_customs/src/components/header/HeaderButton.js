@@ -10,6 +10,9 @@ class HeaderButton extends Component {
 			<IconButton onClick={onClick}
 						onMouseOver={this.onMouseOver}
 						onMouseOut={this.onMouseOut}
+						role="button"
+                        type="submit"
+                        value="back-button"
 			>
 				<Icon>
 					{icon}
