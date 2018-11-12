@@ -9,10 +9,12 @@ import {GlobalState} from "../../context/GlobalState";
 
 class DeclarationTable extends Component {
 
-    componentDidMount() {
+    componentDidUpdate() {
         const {payItems, globalState} = this.props;
-        console.log(payItems);
-        globalState.setAmountToPay(this.getTotalDuty(payItems));
+        const total_duty = this.getTotalDuty(payItems);
+        if (globalState.amount_to_pay !== total_duty) {
+            globalState.setAmountToPay(this.getTotalDuty(payItems));
+        }
     }
 
     render = () => {
