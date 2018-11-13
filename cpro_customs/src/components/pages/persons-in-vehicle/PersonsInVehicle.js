@@ -12,8 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import HelpTip from "../../HelpTip";
 import {TOOL_TIP_TEXTS} from "../../../data/ToolTipTexts";
 import withStyles from "@material-ui/core/styles/withStyles";
-import {GlobalState} from "../../context/GlobalState";
-
+import Button from "@material-ui/core/Button/Button";
 
 
 const styles = {
@@ -21,138 +20,152 @@ const styles = {
         color: "white",
         fontSize: "4vmin",
     },
-}
+};
 
 class PersonsInVehicle extends Component {
     constructor(props) {
         super(props);
         // init state
+        let amountPersonsShown = this.props.globalState.number_of_people > 5 ? this.props.globalState.number_of_people : 5;
+        let showYellowIcon = [];
+        let iconClicked = [];
+        for (let i=0; i < this.props.globalState.number_of_people; i++) {
+            iconClicked.push(true);
+            showYellowIcon.push(true);
+        }
+        for (let i=0; i < amountPersonsShown - this.props.globalState.number_of_people; i++) {
+            iconClicked.push(false);
+            showYellowIcon.push(false);
+        }
         this.state = {
-            showYellowIcon: [true, false, false, false, false, false, false],
-            iconClicked: [false, false, false, false, false, false, false],
+            showYellowIcon: showYellowIcon,
+            iconClicked: iconClicked,
             amountPersonsShown: 5,
             plusClickCounter: 0,
-            overADay: false,
+            overADay: this.props.globalState.overADay,
+            number_of_people: this.props.globalState.number_of_people,
         };
     }
 
-    handleChecked = (globalState, event) =>{
+    handleChecked = event => {
         this.setState({
             overADay: event.target.checked
-        })
-        globalState.setOverADay();
-    }
+        });
+        this.props.globalState.setter("overADay", event.target.checked);
+    };
 
     render() {
         const {showYellowIcon, amountPersonsShown, overADay} = this.state;
-        const {classes} = this.props
+        const {classes} = this.props;
         return (
-            <GlobalState.Consumer>
-                {globalState => (
-                    <div>
-                        <Grid container
-                              spacing={0}
-                              justify="center"
-                              alignItems="center"
-                              direction="column"
+            <div>
+                <Grid container
+                      spacing={0}
+                      justify="center"
+                      alignItems="center"
+                      direction="column"
+                >
+                    <Grid item xl={12}>
+                        <h1 className={"cdp cdp_primary"}>For how many people do you want to declare?</h1>
+                    </Grid>
+
+                    <Grid container
+                          spacing={0}
+                          justify="center"
+                          alignItems="center"
+                          direction="row"
+                          className="personContainer"
+                    >
+                        <Grid item
+                              xs={11}
+                              sm={8}
+                              md={7}
+                              xl={6}
                         >
-                            <Grid item xl={12}>
-                                <h1 className={"cdp cdp_primary"}>For how many people do you want to declare?</h1>
-                            </Grid>
+                            <Paper className="personPaper">
+                                <Button onClick={() => {console.log(this.props.globalState.number_of_people)}}>No of people?</Button>
+                                <Grid container justify="center" spacing={0}>
+                                    {/* person icons */
+                                        (Array.apply(null, {length: amountPersonsShown}).map(Number.call, Number))
+                                            .map(value => (
+                                                <Grid item key={value}
+                                                      onMouseEnter={() => this.personOnMouseOver(value)}
+                                                      onMouseLeave={() => this.personOnMouseOut(value)}
+                                                      onClick={() => this.personOnClick(value)}
+                                                >
+                                                    <img className="icon_sm" src={showYellowIcon[value] ?
+                                                        require(`assets/img/icons/128x128/person_yellow.png`) :
+                                                        require(`assets/img/icons/128x128/person_black.png`)}
+                                                         alt="icon"
+                                                    />
 
-                            <Grid container
-                                  spacing={0}
-                                  justify="center"
-                                  alignItems="center"
-                                  direction="row"
-                                  className="personContainer"
-                            >
-                                <Grid item
-                                      xs={11}
-                                      sm={8}
-                                      md={7}
-                                      xl={6}
-                                >
-                                    <Paper className="personPaper">
-                                        <Grid container justify="center" spacing={0}>
-                                            { /* person icons */
-                                                (Array.apply(null, {length: amountPersonsShown}).map(Number.call, Number))
-                                                    .map(value => (
-                                                        <Grid item key={value}
-                                                              onMouseEnter={() => this.personOnMouseOver(value)}
-                                                              onMouseLeave={() => this.personOnMouseOut(value)}
-                                                              onClick={() => this.personOnClick(value)}
-                                                        >
-                                                            <img className="icon_sm" src={showYellowIcon[value] ?
-                                                                require(`assets/img/icons/128x128/person_yellow.png`) :
-                                                                require(`assets/img/icons/128x128/person_black.png`)}
-                                                                 alt="icon"
-                                                            />
-                                                        </Grid>
-                                                    ))
-                                            }
-                                            { /* plus button */
-                                                amountPersonsShown < 12
-                                                    ?   <Grid item
-                                                              onClick={() => this.plusOnClick()}
-                                                              onMouseOver={() => this.plusOnMouseOver()}
-                                                              onMouseOut={() => this.plusOnMouseOut()}
-                                                    >
-                                                        <img className="icon_sm"
-                                                             src={require(`assets/img/icons/128x128/plus_black.png`)}
-                                                             alt="icon"
-                                                        />
-                                                    </Grid>
-                                                    : null
-                                            }
-                                        </Grid>
-                                    </Paper>
-                                </Grid>
-
-                                <Grid container
-                                      direction={"row"}
-                                      alignItems={"center"}
-                                      justify={"center"}
-                                >
-                                    <Grid item
-                                          className={"checkbox_container"}
-                                    >
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    checked={overADay}
-                                                    onChange={(e) => this.handleChecked(globalState, e)}
-                                                    value="overADay"
-                                                    color="secondary"
+                                                </Grid>
+                                            ))
+                                    }
+                                    {/* plus button */
+                                        amountPersonsShown < 12
+                                            ? <Grid item
+                                                    onClick={() => this.plusOnClick()}
+                                                    onMouseOver={() => this.plusOnMouseOver()}
+                                                    onMouseOut={() => this.plusOnMouseOut()}
+                                            >
+                                                <img className="icon_sm"
+                                                     src={require(`assets/img/icons/128x128/plus_black.png`)}
+                                                     alt="icon"
                                                 />
-                                            }
-                                            label=' "I have been abroad more than 24 hours" '
-
-                                            classes={{
-                                                label: classes.checkbox_label,
-                                            }}
-                                            className={"checkbox_label"}
-                                        />
-
-                                    </Grid>
-
-                                    <Grid item style={{marginTop:"35px"}}
-                                    >
-                                        <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"} light={true}/>
-                                    </Grid>
-
+                                            </Grid>
+                                            : null
+                                    }
                                 </Grid>
-
-
-                            <Grid item style={{marginTop:"35px"}}
-                            >
-                                <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"} light={true}/>
-                            </Grid>
-                            <NavigationArrow direction={"right"} page={"categories"}/>
+                            </Paper>
                         </Grid>
-                    </div>
-                )}
-            </GlobalState.Consumer>
+
+
+                        <Grid container
+                              direction={"row"}
+                              alignItems={"center"}
+                              justify={"center"}
+                        >
+                            <Grid item
+                                  className={"checkbox_container"}
+                            >
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={overADay}
+                                            onChange={(e) => this.handleChecked(e)}
+                                            value="overADay"
+                                            color="secondary"
+                                        />
+                                    }
+                                    label=' "I have been abroad more than 24 hours" '
+
+                                    classes={{
+                                        label: classes.checkbox_label,
+                                    }}
+                                    className={"checkbox_label"}
+                                />
+
+                            </Grid>
+
+                            <Grid item style={{marginTop: "35px"}}
+                            >
+                                <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"}
+                                         light={true}/>
+                            </Grid>
+
+                        </Grid>
+
+
+                        <Grid item style={{marginTop: "35px"}}
+                        >
+                            <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"}
+                                     light={true}/>
+                        </Grid>
+                        <NavigationArrow direction={"right"} page={"categories"}/>
+                    </Grid>
+                </Grid>
+            </div>
         );
     }
 
@@ -185,7 +198,7 @@ class PersonsInVehicle extends Component {
         }
         document.body.style.cursor = "pointer";
         let showYellowIcon_2 = showYellowIcon;
-        for (let i=0; i <= id; i++) showYellowIcon_2[i] = true;
+        for (let i = 0; i <= id; i++) showYellowIcon_2[i] = true;
         for (let i = id + 1; i < amountPersonsShown; i++) showYellowIcon_2[i] = false;
         this.setState({
             showYellowIcon: update(showYellowIcon_2, {$set: showYellowIcon_2})
@@ -209,7 +222,7 @@ class PersonsInVehicle extends Component {
         if (id === 0) return;
         document.body.style.cursor = "default";
         let showYellowIcons_2 = showYellowIcon;
-        for (let i=1; i < amountPersonsShown; i++) showYellowIcons_2[i] = false;
+        for (let i = 1; i < amountPersonsShown; i++) showYellowIcons_2[i] = false;
         this.setState({
             showYellowIcon: update(showYellowIcon, {$set: showYellowIcons_2})
         });
@@ -223,8 +236,10 @@ class PersonsInVehicle extends Component {
     personOnClick(id) {
         const {iconClicked} = this.state;
         this.setState({
-            iconClicked: update(iconClicked, {[id]: {$set: true}})
+            iconClicked: update(iconClicked, {[id]: {$set: true}}),
+            number_of_people: id + 1,
         });
+        this.props.globalState.setter("number_of_people", id + 1);
     }
 }
 
