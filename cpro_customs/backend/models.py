@@ -10,7 +10,7 @@ class Transaction(models.Model):
     currency = models.CharField(max_length=255)
     number_of_people = models.IntegerField()
     reference_number = models.CharField(max_length=255, default=0)
-
+    over_a_day = models.BooleanField()
 
    # def __str__(self):
    #     return self.text
