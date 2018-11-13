@@ -7,7 +7,7 @@ export const validateData = (allData) => {
     const password = "f$rSn6ydLk3s6XM3nJQ#17bqgfD0i";
 
 
-    fetch("https://toll.idi.ntnu.no/api/backend/", {
+    return fetch("https://toll.idi.ntnu.no/api/backend/", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -15,5 +15,8 @@ export const validateData = (allData) => {
         },
         body: JSON.stringify(allData)
     }).then(promise => promise.json())
-        .then(getUrl => console.log(getUrl.url))
+        .then(getUrl => {
+            console.log(getUrl.url)
+            return getUrl.url
+        })
 }

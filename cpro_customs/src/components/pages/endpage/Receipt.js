@@ -5,6 +5,7 @@ import Grid from "@material-ui/core/Grid/Grid";
 export default class Receipt extends Component {
 	render = () => {
 		const {QR_url} = this.props
+		console.log(QR_url)
 		return(
 			<Grid container
 				  direction={"column"}

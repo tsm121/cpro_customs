@@ -6,6 +6,7 @@ import {GlobalState} from "../../context/GlobalState";
 
 
 class TotalTable extends Component{
+
     render = () => {
         return(
             <GlobalState.Consumer>
@@ -41,8 +42,13 @@ class TotalTable extends Component{
 
 
     onClick = () => {
-        const {onClickValidate} = this.props;
-        console.log(onClickValidate());
+        const {onClickValidate, globalState} = this.props;
+        onClickValidate().then(response => {
+            if (globalState.QRUrl !== response) {
+                globalState.setQRUrl(response);
+            }
+        });
+
         this.props.history.push(this.props.route);
     };
 

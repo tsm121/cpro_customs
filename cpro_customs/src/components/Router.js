@@ -25,9 +25,9 @@ import SnuffAndChewingTobacco from "./pages/categories/tobacco/SnuffAndChewingTo
 import SmokingTobacco from "./pages/categories/tobacco/SmokingTobacco";
 import CigarettePaperAndSheaths from "./pages/categories/tobacco/CigarettePaperAndSheaths";
 import Checkout from "./pages/checkout/Checkout";
-import Endpage from "./pages/endpage/Endpage";
 import NotFound from "./pages/NotFound";
 import StateWrapper from "./pages/shopping-cart/StateWrapper";
+import EndpageWrapper from "./pages/endpage/EndpageWrapper";
 
 
 /**
@@ -44,7 +44,7 @@ class Router extends Component {
                 <Route exact path='/on-boarding' component={OnBoarding}/>
                 <Route exact path='/categories' component={Categories}/>
                 <Route exact path='/checkout' component={Checkout}/>
-                <Route exact path='/endpage' component={Endpage}/>
+                <Route exact path='/endpage' component={EndpageWrapper}/>
                 <Route exact path='/categories/animals' component={Animals}/>
                 <Route exact path='/categories/animals/pet' component={Pet}/>
                 <Route exact path='/categories/animals/horse' component={Horse}/>

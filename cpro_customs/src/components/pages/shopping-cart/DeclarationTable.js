@@ -42,7 +42,7 @@ class DeclarationTable extends Component {
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
                             <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
-                                        route={'/checkout'}
+                                        globalState={globalState} route={'/checkout'}
                             />
                         </Paper>
                     </div>
@@ -94,7 +94,8 @@ class DeclarationTable extends Component {
             "products": this.fixFormatting(productList)
         };
 
-        validateData(jsonResponse);
+
+        return validateData(jsonResponse);
     };
 
 
@@ -102,11 +103,20 @@ class DeclarationTable extends Component {
         let productListCopy = JSON.parse(JSON.stringify(productList)); //copying the list to make changes
         for (let item of productListCopy) {
             if ('kind' in item){
-                item.product = item.kind.toLowerCase();
+                if(item.kind === "dog"){
+                    item.kind = "Dog"
+                } else if (item.kind === "horse"){
+                    item.kind = "Horse"
+                } else {
+                    item.kind = "Other"
+                }
+
+                item.product = item.kind;
                 delete item.kind;
                 delete item.type;
+
             } else {
-                item.product = item.type.toLowerCase();
+                item.product = item.type;
                 delete item.type;
             }
 
@@ -119,6 +129,7 @@ class DeclarationTable extends Component {
 
             if (!('fee' in item)) item.fee = 0;
             if (item.unit === "L") item.unit = "litre";
+            if (item.unit === "g") item.unit = "grams";
             if (!('unit' in item)) item.unit = "pieces";
             if ('isOtherAmount' in item) delete item.isOtherAmount;
             if ('currency' in item) delete item.currency;

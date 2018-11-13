@@ -20,6 +20,7 @@ class App extends Component {
             amount_to_pay: 0,
             productIdCounter: 0,
             overADay: false,
+            QRUrl: {},
         };
     }
 
@@ -41,6 +42,7 @@ class App extends Component {
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
     setOverADay = this.setOverADay.bind(this);
     setAmountToPay = this.setAmountToPay.bind(this);
+    setQRUrl = this.setQRUrl.bind(this);
 
 
     /**
@@ -270,6 +272,12 @@ class App extends Component {
         })
     }
 
+    setQRUrl(url){
+        this.setState({
+            QRUrl: url
+        })
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -280,6 +288,7 @@ class App extends Component {
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
                     overADay: this.state.overADay,
+                    QRUrl: this.state.QRUrl,
                     totalAmount: this.totalAmount,
                     findProductIndexById: this.findProductIndexById,
                     removeAllElementsOfType: this.removeAllElementsOfType,
@@ -295,6 +304,7 @@ class App extends Component {
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
                     setOverADay: this.setOverADay,
                     setAmountToPay: this.setAmountToPay,
+                    setQRUrl: this.setQRUrl,
                 }}
             >
                 <div>
