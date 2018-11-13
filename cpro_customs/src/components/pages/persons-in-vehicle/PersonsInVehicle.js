@@ -153,13 +153,6 @@ class PersonsInVehicle extends Component {
                             </Grid>
 
                         </Grid>
-
-
-                        <Grid item style={{marginTop: "35px"}}
-                        >
-                            <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"}
-                                     light={true}/>
-                        </Grid>
                         <NavigationArrow direction={"right"} page={"categories"}/>
                     </Grid>
                 </Grid>
