@@ -108,7 +108,7 @@ export default class HandlePayment extends Component  {
                             <ListItemText
                                 disableTypography={true}
                                 className={"payment_nav_button_text"}
-                                primary={"Pay (" + totalSum + " " + selectedCurrency +")"}
+                                primary={"Pay (" + totalSum.toFixed(1) + " " + selectedCurrency +")"}
 
                             />
                         </ListItem>

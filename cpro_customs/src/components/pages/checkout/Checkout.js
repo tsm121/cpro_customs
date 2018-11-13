@@ -21,7 +21,6 @@ export default class Checkout extends Component {
             stageVisa: false,
             //TODO: Get currency from user selection
             selectedCurrency: 'NOK',
-            //TODO: Get total payment from props or server
             paymentInProgress: true,
             paymentComplete: false,
         }
@@ -69,8 +68,6 @@ export default class Checkout extends Component {
     render = () => {
         const {stageSelection, stageVisa, selectedCurrency} = this.state
         return (
-          <GlobalState.Consumer>
-                {globalState => (
             <Grid container
                   spacing={8}
                   justify="center"
@@ -130,7 +127,6 @@ export default class Checkout extends Component {
                     </CardContent>
                 </Card>
             </Grid>
-  )}</GlobalState.Consumer>
         )
     }
 }

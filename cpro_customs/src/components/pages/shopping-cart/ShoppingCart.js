@@ -13,7 +13,14 @@ function createAlcoholAndTobacco(type, icon, amount, unit, value) {
 class ShoppingCart extends Component {
     state = {
         freeItems: [],
-        payItems: []
+        payItems: [],
+        totalAmounts: {
+            litersOfAlcohol: 0,
+            litersOfSpirits: 0,
+            gramsOfTobacco: 0,
+            piecesOfCigarettes: 0,
+            papers: 0,
+        }
     };
 
     componentDidMount (){
@@ -39,6 +46,7 @@ class ShoppingCart extends Component {
                         <DeclarationTable
                             payItems={this.state.payItems}
                             freeItems={this.state.freeItems}
+                            totalAmounts={this.state.totalAmounts}
                             globalState={this.props.globalState}
                         />
                     </Grid>
@@ -341,11 +349,16 @@ class ShoppingCart extends Component {
 
         this.setState({
             freeItems: freeItems,
-            payItems: payItems
+            payItems: payItems,
+            totalAmounts: {
+                litersOfAlcohol: totalBeer + totalWine + totalAlcopop + totalFortifiedWine,
+                litersOfSpirits: totalSpirit,
+                gramsOfTobacco: totalSnuff + totalSmoking + totalCigars,
+                piecesOfCigarettes: totalCigarettes,
+                papers: totalPaper,
+            },
         })
-
     }
-
 }
 
 function tooMuchTobacco(cigarettes, snuff, smoking, cigars){
