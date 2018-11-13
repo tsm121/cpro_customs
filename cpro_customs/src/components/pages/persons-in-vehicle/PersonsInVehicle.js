@@ -4,7 +4,7 @@ import update from "immutability-helper";
 import Grid from "@material-ui/core/Grid/Grid";
 import Paper from '@material-ui/core/Paper';
 
-import '../../App.css' // TODO: make this path absolute
+import '../../App.css'
 import './PersonsInVehicle.css'
 import NavigationArrow from '../../NavigationArrow'
 import Checkbox from '@material-ui/core/Checkbox';
@@ -12,7 +12,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import HelpTip from "../../HelpTip";
 import {TOOL_TIP_TEXTS} from "../../../data/ToolTipTexts";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Button from "@material-ui/core/Button/Button";
 
 
 const styles = {
@@ -83,7 +82,6 @@ class PersonsInVehicle extends Component {
                               xl={6}
                         >
                             <Paper className="personPaper">
-                                <Button onClick={() => {console.log(this.props.globalState.number_of_people)}}>No of people?</Button>
                                 <Grid container justify="center" spacing={0}>
                                     {/* person icons */
                                         (Array.apply(null, {length: amountPersonsShown}).map(Number.call, Number))
