@@ -102,8 +102,263 @@ class TransactionDetail(APIView):
 
 class TransactionValidation(APIView):
 
-    def post(self, request, format=None):
-        #TODO: Implement valdiation using relevant legislation
+    def get_product_amounts(self, products):
+
+        amounts = {
+            'Beer': 0,
+            'Alcopop and others': 0,
+            'Wine': 0,
+            'Fortified wine': 0,
+            'Spirits': 0,
+            'Cigarettes': 0,
+            'Snuff and chewing tobacco': 0,
+            'Smoking tobacco': 0,
+            'Cigars and Cigarillos': 0,
+            'Cigarette paper and sheets': 0,
+            'has_tobacco': False,
+            'Horse': 0,
+            'Dog': 0,
+            'Goods': 0,
+            'Other': 0
+        }
+
+        for product in products:
+            if product['product'] == 'Beer':
+                amounts['Beer'] += int(product['amount'])
+            elif product['product'] == 'Alcopop and others':
+                amounts['Alcopop and others'] += int(product['amount'])
+            elif product['product'] == 'Wine':
+                amounts['Wine'] += int(product['amount'])
+            elif product['product'] == 'Fortified wine':
+                amounts['Fortified wine'] += int(product['amount'])
+            elif product['product'] == 'Spirits':
+                amounts['Spirits'] += int(product['amount'])
+            elif product['product'] == 'Cigarettes':
+                amounts['Cigarettes'] += int(product['amount'])
+                amounts['has_tobacco'] = True
+            elif product['product'] == 'Snuff and chewing tobacco':
+                amounts['Snuff and chewing tobacco'] += int(product['amount'])
+                amounts['has_tobacco'] = True
+            elif product['product'] == 'Smoking tobacco':
+                amounts['Smoking tobacco'] += int(product['amount'])
+                amounts['has_tobacco'] = True
+            elif product['product'] == 'Cigars and Cigarillos':
+                amounts['Cigars and Cigarillos'] += int(product['amount'])
+                amounts['has_tobacco'] = True
+            elif product['product'] == 'Cigarette paper and sheets':
+                amounts['Cigarette paper and sheets'] += int(product['amount'])
+            elif product['product'] == 'Horse':
+                amounts['Horse'] += int(product['amount'])
+            elif product['product'] == 'Dog':
+                amounts['Dog'] += int(product['amount'])
+            elif product['product'] == 'Goods':
+                amounts['Goods'] += int(product['amount'])
+            elif product['product'] == 'Others':
+                amounts['Others'] += int(product['amount'])
+
+        return amounts
+
+    def get_product_values(self, products):
+        values = []
+
+        for product in products:
+            values.append(int(product['value']))
+
+        values.sort(reverse=True)
+        return values
+
+    def get_misc_tobacco_amount(self, product_amounts):
+        amount_sum = product_amounts['Snuff and chewing tobacco']
+        amount_sum += product_amounts['Smoking tobacco']
+        amount_sum += product_amounts['Cigars and Cigarillos']
+        return amount_sum
+
+    def get_beer_wine_amount(self, product_amount):
+        amount_sum = product_amount['Beer']
+        amount_sum += product_amount['Alcopop and others']
+        amount_sum += product_amount['Wine']
+        amount_sum += product_amount['Fortified wine']
+        return amount_sum
+
+    def get_tax_free_quotas(self, product_amounts):
+        quotas = {
+            'beer': 2,
+            'wine': 1.5,
+            'spirit': 1,
+            'tobacco_cigarettes': 200,
+            'tobacco_other': 250,
+            'paper_sheets': 200
+        }
+
+        if product_amounts['Spirits'] == 0:
+            quotas['wine'] += 1.5
+        else:
+            if quotas['spirit'] > product_amounts['Spirits']:
+                quotas['wine'] += quotas['spirit'] - product_amounts['Spirits']
+
+        if not product_amounts['has_tobacco']:
+            quotas['wine'] += 1.5
+        else:
+            if product_amounts['Cigarettes'] >= quotas['tobacco_cigarettes']:
+                quotas['tobacco_other'] = 0
+            elif self.get_misc_tobacco_amount(product_amounts) >= quotas['tobacco_other']:
+                quotas['tobacco_cigarettes'] = 0
+            elif product_amounts['Cigarettes'] >= self.get_misc_tobacco_amount(product_amounts)*1.25:
+                quotas['tobacco_other'] = 0
+
+        if quotas['wine'] > product_amounts['Wine'] + product_amounts['Fortified wine']:
+            quotas['beer'] += quotas['wine'] - ( product_amounts['Wine'] + product_amounts['Fortified wine'] )
+
+        return quotas
+
+    def get_horses(self, products):
+        horses = []
+        for product in products:
+            if product['product'] == 'Horse':
+                horses.append(product)
+        return horses
+
+    def get_dogs(self, products):
+        dogs = []
+        for product in products:
+            if product['product'] == 'Dog':
+                dogs.append(product)
+        return dogs
+
+    def check_valid_amounts(self, absolute_quotas, product_amounts):
+        if self.get_beer_wine_amount(product_amounts) > absolute_quotas['beer_wine']:
+            return False
+        if product_amounts['Spirits'] > absolute_quotas['spirit']:
+            return False
+        if product_amounts['Cigarettes'] > absolute_quotas['tobacco_cigarettes']:
+            return False
+        if self.get_misc_tobacco_amount(product_amounts) > absolute_quotas['tobacco_other']:
+            return False
+        if product_amounts['Cigarette paper and sheets'] > absolute_quotas['paper_sheets']:
+            return False
+        return True
+
+    def calculate_vat(self, product_values, tax_free_limit, number_of_people):
+        total_value = 0
+        tax_free_box = tax_free_limit*number_of_people
+        for value in product_values:
+            total_value += value
+            if value <= tax_free_box:
+                tax_free_box -= value
+        if total_value > tax_free_limit:
+            total_vat = (total_value - (tax_free_limit*number_of_people-tax_free_box)) * 0.25
+        else:
+            total_vat = 0
+        return total_vat
+
+    def post(self, request):
+        data = request.data
+
+        product_amounts = self.get_product_amounts(data['products'])
+        product_values = self.get_product_values(data['products'])
+
+        tax_free_quotas = self.get_tax_free_quotas(product_amounts)
+        absolute_quotas  = {
+            'beer_wine': 27,
+            'spirit': 4,
+            'tobacco_cigarettes': 400,
+            'tobacco_other': 500,
+            'paper_sheets': 400
+        }
+        unit_costs = {
+            'beer': 20,
+            'alcopop_other': 20,
+            'wine': 60,
+            'fortified_wine': 115,
+            'spirit': 325,
+            'cigarettes': 290,
+            'snuff_chewing_tobacco': 120,
+            'smoking_tobacco': 290,
+            'cigars_cigarillos': 290,
+            'paper_sheets': 5,
+            'horse': 5000
+        }
+
+        total_fees = 0
+
+        if not self.check_valid_amounts(absolute_quotas, product_amounts):
+            return Response(False)
+
+        # Calculates fees
+        if product_amounts['Beer'] > tax_free_quotas['beer']:
+            total_fees += (product_amounts['Beer'] - tax_free_quotas['beer']) * unit_costs['beer']
+            tax_free_quotas['beer'] = 0
+        else:
+            tax_free_quotas['beer'] = tax_free_quotas['beer'] - product_amounts['Beer']
+
+        if product_amounts['Alcopop and others'] > tax_free_quotas['beer']:
+            total_fees += (product_amounts['Alcopop and others'] - tax_free_quotas['beer']) * unit_costs['alcopop_other']
+            tax_free_quotas['beer'] = 0
+        else:
+            tax_free_quotas['beer'] = tax_free_quotas['beer'] - product_amounts['Alcopop and others']
+
+        if product_amounts['Fortified wine'] > tax_free_quotas['wine']:
+            total_fees += (product_amounts['Fortified wine'] - tax_free_quotas['wine']) * unit_costs['fortified_wine']
+            tax_free_quotas['wine'] = 0
+        else:
+            tax_free_quotas['wine'] = tax_free_quotas['wine'] - product_amounts['Fortified wine']
+
+        if product_amounts['Wine'] > tax_free_quotas['wine']:
+            total_fees += (product_amounts['Wine'] - tax_free_quotas['wine']) * unit_costs['wine']
+            tax_free_quotas['wine'] = 0
+        else:
+            tax_free_quotas['wine'] = tax_free_quotas['wine'] - product_amounts['Wine']
+
+        if product_amounts['Spirits'] > tax_free_quotas['spirit']:
+            total_fees += (product_amounts['Spirits'] - tax_free_quotas['spirit']) * unit_costs['spirit']
+
+        if tax_free_quotas['tobacco_other'] == 0:
+            if product_amounts['Cigarettes'] > tax_free_quotas['tobacco_cigarettes']:
+                total_fees += (product_amounts['Cigarettes'] - tax_free_quotas['tobacco_cigarettes'])/100 * unit_costs['cigarettes']
+                tax_free_quotas['tobacco_cigarettes'] = 0
+
+        if tax_free_quotas['tobacco_cigarettes'] == 0:
+            if product_amounts['Smoking tobacco'] > tax_free_quotas['tobacco_other']:
+                total_fees += (product_amounts['Smoking tobacco'] - tax_free_quotas['tobacco_other'])/100 * unit_costs['smoking_tobacco']
+                tax_free_quotas['tobacco_other'] = 0
+            else:
+                tax_free_quotas['tobacco_other'] = tax_free_quotas['tobacco_other'] - product_amounts['Smoking tobacco']
+
+            if product_amounts['Cigars and Cigarillos'] > tax_free_quotas['tobacco_other']:
+                total_fees += (product_amounts['Cigars and Cigarillos'] - tax_free_quotas['tobacco_other'])/100 * unit_costs['cigars_cigarillos']
+                tax_free_quotas['tobacco_other'] = 0
+            else:
+                tax_free_quotas['tobacco_other'] = tax_free_quotas['tobacco_other'] - product_amounts['Cigars and Cigarillos']
+
+            if product_amounts['Snuff and chewing tobacco'] > tax_free_quotas['tobacco_other']:
+                total_fees += (product_amounts['Snuff and chewing tobacco'] - tax_free_quotas['tobacco_other'])/100 * unit_costs['snuff_chewing_tobacco']
+                tax_free_quotas['tobacco_other'] = 0
+            else:
+                tax_free_quotas['tobacco_other'] = tax_free_quotas['tobacco_other'] - product_amounts['Snuff and chewing tobacco']
+
+        if product_amounts['Cigarette paper and sheets'] > tax_free_quotas['paper_sheets']:
+            total_fees += (product_amounts['Cigarette paper and sheets'] - tax_free_quotas['paper_sheets'])/100 * unit_costs['paper_sheets']
+
+        if product_amounts['Horse'] > 0:
+            horses = self.get_horses(data['products'])
+            for horse in horses:
+                if not horse['contacted_NFSA'] or not horse['registered_NFSA']:
+                    return Response(False)
+            total_fees += product_amounts['Horse'] * unit_costs['horse']
+
+        if product_amounts['Dog']:
+            dogs = self.get_dogs(data['products'])
+            for dog in dogs:
+                if not dog['contacted_NFSA']:
+                    return Response(False)
+
+        if data['over_a_day']:
+            total_vat = self.calculate_vat(product_values, 6000, int(data['number_of_people']))
+        else:
+            total_vat = self.calculate_vat(product_values, 3000, int(data['number_of_people']))
+
+        if float(data['amount_to_pay']) != total_vat + total_fees:
+            return Response(False)
 
         return Response(True)
 
