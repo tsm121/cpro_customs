@@ -7,7 +7,6 @@ import Grid from '@material-ui/core/Grid';
 export default class LangButton extends Component  {
     render = () => {
         const {text, countryName, disabled} = this.props
-
         return (
             <Button
                 className={"flag_button"}

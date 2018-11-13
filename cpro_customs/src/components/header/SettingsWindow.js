@@ -90,11 +90,11 @@ export default class SettingsWindow extends Component  {
 						<InputFields
                             closeModal={closeModal}
                         />
-					</Grid>
+                    </Grid>
 
                 </Grid>
 
-			</div>
-		)
-	}
+            </div>
+        )
+    }
 }

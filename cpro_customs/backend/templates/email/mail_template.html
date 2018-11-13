@@ -1,0 +1,111 @@
+<html>
+<head>
+<style>
+
+a h1{
+	
+}
+
+
+h2 {
+	
+}
+
+.container600 {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.content {
+	padding: 12px;
+	background-color: #DEDEDE;
+	color: #212121;
+}
+
+.header {
+  overflow: hidden;
+  background-color: #37424A;
+  padding: 20px 10px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.txt {
+  font-size: 25px;
+  font-weight: bold;
+  color: #E6B012;
+}
+
+/* Change the background color on mouse-over */
+.logo a:hover {
+  background-color: #ddd;
+  color: black;
+  cursor: pointer;
+}
+
+/* Style the active/current link*/
+.logo a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Float the link section to the right */
+.logo {
+  float: right;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container600">
+
+<div class="header">
+	<a class="txt">Declaration receipt</a>
+</div>
+<div class="content">
+<h1>Date: {{date}}</h1>
+<h1>License plate: {{license_plate}}</h1>
+{% for prod in products %}
+	
+	<h2>Product name: {{prod.product}}</h2>
+	{% if prod.name %}
+		<p>Name: {{prod.name}}</p>
+	{% endif %}
+	<p>Value: {{prod.value}}</p>
+	<p>Amount: {{prod.amount}} {{prod.unit}}</p>
+	<p>Fee: {{prod.fee}} {{prod.currency}}</p>
+	<p>VAT: {{prod.vat}}%</p>
+	{% if prod.breed %}
+		<p>Breed: {{prod.breed}}</p>
+	{% endif %}
+	{% if prod.contacted_NFSA %}
+		<p>Has contacted NFSA: {{prod.contacted_NFSA}}</p>
+	{% endif %}
+	{% if prod.registered_NFSA %}
+		<p>Has registered to NFSA: {{prod.registered_NFSA}}</p>
+	{% endif %}
+	{% if prod.of_EU_origin %}
+		<p>Animal of EU origin: {{prod.of_EU_origin}}</p>
+	{% endif %}
+
+{% endfor %}
+
+<h1>Total paid: {{amount_to_pay}} {{currency}}</h1>
+
+</div>
+</div>
+
+</body>
+</html>

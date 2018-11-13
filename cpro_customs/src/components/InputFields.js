@@ -39,12 +39,12 @@ export default class InputFields extends Component  {
         this.validateLicencePlate(tempLicencePlate)
     }
 
+
     onClickHandler = ()=> {
         const {licencePlateInputError, emailInputError} = this.state
         const {closeModal, on_boarding} = this.props
 
         if (!licencePlateInputError && !emailInputError) {
-            console.log(userData)
             localStorage.setItem('userData', JSON.stringify(userData))
             this.setState({
                 inputValid: true,
@@ -85,7 +85,6 @@ export default class InputFields extends Component  {
     }
 
     handleEmailInput = (event) =>{
-
         var input = event.target.value
         this.validateMail(input)
     }
@@ -109,7 +108,6 @@ export default class InputFields extends Component  {
     }
 
     validateLicencePlate = (input) => {
-
         if (input.length > 5){
             userData.licencePlate = input
             setTimeout(this.toggleLicencePlateInput(false),1000)
