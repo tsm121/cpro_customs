@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Grid from "@material-ui/core/Grid/Grid";
 import TotalTable from "./TotalTable";
@@ -64,6 +64,16 @@ class DeclarationTable extends Component {
     };
 
     onClickValidateData = (globalState) => {
+        let json = this.createJSON(globalState);
+
+        if (json !== {}){
+            globalState.setJSON(json);
+        }
+
+        return validateData(json, false);
+    };
+
+    createJSON = (globalState) => {
         const {payItems, freeItems} = this.props;
 
         let payItemsCopy = JSON.parse(JSON.stringify(payItems));
@@ -84,7 +94,7 @@ class DeclarationTable extends Component {
         }
         let productList = [...payItemsCopy, ...freeItemsCopy, ...totalList]
 
-        let jsonResponse = {
+        return {
             "id_number": "0",
             "license_plate": JSON.parse(localStorage.getItem('userData')).licencePlate,
             "email": JSON.parse(localStorage.getItem('userData')).email,
@@ -93,11 +103,9 @@ class DeclarationTable extends Component {
             "reference_number": "1",
             "currency": "NOK",
             "over_a_day": globalState.overADay,
-            "number_of_people": 1,
+            "number_of_people": globalState.number_of_people,
             "products": this.fixFormatting(productList)
-        };
-
-        return validateData(jsonResponse);
+        }
     };
 
 

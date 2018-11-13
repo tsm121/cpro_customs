@@ -8,6 +8,7 @@ import {Icon} from "@material-ui/core";
 import List from "@material-ui/core/List/List";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
+import {validateData} from "../shopping-cart/logic/validateData";
 
 export default class HandlePayment extends Component  {
     constructor(props) {
@@ -23,7 +24,9 @@ export default class HandlePayment extends Component  {
     }
 
     handleButtonClick = () => {
-        const {paymentComplete} = this.props
+        const {paymentComplete, globalState} = this.props
+        this.handlePayAPICall(globalState);
+
         if (!this.state.loading) {
             this.setState(
                 {
@@ -44,6 +47,14 @@ export default class HandlePayment extends Component  {
         this.timer = setTimeout(() => {
             paymentComplete()
         }, 4000);
+    };
+
+    handlePayAPICall = (globalState) => {
+        validateData(globalState.JSON, true).then(response => {
+            if (globalState.QRUrl !== response) {
+                globalState.setQRUrl(response);
+            }
+        });
     };
 
     render = () => {

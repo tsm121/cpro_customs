@@ -42,12 +42,8 @@ class TotalTable extends Component{
 
 
     onClick = () => {
-        const {onClickValidate, globalState} = this.props;
-        onClickValidate().then(response => {
-            if (globalState.QRUrl !== response) {
-                globalState.setQRUrl(response);
-            }
-        });
+        const {onClickValidate} = this.props;
+        let response = onClickValidate();
 
         this.props.history.push(this.props.route);
     };

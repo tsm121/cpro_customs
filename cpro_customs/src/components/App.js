@@ -23,6 +23,7 @@ class App extends Component {
             QRUrl: {},
             number_of_people: 1,
             hasPaid: false,
+            JSON: {},
         };
     }
 
@@ -48,6 +49,7 @@ class App extends Component {
     setProducts = this.setProducts.bind(this);
     resetState = this.resetState.bind(this);
     setter = this.setter.bind(this);
+    setJSON = this.setJSON.bind(this);
 
     /**
      * Resets the global state to the initial state
@@ -57,8 +59,11 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            overADay: false,
+            QRUrl: {},
             number_of_people: 0,
             hasPaid: false,
+            JSON: {}
         });
     }
 
@@ -321,6 +326,12 @@ class App extends Component {
         });
     }
 
+    setJSON(json){
+        this.setState({
+            JSON: json
+        })
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -331,6 +342,7 @@ class App extends Component {
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
                     overADay: this.state.overADay,
+                    JSON: this.state.JSON,
                     number_of_people: this.state.number_of_people,
                     QRUrl: this.state.QRUrl,
                     totalAmount: this.totalAmount,
@@ -353,6 +365,7 @@ class App extends Component {
                     setProducts: this.setProducts,
                     resetState: this.resetState,
                     setter: this.setter,
+                    setJSON: this.setJSON,
                 }}
             >
                 <div>

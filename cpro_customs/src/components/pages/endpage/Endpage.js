@@ -8,6 +8,7 @@ export default class Endpage extends Component {
 
 	render = () => {
 		const {globalState} = this.props
+		console.log(globalState)
 
 		let receipt_block
 
