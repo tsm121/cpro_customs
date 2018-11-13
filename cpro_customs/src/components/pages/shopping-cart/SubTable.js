@@ -35,7 +35,7 @@ class SubTable extends Component{
                             </TableHead>
 
                             <TableBody>
-                                {(this.renderItems()).map(item => (
+                                {(this.renderItems()).map((item, index) => (
                                     <TableRow key={item.id}>
                                         <TableCell component="th" scope="row" className={"picture_column"}>
                                             <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
@@ -47,7 +47,7 @@ class SubTable extends Component{
                                         <TableCell numeric className={"table_column"}>{this.renderVAT(item)}</TableCell>
                                         <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
                                         <TableCell numeric className={"exit_column"} padding={"none"}>
-                                            <RemoveButton onDelete={() => this.removeItem(item.id, globalState)} />
+                                            <RemoveButton onDelete={() => this.removeItem(index, globalState)} />
                                         </TableCell>
                                     </TableRow>
                                 ))
@@ -60,8 +60,8 @@ class SubTable extends Component{
         )
     }
 
-    removeItem = (id, globalState) => {
-
+    removeItem = (index, globalState) => {
+        console.log(index)
     }
 
     renderItems = () => {

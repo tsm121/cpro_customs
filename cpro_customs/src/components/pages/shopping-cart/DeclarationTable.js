@@ -90,16 +90,20 @@ class DeclarationTable extends Component {
             "amount_to_pay": globalState.amount_to_pay,
             "reference_number": "1",
             "currency": "NOK",
-            "overADay": globalState.overADay,
+            "over_a_day": globalState.overADay,
+            "number_of_people": 1,
             "products": this.fixFormatting(productList)
         };
-
 
         return validateData(jsonResponse);
     };
 
 
     fixFormatting = (productList) => {
+        if (productList.length <= 0){
+            return {}
+        }
+
         let productListCopy = JSON.parse(JSON.stringify(productList)); //copying the list to make changes
         for (let item of productListCopy) {
             if ('kind' in item){
