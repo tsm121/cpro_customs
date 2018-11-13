@@ -1,89 +1,51 @@
-import React, { Component } from 'react'
-import Grid from '@material-ui/core/Grid';
-import {withRouter} from "react-router-dom";
-import DeclarationTable from "./DeclarationTable";
-import {calculateFeesAndVAT} from "./logic/calculateFeeAndVAT";
+import {calculateFeesAndVAT} from "./calculateFeeAndVAT";
 
-let id = 0;
-function createAlcoholAndTobacco(type, icon, amount, unit, value) {
-    id++;
-    return {id, type, icon, amount, unit, value};
-}
-
-class ShoppingCart extends Component {
-    state = {
-        freeItems: [],
-        payItems: []
-    };
-
-    componentDidMount (){
-        const {globalState} = this.props
-        this.splitListAndCalculateFees(globalState)
+    export function getFreeItems(){
+        return this.freeItems
     }
 
-    render = () => {
-        return (
-            <div>
-                <Grid container
-                      direction={'column'}
-                      justify={'center'}
-                      alignItems={'center'}
-                >
-                    <Grid item xs={12} sm={12} md={12}>
-                        <h3 className={"cdp shopping_cart_title"}>
-                            Declaration <span className={"cdp_yellow"}> list </span>
-                        </h3>
-                    </Grid>
-
-                    <Grid item>
-                        <DeclarationTable
-                            payItems={this.state.payItems}
-                            freeItems={this.state.freeItems}
-                            globalState={this.props.globalState}
-                        />
-                    </Grid>
-                </Grid>
-            </div>
-        )
+    export function getPayItems(){
+        return this.payItems
     }
 
     /**
      * Splits the global list in two based on the customs rules and updates the local state with these lists
      * @param globalState - the global state containing information about products (list) and overADay (boolean)
      */
-    splitListAndCalculateFees = (globalState) => {
+    export default function splitListAndCalculateFees(globalState) {
         let alcoholAndTobacco = [];
         let other = [];
 
         // Splits products, alcohol and tobacco vs. everything else
         {globalState.products.map(item => {
-            switch (item.type) {
-                case "Beer":
-                case "Alcopop and others":
-                case "Wine":
-                case "Fortified wine":
-                case "Spirits":
-                case "Cigarettes":
-                case "Snuff & chewing tobacco":
-                case "Smoking tobacco":
-                case "Cigars and Cigarillos":
-                case "Cigarette paper and sheets":
-                    alcoholAndTobacco.push(item);
-                    break;
-                default:
-                    other.push(item);
-                    break;
-            } return null
-        })
+                switch (item.type) {
+                    case "Beer":
+                    case "Alcopop and others":
+                    case "Wine":
+                    case "Fortified wine":
+                    case "Spirits":
+                    case "Cigarettes":
+                    case "Snuff & chewing tobacco":
+                    case "Smoking tobacco":
+                    case "Cigars and Cigarillos":
+                    case "Cigarette paper and sheets":
+                        alcoholAndTobacco.push(item);
+                        break;
+                    default:
+                        other.push(item);
+                        break;
+                }
+                return null
+            })
         }
 
         // Sort the "other" list based on value, descending order
-        other.sort(function(a, b) {
+        other.sort(function (a, b) {
             return parseFloat(b.value) - parseFloat(a.value);
         });
 
         // Split alcohol and tobacco into into free and pay and setting the local state
-        {this.splitAlcoholAndTobacco(alcoholAndTobacco)}
+        {splitAlcoholAndTobacco(alcoholAndTobacco, globalState)}
 
         // Add the rest of the items to either freeList or payList
         let valueLimit = 3000;
@@ -93,15 +55,15 @@ class ShoppingCart extends Component {
         let payItems = [];
 
         let currentValue = 0;
-        for (let item of other){
-            if (parseInt(item.value) > valueLimit){
+        for (let item of other) {
+            if (parseInt(item.value) > valueLimit) {
                 payItems.push(item);
             } else {
-                if (item.amount > 1){
+                if (item.amount > 1) {
                     // have more of the same item
                     let amountLeft = item.amount;
-                    while (amountLeft > 0){
-                        if (amountLeft * parseInt(item.value) + currentValue <= valueLimit){
+                    while (amountLeft > 0) {
+                        if (amountLeft * parseInt(item.value) + currentValue <= valueLimit) {
                             let freeItem = JSON.parse(JSON.stringify(item));
                             freeItem.amount = amountLeft;
                             freeItems.push(freeItem);
@@ -132,16 +94,22 @@ class ShoppingCart extends Component {
 
         calculateFeesAndVAT(payItems);
 
+        this.payItems = [...this.payItems, ...payItems];
+        this.freeItems = [...this.freeItems, ...freeItems];
+
+
         // Setting the state so that it contains the other elements
-        this.setState(prevState => ({
+        /*this.setState(prevState => ({
             freeItems: [...prevState.freeItems, ...freeItems],
             payItems: [...prevState.payItems, ...payItems]
-        }))
+        }))*/
 
+        console.log(freeItems)
+        console.log(payItems)
 
     }
 
-    splitAlcoholAndTobacco = (products) => {
+    const splitAlcoholAndTobacco = (products, globalState) => {
         /*
         RULES ALCOHOL AND TOBACCO:
         Spirit: 1 liter (or 1.5 liters of wine/beer)
@@ -150,11 +118,14 @@ class ShoppingCart extends Component {
         Tobacco: 200 cigarettes or 250 grams other (or 1.5 liter wine or beer)
             -> You cannot split this. No tobacco or whatever amount up till the limit.
         Cigarette paper: 200 pieces (no trading to alcohol)
+
         Translate it all to beer volume to calculate total amount to bring:
         total amount allowed = 1.5 + 1.5 + 2 + 1.5 = 6.5 liters
+
         Spirits: If you don't bring any spirits, you can bring 1.5 liters wine/beer instead. BUT if you bring a smaller
         amount, the total amount shall sum up to 1 liter. For example: 0.5 liter spirit and 0.5 liter beer, or 0.7
         liter spirit and 0.3 liter beer or wine.
+
          */
 
         let totalBeer = 0;
@@ -168,48 +139,72 @@ class ShoppingCart extends Component {
         let totalCigars = 0;
         let totalPaper = 0;
         let hasTobacco = false;
+        let IDs = {
+            beer: [],
+            alcopop: [],
+            wine: [],
+            spirits: [],
+            fortifiedWine: [],
+            cigarettes: [],
+            snuff: [],
+            smoking: [],
+            cigars: [],
+            papers: []
+        };
 
         // Calculating the different total amounts based on category
-        {products.map(item => {
-            switch (item.type) {
-                default:
-                    break;
-                case "Beer":
-                    totalBeer += item.value * item.amount;
-                    break;
-                case "Alcopop and others":
-                    totalAlcopop += item.value * item.amount;
-                    break;
-                case "Wine":
-                    totalWine += item.value * item.amount;
-                    break;
-                case "Fortified wine":
-                    totalFortifiedWine += item.value * item.amount;
-                    break;
-                case "Spirits":
-                    totalSpirit += item.value * item.amount;
-                    break;
-                case "Cigarettes":
-                    totalCigarettes += item.value * item.amount;
-                    hasTobacco = true;
-                    break;
-                case "Snuff & chewing tobacco":
-                    totalSnuff += item.value * item.amount;
-                    hasTobacco = true;
-                    break;
-                case "Smoking tobacco":
-                    totalSmoking += item.value * item.amount;
-                    hasTobacco = true;
-                    break;
-                case "Cigars and Cigarillos":
-                    totalCigars += item.value * item.amount;
-                    hasTobacco = true;
-                    break;
-                case "Cigarette paper and sheets":
-                    totalPaper += item.value * item.amount;
-                    break;
-            } return null
-        })
+        {
+            products.map(item => {
+                switch (item.type) {
+                    default:
+                        break;
+                    case "Beer":
+                        totalBeer += item.value * item.amount;
+                        IDs.beer.push(item.id);
+                        break;
+                    case "Alcopop and others":
+                        totalAlcopop += item.value * item.amount;
+                        IDs.alcopop.push(item.id);
+                        break;
+                    case "Wine":
+                        totalWine += item.value * item.amount;
+                        IDs.wine.push(item.id);
+                        break;
+                    case "Fortified wine":
+                        totalFortifiedWine += item.value * item.amount;
+                        IDs.fortifiedWine.push(item.id);
+                        break;
+                    case "Spirits":
+                        totalSpirit += item.value * item.amount;
+                        IDs.spirits.push(item.id);
+                        break;
+                    case "Cigarettes":
+                        totalCigarettes += item.value * item.amount;
+                        IDs.cigarettes.push(item.id);
+                        hasTobacco = true;
+                        break;
+                    case "Snuff & chewing tobacco":
+                        totalSnuff += item.value * item.amount;
+                        IDs.snuff.push(item.id);
+                        hasTobacco = true;
+                        break;
+                    case "Smoking tobacco":
+                        totalSmoking += item.value * item.amount;
+                        IDs.smoking.push(item.id);
+                        hasTobacco = true;
+                        break;
+                    case "Cigars and Cigarillos":
+                        totalCigars += item.value * item.amount;
+                        IDs.cigars.push(item.id);
+                        hasTobacco = true;
+                        break;
+                    case "Cigarette paper and sheets":
+                        totalPaper += item.value * item.amount;
+                        IDs.papers.push(item.id);
+                        break;
+                }
+                return null
+            })
         }
 
         // Defining quotas
@@ -230,7 +225,7 @@ class ShoppingCart extends Component {
         if (totalSpirit > 1) { //Something is over the quota
             freeItems.push(createAlcoholAndTobacco('Spirits', 'spirits', 1, "L", 1));
             payItems.push(createAlcoholAndTobacco('Spirits', 'spirits', totalSpirit - 1, "L", 1));
-        } else if (totalSpirit <= 1){ //Everything is under the quota
+        } else if (totalSpirit <= 1) { //Everything is under the quota
             if (totalSpirit > 0) {
                 freeItems.push(createAlcoholAndTobacco('Spirits', 'spirits', totalSpirit, "L", 1));
                 wineQuota += 1 - totalSpirit; // see rules above
@@ -238,9 +233,9 @@ class ShoppingCart extends Component {
         }
 
         // Fortified wine
-        if (totalFortifiedWine > wineQuota){ //Too much fortified wine
+        if (totalFortifiedWine > wineQuota) { //Too much fortified wine
             freeItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', wineQuota, 'L', 1));
-            payItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', totalFortifiedWine-wineQuota, 'L', 1));
+            payItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', totalFortifiedWine - wineQuota, 'L', 1));
             wineQuota = 0;
         } else if (totalFortifiedWine <= wineQuota && totalFortifiedWine !== 0) {
             freeItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', totalFortifiedWine, 'L', 1));
@@ -248,11 +243,11 @@ class ShoppingCart extends Component {
         }
 
         // Wine
-        if (totalWine > wineQuota){ //Too much wine
-            if (wineQuota !== 0){
+        if (totalWine > wineQuota) { //Too much wine
+            if (wineQuota !== 0) {
                 freeItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', wineQuota, 'L', 1));
             }
-            payItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', totalWine-wineQuota, 'L', 1));
+            payItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', totalWine - wineQuota, 'L', 1));
             wineQuota = 0;
         } else if (totalWine <= wineQuota && totalWine !== 0) {
             freeItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', totalWine, 'L', 1));
@@ -262,22 +257,22 @@ class ShoppingCart extends Component {
         // Beer
         let beerQuota = 2 + wineQuota;
 
-        if (totalBeer > beerQuota){ // Too much beer
+        if (totalBeer > beerQuota) { // Too much beer
             freeItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', beerQuota, 'L', 1));
-            payItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', totalBeer-beerQuota, 'L', 1));
+            payItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', totalBeer - beerQuota, 'L', 1));
             beerQuota = 0;
-        } else if (totalBeer < beerQuota && totalBeer !== 0){
+        } else if (totalBeer < beerQuota && totalBeer !== 0) {
             freeItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', totalBeer, 'L', 1));
             beerQuota -= totalBeer;
         }
 
         // Alcopop
-        if (totalAlcopop > beerQuota){ // Too much alcopop
+        if (totalAlcopop > beerQuota) { // Too much alcopop
             if (beerQuota !== 0) {
                 freeItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', beerQuota, 'L', 1));
             }
-            payItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', totalAlcopop-beerQuota, 'L', 1));
-        } else if (totalAlcopop < beerQuota && totalAlcopop !== 0){
+            payItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', totalAlcopop - beerQuota, 'L', 1));
+        } else if (totalAlcopop < beerQuota && totalAlcopop !== 0) {
             freeItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', totalAlcopop, 'L', 1));
         }
 
@@ -285,7 +280,7 @@ class ShoppingCart extends Component {
         // Cigarette papers
         if (totalPaper > 200) {
             freeItems.push(createAlcoholAndTobacco('Cigarette paper and sheets', 'cigarettePaper', 200, 'sheets', 1));
-            if(totalPaper-200 > 0) payItems.push(createAlcoholAndTobacco('Cigarette paper and sheets', 'cigarettePaper',
+            if (totalPaper - 200 > 0) payItems.push(createAlcoholAndTobacco('Cigarette paper and sheets', 'cigarettePaper',
                 totalPaper - 200, 'sheets', 1));
         } else {
             if (totalPaper > 0) {
@@ -339,19 +334,26 @@ class ShoppingCart extends Component {
 
         calculateFeesAndVAT(payItems);
 
-        this.setState({
+        this.payItems = payItems;
+        this.freeItems = freeItems;
+
+        /*this.setState({
             freeItems: freeItems,
             payItems: payItems
-        })
+        })*/
+
+        console.log(this.freeItems)
+        console.log(this.payItems)
 
     }
-
-}
 
 function tooMuchTobacco(cigarettes, snuff, smoking, cigars){
     let otherTobacco = snuff + smoking + cigars;
     return !((otherTobacco === 0 && cigarettes <= 200) || (cigarettes === 0 && otherTobacco <= 250));
 }
 
-
-export default withRouter(ShoppingCart);
+let id = 0;
+function createAlcoholAndTobacco(type, icon, amount, unit, value) {
+    id++;
+    return {id, type, icon, amount, unit, value};
+}

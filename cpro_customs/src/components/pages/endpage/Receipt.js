@@ -4,8 +4,6 @@ import Grid from "@material-ui/core/Grid/Grid";
 import QRCode from "qrcode.react"
 
 export default class Receipt extends Component {
-
-
     render = () => {
         const {QR_url} = this.props
         return(

@@ -12,6 +12,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import HelpTip from "../../HelpTip";
 import {TOOL_TIP_TEXTS} from "../../../data/ToolTipTexts";
 import withStyles from "@material-ui/core/styles/withStyles";
+import {GlobalState} from "../../context/GlobalState";
 
 
 
@@ -35,116 +36,123 @@ class PersonsInVehicle extends Component {
         };
     }
 
-    handleChecked = event =>{
+    handleChecked = (globalState, event) =>{
         this.setState({
             overADay: event.target.checked
         })
-
+        globalState.setOverADay();
     }
 
     render() {
         const {showYellowIcon, amountPersonsShown, overADay} = this.state;
         const {classes} = this.props
         return (
-            <div>
-                <Grid container
-                      spacing={0}
-                      justify="center"
-                      alignItems="center"
-                      direction="column"
-                >
-                    <Grid item xl={12}>
-                        <h1 className={"cdp cdp_primary"}>For how many people do you want to declare?</h1>
-                    </Grid>
-
-                    <Grid container
-                          spacing={0}
-                          justify="center"
-                          alignItems="center"
-                          direction="row"
-                          className="personContainer"
-                    >
-                        <Grid item
-                              xs={11}
-                              sm={8}
-                              md={7}
-                              xl={6}
-                        >
-                            <Paper className="personPaper">
-                                <Grid container justify="center" spacing={0}>
-                                    { /* person icons */
-                                        (Array.apply(null, {length: amountPersonsShown}).map(Number.call, Number))
-                                            .map(value => (
-                                                <Grid item key={value}
-                                                      onMouseEnter={() => this.personOnMouseOver(value)}
-                                                      onMouseLeave={() => this.personOnMouseOut(value)}
-                                                      onClick={() => this.personOnClick(value)}
-                                                >
-                                                    <img className="icon_sm" src={showYellowIcon[value] ?
-                                                        require(`assets/img/icons/128x128/person_yellow.png`) :
-                                                        require(`assets/img/icons/128x128/person_black.png`)}
-                                                         alt="icon"
-                                                    />
-
-                                                </Grid>
-                                            ))
-                                    }
-                                    { /* plus button */
-                                        amountPersonsShown < 12
-                                            ?   <Grid item
-                                                      onClick={() => this.plusOnClick()}
-                                                      onMouseOver={() => this.plusOnMouseOver()}
-                                                      onMouseOut={() => this.plusOnMouseOut()}
-                                            >
-                                                <img className="icon_sm"
-                                                     src={require(`assets/img/icons/128x128/plus_black.png`)}
-                                                     alt="icon"
-                                                />
-                                            </Grid>
-                                            : null
-                                    }
-                                </Grid>
-                            </Paper>
-                        </Grid>
-
+            <GlobalState.Consumer>
+                {globalState => (
+                    <div>
                         <Grid container
-                              direction={"row"}
-                              alignItems={"center"}
-                              justify={"center"}
+                              spacing={0}
+                              justify="center"
+                              alignItems="center"
+                              direction="column"
                         >
-                            <Grid item
-                                  className={"checkbox_container"}
-                            >
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            checked={overADay}
-                                            onChange={this.handleChecked}
-                                            value="overADay"
-                                            color="secondary"
-                                        />
-                                    }
-                                    label=' "I have been abroad more than 24 hours" '
-
-                                    classes={{
-                                        label: classes.checkbox_label,
-                                    }}
-                                    className={"checkbox_label"}
-                                />
-
+                            <Grid item xl={12}>
+                                <h1 className={"cdp cdp_primary"}>For how many people do you want to declare?</h1>
                             </Grid>
+
+                            <Grid container
+                                  spacing={0}
+                                  justify="center"
+                                  alignItems="center"
+                                  direction="row"
+                                  className="personContainer"
+                            >
+                                <Grid item
+                                      xs={11}
+                                      sm={8}
+                                      md={7}
+                                      xl={6}
+                                >
+                                    <Paper className="personPaper">
+                                        <Grid container justify="center" spacing={0}>
+                                            { /* person icons */
+                                                (Array.apply(null, {length: amountPersonsShown}).map(Number.call, Number))
+                                                    .map(value => (
+                                                        <Grid item key={value}
+                                                              onMouseEnter={() => this.personOnMouseOver(value)}
+                                                              onMouseLeave={() => this.personOnMouseOut(value)}
+                                                              onClick={() => this.personOnClick(value)}
+                                                        >
+                                                            <img className="icon_sm" src={showYellowIcon[value] ?
+                                                                require(`assets/img/icons/128x128/person_yellow.png`) :
+                                                                require(`assets/img/icons/128x128/person_black.png`)}
+                                                                 alt="icon"
+                                                            />
+                                                        </Grid>
+                                                    ))
+                                            }
+                                            { /* plus button */
+                                                amountPersonsShown < 12
+                                                    ?   <Grid item
+                                                              onClick={() => this.plusOnClick()}
+                                                              onMouseOver={() => this.plusOnMouseOver()}
+                                                              onMouseOut={() => this.plusOnMouseOut()}
+                                                    >
+                                                        <img className="icon_sm"
+                                                             src={require(`assets/img/icons/128x128/plus_black.png`)}
+                                                             alt="icon"
+                                                        />
+                                                    </Grid>
+                                                    : null
+                                            }
+                                        </Grid>
+                                    </Paper>
+                                </Grid>
+
+                                <Grid container
+                                      direction={"row"}
+                                      alignItems={"center"}
+                                      justify={"center"}
+                                >
+                                    <Grid item
+                                          className={"checkbox_container"}
+                                    >
+                                        <FormControlLabel
+                                            control={
+                                                <Checkbox
+                                                    checked={overADay}
+                                                    onChange={(e) => this.handleChecked(globalState, e)}
+                                                    value="overADay"
+                                                    color="secondary"
+                                                />
+                                            }
+                                            label=' "I have been abroad more than 24 hours" '
+
+                                            classes={{
+                                                label: classes.checkbox_label,
+                                            }}
+                                            className={"checkbox_label"}
+                                        />
+
+                                    </Grid>
+
+                                    <Grid item style={{marginTop:"35px"}}
+                                    >
+                                        <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"} light={true}/>
+                                    </Grid>
+
+                                </Grid>
+
 
                             <Grid item style={{marginTop:"35px"}}
                             >
                                 <HelpTip text={TOOL_TIP_TEXTS.personsInVehicle.abroad} placement={"bottom"} light={true}/>
                             </Grid>
-
+                            <NavigationArrow direction={"right"} page={"categories"}/>
                         </Grid>
-
-                    </Grid>
-                    <NavigationArrow direction={"right"} page={"categories"}/>
-                </Grid>
-            </div>
+                    </div>
+                )}
+            </GlobalState.Consumer>
         );
     }
 

@@ -41,7 +41,6 @@ class Categories extends Component  {
                 <Grid item xs={12} sm={10} md={9}
                 >
                     <Grid container
-                        //spacing={8}
                           direction={'row'}
                           justify={'center'}
                           alignItems={'center'}

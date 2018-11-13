@@ -9,7 +9,6 @@ import Header from './header/Header'
 import Router from './Router'
 import './App.css';
 
-
 /**
  * The entry point to the SPA
  */
@@ -20,6 +19,8 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            overADay: false,
+            QRUrl: {},
             hasPaid: false,
         };
     }
@@ -40,6 +41,9 @@ class App extends Component {
     getBoughtAnimals = this.getBoughtAnimals.bind(this);
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
+    setOverADay = this.setOverADay.bind(this);
+    setAmountToPay = this.setAmountToPay.bind(this);
+    setQRUrl = this.setQRUrl.bind(this);
     setHasPaid = this.setHasPaid.bind(this);
     setProducts = this.setProducts.bind(this);
     resetState = this.resetState.bind(this);
@@ -149,7 +153,7 @@ class App extends Component {
      */
     addGood(name, value, currency, amount) {
         let good = {
-            "type": "Good",
+            "type": "Goods",
             "name": name,
             "value": value,
             "currency": currency,
@@ -166,7 +170,7 @@ class App extends Component {
         const {products} = this.state;
         let goods = [];
         for (let i = 0; i < products.length; ++i) {
-            if (products[i].type.localeCompare('Good') === 0) {
+            if (products[i].type.localeCompare('Goods') === 0) {
                 goods.push(products[i]);
             }
         }
@@ -272,6 +276,21 @@ class App extends Component {
         }
     }
 
+    setOverADay() {
+        this.setState({
+            overADay: true
+        })
+    }
+
+    setAmountToPay(toPay){
+        this.setState({
+            amount_to_pay: toPay
+        })
+    }
+
+    setQRUrl(url){
+        this.setState({
+            QRUrl: url
     /**
      * Setter for setting hasPaid property
      * @param value - a boolean
@@ -301,6 +320,8 @@ class App extends Component {
                 value={{
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
+                    overADay: this.state.overADay,
+                    QRUrl: this.state.QRUrl,
                     totalAmount: this.totalAmount,
                     hasPaid: this.state.hasPaid,
                     findProductIndexById: this.findProductIndexById,
@@ -315,6 +336,9 @@ class App extends Component {
                     getBoughtAnimals: this.getBoughtAnimals,
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
+                    setOverADay: this.setOverADay,
+                    setAmountToPay: this.setAmountToPay,
+                    setQRUrl: this.setQRUrl,
                     setHasPaid: this.setHasPaid,
                     setProducts: this.setProducts,
                     resetState: this.resetState,
