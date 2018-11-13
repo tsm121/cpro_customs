@@ -45,7 +45,7 @@ export default class VisaPayment extends Component  {
                     variant="outlined"
                     type={"number"}
                     onInput={(e)=>{
-                        e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,16)
+                        e.target.value = Math.max(0, parseInt(e.target.value, 10)).toString().slice(0,16)
                     }}
                 />
 
@@ -126,7 +126,7 @@ export default class VisaPayment extends Component  {
                             variant="outlined"
                             type={"number"}
                             onInput={(e)=>{
-                                e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,3)
+                                e.target.value = Math.max(0, parseInt(e.target.value, 10) ).toString().slice(0,3)
                             }}
                         />
                     </Grid>

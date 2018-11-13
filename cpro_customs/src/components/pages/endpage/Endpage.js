@@ -5,7 +5,6 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import Receipt from "./Receipt";
 
 export default class Endpage extends Component {
-
 	render = () => {
 		const {globalState} = this.props
 
@@ -44,5 +43,4 @@ export default class Endpage extends Component {
 			</FormControl>
 		)
 	}
-
 }

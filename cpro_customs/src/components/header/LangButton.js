@@ -6,11 +6,11 @@ import Grid from '@material-ui/core/Grid';
 
 export default class LangButton extends Component  {
     render = () => {
-        const {text, countryName} = this.props
-
+        const {text, countryName, disabled} = this.props
         return (
             <Button
                 className={"flag_button"}
+                disabled={disabled}
             >
                 <Grid container
                       direction={"column"}
@@ -25,6 +25,7 @@ export default class LangButton extends Component  {
                         <Avatar
                             src={require(`assets/header/lang_icons/${countryName}.png`)}
                             className={"flag_img"}
+                            style={disabled ? {filter: "greyscale(100%)",WebkitFilter: "grayscale(100%)"} : {}}
                         />
                     </Grid>
                     <Grid item
