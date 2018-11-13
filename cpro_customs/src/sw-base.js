@@ -19,9 +19,9 @@ if (workbox) {
 
     //Caching manifest and service worker at beginning. Updates if a new version is published
     //TODO: This caches the service worker, but still unsure if this is the right practise. Disabled for now!
-    workbox.precaching.addRoute(['registerServiceWorker.js'], workbox.strategies.staleWhileRevalidate());
+    //workbox.precaching.addRoute(['registerServiceWorker.js'], workbox.strategies.staleWhileRevalidate());
 
-    workbox.routing.registerRoute(
+    /*workbox.routing.registerRoute(
         /^https:\/\/fonts\.googleapis\.com/,
         workbox.strategies.cacheFirst({
             cacheName: 'google-fonts-webfonts',
@@ -51,7 +51,7 @@ if (workbox) {
                 }),
             ],
         })
-    );
+    );*/
 
     //Caching all images while routing the page
     /*workbox.routing.registerRoute(
