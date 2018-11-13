@@ -21,6 +21,7 @@ class App extends Component {
             productIdCounter: 0,
             overADay: false,
             QRUrl: {},
+            number_of_people: 1,
             hasPaid: false,
         };
     }
@@ -41,12 +42,12 @@ class App extends Component {
     getBoughtAnimals = this.getBoughtAnimals.bind(this);
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
-    setOverADay = this.setOverADay.bind(this);
     setAmountToPay = this.setAmountToPay.bind(this);
     setQRUrl = this.setQRUrl.bind(this);
     setHasPaid = this.setHasPaid.bind(this);
     setProducts = this.setProducts.bind(this);
     resetState = this.resetState.bind(this);
+    setter = this.setter.bind(this);
 
     /**
      * Resets the global state to the initial state
@@ -56,6 +57,7 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            number_of_people: 0,
             hasPaid: false,
         });
     }
@@ -276,21 +278,18 @@ class App extends Component {
         }
     }
 
-    setOverADay() {
-        this.setState({
-            overADay: true
-        })
-    }
-
     setAmountToPay(toPay){
         this.setState({
             amount_to_pay: toPay
         })
     }
 
-    setQRUrl(url){
+    setQRUrl(url) {
         this.setState({
-            QRUrl: url
+            QRUrl: url,
+        });
+    }
+
     /**
      * Setter for setting hasPaid property
      * @param value - a boolean
@@ -311,6 +310,17 @@ class App extends Component {
         })
     }
 
+    /**
+     * Setter to set any key of the global state
+     * @param key - name of the state property
+     * @param value
+     */
+    setter(key, value) {
+        this.setState({
+           [key]: value,
+        });
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -321,6 +331,7 @@ class App extends Component {
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
                     overADay: this.state.overADay,
+                    number_of_people: this.state.number_of_people,
                     QRUrl: this.state.QRUrl,
                     totalAmount: this.totalAmount,
                     hasPaid: this.state.hasPaid,
@@ -336,12 +347,12 @@ class App extends Component {
                     getBoughtAnimals: this.getBoughtAnimals,
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
-                    setOverADay: this.setOverADay,
                     setAmountToPay: this.setAmountToPay,
                     setQRUrl: this.setQRUrl,
                     setHasPaid: this.setHasPaid,
                     setProducts: this.setProducts,
                     resetState: this.resetState,
+                    setter: this.setter,
                 }}
             >
                 <div>

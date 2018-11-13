@@ -28,6 +28,7 @@ import Checkout from "./pages/checkout/Checkout";
 import NotFound from "./pages/NotFound";
 import StateWrapper from "./pages/shopping-cart/StateWrapper";
 import EndpageWrapper from "./pages/endpage/EndpageWrapper";
+import PersonsInVehicleWrapper from "./pages/persons-in-vehicle/PersonsInVehicleWrapper";
 
 
 /**
@@ -40,7 +41,7 @@ class Router extends Component {
         return (
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
+                <Route exact path='/persons-in-vehicle' component={PersonsInVehicleWrapper}/>
                 <Route exact path='/on-boarding' component={OnBoarding}/>
                 <Route exact path='/categories' component={Categories}/>
                 <Route exact path='/checkout' component={Checkout}/>
