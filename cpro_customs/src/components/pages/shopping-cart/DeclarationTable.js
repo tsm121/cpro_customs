@@ -36,8 +36,10 @@ class DeclarationTable extends Component {
 
                             </Grid>
 
-                            <SubTable isPayTable={true} payItems={payItems} freeItems={freeItems}/>
-                            <SubTable isPayTable={false} payItems={payItems} freeItems={freeItems}/>
+                            {payItems.length > 0 ?
+                                <SubTable isPayTable={true} payItems={payItems} freeItems={freeItems}/> : ""}
+                            {freeItems.length > 0 ?
+                                <SubTable isPayTable={false} payItems={payItems} freeItems={freeItems}/> : ""}
 
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
