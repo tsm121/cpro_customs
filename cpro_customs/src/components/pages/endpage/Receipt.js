@@ -18,7 +18,7 @@ export default class Receipt extends Component {
                     </h3>
                 </Grid>
 
-                <Grid item>
+                <Grid item style={{backgroundColor:"white", padding: "2em"}}>
                     <QRCode
                         value={QR_url}
                         renderAs="svg"
