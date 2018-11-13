@@ -25,15 +25,15 @@ class Home extends Component {
 
     render() {
         const {nextPage} = this.state
-		return (
-			<div>
-				<Welcome/>
-				<NavigationArrow direction={"down"}
-								 page={nextPage}
-				/>
-			</div>
-		);
-	}
+        return (
+            <div>
+                <Welcome/>
+                <NavigationArrow direction={"down"}
+                                 page={nextPage}
+                />
+            </div>
+        );
+    }
 }
 
 export default Home;

@@ -21,6 +21,7 @@ class App extends Component {
             productIdCounter: 0,
             overADay: false,
             QRUrl: {},
+            hasPaid: false,
         };
     }
 
@@ -43,6 +44,21 @@ class App extends Component {
     setOverADay = this.setOverADay.bind(this);
     setAmountToPay = this.setAmountToPay.bind(this);
     setQRUrl = this.setQRUrl.bind(this);
+    setHasPaid = this.setHasPaid.bind(this);
+    setProducts = this.setProducts.bind(this);
+    resetState = this.resetState.bind(this);
+
+    /**
+     * Resets the global state to the initial state
+     */
+    resetState() {
+        this.setState({
+            products: [],
+            amount_to_pay: 0,
+            productIdCounter: 0,
+            hasPaid: false,
+        });
+    }
 
 
     /**
@@ -275,6 +291,23 @@ class App extends Component {
     setQRUrl(url){
         this.setState({
             QRUrl: url
+    /**
+     * Setter for setting hasPaid property
+     * @param value - a boolean
+     */
+    setHasPaid(value) {
+        this.setState({
+            hasPaid: value,
+        })
+    }
+
+    /**
+     * Setter to set products
+     * @param value - the new array
+     */
+    setProducts(value) {
+        this.setState({
+            products: value,
         })
     }
 
@@ -290,6 +323,7 @@ class App extends Component {
                     overADay: this.state.overADay,
                     QRUrl: this.state.QRUrl,
                     totalAmount: this.totalAmount,
+                    hasPaid: this.state.hasPaid,
                     findProductIndexById: this.findProductIndexById,
                     removeAllElementsOfType: this.removeAllElementsOfType,
                     addProduct: this.addProduct,
@@ -305,6 +339,9 @@ class App extends Component {
                     setOverADay: this.setOverADay,
                     setAmountToPay: this.setAmountToPay,
                     setQRUrl: this.setQRUrl,
+                    setHasPaid: this.setHasPaid,
+                    setProducts: this.setProducts,
+                    resetState: this.resetState,
                 }}
             >
                 <div>

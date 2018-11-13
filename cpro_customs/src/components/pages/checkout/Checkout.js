@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -10,7 +10,7 @@ import PaymentSelection from "./PaymentSelection";
 import VisaPayment from "./VisaPayment";
 import {GlobalState} from "../../context/GlobalState";
 
-export default class Checkout extends Component  {
+export default class Checkout extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -20,12 +20,15 @@ export default class Checkout extends Component  {
             stageSelection: true,
             stageVisa: false,
             //TODO: Get currency from user selection
-            selectedCurrency:'NOK',
+            selectedCurrency: 'NOK',
+            //TODO: Get total payment from props or server
             paymentInProgress: true,
             paymentComplete: false,
         }
 
+        this.paymentComplete = this.paymentComplete.bind(this);
     }
+
 
     handleChange = name => event => {
         this.setState({
@@ -34,7 +37,7 @@ export default class Checkout extends Component  {
     };
 
     userSelection = (selection) => {
-        if(selection === "visa") {
+        if (selection === "visa") {
             this.setState({
                 stageSelection: false,
                 stageVisa: true,
@@ -49,74 +52,85 @@ export default class Checkout extends Component  {
         })
     }
 
-    paymentComplete = () => {
+    paymentComplete = (globalState) => {
         this.setState({
             paymentComplete: true,
             stageVisa: false,
         })
 
+        // payment done
+        // delete products from global state
+        globalState.setHasPaid(true);
+        globalState.setProducts([]);
+
         this.props.history.push("/endpage")
     }
 
     render = () => {
-        const {stageSelection, stageVisa, selectedCurrency} = this.state
+        const {stageSelection, stageVisa, totalSum, selectedCurrency} = this.state
         return (
-            <GlobalState.Consumer>
+          <GlobalState.Consumer>
                 {globalState => (
-                    <Grid container
-                          spacing={8}
-                          justify="center"
-                          alignItems="center"
-                          direction="column"
+            <Grid container
+                  spacing={8}
+                  justify="center"
+                  alignItems="center"
+                  direction="column"
+            >
+                <Card
+                    className={"payment_container"}
+                    raised={true}
+                >
+                    <CardContent
+                        className={"payment_content_container"}
                     >
-                        <Card
-                            className={"payment_container"}
-                            raised={true}
+                        <Grid container
+                              direction="row"
                         >
-                            <CardContent
-                                className={"payment_content_container"}
-                            >
-                                <Grid container
-                                      direction="row"
+                            <h1 className={"payment_title"}>
+                                <Button
+                                    disabled={stageSelection}
                                 >
-                                    <h1 className={"payment_title"}>
-                                        <Button
-                                            disabled={stageSelection}
-                                        >
-                                            <Icon
-                                                onClick={this.handleGoBackButton}
-                                                style={stageSelection ? {display:"none"} : {display:"unset"}}
-                                            >
-                                                arrow_back
-                                            </Icon>
-                                        </Button>
-                                        Payment
-                                    </h1>
-                                </Grid>
+                                    <Icon
+                                        onClick={this.handleGoBackButton}
+                                        style={stageSelection ? {display: "none"} : {display: "unset"}}
+                                    >
+                                        arrow_back
+                                    </Icon>
+                                </Button>
+                                Payment
+                            </h1>
+                        </Grid>
 
-                                <Grid container
-                                      justify="center"
-                                      alignItems="center"
-                                >
-                                    {stageVisa ?  (
+                        <Grid container
+                              justify="center"
+                              alignItems="center"
+                        >
+                            {stageVisa ? (
+                                    <GlobalState.Consumer>
+                                        {globalState => (
                                             <VisaPayment
                                                 totalSum={globalState.amount_to_pay}
                                                 selectedCurrency={selectedCurrency}
-                                                paymentComplete={this.paymentComplete}
-                                            />)
-                                        : ""}
+                                                paymentComplete={() => {
+                                                    this.paymentComplete(globalState)
+                                                }}
+                                            />)}
+                                    </GlobalState.Consumer>
+                                )
 
-                                    {stageSelection ? (
-                                            <PaymentSelection
-                                                handleSelection={this.userSelection}
-                                            />)
-                                        : ''}
-                                </Grid>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                )}
-            </GlobalState.Consumer>
+                                : ""}
+
+                            {stageSelection ? (
+                                    <PaymentSelection
+                                        handleSelection={this.userSelection}
+                                    />)
+                                : ''}
+                        </Grid>
+                    </CardContent>
+                </Card>
+            </Grid>
+  )}</GlobalState.Consumer>
         )
     }
 }

@@ -44,4 +44,5 @@ export default class Endpage extends Component {
 			</FormControl>
 		)
 	}
+
 }
