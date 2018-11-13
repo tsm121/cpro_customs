@@ -9,9 +9,7 @@ module.exports = {
         "**/css/**\/main.*.css",
         "public/assets/**\/*.{png,jpg,svg}",
         "**/media/**\/*.{png,jpg,svg}",
-
-
-
+        "public/index.html",
     ],
     //Destination to service worker template
     "swSrc": "src/sw-base.js",
