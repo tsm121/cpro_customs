@@ -18,16 +18,26 @@ body {
 }
 
 a {
-    outline : none;
+    outline: none;
 }
 
 a img {
-    outline : none;
+    outline: none;
 }
 
+:focus {
+    outline: 0 !important;
+}
 
-.header {
-    background-color: white !important;
+.header_container{
+    margin-bottom: 3em !important;
+}
+
+.header_bar {
+    background-color:#e2e3e5 !important;
+    color:#37424a !important;
+    position: fixed !important;
+    top: 0 !important;
 }
 
 .svg_nav_icon {
@@ -198,13 +208,20 @@ transform: translate(- 50 %, - 50 %);
     width: 20% !important;
 }
 
-.day_input .MuiNotchedOutline-root-272 {
+.year_input .MuiNotchedOutline-root-272 {
     border-radius: 0 4px 4px 0 !important;
 }
 
 .month_input .MuiNotchedOutline-root-272 {
     border-radius: 4px 0 0 4px !important;
     border-width: 1px 0 1px 1px;
+}
+
+.modal_paragraph {
+    font-size: 2.3vmin;
+    text-align: center;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 
 /*
@@ -241,7 +258,7 @@ h3.cdp {
 }
 
 h4.cdp {
-    font-size: 70px;
+    font-size: 5vmin;
 }
 
 /*
@@ -280,7 +297,7 @@ h4.cdp {
     margin-top: 0;
     text-transform: uppercase;
     font-size: 1.7vmin;
-    color:#888888;
+    color: #888888;
     font-weight: bold;
 }
 
@@ -288,13 +305,12 @@ h4.cdp {
     font-size: 2vmin;
 }
 
-
 span.cdp_icon_round_label {
     font-size: 1.5em;
     font-weight: 100;
 }
 
-.add_remove_icon{
+.add_remove_icon {
     font-size: 1.2em !important;
 
 }
@@ -324,6 +340,13 @@ span.cdp_icon_round_label {
     margin-left: 2px !important;
 }
 
+.cdp_button_round_decrement:disabled,
+.cdp_button_round_decrement[disabled] {
+    background-color: white !important;
+    color: #e2e3e5 !important;
+    border: 1px #e2e3e5 solid !important;
+}
+
 .cdp_button_round:hover {
     transition: all 300ms ease-in-out;
     background-color: #ffd200 !important;
@@ -345,7 +368,6 @@ span.cdp_icon_round_label {
 .cdp_input_field {
     margin: 8px !important;
 }
-
 
 /*
     icons
@@ -406,8 +428,6 @@ div.cdp_sub_selection_max_width_grid_item {
     7px 7px 9px 0px rgba(0, 0, 0, 0.14),
     9px 9px 12px -4px rgba(0, 0, 0, 0.12);
 }
-
-
 
 /*
     custom components that are used in multiple other components
@@ -473,9 +493,9 @@ div.cdp_sub_selection_max_width_grid_item {
 
 .payment_content_container {
     min-width: 20em;
-}   
+}
 
-.MuiGrid-container-45.MuiGrid-spacing-xs-32-70{
+.MuiGrid-container-45.MuiGrid-spacing-xs-32-70 {
     width: 100% !important;
 }
 
@@ -483,6 +503,15 @@ div.cdp_sub_selection_max_width_grid_item {
     margin: 0 !important;
 }
 
+.checkbox_container{
+    padding-top: 2em;
+}
+
+.checkbox_label svg {
+    width: 5vmin !important;
+    height: 5vmin !important;
+    color: #ffd200;
+}
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
     h1.cdp {
@@ -498,7 +527,7 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     h4.cdp {
-        font-size: 50px;
+        font-size: 4.5vmin;
     }
 
     img.icon_xs {
@@ -535,7 +564,7 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .modal {
         max-width: 70%;
-        width:70%;
+        width: 70%;
     }
 
     .flag_img {
@@ -556,7 +585,7 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 2.3vw;
     }
 
-    .add_remove_icon{
+    .add_remove_icon {
         font-size: 1.8vw !important;
 
     }
@@ -580,6 +609,9 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 11px !important;
     }
 
+    .modal_paragraph {
+        font-size: 2.4vmin;
+    }
 }
 
 /* ---- xs ---- */
@@ -597,7 +629,7 @@ div.cdp_sub_selection_max_width_grid_item {
     }
 
     h4.cdp {
-        font-size: 40px;
+        font-size: 5.5vmin;
     }
 
     img.icon_xs {
@@ -644,13 +676,14 @@ div.cdp_sub_selection_max_width_grid_item {
     .modal {
         max-width: 80%;
         width: 80%;
+        top: 40%;
     }
 
     span.cdp_icon_round_label {
         font-size: 2.2vmax;
     }
 
-    .add_remove_icon{
+    .add_remove_icon {
         font-size: 1.7vmax !important;
 
     }
@@ -672,6 +705,10 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .add_unit_icon {
         font-size: 5vmin !important;
+    }
+
+    .modal_paragraph {
+        font-size: 3.5vmin;
     }
 }
 

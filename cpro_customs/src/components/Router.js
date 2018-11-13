@@ -14,8 +14,8 @@ import Bought from "./pages/categories/animals/Bought";
 import Goods from "./pages/categories/goods/Goods";
 import Tobacco from "./pages/categories/tobacco/Tobacco";
 import Alcohol from "./pages/categories/alcohol/Alcohol";
-import LightBeer from "./pages/categories/alcohol/LightBeer";
-import BeerAndAlcopop from "./pages/categories/alcohol/BeerAndAlcopop";
+import Beer from "./pages/categories/alcohol/Beer";
+import AlcopopAndOthers from "./pages/categories/alcohol/AlcopopAndOthers";
 import Wine from "./pages/categories/alcohol/Wine";
 import FortifiedWine from "./pages/categories/alcohol/FortifiedWine";
 import Spirits from "./pages/categories/alcohol/Spirits";
@@ -24,10 +24,11 @@ import CigarsAndCigarillos from "./pages/categories/tobacco/CigarsAndCigarillos"
 import SnuffAndChewingTobacco from "./pages/categories/tobacco/SnuffAndChewingTobacco";
 import SmokingTobacco from "./pages/categories/tobacco/SmokingTobacco";
 import CigarettePaperAndSheaths from "./pages/categories/tobacco/CigarettePaperAndSheaths";
-import ShoppingCart from "./pages/shopping-cart/ShoppingCart";
 import Checkout from "./pages/checkout/Checkout";
-import Endpage from "./pages/endpage/Endpage";
 import NotFound from "./pages/NotFound";
+import StateWrapper from "./pages/shopping-cart/StateWrapper";
+import EndpageWrapper from "./pages/endpage/EndpageWrapper";
+import PersonsInVehicleWrapper from "./pages/persons-in-vehicle/PersonsInVehicleWrapper";
 
 
 /**
@@ -40,21 +41,21 @@ class Router extends Component {
         return (
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route exact path='/persons-in-vehicle' component={PersonsInVehicle}/>
+                <Route exact path='/persons-in-vehicle' component={PersonsInVehicleWrapper}/>
                 <Route exact path='/on-boarding' component={OnBoarding}/>
                 <Route exact path='/categories' component={Categories}/>
                 <Route exact path='/checkout' component={Checkout}/>
-                <Route exact path='/endpage' component={Endpage}/>
+                <Route exact path='/endpage' component={EndpageWrapper}/>
                 <Route exact path='/categories/animals' component={Animals}/>
                 <Route exact path='/categories/animals/pet' component={Pet}/>
                 <Route exact path='/categories/animals/horse' component={Horse}/>
                 <Route exact path='/categories/animals/import' component={Import}/>
                 <Route exact path='/categories/animals/bought' component={Bought}/>
                 <Route exact path='/categories/goods' component={Goods}/>
-                <Route exact path='/declaration-list' component={ShoppingCart}/>
+                <Route exact path='/declaration-list' component={StateWrapper}/>
                 <Route exact path='/categories/alcohol' component={Alcohol}/>
-                <Route exact path='/categories/alcohol/light-beer' component={LightBeer}/>
-                <Route exact path='/categories/alcohol/beer-and-alcopop' component={BeerAndAlcopop}/>
+                <Route exact path='/categories/alcohol/beer' component={Beer}/>
+                <Route exact path='/categories/alcohol/alcopop-and-others' component={AlcopopAndOthers}/>
                 <Route exact path='/categories/alcohol/wine' component={Wine}/>
                 <Route exact path='/categories/alcohol/fortified-wine' component={FortifiedWine}/>
                 <Route exact path='/categories/alcohol/spirits' component={Spirits}/>
