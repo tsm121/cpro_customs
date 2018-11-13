@@ -124,37 +124,37 @@ class TransactionValidation(APIView):
 
         for product in products:
             if product['product'] == 'Beer':
-                amounts['Beer'] += int(product['amount'])
+                amounts['Beer'] += float(product['amount'])
             elif product['product'] == 'Alcopop and others':
-                amounts['Alcopop and others'] += int(product['amount'])
+                amounts['Alcopop and others'] += float(product['amount'])
             elif product['product'] == 'Wine':
-                amounts['Wine'] += int(product['amount'])
+                amounts['Wine'] += float(product['amount'])
             elif product['product'] == 'Fortified wine':
-                amounts['Fortified wine'] += int(product['amount'])
+                amounts['Fortified wine'] += float(product['amount'])
             elif product['product'] == 'Spirits':
-                amounts['Spirits'] += int(product['amount'])
+                amounts['Spirits'] += float(product['amount'])
             elif product['product'] == 'Cigarettes':
-                amounts['Cigarettes'] += int(product['amount'])
+                amounts['Cigarettes'] += float(product['amount'])
                 amounts['has_tobacco'] = True
             elif product['product'] == 'Snuff and chewing tobacco':
-                amounts['Snuff and chewing tobacco'] += int(product['amount'])
+                amounts['Snuff and chewing tobacco'] += float(product['amount'])
                 amounts['has_tobacco'] = True
             elif product['product'] == 'Smoking tobacco':
-                amounts['Smoking tobacco'] += int(product['amount'])
+                amounts['Smoking tobacco'] += float(product['amount'])
                 amounts['has_tobacco'] = True
             elif product['product'] == 'Cigars and Cigarillos':
-                amounts['Cigars and Cigarillos'] += int(product['amount'])
+                amounts['Cigars and Cigarillos'] += float(product['amount'])
                 amounts['has_tobacco'] = True
             elif product['product'] == 'Cigarette paper and sheets':
-                amounts['Cigarette paper and sheets'] += int(product['amount'])
+                amounts['Cigarette paper and sheets'] += float(product['amount'])
             elif product['product'] == 'Horse':
-                amounts['Horse'] += int(product['amount'])
+                amounts['Horse'] += float(product['amount'])
             elif product['product'] == 'Dog':
-                amounts['Dog'] += int(product['amount'])
+                amounts['Dog'] += float(product['amount'])
             elif product['product'] == 'Goods':
-                amounts['Goods'] += int(product['amount'])
+                amounts['Goods'] += float(product['amount'])
             elif product['product'] == 'Others':
-                amounts['Others'] += int(product['amount'])
+                amounts['Others'] += float(product['amount'])
 
         return amounts
 
@@ -162,7 +162,7 @@ class TransactionValidation(APIView):
         values = []
 
         for product in products:
-            values.append(int(product['value']))
+            values.append(float(product['value']))
 
         values.sort(reverse=True)
         return values
