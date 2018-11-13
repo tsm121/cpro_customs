@@ -24,13 +24,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # TODO: Change when setting in production
-SECRET_KEY = '@8wn(s#qz6pba2f*10#&avjf(v9ve_v4irr5bm)sg20nz_*4pi'
+#SECRET_KEY = '@8wn(s#qz6pba2f*10#&avjf(v9ve_v4irr5bm)sg20nz_*4pi'
+SECRET_KEY = '4s$a@0$wck!(rgyeq5e(n8w1^zt*eu)3dct#)z52s*sd*8c8^d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # TODO: Change when setting in production
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.ntnu.no']
+BASE_URL = 'https://toll.idi.ntnu.no'
 
 with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
     secrets = json.load(secrets_file)
@@ -53,9 +55,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'backend',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -64,6 +69,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'cpro_customs.urls'
 
@@ -97,7 +104,7 @@ DATABASES = {
         'NAME': 'database',
         'USER': 'django',
         'PASSWORD': get_secret('DB_PASSWORD'),
-        'HOST': 'postgres',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -144,4 +151,13 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
   os.path.join(BASE_DIR, 'build/static'),
+  os.path.join(BASE_DIR, 'backend/static'),
 ]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'norwegiancustoms1@gmail.com'
+EMAIL_HOST_PASSWORD = 'Norwegiancustoms1!'

@@ -47,15 +47,17 @@
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
 
-<!--<script>
+<script>
 
     //Register ServiceWorker
+    import rs from "registerServiceWorker.js";
     if('serviceWorker' in navigator) {
+        rs();
         navigator.serviceWorker
             .register('/custom-sw.js')
             .then(function() { console.log("Service Worker Registered"); });
     }
-</script>-->
+</script>
 
 </body>
 </html>

@@ -21,8 +21,8 @@ if (workbox) {
     "revision": "19a7aa30a295475b5355cb3f4e6cd535"
   },
   {
-    "url": "static/js/main.5f0fc00e.js",
-    "revision": "6edce983e29ab8485310392246a3be8a"
+    "url": "static/js/main.478cb47f.js",
+    "revision": "0fb622435f2ff947edea4dd74ec0df1c"
   },
   {
     "url": "static/css/main.d10a4222.css",
@@ -226,13 +226,18 @@ if (workbox) {
   },
   {
     "url": "index.html",
-    "revision": "12ef046af58561f43c6a0ff4894ab509"
+    "revision": "cea93bed5eaf70e6c868545b06b75f34"
+  },
+  {
+    "url": "registerServiceWorker.js",
+    "revision": "84c3234a856483e1fd84104d63d37126"
   }
 ]);
 
     //Caching manifest and service worker at beginning. Updates if a new version is published
     //TODO: This caches the service worker, but still unsure if this is the right practise. Disabled for now!
     //workbox.precaching.addRoute(['custom-sw.js'], workbox.strategies.staleWhileRevalidate());
+    workbox.precaching.addRoute(['registerServiceWorker.js'], workbox.strategies.staleWhileRevalidate());
 
     workbox.routing.registerRoute(
         /^https:\/\/fonts\.googleapis\.com/,

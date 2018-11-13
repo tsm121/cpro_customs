@@ -10,6 +10,7 @@ module.exports = {
         "public/assets/**\/*.{png,jpg,svg}",
         "**/media/**\/*.{png,jpg,svg}",
         "public/index.html",
+        "src/registerServiceWorker.js",
     ],
     //Destination to service worker template
     "swSrc": "src/sw-base.js",
@@ -20,5 +21,6 @@ module.exports = {
     modifyUrlPrefix: {
         'public/': '',
         'build/': '',
+	'src/': '',
     }
 };
