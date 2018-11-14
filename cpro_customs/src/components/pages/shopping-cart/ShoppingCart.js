@@ -14,6 +14,7 @@ class ShoppingCart extends Component {
     state = {
         freeItems: [],
         payItems: [],
+        ids: {},
         totalAmounts: {
             litersOfAlcohol: 0,
             litersOfSpirits: 0,
@@ -53,6 +54,14 @@ class ShoppingCart extends Component {
                 </Grid>
             </div>
         )
+    }
+
+    /**
+     * Removes an item from
+     * @param index, name, globalState
+     */
+    removeItem = (index, name, globalState) => {
+
     }
 
     /**
@@ -176,6 +185,18 @@ class ShoppingCart extends Component {
         let totalCigars = 0;
         let totalPaper = 0;
         let hasTobacco = false;
+        let ids = {
+            beer: [],
+            alcopop: [],
+            wine: [],
+            fortifiedWine: [],
+            spirits: [],
+            cigarettes: [],
+            snuff: [],
+            smoking: [],
+            cigars: [],
+            papers: [],
+        };
 
         // Calculating the different total amounts based on category
         {products.map(item => {
@@ -184,37 +205,47 @@ class ShoppingCart extends Component {
                     break;
                 case "Beer":
                     totalBeer += item.value * item.amount;
+                    ids.beer.push(item.id);
                     break;
                 case "Alcopop and others":
                     totalAlcopop += item.value * item.amount;
+                    ids.alcopop.push(item.id);
                     break;
                 case "Wine":
                     totalWine += item.value * item.amount;
+                    ids.wine.push(item.id);
                     break;
                 case "Fortified wine":
                     totalFortifiedWine += item.value * item.amount;
+                    ids.fortifiedWine.push(item.id);
                     break;
                 case "Spirits":
                     totalSpirit += item.value * item.amount;
+                    ids.spirits.push(item.id);
                     break;
                 case "Cigarettes":
                     totalCigarettes += item.value * item.amount;
+                    ids.cigarettes.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Snuff & chewing tobacco":
                     totalSnuff += item.value * item.amount;
+                    ids.snuff.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Smoking tobacco":
                     totalSmoking += item.value * item.amount;
+                    ids.smoking.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Cigars and Cigarillos":
                     totalCigars += item.value * item.amount;
+                    ids.cigars.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Cigarette paper and sheets":
                     totalPaper += item.value * item.amount;
+                    ids.papers.push(item.id);
                     break;
             } return null
         })
@@ -350,6 +381,7 @@ class ShoppingCart extends Component {
         this.setState({
             freeItems: freeItems,
             payItems: payItems,
+            ids: ids,
             totalAmounts: {
                 litersOfAlcohol: totalBeer + totalWine + totalAlcopop + totalFortifiedWine,
                 litersOfSpirits: totalSpirit,

@@ -47,7 +47,7 @@ class SubTable extends Component{
                                         <TableCell numeric className={"table_column"}>{this.renderVAT(item)}</TableCell>
                                         <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
                                         <TableCell numeric className={"exit_column"} padding={"none"}>
-                                            <RemoveButton onDelete={() => this.removeItem(index, globalState)} />
+                                            <RemoveButton onDelete={() => this.removeItem(index, item.name, globalState)} />
                                         </TableCell>
                                     </TableRow>
                                 ))
@@ -58,10 +58,6 @@ class SubTable extends Component{
                 )}
             </GlobalState.Consumer>
         )
-    }
-
-    removeItem = (index, globalState) => {
-        console.log(index)
     }
 
     renderItems = () => {
@@ -88,7 +84,7 @@ class SubTable extends Component{
     }
 
     renderVAT = (item) => {
-        const {isPayTable} = this.props
+        const {isPayTable} = this.props;
         let string = '';
         if (isPayTable && !this.isAlcoholOrTobacco(item.type)){
             string += item.vat.toFixed(2) + " ";
