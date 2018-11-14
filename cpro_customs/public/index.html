@@ -30,7 +30,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>ECC - Easy Customs Clearance</title>
 </head>
 <body>
 <noscript>
@@ -51,9 +51,9 @@
 <script>
 
     //Register ServiceWorker
-    import rs from "registerServiceWorker.js";
+    //import rs from "registerServiceWorker.js";
     if('serviceWorker' in navigator) {
-        rs();
+        //rs();
         navigator.serviceWorker
             .register('/custom-sw.js')
             .then(function() { console.log("Service Worker Registered"); });

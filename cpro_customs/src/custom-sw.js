@@ -18,15 +18,15 @@ if (workbox) {
     workbox.precaching.precacheAndRoute([
   {
     "url": "manifest.json",
-    "revision": "19a7aa30a295475b5355cb3f4e6cd535"
+    "revision": "42fc31c33280cb234aa152b87075cf00"
   },
   {
-    "url": "static/js/main.478cb47f.js",
-    "revision": "0fb622435f2ff947edea4dd74ec0df1c"
+    "url": "static/js/main.e66ae963.js",
+    "revision": "db59a320af6e9820862d0ae27b78419d"
   },
   {
-    "url": "static/css/main.d10a4222.css",
-    "revision": "66659603d5d7028321c52574352887db"
+    "url": "static/css/main.6414fd5e.css",
+    "revision": "e9ab34b2c1bbd20c838bced576123796"
   },
   {
     "url": "assets/icons/icon-128x128.png",
@@ -61,8 +61,8 @@ if (workbox) {
     "revision": "0175eff2625e5bad81e422f3c41e6154"
   },
   {
-    "url": "assets/test.png",
-    "revision": "9b15b6140374217a74fcf2d920bb8f05"
+    "url": "favicon.ico",
+    "revision": "d43b9322d51ba4102eccdb7eb41a9a30"
   },
   {
     "url": "static/media/alcopop_dark_grey.9f700874.png",
@@ -226,7 +226,7 @@ if (workbox) {
   },
   {
     "url": "index.html",
-    "revision": "cea93bed5eaf70e6c868545b06b75f34"
+    "revision": "d6072443c2ca161018a2260f688e839d"
   },
   {
     "url": "registerServiceWorker.js",
