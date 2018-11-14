@@ -48,8 +48,10 @@ class DeclarationTable extends Component {
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
                             <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
-                                        globalState={globalState} route={'/checkout'}
+                                        globalState={globalState}
                                         aboveMaxLimit={this.aboveMaximumLimit()}
+                                        payItems={payItems}
+                                        freeItems={freeItems}
                             />
                         </Paper>
                     </div>
