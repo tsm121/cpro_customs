@@ -227,8 +227,8 @@ export default class InputFields extends Component  {
                 >
                     <Button
                         variant={"outlined"}
-                        color={"secondary"}
-                        className={"save_btn"}
+                        color={"primary"}
+                        className={"delete_data"}
                         onClick={this.handleDelete}
                         role="button"
                         type="submit"

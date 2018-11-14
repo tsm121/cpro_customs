@@ -58,6 +58,7 @@ class SubSelection extends Component {
     };
 
     onClick = () => {
+
         this.props.history.push(this.props.route);
     };
 

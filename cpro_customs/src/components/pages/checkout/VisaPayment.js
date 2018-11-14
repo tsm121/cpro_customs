@@ -118,7 +118,6 @@ export default class VisaPayment extends Component  {
                     >
                         <TextField
                             fullWidth={true}
-                            type="password"
                             id="security-code"
                             label="CVV code"
                             placeholder="123"

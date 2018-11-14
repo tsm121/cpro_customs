@@ -67,7 +67,7 @@ export default class Checkout extends Component {
     }
 
     render = () => {
-        const {stageSelection, stageVisa, totalSum, selectedCurrency} = this.state
+        const {stageSelection, stageVisa, selectedCurrency} = this.state
         return (
           <GlobalState.Consumer>
                 {globalState => (

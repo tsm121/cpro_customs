@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 import IconButton from '@material-ui/core/IconButton';
 import "./ShoppingCartStyle.css"
-import PropTypes from "prop-types";
-
 
 export default class RemoveButton extends Component  {
     render = () => {

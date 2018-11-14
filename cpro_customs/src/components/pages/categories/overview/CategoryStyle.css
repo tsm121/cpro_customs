@@ -40,10 +40,10 @@
 }
 
 .modal_button_text {
-    color: white;
-    line-height: 1.4;
-    margin: 0;
-    padding: 0.5vmax;
+    color: #e2e3e5 !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding: 0.5vmax !important;
 }
 
 
