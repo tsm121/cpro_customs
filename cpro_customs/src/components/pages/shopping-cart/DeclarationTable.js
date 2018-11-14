@@ -6,8 +6,19 @@ import TotalTable from "./TotalTable";
 import SubTable from "./SubTable";
 import {validateData} from "./logic/validateData";
 import {GlobalState} from "../../context/GlobalState";
+import OverLimitFeedback from "./OverLimitFeedback";
+
+let aboveLimitList = []
 
 class DeclarationTable extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            disablePayButton: true,
+        }
+
+    }
+
 
     componentDidUpdate() {
         const {payItems, globalState} = this.props;
@@ -15,14 +26,41 @@ class DeclarationTable extends Component {
         if (globalState.amount_to_pay !== total_duty) {
             globalState.setAmountToPay(this.getTotalDuty(payItems));
         }
+
+        this.aboveMaximumLimit()
     }
 
     render = () => {
         const {payItems, freeItems} = this.props
+        const {disablePayButton} = this.state
+
+        console.log(aboveLimitList)
+
+        /*if (aboveLimitList.length > 0) {
+
+            error_message =
+                <div>
+
+                    <p> You are above the limit on the following item(s) </p>
+
+                    {aboveLimitList.map(value => value[0])}
+                </div>
+
+        }*/
         return (
             <GlobalState.Consumer>
                 {globalState => (
                     <div>
+                        <Paper className={"paper limit_error"}
+                               style={aboveLimitList.length > 0 ? {} : {display:"none"}}
+                        >
+
+                            <OverLimitFeedback
+                                overLimit={aboveLimitList.length > 0}
+                                aboveLimitList={aboveLimitList}
+                            />
+                        </Paper>
+
                         <Paper className={"paper"}>
                             <Grid container
                                   alignItems={"center"}
@@ -47,7 +85,7 @@ class DeclarationTable extends Component {
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
                             <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
                                         globalState={globalState} route={'/checkout'}
-                                        aboveMaxLimit={this.aboveMaximumLimit()}
+                                        disablePayButton={disablePayButton}
                             />
                         </Paper>
                     </div>
@@ -56,12 +94,28 @@ class DeclarationTable extends Component {
         )
     };
 
+    overLimit () {
+        const {aboveLimitList} = this.state
+
+        if (aboveLimitList.length > 1) {
+            this.setState({
+                disablePayButton: true
+            })
+        } else {
+            this.setState({
+                disablePayButton: false
+            })
+        }
+    }
+
+
     /**
      * Checks if the total amount added to cart exceeds the limits and return
      * @returns array of arrays(tuples) containing the information about "Item" and "Amount above limit"
      *          - On the format [[string, number], [string, number], ...]
      */
     aboveMaximumLimit = () => {
+
         /*
         RULES (How much can you bring ABOVE the limit):
         Liters of alcohol (excluding spirits)       27 liters => 33.5 liters
@@ -80,15 +134,16 @@ class DeclarationTable extends Component {
         if (totalAmounts.piecesOfCigarettes > 600) aboveLimit.push(["Cigarettes", totalAmounts.piecesOfCigarettes - 600]);
         if (totalAmounts.papers > 600) aboveLimit.push(["Cigarette Papers", totalAmounts.paper - 600]);
 
-        return aboveLimit;
+        aboveLimitList = aboveLimit
+
     };
 
     getTotalDuty = (payItems) => {
         let sum = 0;
         {payItems.map(item => {
-                if (item.vat !== undefined) sum += item.vat;
-                if (item.fee !== undefined) sum += item.fee;
-            })
+            if (item.vat !== undefined) sum += item.vat;
+            if (item.fee !== undefined) sum += item.fee;
+        })
         }
         return sum;
     };

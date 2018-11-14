@@ -50,7 +50,7 @@ class SubTable extends Component{
                                         </TableCell>
                                     </TableRow>
                                 ))
-                                };
+                                }
                             </TableBody>
                         </Table>
                     </div>

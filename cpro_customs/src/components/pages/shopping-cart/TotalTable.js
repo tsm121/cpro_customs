@@ -8,7 +8,7 @@ import {GlobalState} from "../../context/GlobalState";
 class TotalTable extends Component{
 
     render = () => {
-        const {aboveMaxLimit} = this.props
+        const {disablePayButton} = this.props
         return(
             <GlobalState.Consumer>
                 {globalState => (
@@ -26,15 +26,17 @@ class TotalTable extends Component{
                             <Grid item xs={12} sm={12} md={12} >
                                 <Button className={"declaration_button"}
                                         size={"medium"}
-                                        disabled={aboveMaxLimit.length > 0}
+                                        disabled={disablePayButton}
                                         onClick={this.onClick}
                                         onMouseOver={this.onMouseOver}
                                         onMouseOut={this.onMouseOut}
+
                                         role="button"
                                         type="submit"
                                         value="declare your items"
                                 >
-                                    <h4 className={"cdp cdp_yellow declaration_button_text"}>
+                                    <h4 className={disablePayButton ? "cdp cdp_grey declaration_button_text" : "cdp cdp_yellow declaration_button_text"}
+                                    >
                                         Declare items
                                     </h4>
                                 </Button>

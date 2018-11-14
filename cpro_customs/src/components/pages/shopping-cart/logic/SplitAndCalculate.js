@@ -104,8 +104,6 @@ import {calculateFeesAndVAT} from "./calculateFeeAndVAT";
             payItems: [...prevState.payItems, ...payItems]
         }))*/
 
-        console.log(freeItems)
-        console.log(payItems)
 
     }
 

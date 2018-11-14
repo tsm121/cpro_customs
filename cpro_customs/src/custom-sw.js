@@ -21,12 +21,12 @@ if (workbox) {
     "revision": "42fc31c33280cb234aa152b87075cf00"
   },
   {
-    "url": "static/js/main.e66ae963.js",
-    "revision": "db59a320af6e9820862d0ae27b78419d"
+    "url": "static/js/main.798dc559.js",
+    "revision": "ef5f7110e72d3837c5b9488213c6358c"
   },
   {
-    "url": "static/css/main.6414fd5e.css",
-    "revision": "e9ab34b2c1bbd20c838bced576123796"
+    "url": "static/css/main.da695e31.css",
+    "revision": "79258712319aaf90a42eb72503125a0b"
   },
   {
     "url": "assets/icons/icon-128x128.png",
@@ -113,6 +113,10 @@ if (workbox) {
     "revision": "60ea9f01e38134f799f4b184e601dd17"
   },
   {
+    "url": "static/media/car_black.64bd5a6e.png",
+    "revision": "64bd5a6ec774a370ef5357778ebc6c31"
+  },
+  {
     "url": "static/media/cigar_dark_grey.a93b34a0.png",
     "revision": "a93b34a0db80f578f08129451aecabdd"
   },
@@ -121,8 +125,16 @@ if (workbox) {
     "revision": "f09d0bc685209efd2bb888bb4a7ebd9d"
   },
   {
+    "url": "static/media/cigarette-with-smoke.14a46f7b.png",
+    "revision": "14a46f7befea8dd7d23b07dd287181af"
+  },
+  {
     "url": "static/media/cigarettes_dark_grey.ff80a9ab.png",
     "revision": "ff80a9ab2001f616ead5c72e80c90565"
+  },
+  {
+    "url": "static/media/cigarettes-package.c708c0e7.png",
+    "revision": "c708c0e75c68bfda8d7be9d586f783ba"
   },
   {
     "url": "static/media/close_button_grey.36f2c930.png",
@@ -161,6 +173,14 @@ if (workbox) {
     "revision": "a7f665a498b25ea1e0b826b83579357e"
   },
   {
+    "url": "static/media/gift.8f6e22ec.png",
+    "revision": "8f6e22ecab063ecaaa133e50e08fa54d"
+  },
+  {
+    "url": "static/media/glass-and-bottle-of-wine.004cd88f.png",
+    "revision": "004cd88f49a1429235101ac2996ef4a5"
+  },
+  {
     "url": "static/media/horse_dark_grey.9461185d.png",
     "revision": "9461185dfd71c31eab1eae8e27f607f2"
   },
@@ -177,12 +197,24 @@ if (workbox) {
     "revision": "d0eda3bff40bf471bb18cf7856a2be21"
   },
   {
+    "url": "static/media/norway.ef88a088.png",
+    "revision": "ef88a0881fce268a18869e8a0e793239"
+  },
+  {
     "url": "static/media/pawprint.877f55d0.png",
     "revision": "877f55d055ad72324342f80b7b7aa4af"
   },
   {
+    "url": "static/media/person_black.e6deba51.png",
+    "revision": "e6deba51f6f1c26568029439700386ad"
+  },
+  {
     "url": "static/media/person_yellow.3d03d6ec.png",
     "revision": "3d03d6eca20f1a90df335a8bf6fdf399"
+  },
+  {
+    "url": "static/media/pills.26c3bf31.png",
+    "revision": "26c3bf31a1e126265cdf37c280790d9b"
   },
   {
     "url": "static/media/pipe_dark_grey.9cabdd9d.png",
@@ -197,8 +229,20 @@ if (workbox) {
     "revision": "67da42b24f307e22ea4be0222e142f34"
   },
   {
+    "url": "static/media/plus_black.ead837c9.png",
+    "revision": "ead837c9287b84b90b0262810e64e566"
+  },
+  {
+    "url": "static/media/plus.3c2c6c70.png",
+    "revision": "3c2c6c7011b4764af1571b798cee4965"
+  },
+  {
     "url": "static/media/shopping-cart_dark_grey.dc9643e3.png",
     "revision": "dc9643e3c8564977a777c120dfadad5a"
+  },
+  {
+    "url": "static/media/shopping-cart.a69a0489.png",
+    "revision": "a69a048914c43c185f344970319e6b2b"
   },
   {
     "url": "static/media/snus_dark_grey.9e070bfa.png",
@@ -209,8 +253,28 @@ if (workbox) {
     "revision": "060d2638da4ca6220c057b04ef1f0b0e"
   },
   {
+    "url": "static/media/sweden.ada1db6d.png",
+    "revision": "ada1db6dafa99787626db053e3921578"
+  },
+  {
+    "url": "static/media/tree-silhouette.37a38f9c.png",
+    "revision": "37a38f9c873d00542bf15e84aba7df0e"
+  },
+  {
+    "url": "static/media/uk.cb7b4dd8.png",
+    "revision": "cb7b4dd8e9624a512ffde8102fe63005"
+  },
+  {
+    "url": "static/media/vipps.78c393ff.png",
+    "revision": "78c393ff23e14870e9d904fc8af4607f"
+  },
+  {
     "url": "static/media/visa.0a4701fd.png",
     "revision": "0a4701fd9e0b96cc2a8f78606d1dfa71"
+  },
+  {
+    "url": "static/media/weapon.ca38d7e1.png",
+    "revision": "ca38d7e1a1e3d2e5f5d6bf695837fe8f"
   },
   {
     "url": "static/media/weight_dark_grey.9369c7f6.png",
@@ -226,7 +290,7 @@ if (workbox) {
   },
   {
     "url": "index.html",
-    "revision": "d6072443c2ca161018a2260f688e839d"
+    "revision": "68a621117bcc48ae1496ee9ab21a09b6"
   },
   {
     "url": "registerServiceWorker.js",

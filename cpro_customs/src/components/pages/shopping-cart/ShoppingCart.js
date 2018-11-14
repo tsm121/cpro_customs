@@ -30,7 +30,6 @@ class ShoppingCart extends Component {
 
     render = () => {
         const {globalState} = this.props;
-        console.log(globalState)
         return (
             <div>
                 <Grid container
