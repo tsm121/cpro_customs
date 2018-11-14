@@ -35,10 +35,13 @@ class DeclarationTable extends Component {
                                 </Grid>
 
                             </Grid>
+
                             {payItems.length > 0 ?
-                                <SubTable isPayTable={true} payItems={payItems} freeItems={freeItems}/> : ""}
+                                <SubTable isPayTable={true} payItems={payItems} freeItems={freeItems}
+                                          removeItem={this.props.removeItem} /> : ""}
                             {freeItems.length > 0 ?
-                                <SubTable isPayTable={false} payItems={payItems} freeItems={freeItems}/> : ""}
+                                <SubTable isPayTable={false} payItems={payItems} freeItems={freeItems}
+                                          removeItem={this.props.removeItem} /> : ""}
 
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>

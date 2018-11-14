@@ -43,11 +43,11 @@ class SubTable extends Component{
                                         <TableCell className={"table_column category_column"}>
                                             {item.type === "Goods" ? item.type + ": " + item.name : item.type}
                                         </TableCell>
-                                        <TableCell numeric className={"table_column"}>{this.renderValue(item)}</TableCell>
-                                        <TableCell numeric className={"table_column"}>{this.renderVAT(item)}</TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderValue(item, globalState)}</TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderVAT(item, globalState)}</TableCell>
                                         <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
                                         <TableCell numeric className={"exit_column"} padding={"none"}>
-                                            <RemoveButton onDelete={() => this.removeItem(index, item.name, globalState)} />
+                                            <RemoveButton onDelete={() => this.props.removeItem(isPayTable, index, item)} />
                                         </TableCell>
                                     </TableRow>
                                 ))
@@ -70,9 +70,9 @@ class SubTable extends Component{
         }
     }
 
-    renderValue = (item) => {
+    renderValue = (item, globalState) => {
         let string = '';
-        if (!this.isAlcoholOrTobacco(item.type)){
+        if (!globalState.isAlcoholOrTobacco(item.type)){
             string += item.value * item.amount + " ";
             if (item.currency !== undefined){
                 string += item.currency
@@ -83,10 +83,10 @@ class SubTable extends Component{
         return string;
     }
 
-    renderVAT = (item) => {
+    renderVAT = (item, globalState) => {
         const {isPayTable} = this.props;
         let string = '';
-        if (isPayTable && !this.isAlcoholOrTobacco(item.type)){
+        if (isPayTable && !globalState.isAlcoholOrTobacco(item.type)){
             string += item.vat.toFixed(2) + " ";
             if (item.currency !== undefined){
                 string += item.currency
@@ -109,24 +109,6 @@ class SubTable extends Component{
             }
         }
         return string;
-    }
-
-    isAlcoholOrTobacco = (type) => {
-        switch (type) {
-            case "Beer":
-            case "Alcopop and others":
-            case "Wine":
-            case "Fortified wine":
-            case "Spirits":
-            case "Cigarettes":
-            case "Snuff & chewing tobacco":
-            case "Smoking tobacco":
-            case "Cigars and Cigarillos":
-            case "Cigarette paper and sheets":
-                return true;
-            default:
-                return false;
-        }
     }
 }
 

@@ -14,7 +14,6 @@ class ShoppingCart extends Component {
     state = {
         freeItems: [],
         payItems: [],
-        ids: {},
         totalAmounts: {
             litersOfAlcohol: 0,
             litersOfSpirits: 0,
@@ -25,11 +24,13 @@ class ShoppingCart extends Component {
     };
 
     componentDidMount (){
-        const {globalState} = this.props
+        const {globalState} = this.props;
         this.splitListAndCalculateFees(globalState)
     }
 
     render = () => {
+        const {globalState} = this.props;
+        console.log(globalState)
         return (
             <div>
                 <Grid container
@@ -48,7 +49,8 @@ class ShoppingCart extends Component {
                             payItems={this.state.payItems}
                             freeItems={this.state.freeItems}
                             totalAmounts={this.state.totalAmounts}
-                            globalState={this.props.globalState}
+                            globalState={globalState}
+                            removeItem={this.removeItem}
                         />
                     </Grid>
                 </Grid>
@@ -57,12 +59,72 @@ class ShoppingCart extends Component {
     }
 
     /**
-     * Removes an item from
-     * @param index, name, globalState
+     * Removes an item from the product list (removes therefore from both local and global state).
+     * @param index
+     * @param item
+     * @param isPayTable
      */
-    removeItem = (index, name, globalState) => {
+    removeItem = (isPayTable, index, item) => {
+        const {globalState} = this.props;
 
+        // Remove from local state
+        let payItems = [...this.state.payItems];
+        let freeItems = [...this.state.freeItems];
+
+        if (isPayTable) {
+            payItems.splice(index, 1);
+            let freeItemsIndex = this.findListIndex(freeItems, item);
+            if (freeItemsIndex > -1) freeItems.splice(freeItemsIndex, 1);
+
+        } else {
+            freeItems.splice(index, 1);
+            let payItemsIndex = this.findListIndex(payItems, item);
+            if (payItemsIndex > -1) payItems.splice(payItemsIndex, 1);
+        }
+
+        this.setState({
+            payItems: payItems,
+            freeItems: freeItems,
+        });
+
+        // Remove from global state
+        if (item.type === "Goods"){
+            globalState.removeAllElementsWithName(item.name);
+        } else if (item.type === "Bought Animal") {
+            globalState.removeAllElementsWithKind(item.kind);
+        } else {
+            globalState.removeAllElementsOfType(item.type);
+        }
+
+    };
+
+    findListIndex = (items, item) => {
+        let itemsIndex = -1;
+        if (item.type === "Goods"){
+            itemsIndex = this.findIndexGivenTypeAndName(items, item.type, item.name)
+        } else {
+            itemsIndex = this.findIndexGivenType(items, item.type)
+        }
+        return itemsIndex
     }
+
+    findIndexGivenType = (items, type) => {
+        for (let i = 0; i < items.length; i++ ){
+            if (items[i].type === type){
+                return i;
+            }
+        }
+        return -1
+    };
+
+    findIndexGivenTypeAndName = (items, type, name) => {
+        for (let i = 0; i < items.length; i++ ){
+            if (items[i].type === type && items[i].name === name){
+                return i;
+            }
+        }
+        return -1
+    };
 
     /**
      * Splits the global list in two based on the customs rules and updates the local state with these lists
@@ -185,18 +247,6 @@ class ShoppingCart extends Component {
         let totalCigars = 0;
         let totalPaper = 0;
         let hasTobacco = false;
-        let ids = {
-            beer: [],
-            alcopop: [],
-            wine: [],
-            fortifiedWine: [],
-            spirits: [],
-            cigarettes: [],
-            snuff: [],
-            smoking: [],
-            cigars: [],
-            papers: [],
-        };
 
         // Calculating the different total amounts based on category
         {products.map(item => {
@@ -205,47 +255,37 @@ class ShoppingCart extends Component {
                     break;
                 case "Beer":
                     totalBeer += item.value * item.amount;
-                    ids.beer.push(item.id);
                     break;
                 case "Alcopop and others":
                     totalAlcopop += item.value * item.amount;
-                    ids.alcopop.push(item.id);
                     break;
                 case "Wine":
                     totalWine += item.value * item.amount;
-                    ids.wine.push(item.id);
                     break;
                 case "Fortified wine":
                     totalFortifiedWine += item.value * item.amount;
-                    ids.fortifiedWine.push(item.id);
                     break;
                 case "Spirits":
                     totalSpirit += item.value * item.amount;
-                    ids.spirits.push(item.id);
                     break;
                 case "Cigarettes":
                     totalCigarettes += item.value * item.amount;
-                    ids.cigarettes.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Snuff & chewing tobacco":
                     totalSnuff += item.value * item.amount;
-                    ids.snuff.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Smoking tobacco":
                     totalSmoking += item.value * item.amount;
-                    ids.smoking.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Cigars and Cigarillos":
                     totalCigars += item.value * item.amount;
-                    ids.cigars.push(item.id);
                     hasTobacco = true;
                     break;
                 case "Cigarette paper and sheets":
                     totalPaper += item.value * item.amount;
-                    ids.papers.push(item.id);
                     break;
             } return null
         })
@@ -381,7 +421,6 @@ class ShoppingCart extends Component {
         this.setState({
             freeItems: freeItems,
             payItems: payItems,
-            ids: ids,
             totalAmounts: {
                 litersOfAlcohol: totalBeer + totalWine + totalAlcopop + totalFortifiedWine,
                 litersOfSpirits: totalSpirit,
