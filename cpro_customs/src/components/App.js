@@ -23,6 +23,7 @@ class App extends Component {
             QRUrl: {},
             number_of_people: 1,
             hasPaid: false,
+            JSON: {},
         };
     }
 
@@ -32,6 +33,8 @@ class App extends Component {
     totalAmount = this.totalAmount.bind(this);
     findProductIndexById = this.findProductIndexById.bind(this);
     removeAllElementsOfType = this.removeAllElementsOfType.bind(this);
+    removeAllElementsWithName = this.removeAllElementsWithName.bind(this);
+    removeAllElementsWithKind = this.removeAllElementsWithKind.bind(this);
     addProduct = this.addProduct.bind(this);
     updateProduct = this.updateProduct.bind(this);
     getProduct = this.getProduct.bind(this);
@@ -48,6 +51,8 @@ class App extends Component {
     setProducts = this.setProducts.bind(this);
     resetState = this.resetState.bind(this);
     setter = this.setter.bind(this);
+    setJSON = this.setJSON.bind(this);
+    isAlcoholOrTobacco = this.isAlcoholOrTobacco.bind(this);
 
     /**
      * Resets the global state to the initial state
@@ -57,8 +62,11 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            overADay: false,
+            QRUrl: {},
             number_of_people: 0,
             hasPaid: false,
+            JSON: {}
         });
     }
 
@@ -270,12 +278,65 @@ class App extends Component {
      * @param type - the product type, e.g. "Beer"
      */
     removeAllElementsOfType(type) {
-        let {products} = this.state;
-        for (let i = 0; i < products.length; ++i) {
-            if (products[i].type.localeCompare(type) === 0) {
-                products.splice(i, 1);
+        let products = [...this.state.products];
+        let indices = [];
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].type === type) {
+                indices.push(i)
             }
         }
+
+        for (let i = indices.length - 1; i >= 0; i--) {
+            products.splice(indices[i], 1);
+        }
+
+        this.setState({
+            products: products,
+        });
+    }
+
+    /**
+     * Removes all products with a certain name (This is needed for goods)
+     * @param name - the product name, e.g. "Kitchen" etc.
+     */
+    removeAllElementsWithName(name) {
+        let products = [...this.state.products];
+        let indices = [];
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].name === name) {
+                indices.push(i)
+            }
+        }
+
+        for (let i = indices.length - 1; i >= 0; i--) {
+            products.splice(indices[i], 1);
+        }
+
+        this.setState({
+            products: products,
+        });
+    }
+
+    /**
+     * Removes all products with a certain kind (This is needed for animals)
+     * @param kind - the product kind, e.g. "dog" etc.
+     */
+    removeAllElementsWithKind(kind) {
+        let products = [...this.state.products];
+        let indices = [];
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].kind === kind) {
+                indices.push(i)
+            }
+        }
+
+        for (let i = indices.length - 1; i >= 0; i--) {
+            products.splice(indices[i], 1);
+        }
+
+        this.setState({
+            products: products,
+        });
     }
 
     setAmountToPay(toPay){
@@ -321,6 +382,30 @@ class App extends Component {
         });
     }
 
+    setJSON(json){
+        this.setState({
+            JSON: json
+        })
+    }
+
+    isAlcoholOrTobacco(type){
+        switch (type) {
+            case "Beer":
+            case "Alcopop and others":
+            case "Wine":
+            case "Fortified wine":
+            case "Spirits":
+            case "Cigarettes":
+            case "Snuff & chewing tobacco":
+            case "Smoking tobacco":
+            case "Cigars and Cigarillos":
+            case "Cigarette paper and sheets":
+                return true;
+            default:
+                return false;
+        }
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -331,12 +416,15 @@ class App extends Component {
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
                     overADay: this.state.overADay,
+                    JSON: this.state.JSON,
                     number_of_people: this.state.number_of_people,
                     QRUrl: this.state.QRUrl,
                     totalAmount: this.totalAmount,
                     hasPaid: this.state.hasPaid,
                     findProductIndexById: this.findProductIndexById,
                     removeAllElementsOfType: this.removeAllElementsOfType,
+                    removeAllElementsWithName: this.removeAllElementsWithName,
+                    removeAllElementsWithKind: this.removeAllElementsWithKind,
                     addProduct: this.addProduct,
                     updateProduct: this.updateProduct,
                     getProduct: this.getProduct,
@@ -353,6 +441,8 @@ class App extends Component {
                     setProducts: this.setProducts,
                     resetState: this.resetState,
                     setter: this.setter,
+                    setJSON: this.setJSON,
+                    isAlcoholOrTobacco: this.isAlcoholOrTobacco,
                 }}
             >
                 <div>

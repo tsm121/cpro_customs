@@ -13,15 +13,24 @@ function createAlcoholAndTobacco(type, icon, amount, unit, value) {
 class ShoppingCart extends Component {
     state = {
         freeItems: [],
-        payItems: []
+        payItems: [],
+        totalAmounts: {
+            litersOfAlcohol: 0,
+            litersOfSpirits: 0,
+            gramsOfTobacco: 0,
+            piecesOfCigarettes: 0,
+            papers: 0,
+        }
     };
 
     componentDidMount (){
-        const {globalState} = this.props
+        const {globalState} = this.props;
         this.splitListAndCalculateFees(globalState)
     }
 
     render = () => {
+        const {globalState} = this.props;
+        console.log(globalState)
         return (
             <div>
                 <Grid container
@@ -39,13 +48,83 @@ class ShoppingCart extends Component {
                         <DeclarationTable
                             payItems={this.state.payItems}
                             freeItems={this.state.freeItems}
-                            globalState={this.props.globalState}
+                            totalAmounts={this.state.totalAmounts}
+                            globalState={globalState}
+                            removeItem={this.removeItem}
                         />
                     </Grid>
                 </Grid>
             </div>
         )
     }
+
+    /**
+     * Removes an item from the product list (removes therefore from both local and global state).
+     * @param index
+     * @param item
+     * @param isPayTable
+     */
+    removeItem = (isPayTable, index, item) => {
+        const {globalState} = this.props;
+
+        // Remove from local state
+        let payItems = [...this.state.payItems];
+        let freeItems = [...this.state.freeItems];
+
+        if (isPayTable) {
+            payItems.splice(index, 1);
+            let freeItemsIndex = this.findListIndex(freeItems, item);
+            if (freeItemsIndex > -1) freeItems.splice(freeItemsIndex, 1);
+
+        } else {
+            freeItems.splice(index, 1);
+            let payItemsIndex = this.findListIndex(payItems, item);
+            if (payItemsIndex > -1) payItems.splice(payItemsIndex, 1);
+        }
+
+        this.setState({
+            payItems: payItems,
+            freeItems: freeItems,
+        });
+
+        // Remove from global state
+        if (item.type === "Goods"){
+            globalState.removeAllElementsWithName(item.name);
+        } else if (item.type === "Bought Animal") {
+            globalState.removeAllElementsWithKind(item.kind);
+        } else {
+            globalState.removeAllElementsOfType(item.type);
+        }
+
+    };
+
+    findListIndex = (items, item) => {
+        let itemsIndex = -1;
+        if (item.type === "Goods"){
+            itemsIndex = this.findIndexGivenTypeAndName(items, item.type, item.name)
+        } else {
+            itemsIndex = this.findIndexGivenType(items, item.type)
+        }
+        return itemsIndex
+    }
+
+    findIndexGivenType = (items, type) => {
+        for (let i = 0; i < items.length; i++ ){
+            if (items[i].type === type){
+                return i;
+            }
+        }
+        return -1
+    };
+
+    findIndexGivenTypeAndName = (items, type, name) => {
+        for (let i = 0; i < items.length; i++ ){
+            if (items[i].type === type && items[i].name === name){
+                return i;
+            }
+        }
+        return -1
+    };
 
     /**
      * Splits the global list in two based on the customs rules and updates the local state with these lists
@@ -341,11 +420,16 @@ class ShoppingCart extends Component {
 
         this.setState({
             freeItems: freeItems,
-            payItems: payItems
+            payItems: payItems,
+            totalAmounts: {
+                litersOfAlcohol: totalBeer + totalWine + totalAlcopop + totalFortifiedWine,
+                litersOfSpirits: totalSpirit,
+                gramsOfTobacco: totalSnuff + totalSmoking + totalCigars,
+                piecesOfCigarettes: totalCigarettes,
+                papers: totalPaper,
+            },
         })
-
     }
-
 }
 
 function tooMuchTobacco(cigarettes, snuff, smoking, cigars){

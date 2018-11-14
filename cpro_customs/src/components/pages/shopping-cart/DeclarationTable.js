@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Grid from "@material-ui/core/Grid/Grid";
 import TotalTable from "./TotalTable";
@@ -36,19 +36,51 @@ class DeclarationTable extends Component {
 
                             </Grid>
 
-                            <SubTable isPayTable={true} payItems={payItems} freeItems={freeItems}/>
-                            <SubTable isPayTable={false} payItems={payItems} freeItems={freeItems}/>
+                            {payItems.length > 0 ?
+                                <SubTable isPayTable={true} payItems={payItems} freeItems={freeItems}
+                                          removeItem={this.props.removeItem} /> : ""}
+                            {freeItems.length > 0 ?
+                                <SubTable isPayTable={false} payItems={payItems} freeItems={freeItems}
+                                          removeItem={this.props.removeItem} /> : ""}
 
                         </Paper>
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
                             <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
                                         globalState={globalState} route={'/checkout'}
+                                        aboveMaxLimit={this.aboveMaximumLimit()}
                             />
                         </Paper>
                     </div>
                 )}
             </GlobalState.Consumer>
         )
+    };
+
+    /**
+     * Checks if the total amount added to cart exceeds the limits and return
+     * @returns array of arrays(tuples) containing the information about "Item" and "Amount above limit"
+     *          - On the format [[string, number], [string, number], ...]
+     */
+    aboveMaximumLimit = () => {
+        /*
+        RULES (How much can you bring ABOVE the limit):
+        Liters of alcohol (excluding spirits)       27 liters => 33.5 liters
+        Liters of spirit                            4 liters => 5 liters
+        Grams of tobacco (smoking, cigars, snuff)   500 grams => 750 grams
+        Pieces of cigarettes                        400 pieces => 600 pieces
+        Sheets of cigarette papers                  400 pieces => 600 pieces
+        */
+        const { totalAmounts } = this.props
+
+        let aboveLimit = [];
+
+        if (totalAmounts.litersOfAlcohol > 33.5) aboveLimit.push(["Alcohol (excluding spirits)", totalAmounts.litersOfAlcohol - 33.5]);
+        if (totalAmounts.litersOfSpirits > 5) aboveLimit.push(["Spirits", totalAmounts.litersOfSpirits - 5]);
+        if (totalAmounts.gramsOfTobacco > 750) aboveLimit.push(["Tobacco (excluding cigarettes)", totalAmounts.gramsOfTobacco - 750]);
+        if (totalAmounts.piecesOfCigarettes > 600) aboveLimit.push(["Cigarettes", totalAmounts.piecesOfCigarettes - 600]);
+        if (totalAmounts.papers > 600) aboveLimit.push(["Cigarette Papers", totalAmounts.paper - 600]);
+
+        return aboveLimit;
     };
 
     getTotalDuty = (payItems) => {
@@ -62,6 +94,16 @@ class DeclarationTable extends Component {
     };
 
     onClickValidateData = (globalState) => {
+        let json = this.createJSON(globalState);
+
+        if (json !== {}){
+            globalState.setJSON(json);
+        }
+
+        return validateData(json, false);
+    };
+
+    createJSON = (globalState) => {
         const {payItems, freeItems} = this.props;
 
         let payItemsCopy = JSON.parse(JSON.stringify(payItems));
@@ -82,7 +124,7 @@ class DeclarationTable extends Component {
         }
         let productList = [...payItemsCopy, ...freeItemsCopy, ...totalList]
 
-        let jsonResponse = {
+        return {
             "id_number": "0",
             "license_plate": JSON.parse(localStorage.getItem('userData')).licencePlate,
             "email": JSON.parse(localStorage.getItem('userData')).email,
@@ -91,11 +133,9 @@ class DeclarationTable extends Component {
             "reference_number": "1",
             "currency": "NOK",
             "over_a_day": globalState.overADay,
-            "number_of_people": 1,
+            "number_of_people": globalState.number_of_people,
             "products": this.fixFormatting(productList)
-        };
-
-        return validateData(jsonResponse);
+        }
     };
 
 
@@ -153,31 +193,6 @@ class DeclarationTable extends Component {
         }
 
         return productListCopy
-
-        /*
-        "id_number": CharField,
-        "license_plate": CharField,
-        "date:" DateTimeField,
-        "amount_to_pay": DecimalField with 2 decimal places (ex: 10.05),
-        "currency": CharField,
-        "reference_number": CharField,
-        "products":
-
-
-       "products":
-       "product": CharField,
-       "value": DecimalFiled,
-       "fee": DecimalField,
-       "amount": DecimalField,
-       "vat": DecimalFIeld,
-       "unit": CharField,
-
-        optional fields in products:
-        "breed": CharField,
-        "contacted_NFSA": Boolean,
-        "registered_NFSA" Boolean,
-        "of_EU_origin": Boolean
-         */
 
     }
 }

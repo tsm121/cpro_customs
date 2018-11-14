@@ -10,6 +10,7 @@ import Years from '../../../data/years'
 import HelpTip from "../../HelpTip";
 import HandlePayment from "./HandlePayment";
 import {TOOL_TIP_TEXTS} from "../../../data/ToolTipTexts";
+import {GlobalState} from "../../context/GlobalState";
 
 export default class VisaPayment extends Component  {
     constructor() {
@@ -18,7 +19,6 @@ export default class VisaPayment extends Component  {
             month: '',
             year: '',
         }
-
     }
 
     handleChange = name => event => {
@@ -139,11 +139,16 @@ export default class VisaPayment extends Component  {
                     </Grid>
 
                 </Grid>
-                <HandlePayment
-                    totalSum={totalSum}
-                    selectedCurrency={selectedCurrency}
-                    paymentComplete={paymentComplete}
-                />
+                <GlobalState.Consumer>
+                    {globalState => (
+                        <HandlePayment
+                            totalSum={totalSum}
+                            globalState={globalState}
+                            selectedCurrency={selectedCurrency}
+                            paymentComplete={paymentComplete}
+                        />
+                    )}
+                </GlobalState.Consumer>
             </Grid>
         )
     }
