@@ -14,8 +14,8 @@ export default class InputFields extends Component  {
     constructor() {
         super()
         this.state = {
-            licencePlateInputError: false,
-            emailInputError: false,
+            licencePlateInputError: true,
+            emailInputError: true,
             inputValid: false,
 
         }
@@ -31,7 +31,13 @@ export default class InputFields extends Component  {
             userData.licencePlate = JSON.parse(localStorage.getItem('userData')).licencePlate
             userData.email = JSON.parse(localStorage.getItem('userData')).email
         }
+
+        var tempEmail = this.getEmailPlate()
+        var tempLicencePlate = this.getLicencePlate()
+        this.validateMail(tempEmail)
+        this.validateLicencePlate(tempLicencePlate)
     }
+
 
     onClickHandler = ()=> {
         const {licencePlateInputError, emailInputError} = this.state
@@ -77,9 +83,13 @@ export default class InputFields extends Component  {
     }
 
     handleEmailInput = (event) =>{
-        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         var input = event.target.value
+        this.validateMail(input)
+    }
 
+    validateMail = (input) => {
+
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if (input.length > 2 && re.test(input)){
             userData.email = input
             setTimeout(this.toggleEmailInput(false),1000)
@@ -91,7 +101,10 @@ export default class InputFields extends Component  {
 
     handleLicencePlateInput = (event) =>{
         var input = event.target.value
+        this.validateLicencePlate(input)
+    }
 
+    validateLicencePlate = (input) => {
         if (input.length > 5){
             userData.licencePlate = input
             setTimeout(this.toggleLicencePlateInput(false),1000)
@@ -120,6 +133,16 @@ export default class InputFields extends Component  {
             return JSON.parse(localStorage.getItem('userData')).email
         }
     }
+
+    handleDelete = () => {
+        userData = {
+            licencePlate: '',
+            email: ''
+        }
+        localStorage.removeItem('userData')
+        //TODO: send user back to main page and delete global state
+        //this.props.history.replace("/");
+    }
     render = () => {
         const {light, on_boarding, closeModal} = this.props
         const{licencePlateInputError,emailInputError, inputValid } = this.state
@@ -131,6 +154,10 @@ export default class InputFields extends Component  {
                 variant={'outlined'}
                 style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
                 onClick={closeModal}
+                role="button"
+                type="submit"
+                value="close settings"
+                size={"large"}
             >
                 Close
             </Button>
@@ -193,6 +220,25 @@ export default class InputFields extends Component  {
                 </Grid>
 
                 <Grid container
+                      justify={"center"}
+                      alignItems={"center"}
+                      direction={"row"}
+                      style={on_boarding ? {display:"none"} : {}}
+                >
+                    <Button
+                        variant={"outlined"}
+                        color={"primary"}
+                        className={"delete_data"}
+                        onClick={this.handleDelete}
+                        role="button"
+                        type="submit"
+                        value="delete my data"
+                    >
+                        Delete my data
+                    </Button>
+                </Grid>
+
+                <Grid container
                       spacing={8}
                       justify={"center"}
                       alignItems={"center"}
@@ -203,10 +249,14 @@ export default class InputFields extends Component  {
                     <Grid item>
                         <Button
                             variant={'outlined'}
+                            size={"large"}
                             onClick={this.onClickHandler}
                             style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
                             className={"save_btn"}
                             color={"secondary"}
+                            role="button"
+                            type="submit"
+                            value="save settings"
                         >
                             Save
                         </Button>

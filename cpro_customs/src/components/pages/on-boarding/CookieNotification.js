@@ -26,7 +26,7 @@ export default class CookieNotification extends Component  {
                     <Grid item>
 
                         <p className={"modal_paragraph"}>This application stores your e-mail and<br/> licence plate locally on your unit.</p>
-                        <p className={"modal_paragraph"}> This information is used by the Norwegian Customs<br/> to match your declaration with your car when crossing the border.</p>
+                        <p className={"modal_paragraph"}> This information, together with your registered email is used by the Norwegian Customs to match your declaration with your car when crossing the border.</p>
 
                     </Grid>
 
@@ -34,7 +34,7 @@ export default class CookieNotification extends Component  {
 
                         <Grid container
                               direction={"row"}
-                              spacing={32}
+                              spacing={16}
                         >
 
                             <Grid item>
@@ -42,18 +42,35 @@ export default class CookieNotification extends Component  {
                                     onClick={closeModal}
                                     variant={"contained"}
                                     color={"primary"}
+                                    role="button"
+                                    type="submit"
+                                    value="I agree"
+                                    size={"large"}
                                 >
-                                    I agree
+                                    <p className={"modal_button_text primary"}>I agree</p>
                                 </Button>
                             </Grid>
 
                             <Grid item>
 
-                                <Button href={"https://www.toll.no/en/"}
+                                <Button
+                                        aria-label="Norwegian Customs"
                                         variant={"contained"}
                                         color={"secondary"}
+                                        role="button"
+                                        type="submit"
+                                        value="i dont agree"
+                                        size={"large"}
+
                                 >
-                                    I don't agree
+                                    <a
+                                        href={"https://www.toll.no/en/"}
+                                        onmouseover=""
+                                        name="toll.no"
+                                        className={"modal_button_text"}
+                                    >
+                                         I don't agree
+                                    </a>
                                 </Button>
 
                             </Grid>

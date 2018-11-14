@@ -173,18 +173,18 @@ class ShoppingCart extends Component {
 
         let currentValue = 0;
         for (let item of other){
-            if (parseInt(item.value) > valueLimit){
+            if (parseInt(item.value, 10) > valueLimit){
                 payItems.push(item);
             } else {
                 if (item.amount > 1){
                     // have more of the same item
                     let amountLeft = item.amount;
                     while (amountLeft > 0){
-                        if (amountLeft * parseInt(item.value) + currentValue <= valueLimit){
+                        if (amountLeft * parseInt(item.value, 10) + currentValue <= valueLimit){
                             let freeItem = JSON.parse(JSON.stringify(item));
                             freeItem.amount = amountLeft;
                             freeItems.push(freeItem);
-                            currentValue += amountLeft * parseInt(item.value);
+                            currentValue += amountLeft * parseInt(item.value, 10);
 
                             if (item.amount - amountLeft > 0) {
                                 let payItem = JSON.parse(JSON.stringify(item));
@@ -199,9 +199,9 @@ class ShoppingCart extends Component {
                     }
                 } else {
                     // only one of the current item
-                    if (parseInt(item.value) + currentValue <= valueLimit) {
+                    if (parseInt(item.value, 10) + currentValue <= valueLimit) {
                         freeItems.push(item);
-                        currentValue += parseInt(item.value);
+                        currentValue += parseInt(item.value, 10);
                     } else {
                         payItems.push(item);
                     }

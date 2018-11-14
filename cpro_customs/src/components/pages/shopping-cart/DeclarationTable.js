@@ -115,7 +115,7 @@ class DeclarationTable extends Component {
                 if (payItem.type === freeItem.type && payItem.name === freeItem.name) {
                     let mergedItem = {...payItem, ...freeItem};
                     mergedItem.amount = payItem.amount + freeItem.amount;
-                    mergedItem.value = parseInt(payItem.value) + parseInt(freeItem.value);
+                    mergedItem.value = parseInt(payItem.value, 10) + parseInt(freeItem.value, 10);
                     totalList.push(mergedItem);
                     payItemsCopy = payItemsCopy.filter(item => item !== payItem);
                     freeItemsCopy = freeItemsCopy.filter(item => item !== freeItem);
@@ -168,7 +168,7 @@ class DeclarationTable extends Component {
             delete item.icon;
             item.vat = 25;
             item.amount = parseFloat(item.amount.toFixed(2));
-            {typeof item.value === "string" ? parseInt(item.value) : item.value}
+            {typeof item.value === "string" ? parseInt(item.value, 10) : item.value}
             {item.value === 1 ? item.value = 0 : item.value = item.value * item.amount}
 
             if (!('fee' in item)) item.fee = 0;

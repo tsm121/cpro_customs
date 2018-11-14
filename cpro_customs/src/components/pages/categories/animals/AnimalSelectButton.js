@@ -31,7 +31,7 @@ export default class AnimalSelectButton extends Component {
                                 <Grid item xs={12}>
                                     <Grid container justify={"center"} alignItems={"center"}>
                                         <img className={"cdp_animal_select_button"} src={icons[icon]}
-                                             alt={"icon"}/>
+                                             alt={text.toString() + "-animal-icon"}/>
                                     </Grid>
                                 </Grid>
                                 <Grid item xs={12}>

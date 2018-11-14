@@ -33,7 +33,6 @@ class SubTable extends Component{
                                     <TableCell key={"delete"} className={"exit_column"}> </TableCell>
                                 </TableRow>
                             </TableHead>
-
                             <TableBody>
                                 {(this.renderItems()).map((item, index) => (
                                     <TableRow key={item.id}>

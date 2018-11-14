@@ -26,6 +26,9 @@ class ArrowButton extends Component  {
                       onMouseOver={() => this.nextOnMouseOver()}
                       onMouseOut={() => this.nextOnMouseOut()}
                       onClick={this.props.onClick}
+                      role="button"
+                      type="submit"
+                      value="more or less categories"
                 >
                     {this.addText()}
                 </Grid>
@@ -70,14 +73,14 @@ class ArrowButton extends Component  {
                     return (
                         <img className="icon_sm"
                              src={require("assets/img/icons/512x512/arrow_down_yellow.png")}
-                             alt="icon"
+                             alt="arrow-down-yellow-cat"
                         />
                     );
                 } else {
                     return (
                         <img className="icon_sm"
                              src={require("assets/img/icons/512x512/arrow_down_white.png")}
-                             alt="icon"
+                             alt="arrow-down-white-cat"
                         />
                     );
                 }
@@ -86,14 +89,14 @@ class ArrowButton extends Component  {
                     return (
                         <img className="icon_sm"
                              src={require("assets/img/icons/512x512/arrow_up_yellow.png")}
-                             alt="icon"
+                             alt="arrow-up-yellow-cat"
                         />
                     );
                 } else {
                     return (
                         <img className="icon_sm"
                              src={require("assets/img/icons/512x512/arrow_up_white.png")}
-                             alt="icon"
+                             alt="arrow-up-white-cat"
                         />
                     );
                 }

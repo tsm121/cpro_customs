@@ -33,6 +33,9 @@ class SkipWindow extends Component  {
                         onClick={this.handleOpen}
                         onMouseOver={() => this.nextOnMouseOver()}
                         onMouseOut={() => this.nextOnMouseOut()}
+                        role="button"
+                        type="submit"
+                        value="skip declaration"
                 >
                     <h4 className={"cdp cdp_dark_grey skip_button_text"}>
                         Skip
@@ -66,7 +69,11 @@ class SkipWindow extends Component  {
                                       alignItems={"center"}
                                 >
                                     <Button className={"modal_button"}
-                                            onClick={this.handleClose.bind(this)}>
+                                            onClick={this.handleClose.bind(this)}
+                                            role="button"
+                                            type="submit"
+                                            value="close skip window"
+                                    >
                                         <h3 className={"cdp modal_button_text"}>
                                             I'm <span className={"cdp_yellow"}> bringing </span> something with me
                                         </h3>
@@ -80,7 +87,11 @@ class SkipWindow extends Component  {
                                       alignItems={"center"}
                                 >
                                     <Button className={"modal_button"}
-                                            onClick={this.onClickEnd.bind(this)}>
+                                            onClick={this.onClickEnd.bind(this)}
+                                            role="button"
+                                            type="submit"
+                                            value="nothing to declare"
+                                    >
                                         <h3 className={"cdp modal_button_text"} >
                                             <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>
                                         </h3>

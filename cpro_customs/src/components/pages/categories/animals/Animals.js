@@ -4,7 +4,7 @@ import PageTitle from "../PageTitle";
 import SubSelection from "./SubSelection";
 import Grid from "@material-ui/core/Grid/Grid";
 
-
+//TODO: Don't route back to /categories/, if removed the history doesn't work
 class Animals extends Component {
     render = () => {
         return (
@@ -15,14 +15,15 @@ class Animals extends Component {
                         <SubSelection
                             text={"I am travelling with my pet"}
                             icon={"dog"}
-                            route={"/categories/animals/pet"}
+                            route={"/categories/"}
                         />
                     </Grid>
                     <Grid item>
                         <SubSelection
                             text={"I am travelling with my horse"}
                             icon={"horse"}
-                            route={"/categories/animals/horse"}
+                            route={"/categories/"}
+
                         />
                     </Grid>
                     <Grid item>
@@ -36,7 +37,8 @@ class Animals extends Component {
                         <SubSelection
                             text={"I want to import an animal"}
                             icon={"animal"}
-                            route={"/categories/animals/import"}
+                            route={"/categories/"}
+
                         />
                     </Grid>
                 </Grid>

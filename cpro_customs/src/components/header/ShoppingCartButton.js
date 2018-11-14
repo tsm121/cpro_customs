@@ -15,6 +15,9 @@ class ShoppingCartButton extends Component {
                         onClick={this.onClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
+                        role="button"
+                        type="submit"
+                        value="shopping cart"
                     >
                         <Badge
                             badgeContent={globalState.totalAmount()}

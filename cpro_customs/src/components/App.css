@@ -5,6 +5,23 @@
 /*
     global variables (within this file)
  */
+
+
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: local('Material Icons'), url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Arial', sans-serif;
+    font-display: swap;
+    font-weight: normal;
+}
+
 :root {
     --font-family: Arial, sans-serif;
     --font-weight: normal;
@@ -19,6 +36,8 @@ body {
 
 a {
     outline: none;
+    color:inherit;
+    text-decoration: none;
 }
 
 a img {
@@ -54,15 +73,26 @@ a img {
 transform: translate(- 50 %, - 50 %);
 }
 
-.light .MuiInputBase-input-206 {
+.light  {
     border-radius: 4px !important;
-    border-color: white !important;
-    background-color: white !important;
+    border-color: #e2e3e5 !important;
+    background-color: #e2e3e5 !important;
 }
 
-.light .MuiInputLabel-outlined-175.MuiInputLabel-shrink-172 {
-    color: white !important;
+.light .MuiInputLabel-outlined-172.MuiInputLabel-shrink-169  {
+    color: #e2e3e5 !important;
     transform: translate(14px, -13px) scale(0.75) !important;
+}
+
+.light .MuiInputLabel-outlined-179.MuiInputLabel-shrink-176 {
+    color: #e2e3e5 !important;
+    transform: translate(14px, -13px) scale(0.75) !important;
+}
+
+
+.light .MuiOutlinedInput-root-187.MuiOutlinedInput-error-192 .MuiOutlinedInput-notchedOutline-194 {
+    background-color: rgba(256, 51, 77, .4) !important;
+
 }
 
 .light label {
@@ -81,7 +111,7 @@ transform: translate(- 50 %, - 50 %);
     border: none !important;
 }
 
-.light .MuiNotchedOutline-error-216 {
+.light .MuiInputBase-error-199 {
     background-color: rgba(256, 51, 77, .4) !important;
 }
 
@@ -163,7 +193,7 @@ transform: translate(- 50 %, - 50 %);
 }
 
 .payment_button_icon {
-    color: white;
+    color: #e2e3e5;
     font-size: 2.5rem !important;
 }
 
@@ -186,7 +216,7 @@ transform: translate(- 50 %, - 50 %);
 .payment_nav_button_text_disabled {
     text-align: center;
     font-weight: 600;
-    color: white;
+    color: #e2e3e5;
     font-size: 1.1em;
     margin: 5px;
 }
@@ -238,7 +268,7 @@ h1.cdp, h2.cdp, h3.cdp, h4.cdp {
 }
 
 h1.cdp_primary, h2.cdp_primary, h3.cdp_primary, h4.cdp_primary {
-    color: white;
+    color: #e2e3e5;
 }
 
 h1.cdp_secondary, h2.cdp_secondary, h3.cdp_secondary, h4.cdp_secondary {
@@ -264,12 +294,12 @@ h4.cdp {
 /*
     text
  */
-.cdp_white {
-    color: white;
+.cdp_#e2e3e5 {
+    color: #e2e3e5;
 }
 
-.cdp_black {
-    color: black;
+.cdp_#37424a {
+    color: #37424a;
 }
 
 .cdp_yellow {
@@ -332,7 +362,7 @@ span.cdp_icon_round_label {
 .cdp_button_round_decrement {
     height: 3.7em !important;
     width: 3.7em !important;
-    background-color: white !important;
+    background-color: #e2e3e5 !important;
     color: #37424a !important;
     box-shadow: 0 0px !important;
     border: 1px #37424a solid !important;
@@ -342,7 +372,7 @@ span.cdp_icon_round_label {
 
 .cdp_button_round_decrement:disabled,
 .cdp_button_round_decrement[disabled] {
-    background-color: white !important;
+    background-color: #e2e3e5 !important;
     color: #e2e3e5 !important;
     border: 1px #e2e3e5 solid !important;
 }
@@ -487,6 +517,25 @@ div.cdp_sub_selection_max_width_grid_item {
     color: #ffd200 !important;
 }
 
+.save_btn:hover {
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    color: #37424a !important;
+    border-color: #37424a !important;
+}
+
+.delete_data {
+    background-color: rgba(256, 51, 77, .4) !important;
+}
+
+.delete_data:hover {
+    background-color: rgba(256, 51, 77, .4) !important;
+    transition: all 300ms ease-in-out;
+    background-color: #ffd200 !important;
+    color: #37424a !important;
+    border-color: #37424a !important;
+}
+
 .payment_container {
     margin: 10%;
 }
@@ -512,6 +561,23 @@ div.cdp_sub_selection_max_width_grid_item {
     height: 5vmin !important;
     color: #ffd200;
 }
+
+.language_disabled img {
+    filter: greyscale(100%);
+    -webkit-filter: grayscale(100%);
+}
+
+.modal_button_text {
+    font-size: 1.8vmin;
+    color: #37424a !important;
+    padding: 0 !important
+}
+
+.primary {
+    color: #e2e3e5 !important;
+}
+
+
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
     h1.cdp {
@@ -612,6 +678,10 @@ div.cdp_sub_selection_max_width_grid_item {
     .modal_paragraph {
         font-size: 2.4vmin;
     }
+
+    .modal_button_text {
+        font-size: 1.6vmax;
+    }
 }
 
 /* ---- xs ---- */
@@ -709,6 +779,10 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .modal_paragraph {
         font-size: 3.5vmin;
+    }
+
+    .modal_button_text {
+        font-size: 1.4vmax;
     }
 }
 

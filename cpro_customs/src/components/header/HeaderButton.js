@@ -10,6 +10,10 @@ class HeaderButton extends Component {
             <IconButton onClick={onClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
+                        role="button"
+                        type="submit"
+                        value="page back"
+                        aria-label="page back"
             >
                 <Icon>
                     {icon}
@@ -17,7 +21,6 @@ class HeaderButton extends Component {
             </IconButton>
         )
     };
-
     onMouseOver = () => {
         document.body.style.cursor = "pointer";
     };

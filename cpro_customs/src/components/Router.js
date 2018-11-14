@@ -3,13 +3,9 @@ import {Switch, Route} from 'react-router-dom'
 import withRouter from "react-router/es/withRouter";
 
 import Home from './pages/home/Home'
-import PersonsInVehicle from './pages/persons-in-vehicle/PersonsInVehicle'
 import OnBoarding from "./pages/on-boarding/OnBoarding";
 import Categories from "./pages/categories/overview/Categories";
 import Animals from "./pages/categories/animals/Animals";
-import Pet from "./pages/categories/animals/Pet";
-import Horse from "./pages/categories/animals/Horse";
-import Import from "./pages/categories/animals/Import";
 import Bought from "./pages/categories/animals/Bought";
 import Goods from "./pages/categories/goods/Goods";
 import Tobacco from "./pages/categories/tobacco/Tobacco";
@@ -47,9 +43,6 @@ class Router extends Component {
                 <Route exact path='/checkout' component={Checkout}/>
                 <Route exact path='/endpage' component={EndpageWrapper}/>
                 <Route exact path='/categories/animals' component={Animals}/>
-                <Route exact path='/categories/animals/pet' component={Pet}/>
-                <Route exact path='/categories/animals/horse' component={Horse}/>
-                <Route exact path='/categories/animals/import' component={Import}/>
                 <Route exact path='/categories/animals/bought' component={Bought}/>
                 <Route exact path='/categories/goods' component={Goods}/>
                 <Route exact path='/declaration-list' component={StateWrapper}/>

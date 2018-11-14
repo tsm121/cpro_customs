@@ -1,33 +1,10 @@
 import React, { Component } from 'react'
-import NavigationArrow from "../../NavigationArrow";
 import InputFields from "../../InputFields";
 
 import Grid from '@material-ui/core/Grid';
 import {Modal} from "@material-ui/core";
 import CookieNotification from "./CookieNotification";
 import {withRouter} from "react-router-dom";
-
-
-const h1Style = {
-    fontFamily: 'Arial, serif',
-    fontWeight: 'normal',
-    fontSize: '5vw',
-    paddingLeft: '3vw',
-    paddingRight: '3v',
-    marginBottom: '0',
-    textAlign: 'center',
-    color: '#ffffff',
-};
-
-const h1Style_secondary = {
-    fontFamily: 'Arial, serif',
-    fontWeight: 'normal',
-    fontSize: '3vw',
-    paddingLeft: '3vw',
-    paddingRight: '3vw',
-    textAlign: 'center',
-    color: '#ffd200'
-};
 
 class OnBoarding extends Component  {
     constructor() {
@@ -64,12 +41,12 @@ class OnBoarding extends Component  {
                 >
 
                     <Grid item>
-                        <h1 style={h1Style}>
+                        <h2 className={"cdp cdp_primary"}>
                             You need to set up your account
-                        </h1>
-                        <h3 style={h1Style_secondary}>
-                            Please fill out your licence number and email
-                        </h3>
+                        </h2>
+                        <h2 className={"cdp cdp_secondary"}>
+                            Please fill out your<br/> licence number and email
+                        </h2>
                     </Grid>
                     <Grid item
                           style={{marginTop:'5%'}}

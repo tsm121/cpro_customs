@@ -1,10 +1,8 @@
-import React from 'react'
-
 export const validateData = (allData, isPay) => {
     console.log("fetching")
 
-    const username = "react";
-    const password = "f$rSn6ydLk3s6XM3nJQ#17bqgfD0i";
+    const u = "react";
+    const p = "f$rSn6ydLk3s6XM3nJQ#17bqgfD0i";
 
     if (isPay) {
         //.../api/backend/transaction/validate/

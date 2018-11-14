@@ -39,7 +39,7 @@ class SubSelection extends Component {
                                             <Grid item>
                                                 <img className={"icon_xs"}
                                                      src={icons[icon]}
-                                                     alt={"icon"}/>
+                                                     alt={text.toString() + "-animal-xs-icon"}/>
                                             </Grid>
                                         </Grid>
                                     </Grid>
@@ -58,6 +58,7 @@ class SubSelection extends Component {
     };
 
     onClick = () => {
+
         this.props.history.push(this.props.route);
     };
 

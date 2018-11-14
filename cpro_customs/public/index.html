@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="Description" content="Norwegian Customs - Easily declare your items before crossing the Norwegian border">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#000000">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    //TODO: Check that the canonical link actually refers to our URL
+    <link rel="canonical" href="%PUBLIC_URL%"/>
+
     <!--
         Material-UI is developed mobile first, a strategy in which we first write code for mobile devices and then
         scale up components as necessary using CSS media queries. To ensure proper rendering and touch zooming for all
@@ -29,7 +33,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>ECC - Easy Customs Clearance</title>
 </head>
 <body>
 <noscript>
@@ -50,7 +54,9 @@
 <script>
 
     //Register ServiceWorker
+    //import rs from "registerServiceWorker.js";
     if('serviceWorker' in navigator) {
+        //rs();
         navigator.serviceWorker
             .register('/custom-sw.js')
             .then(function() { console.log("Service Worker Registered"); });
