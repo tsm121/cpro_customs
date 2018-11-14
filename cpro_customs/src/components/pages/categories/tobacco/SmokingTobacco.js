@@ -11,7 +11,7 @@ import AlcoholOrTobaccoItem from "../AlcoholOrTobaccoItem";
 
 
 class SmokingTobacco extends Component {
-     notificationQueue = [];
+    notificationQueue = [];
 
     constructor(props) {
         super(props);

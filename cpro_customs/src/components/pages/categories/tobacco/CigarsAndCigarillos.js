@@ -51,7 +51,7 @@ class CigarsAndCigarillos extends Component {
         );
     };
 
-     drawItems = (globalState) => {
+    drawItems = (globalState) => {
         let options = [
             {unit: "grams", type: "Cigars and Cigarillos", value: '', isOtherAmount: true, icon: "cigar"},
         ];

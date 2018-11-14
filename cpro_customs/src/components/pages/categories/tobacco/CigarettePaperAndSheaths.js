@@ -29,7 +29,7 @@ class CigarettePaperAndSheaths extends Component {
             <GlobalState.Consumer>
                 {globalState => (
                     <div>
-                        <PageTitle title={"Cigarette Paper & Sheats"}/>
+                        <PageTitle title={"Cigarette Paper & Sheets"}/>
                         <Grid container
                               justify={"center"}
                               alignItems={"center"}
@@ -54,7 +54,7 @@ class CigarettePaperAndSheaths extends Component {
 
     drawItems = (globalState) => {
         let options = [
-            {unit: "grams", type: "Cigarette paper and sheats", value: '', isOtherAmount: true, icon: "cigarettePaper"},
+            {unit: "grams", type: "Cigarette paper and sheets", value: '', isOtherAmount: true, icon: "cigarettePaper"},
         ];
         let items = [];
         for (let i = 0; i < options.length; ++i) {

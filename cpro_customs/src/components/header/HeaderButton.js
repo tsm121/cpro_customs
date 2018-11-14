@@ -4,30 +4,29 @@ import {Icon, IconButton} from "@material-ui/core";
 
 
 class HeaderButton extends Component {
-	render = () => {
-		const {icon, onClick} = this.props;
-		return (
-			<IconButton onClick={onClick}
-						onMouseOver={this.onMouseOver}
-						onMouseOut={this.onMouseOut}
-						role="button"
+    render = () => {
+        const {icon, onClick} = this.props;
+        return (
+            <IconButton onClick={onClick}
+                        onMouseOver={this.onMouseOver}
+                        onMouseOut={this.onMouseOut}
+                        role="button"
                         type="submit"
                         value="back-button"
-			>
-				<Icon>
-					{icon}
-				</Icon>
-			</IconButton>
-		)
-	};
+            >
+                <Icon>
+                    {icon}
+                </Icon>
+            </IconButton>
+        )
+    };
+    onMouseOver = () => {
+        document.body.style.cursor = "pointer";
+    };
 
-	onMouseOver = () => {
-		document.body.style.cursor = "pointer";
-	};
-
-	onMouseOut = () => {
-		document.body.style.cursor = "default";
-	};
+    onMouseOut = () => {
+        document.body.style.cursor = "default";
+    };
 }
 
 export default HeaderButton;

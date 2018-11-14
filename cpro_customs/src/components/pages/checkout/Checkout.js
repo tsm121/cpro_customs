@@ -22,7 +22,6 @@ export default class Checkout extends Component {
             //TODO: Get currency from user selection
             selectedCurrency: 'NOK',
             //TODO: Get total payment from props or server
-            totalSum: 1543.83,
             paymentInProgress: true,
             paymentComplete: false,
         }
@@ -54,7 +53,6 @@ export default class Checkout extends Component {
     }
 
     paymentComplete = (globalState) => {
-
         this.setState({
             paymentComplete: true,
             stageVisa: false,
@@ -65,12 +63,14 @@ export default class Checkout extends Component {
         globalState.setHasPaid(true);
         globalState.setProducts([]);
 
-        this.props.history.push("endpage")
+        this.props.history.push("/endpage")
     }
 
     render = () => {
         const {stageSelection, stageVisa, totalSum, selectedCurrency} = this.state
         return (
+          <GlobalState.Consumer>
+                {globalState => (
             <Grid container
                   spacing={8}
                   justify="center"
@@ -113,7 +113,7 @@ export default class Checkout extends Component {
                                     <GlobalState.Consumer>
                                         {globalState => (
                                             <VisaPayment
-                                                totalSum={totalSum}
+                                                totalSum={globalState.amount_to_pay}
                                                 selectedCurrency={selectedCurrency}
                                                 paymentComplete={() => {
                                                     this.paymentComplete(globalState)
@@ -133,6 +133,7 @@ export default class Checkout extends Component {
                     </CardContent>
                 </Card>
             </Grid>
+  )}</GlobalState.Consumer>
         )
     }
 }

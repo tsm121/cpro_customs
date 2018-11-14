@@ -9,7 +9,6 @@ import Header from './header/Header'
 import Router from './Router'
 import './App.css';
 
-
 /**
  * The entry point to the SPA
  */
@@ -20,6 +19,9 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            overADay: false,
+            QRUrl: {},
+            number_of_people: 1,
             hasPaid: false,
         };
     }
@@ -40,9 +42,12 @@ class App extends Component {
     getBoughtAnimals = this.getBoughtAnimals.bind(this);
     addAlcoholOrTobacco = this.addAlcoholOrTobacco.bind(this);
     getAlcoholOrTobacco = this.getAlcoholOrTobacco.bind(this);
+    setAmountToPay = this.setAmountToPay.bind(this);
+    setQRUrl = this.setQRUrl.bind(this);
     setHasPaid = this.setHasPaid.bind(this);
     setProducts = this.setProducts.bind(this);
     resetState = this.resetState.bind(this);
+    setter = this.setter.bind(this);
 
     /**
      * Resets the global state to the initial state
@@ -52,6 +57,7 @@ class App extends Component {
             products: [],
             amount_to_pay: 0,
             productIdCounter: 0,
+            number_of_people: 0,
             hasPaid: false,
         });
     }
@@ -91,7 +97,7 @@ class App extends Component {
      * @param value - the new value
      */
     updateProduct(id, field, value) {
-        if (id === undefined || id === null) throw "id undefined or null";
+        if (id === undefined || id === null) throw ( "id undefined or null", undefined);
         let index = this.findProductIndexById(id);
         if (index === -1) return;
         const products = update(this.state.products, {
@@ -149,7 +155,7 @@ class App extends Component {
      */
     addGood(name, value, currency, amount) {
         let good = {
-            "type": "Good",
+            "type": "Goods",
             "name": name,
             "value": value,
             "currency": currency,
@@ -166,7 +172,7 @@ class App extends Component {
         const {products} = this.state;
         let goods = [];
         for (let i = 0; i < products.length; ++i) {
-            if (products[i].type.localeCompare('Good') === 0) {
+            if (products[i].type.localeCompare('Goods') === 0) {
                 goods.push(products[i]);
             }
         }
@@ -272,6 +278,18 @@ class App extends Component {
         }
     }
 
+    setAmountToPay(toPay){
+        this.setState({
+            amount_to_pay: toPay
+        })
+    }
+
+    setQRUrl(url) {
+        this.setState({
+            QRUrl: url,
+        });
+    }
+
     /**
      * Setter for setting hasPaid property
      * @param value - a boolean
@@ -292,6 +310,17 @@ class App extends Component {
         })
     }
 
+    /**
+     * Setter to set any key of the global state
+     * @param key - name of the state property
+     * @param value
+     */
+    setter(key, value) {
+        this.setState({
+           [key]: value,
+        });
+    }
+
     render() {
         return (
             <GlobalState.Provider
@@ -301,6 +330,9 @@ class App extends Component {
                 value={{
                     products: this.state.products,
                     amount_to_pay: this.state.amount_to_pay,
+                    overADay: this.state.overADay,
+                    number_of_people: this.state.number_of_people,
+                    QRUrl: this.state.QRUrl,
                     totalAmount: this.totalAmount,
                     hasPaid: this.state.hasPaid,
                     findProductIndexById: this.findProductIndexById,
@@ -315,9 +347,12 @@ class App extends Component {
                     getBoughtAnimals: this.getBoughtAnimals,
                     addAlcoholOrTobacco: this.addAlcoholOrTobacco,
                     getAlcoholOrTobacco: this.getAlcoholOrTobacco,
+                    setAmountToPay: this.setAmountToPay,
+                    setQRUrl: this.setQRUrl,
                     setHasPaid: this.setHasPaid,
                     setProducts: this.setProducts,
                     resetState: this.resetState,
+                    setter: this.setter,
                 }}
             >
                 <div>

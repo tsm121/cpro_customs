@@ -8,8 +8,9 @@ class Transaction(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     amount_to_pay = models.DecimalField(default=0, max_digits=20, decimal_places=2)
     currency = models.CharField(max_length=255)
+    number_of_people = models.IntegerField()
     reference_number = models.CharField(max_length=255, default=0)
-
+    over_a_day = models.BooleanField()
 
    # def __str__(self):
    #     return self.text
@@ -33,7 +34,7 @@ class TransactionProduct(models.Model):
     contacted_NFSA = models.NullBooleanField(blank=True)
     registered_NFSA = models.NullBooleanField(blank=True)
     of_EU_origin = models.NullBooleanField(blank=True)
-
+    name = models.CharField(max_length=255, blank=True)
 
 
     #def __str__(self):

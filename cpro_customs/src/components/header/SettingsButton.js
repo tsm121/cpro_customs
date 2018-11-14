@@ -4,14 +4,12 @@ import HeaderButton from "./HeaderButton";
 
 
 class SettingsButton extends Component  {
-	render = () => {
-		const {onClick} = this.props;
-		return (
-			<HeaderButton icon={"settings"}
-						  onClick={onClick}
-            />
-		);
-	};
+    render = () => {
+        const {onClick} = this.props;
+        return (
+            <HeaderButton icon={"settings"} onClick={onClick}/>
+        );
+    };
 }
 
 export default SettingsButton;

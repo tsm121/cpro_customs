@@ -6,8 +6,17 @@ import LangButton from "./LangButton";
 import InputFields from "../InputFields";
 
 export default class SettingsWindow extends Component  {
-	render = () => {
+    constructor() {
+        super();
+        this.state = {
+            norwegian: false,
+            swedish: false,
+        }
+    }
+
+    render = () => {
 	    const {closeModal} = this.props
+        const {norwegian, swedish} = this.state
 		return (
 
 			<div className={'modal'}>
@@ -44,6 +53,7 @@ export default class SettingsWindow extends Component  {
 							<LangButton
 								text={'Norsk'}
 								countryName={'norway'}
+                                disabled={!norwegian}
 							/>
 						</Grid>
 
@@ -51,7 +61,8 @@ export default class SettingsWindow extends Component  {
 							<LangButton
 								text={'Svenska'}
 								countryName={'sweden'}
-							/>
+                                disabled={!swedish}
+                            />
 						</Grid>
 
 						<Grid item>
@@ -79,11 +90,11 @@ export default class SettingsWindow extends Component  {
 						<InputFields
                             closeModal={closeModal}
                         />
-					</Grid>
+                    </Grid>
 
                 </Grid>
 
-			</div>
-		)
-	}
+            </div>
+        )
+    }
 }

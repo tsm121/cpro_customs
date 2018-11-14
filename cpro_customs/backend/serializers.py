@@ -18,7 +18,7 @@ class TransactionProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = TransactionProduct
-        fields = ('value', 'fee', 'amount', 'unit', 'product', 'vat', 'breed', 'contacted_NFSA', 'registered_NFSA', 'of_EU_origin' )
+        fields = ('value', 'fee', 'amount', 'unit', 'product', 'vat', 'breed', 'contacted_NFSA', 'registered_NFSA', 'of_EU_origin', 'name' )
 
 
 class TransactionSerializer(serializers.ModelSerializer):
@@ -27,7 +27,7 @@ class TransactionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Transaction
-        fields = ('id_number', 'license_plate', 'date', 'amount_to_pay', 'currency', 'reference_number', 'products')
+        fields = ('id_number', 'license_plate', 'date', 'amount_to_pay', 'currency', 'reference_number', 'products', 'number_of_people', 'over_a_day')
 
     def create(self, validated_data):
         transaction_product_data = validated_data.pop('products')

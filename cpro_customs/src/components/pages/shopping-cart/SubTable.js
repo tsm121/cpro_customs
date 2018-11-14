@@ -9,65 +9,58 @@ import PropTypes from 'prop-types';
 import React, {Component} from "react";
 import {withRouter} from "react-router-dom";
 import {GlobalState} from "../../context/GlobalState";
-import Button from "@material-ui/core/Button/Button";
 
 
 class SubTable extends Component{
     render = () => {
         const { isPayTable } = this.props
         return(
-            <div>
-                <GlobalState.Consumer>
-                    {cart => (
-                        <div>
-                            <h4 className={"cdp cdp_dark_grey declaration_table_sub_header"}>
-                                Items <span className={"cdp_yellow"}> {isPayTable ? "over" : "under"} </span>the quota:
-                            </h4>
+            <GlobalState.Consumer>
+                {globalState => (
+                    <div>
+                        <h4 className={"cdp cdp_dark_grey declaration_table_sub_header"}>
+                            Items <span className={"cdp_yellow"}> {isPayTable ? "over" : "under"} </span>the quota:
+                        </h4>
 
-                            <Table className={"declaration_table"}>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell key={"icon"} className={"picture_column"}> </TableCell>
-                                        <TableCell key={"item"} className={"table_column category_column"}>Category</TableCell>
-                                        <TableCell numeric key={"value"} className={"table_column"}>Value</TableCell>
-                                        <TableCell numeric key={"vat"} className={"table_column"}>{isPayTable ? "VAT" : ""}</TableCell>
-                                        <TableCell numeric key={"duty"} className={"table_column"}>{isPayTable ? "Fee" : ""}</TableCell>
-                                        <TableCell key={"delete"} className={"exit_column"}> </TableCell>
+                        <Table className={"declaration_table"}>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell key={"icon"} className={"picture_column"}> </TableCell>
+                                    <TableCell key={"item"} className={"table_column category_column"}>Category</TableCell>
+                                    <TableCell numeric key={"value"} className={"table_column"}>Value</TableCell>
+                                    <TableCell numeric key={"vat"} className={"table_column"}>{isPayTable ? "VAT" : ""}</TableCell>
+                                    <TableCell numeric key={"fee"} className={"table_column"}>{isPayTable ? "Fee" : ""}</TableCell>
+                                    <TableCell key={"delete"} className={"exit_column"}> </TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {(this.renderItems()).map((item, index) => (
+                                    <TableRow key={item.id}>
+                                        <TableCell component="th" scope="row" className={"picture_column"}>
+                                            <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
+                                        </TableCell>
+                                        <TableCell className={"table_column category_column"}>
+                                            {item.type === "Goods" ? item.type + ": " + item.name : item.type}
+                                        </TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderValue(item)}</TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderVAT(item)}</TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
+                                        <TableCell numeric className={"exit_column"} padding={"none"}>
+                                            <RemoveButton onDelete={() => this.removeItem(index, globalState)} />
+                                        </TableCell>
                                     </TableRow>
-                                </TableHead>
-
-                                <TableBody>
-                                    <Button
-                                        onClick={() => cart.addGoodToCart('kitchen', 5000, 'NOK', 1)}
-                                        role="button"
-                                        type="submit"
-                                        value="add-good-to-cart"
-                                    >
-                                        Add Good
-                                    </Button>
-                                    {cart.products.map((item, index) => (
-                                        <TableRow key={item.id}>
-                                            {item.id}
-                                            <TableCell component="th" scope="row" className={"picture_column"}>
-                                                <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
-                                            </TableCell>
-                                            <TableCell className={"table_column category_column"}>{item.category}</TableCell>
-                                            <TableCell numeric className={"table_column"}>{item.value} kr</TableCell>
-                                            <TableCell numeric className={"table_column"}>{isPayTable ? item.vat + " kr" : ""}</TableCell>
-                                            <TableCell numeric className={"table_column"}>{isPayTable ? item.duty + " kr" : ""}</TableCell>
-                                            <TableCell numeric className={"exit_column"} padding={"none"}>
-                                                <RemoveButton onDelete={() => cart.onRemoveFromCart(index)} />
-                                            </TableCell>
-                                        </TableRow>
-                                    ))
-                                    };
-                                </TableBody>
-                            </Table>
-                        </div>
-                    )}
-                </GlobalState.Consumer>
-            </div>
+                                ))
+                                };
+                            </TableBody>
+                        </Table>
+                    </div>
+                )}
+            </GlobalState.Consumer>
         )
+    }
+
+    removeItem = (index, globalState) => {
+        console.log(index)
     }
 
     renderItems = () => {
@@ -77,6 +70,65 @@ class SubTable extends Component{
 
         } else {
             return freeItems
+        }
+    }
+
+    renderValue = (item) => {
+        let string = '';
+        if (!this.isAlcoholOrTobacco(item.type)){
+            string += item.value * item.amount + " ";
+            if (item.currency !== undefined){
+                string += item.currency
+            } else {
+                string += "NOK"
+            }
+        }
+        return string;
+    }
+
+    renderVAT = (item) => {
+        const {isPayTable} = this.props
+        let string = '';
+        if (isPayTable && !this.isAlcoholOrTobacco(item.type)){
+            string += item.vat.toFixed(2) + " ";
+            if (item.currency !== undefined){
+                string += item.currency
+            } else {
+                string += "NOK"
+            }
+        }
+        return string;
+    }
+
+    renderFee = (item) => {
+        const {isPayTable} = this.props
+        let string = '';
+        if (isPayTable && item.fee !== undefined){
+            string += item.fee.toFixed(2) + " ";
+            if (item.currency !== undefined){
+                string += item.currency
+            } else {
+                string += "NOK"
+            }
+        }
+        return string;
+    }
+
+    isAlcoholOrTobacco = (type) => {
+        switch (type) {
+            case "Beer":
+            case "Alcopop and others":
+            case "Wine":
+            case "Fortified wine":
+            case "Spirits":
+            case "Cigarettes":
+            case "Snuff & chewing tobacco":
+            case "Smoking tobacco":
+            case "Cigars and Cigarillos":
+            case "Cigarette paper and sheets":
+                return true;
+            default:
+                return false;
         }
     }
 }
