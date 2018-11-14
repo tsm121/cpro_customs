@@ -20,7 +20,7 @@ class TotalTable extends Component{
                         >
                             <Grid item xs={12} sm={12} md={12} >
                                 <h4 className={"cdp total_text"}>
-                                    {'Total: ' + globalState.amount_to_pay.toFixed(1) + ' NOK'}
+                                    {'Total: ' + globalState.amount_to_pay.toFixed(0) + ' NOK'}
                                 </h4>
                             </Grid>
                             <Grid item xs={12} sm={12} md={12} >
@@ -49,8 +49,8 @@ class TotalTable extends Component{
 
     onClick = () => {
         const {onClickValidate} = this.props;
-        let response = onClickValidate();
 
+        onClickValidate();
         this.props.history.push(this.props.route);
     };
 

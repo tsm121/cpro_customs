@@ -49,7 +49,7 @@ class IconAndAmount extends Component {
 
                     <Grid item>
                         <h4 className={"cdp cdp_dark_grey iconAmount_text"}>
-                            {unit !== "" && unit !== undefined ? Number.parseFloat(amount).toPrecision(3) + " "
+                            {unit !== "" && unit !== undefined ? amount.toFixed(1) + " "
                                 + unit : "x" + amount}
                         </h4>
                     </Grid>

@@ -34,24 +34,26 @@ class SubTable extends Component{
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {(this.renderItems()).map((item, index) => (
-                                    <TableRow key={item.id}>
-                                        <TableCell component="th" scope="row" className={"picture_column"}>
-                                            <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
-                                        </TableCell>
-                                        <TableCell className={"table_column category_column"}>
-                                            {item.type === "Goods" ? item.type + ": " + item.name : item.type}
-                                        </TableCell>
-                                        <TableCell numeric className={"table_column"}>{this.renderValue(item, globalState)}</TableCell>
-                                        <TableCell numeric className={"table_column"}>{this.renderVAT(item, globalState)}</TableCell>
-                                        <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
-                                        <TableCell numeric className={"exit_column"} padding={"none"}>
-                                            <RemoveButton onDelete={() => this.props.removeItem(isPayTable, index, item)} />
-                                        </TableCell>
-                                    </TableRow>
-                                ))
-                                };
+                                {(this.renderItems()).map((item, index) => {
+                                    return (
+                                        <TableRow key={item.id}>
+                                            <TableCell component="th" scope="row" className={"picture_column"}>
+                                                <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
+                                            </TableCell>
+                                            <TableCell className={"table_column category_column"}>
+                                                {item.type === "Goods" ? item.type + ": " + item.name : item.type}
+                                            </TableCell>
+                                            <TableCell numeric className={"table_column"}>{this.renderValue(item, globalState)}</TableCell>
+                                            <TableCell numeric className={"table_column"}>{this.renderVAT(item, globalState)}</TableCell>
+                                            <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
+                                            <TableCell numeric className={"exit_column"} padding={"none"}>
+                                                <RemoveButton onDelete={() => this.props.removeItem(isPayTable, index, item)} />
+                                            </TableCell>
+                                        </TableRow>
+                                    );
+                                })}
                             </TableBody>
+
                         </Table>
                     </div>
                 )}
@@ -86,7 +88,7 @@ class SubTable extends Component{
         const {isPayTable} = this.props;
         let string = '';
         if (isPayTable && !globalState.isAlcoholOrTobacco(item.type)){
-            string += item.vat.toFixed(2) + " ";
+            string += item.vat.toFixed(0) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {
@@ -100,7 +102,7 @@ class SubTable extends Component{
         const {isPayTable} = this.props
         let string = '';
         if (isPayTable && item.fee !== undefined){
-            string += item.fee.toFixed(2) + " ";
+            string += item.fee.toFixed(0) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {
