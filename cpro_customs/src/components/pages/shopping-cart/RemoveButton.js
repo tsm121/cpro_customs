@@ -16,11 +16,11 @@ export default class RemoveButton extends Component  {
                     onMouseOut={this.onMouseOut}
                     role="button"
                     type="submit"
-                    value="remove-item"
+                    value="remove item"
                 >
                     <img className={"remove_button_img"}
                          src={require(`assets/img/icons/512x512/close_button_grey.png`)}
-                         alt={"close-button-grey"}
+                         alt={"close-icon-grey"}
                     />
                 </IconButton>
             </div>

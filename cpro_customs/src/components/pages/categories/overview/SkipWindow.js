@@ -35,7 +35,7 @@ class SkipWindow extends Component  {
                         onMouseOut={() => this.nextOnMouseOut()}
                         role="button"
                         type="submit"
-                        value="skip-declaration"
+                        value="skip declaration"
                 >
                     <h4 className={"cdp cdp_dark_grey skip_button_text"}>
                         Skip
@@ -72,7 +72,7 @@ class SkipWindow extends Component  {
                                             onClick={this.handleClose.bind(this)}
                                             role="button"
                                             type="submit"
-                                            value="close-skip-window"
+                                            value="close skip window"
                                     >
                                         <h3 className={"cdp modal_button_text"}>
                                             I'm <span className={"cdp_yellow"}> bringing </span> something with me
@@ -90,7 +90,7 @@ class SkipWindow extends Component  {
                                             onClick={this.onClickEnd.bind(this)}
                                             role="button"
                                             type="submit"
-                                            value="nothing-to-declare"
+                                            value="nothing to declare"
                                     >
                                         <h3 className={"cdp modal_button_text"} >
                                             <span>I'm <span className={"cdp_yellow"}> not </span> bringing anything into the country</span>

@@ -28,7 +28,7 @@ class ArrowButton extends Component  {
                       onClick={this.props.onClick}
                       role="button"
                       type="submit"
-                      value="more-or-less-categories"
+                      value="more or less categories"
                 >
                     {this.addText()}
                 </Grid>

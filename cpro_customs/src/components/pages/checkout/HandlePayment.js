@@ -70,7 +70,7 @@ export default class HandlePayment extends Component  {
                                 loading ? {display:"none"} : {display:"unset"},
                                 success ? {backgroundColor:"#4CBB17"} : {display:"none"})}
                             role="button"
-                            value="loading"
+                            value="loading animation"
                         >
                             {success ?
                                 <Icon className={"payment_button_icon"}>
@@ -96,7 +96,7 @@ export default class HandlePayment extends Component  {
                                   onClick={this.handleButtonClick}
                                   role="button"
                                   type="submit"
-                                  value="pay-for-items"
+                                  value="pay for items"
                         >
                             <ListItemText
                                 disableTypography={true}

@@ -12,7 +12,8 @@ class HeaderButton extends Component {
                         onMouseOut={this.onMouseOut}
                         role="button"
                         type="submit"
-                        value="back-button"
+                        value="page back"
+                        aria-label="page back"
             >
                 <Icon>
                     {icon}

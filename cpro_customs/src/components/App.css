@@ -36,6 +36,8 @@ body {
 
 a {
     outline: none;
+    color:inherit;
+    text-decoration: none;
 }
 
 a img {

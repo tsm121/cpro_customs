@@ -156,7 +156,7 @@ export default class InputFields extends Component  {
                 onClick={closeModal}
                 role="button"
                 type="submit"
-                value="close-settings"
+                value="close settings"
                 size={"large"}
             >
                 Close
@@ -232,7 +232,7 @@ export default class InputFields extends Component  {
                         onClick={this.handleDelete}
                         role="button"
                         type="submit"
-                        value="delete-my-data"
+                        value="delete my data"
                     >
                         Delete my data
                     </Button>
@@ -256,7 +256,7 @@ export default class InputFields extends Component  {
                             color={"secondary"}
                             role="button"
                             type="submit"
-                            value="save-settings"
+                            value="save settings"
                         >
                             Save
                         </Button>

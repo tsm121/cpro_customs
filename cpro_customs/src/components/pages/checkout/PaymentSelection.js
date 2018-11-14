@@ -118,7 +118,7 @@ export default class PaymentSelection extends Component  {
                                       onClick={() => this.handleOnClickEvent("visa")}
                                       role="button"
                                       type="submit"
-                                      value="select-visa"
+                                      value="select visa"
                             >
                                 <ListItemAvatar>
                                     <Avatar
@@ -137,7 +137,7 @@ export default class PaymentSelection extends Component  {
                                       onClick={() => this.handleOnClickEvent("mastercard")}
                                       role="button"
                                       type="submit"
-                                      value="select-mastercard"
+                                      value="select mastercard"
                             >
                                 <ListItemAvatar>
                                     <Avatar
@@ -156,7 +156,7 @@ export default class PaymentSelection extends Component  {
                                       onClick={() => this.handleOnClickEvent("vipps")}
                                       role="button"
                                       type="submit"
-                                      value="select-vipps"
+                                      value="select vipps"
                             >
                                 <ListItemAvatar>
                                     <Avatar
@@ -175,7 +175,7 @@ export default class PaymentSelection extends Component  {
                                       onClick={() => this.handleOnClickEvent("bitcoin")}
                                       role="button"
                                       type="submit"
-                                      value="select-bitcoin"
+                                      value="select bitcoin"
                             >
                                 <ListItemAvatar>
                                     <Avatar
@@ -203,7 +203,7 @@ export default class PaymentSelection extends Component  {
                                       disabled={mastercard || vipps || bitcoin || !selected}
                                       role="button"
                                       type="submit"
-                                      value="select-payment"
+                                      value="select payment"
                             >
                                 <ListItemText
                                     disableTypography={true}

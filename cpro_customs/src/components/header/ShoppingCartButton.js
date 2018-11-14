@@ -17,7 +17,7 @@ class ShoppingCartButton extends Component {
                         onMouseOut={this.onMouseOut}
                         role="button"
                         type="submit"
-                        value="shopping-cart"
+                        value="shopping cart"
                     >
                         <Badge
                             badgeContent={globalState.totalAmount()}

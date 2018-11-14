@@ -34,7 +34,7 @@ function MySnackbarContent(props) {
                     onClick={onExited}
                     role="button"
                     type="submit"
-                    value="close-popup-message"
+                    value="close popup message"
                 >
                     <CloseIcon/>
                 </IconButton>,

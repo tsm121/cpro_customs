@@ -13,7 +13,7 @@ export default class LangButton extends Component  {
                 disabled={disabled}
                 role="button"
                 type="submit"
-                value="language-button"
+                value={"change language " + {countryName}}
             >
                 <Grid container
                       direction={"column"}

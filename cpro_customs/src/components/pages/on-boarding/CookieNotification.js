@@ -44,7 +44,7 @@ export default class CookieNotification extends Component  {
                                     color={"primary"}
                                     role="button"
                                     type="submit"
-                                    value="I-agree"
+                                    value="I agree"
                                     size={"large"}
                                 >
                                     I agree
@@ -53,15 +53,23 @@ export default class CookieNotification extends Component  {
 
                             <Grid item>
 
-                                <Button href={"https://www.toll.no/en/"}
+                                <Button
+                                        aria-label="Norwegian Customs"
                                         variant={"contained"}
                                         color={"secondary"}
                                         role="button"
                                         type="submit"
-                                        value="i-dont-agree"
+                                        value="i dont agree"
                                         size={"large"}
+
                                 >
-                                    I don't agree
+                                    <a
+                                        href={"https://www.toll.no/en/"}
+                                        onmouseover=""
+                                        name="toll.no"
+                                    >
+                                        I don't agree
+                                    </a>
                                 </Button>
 
                             </Grid>

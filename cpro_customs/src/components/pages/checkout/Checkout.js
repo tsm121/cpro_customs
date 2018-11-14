@@ -92,7 +92,7 @@ export default class Checkout extends Component {
                                     disabled={stageSelection}
                                     role="button"
                                     type="submit"
-                                    value="go-back-payment"
+                                    value="go back payment"
                                 >
                                     <Icon
                                         onClick={this.handleGoBackButton}

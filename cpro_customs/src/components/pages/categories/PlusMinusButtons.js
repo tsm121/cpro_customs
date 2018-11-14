@@ -24,7 +24,7 @@ class PlusMinusButtons extends Component {
                                 onClick={this.props.handleDecrement}
                                 role="button"
                                 type="submit"
-                                value="decrement-unit"
+                                value="decrement unit"
                             >
                                 <RemoveIcon className={"add_remove_icon"}/><span className={"cdp_icon_round_label"}>1</span>
                             </Button>
@@ -43,7 +43,7 @@ class PlusMinusButtons extends Component {
                                 onClick={this.props.handleIncrement}
                                 role="button"
                                 type="submit"
-                                value="remove-a-unit"
+                                value="remove a unit"
                             >
                                 <AddIcon className={"add_remove_icon"}/><span className={"cdp_icon_round_label"}>1</span>
                             </Button>
@@ -62,7 +62,7 @@ class PlusMinusButtons extends Component {
                                 onClick={this.props.handlePlusFive}
                                 role="button"
                                 type="submit"
-                                value="add-unit"
+                                value="add unit"
                             >
                                 <AddIcon className={"add_remove_icon"}/><span className={"cdp_icon_round_label"}>5</span>
                             </Button>

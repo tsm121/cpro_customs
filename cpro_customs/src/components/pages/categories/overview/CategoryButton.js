@@ -18,7 +18,7 @@ class CategoryButton extends Component  {
                         onMouseOut={this.onMouseOut}
                         role="button"
                         type="submit"
-                        value={text.toString() + "-button"}
+                        value={text.toString()}
                 >
                     <Grid container
                           direction={"column"}

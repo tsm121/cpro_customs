@@ -206,7 +206,7 @@ class BoughtItem extends Component {
                                                                     onClick={this.props.showInfoModal}
                                                                     role="button"
                                                                     type="submit"
-                                                                    value="more-info"
+                                                                    value="more info"
                                                                 > More
                                                                     Info </Button>
                                                             </Grid>

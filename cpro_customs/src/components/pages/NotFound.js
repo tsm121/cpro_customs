@@ -73,7 +73,7 @@ export default class NotFound extends Component  {
                                 onClick={this.handleGoBack}
                                 role="button"
                                 type="submit"
-                                value="go-back-to-start"
+                                value="go back to start"
                             >
                                 GO BACK
                             </Button>
