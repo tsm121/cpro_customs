@@ -67,7 +67,7 @@ export default class Checkout extends Component {
     }
 
     render = () => {
-        const {stageSelection, stageVisa, totalSum, selectedCurrency} = this.state
+        const {stageSelection, stageVisa, selectedCurrency} = this.state
         return (
           <GlobalState.Consumer>
                 {globalState => (
@@ -90,6 +90,9 @@ export default class Checkout extends Component {
                             <h1 className={"payment_title"}>
                                 <Button
                                     disabled={stageSelection}
+                                    role="button"
+                                    type="submit"
+                                    value="go back payment"
                                 >
                                     <Icon
                                         onClick={this.handleGoBackButton}

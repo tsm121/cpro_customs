@@ -73,7 +73,7 @@ class SubCategory extends Component {
                                             <Grid item>
                                                 <img className={"icon_xs"}
                                                      src={icons[icon]}
-                                                     alt={"icon"}
+                                                     alt={icon.toString() + "-xs-icon"}
                                                 />
                                             </Grid>
                                         </Grid>

@@ -42,20 +42,35 @@ export default class CookieNotification extends Component  {
                                     onClick={closeModal}
                                     variant={"contained"}
                                     color={"primary"}
+                                    role="button"
+                                    type="submit"
+                                    value="I agree"
                                     size={"large"}
                                 >
-                                    I agree
+                                    <p className={"modal_button_text primary"}>I agree</p>
                                 </Button>
                             </Grid>
 
                             <Grid item>
 
-                                <Button href={"https://www.toll.no/en/"}
+                                <Button
+                                        aria-label="Norwegian Customs"
                                         variant={"contained"}
                                         color={"secondary"}
+                                        role="button"
+                                        type="submit"
+                                        value="i dont agree"
                                         size={"large"}
+
                                 >
-                                    I don't agree
+                                    <a
+                                        href={"https://www.toll.no/en/"}
+                                        onmouseover=""
+                                        name="toll.no"
+                                        className={"modal_button_text"}
+                                    >
+                                         I don't agree
+                                    </a>
                                 </Button>
 
                             </Grid>

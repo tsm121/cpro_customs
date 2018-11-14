@@ -16,6 +16,9 @@ class CategoryButton extends Component  {
                         onClick={this.onClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
+                        role="button"
+                        type="submit"
+                        value={text.toString()}
                 >
                     <Grid container
                           direction={"column"}
@@ -25,7 +28,7 @@ class CategoryButton extends Component  {
                         <Grid item >
                             <img className={"category_button_img"}
                                  src={require(`assets/img/icons/512x512/${filename}.png`)}
-                                 alt={"icon"}
+                                 alt={text.toString() + "-cat-icon"}
                             />
                         </Grid>
 

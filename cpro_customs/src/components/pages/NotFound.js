@@ -71,6 +71,9 @@ export default class NotFound extends Component  {
                                     marginTop: "2vmax",
                                 }}
                                 onClick={this.handleGoBack}
+                                role="button"
+                                type="submit"
+                                value="go back to start"
                             >
                                 GO BACK
                             </Button>

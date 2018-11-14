@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import PropTypes from "prop-types";
 import {withRouter} from "react-router-dom";
 
 import Grid from '@material-ui/core/Grid';
@@ -44,7 +43,7 @@ class IconAndAmount extends Component {
                     <Grid item>
                         <img className={"iconAmount_img"}
                              src={require(`assets/img/icons/512x512/${icons[icon]}.png`)}
-                             alt={"icon"}
+                             alt={icon.toString() + "amount-icon"}
                         />
                     </Grid>
 

@@ -50,7 +50,6 @@ export default class HandlePayment extends Component  {
         const {loading, success} = this.state
         const {totalSum, selectedCurrency} = this.props
         return (
-
             <Grid container
                   direction={"row"}
                   justify={"center"}
@@ -70,6 +69,8 @@ export default class HandlePayment extends Component  {
                             style={Object.assign(
                                 loading ? {display:"none"} : {display:"unset"},
                                 success ? {backgroundColor:"#4CBB17"} : {display:"none"})}
+                            role="button"
+                            value="loading animation"
                         >
                             {success ?
                                 <Icon className={"payment_button_icon"}>
@@ -93,6 +94,9 @@ export default class HandlePayment extends Component  {
                         <ListItem button
                                   className={"payment_nav_button"}
                                   onClick={this.handleButtonClick}
+                                  role="button"
+                                  type="submit"
+                                  value="pay for items"
                         >
                             <ListItemText
                                 disableTypography={true}

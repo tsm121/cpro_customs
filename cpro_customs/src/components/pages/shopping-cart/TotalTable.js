@@ -27,6 +27,9 @@ class TotalTable extends Component{
                                         onClick={this.onClick}
                                         onMouseOver={this.onMouseOver}
                                         onMouseOut={this.onMouseOut}
+                                        role="button"
+                                        type="submit"
+                                        value="declare your items"
                                 >
                                     <h4 className={"cdp cdp_yellow declaration_button_text"}>
                                         Declare items

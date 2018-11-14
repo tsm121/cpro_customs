@@ -22,7 +22,6 @@ export default class InputFields extends Component  {
     }
 
     componentWillMount = () => {
-
         if(!('userData' in localStorage)){
             userData = {
                 licencePlate: '',
@@ -52,7 +51,6 @@ export default class InputFields extends Component  {
             if (!on_boarding){
                 closeModal()
             }
-        } else {
         }
     }
 
@@ -92,7 +90,6 @@ export default class InputFields extends Component  {
     validateMail = (input) => {
 
         let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
         if (input.length > 2 && re.test(input)){
             userData.email = input
             setTimeout(this.toggleEmailInput(false),1000)
@@ -155,9 +152,12 @@ export default class InputFields extends Component  {
         if(!on_boarding){
             cancelBtn = <Button
                 variant={'outlined'}
-                size={"large"}
                 style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
                 onClick={closeModal}
+                role="button"
+                type="submit"
+                value="close settings"
+                size={"large"}
             >
                 Close
             </Button>
@@ -217,8 +217,6 @@ export default class InputFields extends Component  {
                             />
                         </Grid>
                     </Grid>
-
-
                 </Grid>
 
                 <Grid container
@@ -229,9 +227,12 @@ export default class InputFields extends Component  {
                 >
                     <Button
                         variant={"outlined"}
-                        color={"secondary"}
-                        className={"save_btn"}
+                        color={"primary"}
+                        className={"delete_data"}
                         onClick={this.handleDelete}
+                        role="button"
+                        type="submit"
+                        value="delete my data"
                     >
                         Delete my data
                     </Button>
@@ -253,6 +254,9 @@ export default class InputFields extends Component  {
                             style={light ? {backgroundColor:'white'} : {backgroundColor:'transparent'}}
                             className={"save_btn"}
                             color={"secondary"}
+                            role="button"
+                            type="submit"
+                            value="save settings"
                         >
                             Save
                         </Button>

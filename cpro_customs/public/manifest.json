@@ -1,12 +1,12 @@
 {
-  "name": "PWA Toll",
-  "short_name": "TollCustoms",
+  "name": "Easy Customs Clearance",
+  "short_name": "ECC",
   "theme_color": "#343c3f",
   "background_color": "#343c3f",
   "display": "fullscreen",
   "orientation": "portrait",
   "Scope": ".",
-  "start_url": "./index.html",
+  "start_url": "./",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

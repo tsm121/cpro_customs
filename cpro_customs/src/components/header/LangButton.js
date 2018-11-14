@@ -11,6 +11,9 @@ export default class LangButton extends Component  {
             <Button
                 className={"flag_button"}
                 disabled={disabled}
+                role="button"
+                type="submit"
+                value={"change language " + {countryName}}
             >
                 <Grid container
                       direction={"column"}
