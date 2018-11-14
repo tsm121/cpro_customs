@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import {withRouter} from "react-router-dom";
 import DeclarationTable from "./DeclarationTable";
 import {calculateFeesAndVAT} from "./logic/calculateFeeAndVAT";
+import {splitOtherGoods} from "./logic/splitOtherGoods";
 
 let id = 0;
 function createAlcoholAndTobacco(type, icon, amount, unit, value) {
@@ -30,7 +31,6 @@ class ShoppingCart extends Component {
 
     render = () => {
         const {globalState} = this.props;
-        console.log(globalState)
         return (
             <div>
                 <Grid container
@@ -133,9 +133,11 @@ class ShoppingCart extends Component {
     splitListAndCalculateFees = (globalState) => {
         let alcoholAndTobacco = [];
         let other = [];
+        let freeItems = [];
+        let payItems = [];
 
         // Splits products, alcohol and tobacco vs. everything else
-        {globalState.products.map(item => {
+        for (let item of globalState.products){
             switch (item.type) {
                 case "Beer":
                 case "Alcopop and others":
@@ -152,8 +154,7 @@ class ShoppingCart extends Component {
                 default:
                     other.push(item);
                     break;
-            } return null
-        })
+            }
         }
 
         // Sort the "other" list based on value, descending order
@@ -162,53 +163,10 @@ class ShoppingCart extends Component {
         });
 
         // Split alcohol and tobacco into into free and pay and setting the local state
-        {this.splitAlcoholAndTobacco(alcoholAndTobacco)}
+        this.splitAlcoholAndTobacco(alcoholAndTobacco);
 
-        // Add the rest of the items to either freeList or payList
-        let valueLimit = 3000;
-        if (globalState.overADay) valueLimit = 6000;
-
-        let freeItems = [];
-        let payItems = [];
-
-        let currentValue = 0;
-        for (let item of other){
-            if (parseInt(item.value, 10) > valueLimit){
-                payItems.push(item);
-            } else {
-                if (item.amount > 1){
-                    // have more of the same item
-                    let amountLeft = item.amount;
-                    while (amountLeft > 0){
-                        if (amountLeft * parseInt(item.value, 10) + currentValue <= valueLimit){
-                            let freeItem = JSON.parse(JSON.stringify(item));
-                            freeItem.amount = amountLeft;
-                            freeItems.push(freeItem);
-                            currentValue += amountLeft * parseInt(item.value, 10);
-
-                            if (item.amount - amountLeft > 0) {
-                                let payItem = JSON.parse(JSON.stringify(item));
-                                payItem.amount = item.amount - amountLeft;
-                                payItems.push(payItem);
-                            }
-                            amountLeft = 0;
-
-                        } else {
-                            amountLeft--;
-                        }
-                    }
-                } else {
-                    // only one of the current item
-                    if (parseInt(item.value, 10) + currentValue <= valueLimit) {
-                        freeItems.push(item);
-                        currentValue += parseInt(item.value, 10);
-                    } else {
-                        payItems.push(item);
-                    }
-                }
-            }
-        }
-
+        // Split the other goods and calculate fees and vat
+        [freeItems, payItems] = splitOtherGoods(globalState, other);
         calculateFeesAndVAT(payItems);
 
         // Setting the state so that it contains the other elements
@@ -249,7 +207,7 @@ class ShoppingCart extends Component {
         let hasTobacco = false;
 
         // Calculating the different total amounts based on category
-        {products.map(item => {
+        for (let item of products){
             switch (item.type) {
                 default:
                     break;
@@ -287,8 +245,7 @@ class ShoppingCart extends Component {
                 case "Cigarette paper and sheets":
                     totalPaper += item.value * item.amount;
                     break;
-            } return null
-        })
+            }
         }
 
         // Defining quotas
@@ -307,69 +264,69 @@ class ShoppingCart extends Component {
 
         // Spirits
         if (totalSpirit > 1) { //Something is over the quota
-            freeItems.push(createAlcoholAndTobacco('Spirits', 'spirits', 1, "L", 1));
-            payItems.push(createAlcoholAndTobacco('Spirits', 'spirits', totalSpirit - 1, "L", 1));
+            freeItems.push(createAlcoholAndTobacco('Spirits', 'spirits', 1, "L", 0));
+            payItems.push(createAlcoholAndTobacco('Spirits', 'spirits', totalSpirit - 1, "L", 0));
         } else if (totalSpirit <= 1){ //Everything is under the quota
             if (totalSpirit > 0) {
-                freeItems.push(createAlcoholAndTobacco('Spirits', 'spirits', totalSpirit, "L", 1));
+                freeItems.push(createAlcoholAndTobacco('Spirits', 'spirits', totalSpirit, "L", 0));
                 wineQuota += 1 - totalSpirit; // see rules above
             }
         }
 
         // Fortified wine
         if (totalFortifiedWine > wineQuota){ //Too much fortified wine
-            freeItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', wineQuota, 'L', 1));
-            payItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', totalFortifiedWine-wineQuota, 'L', 1));
+            freeItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', wineQuota, 'L', 0));
+            payItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', totalFortifiedWine-wineQuota, 'L', 0));
             wineQuota = 0;
         } else if (totalFortifiedWine <= wineQuota && totalFortifiedWine !== 0) {
-            freeItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', totalFortifiedWine, 'L', 1));
+            freeItems.push(createAlcoholAndTobacco('Fortified wine', 'fortifiedWine', totalFortifiedWine, 'L', 0));
             wineQuota -= totalWine;
         }
 
         // Wine
         if (totalWine > wineQuota){ //Too much wine
             if (wineQuota !== 0){
-                freeItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', wineQuota, 'L', 1));
+                freeItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', wineQuota, 'L', 0));
             }
-            payItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', totalWine-wineQuota, 'L', 1));
+            payItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', totalWine-wineQuota, 'L', 0));
             wineQuota = 0;
         } else if (totalWine <= wineQuota && totalWine !== 0) {
-            freeItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', totalWine, 'L', 1));
+            freeItems.push(createAlcoholAndTobacco('Wine', 'wineBottleBig', totalWine, 'L', 0));
             wineQuota -= totalWine;
         }
 
-        // Beer
+        // Beer0
         let beerQuota = 2 + wineQuota;
 
         if (totalBeer > beerQuota){ // Too much beer
-            freeItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', beerQuota, 'L', 1));
-            payItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', totalBeer-beerQuota, 'L', 1));
+            freeItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', beerQuota, 'L', 0));
+            payItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', totalBeer-beerQuota, 'L', 0));
             beerQuota = 0;
         } else if (totalBeer < beerQuota && totalBeer !== 0){
-            freeItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', totalBeer, 'L', 1));
+            freeItems.push(createAlcoholAndTobacco('Beer', 'beerCanBig', totalBeer, 'L', 0));
             beerQuota -= totalBeer;
         }
 
         // Alcopop
         if (totalAlcopop > beerQuota){ // Too much alcopop
             if (beerQuota !== 0) {
-                freeItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', beerQuota, 'L', 1));
+                freeItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', beerQuota, 'L', 0));
             }
-            payItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', totalAlcopop-beerQuota, 'L', 1));
+            payItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', totalAlcopop-beerQuota, 'L', 0));
         } else if (totalAlcopop < beerQuota && totalAlcopop !== 0){
-            freeItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', totalAlcopop, 'L', 1));
+            freeItems.push(createAlcoholAndTobacco('Alcopop and others', 'beerCanBig', totalAlcopop, 'L', 0));
         }
 
 
         // Cigarette papers
         if (totalPaper > 200) {
-            freeItems.push(createAlcoholAndTobacco('Cigarette paper and sheets', 'cigarettePaper', 200, 'sheets', 1));
+            freeItems.push(createAlcoholAndTobacco('Cigarette paper and sheets', 'cigarettePaper', 200, 'sheets', 0));
             if(totalPaper-200 > 0) payItems.push(createAlcoholAndTobacco('Cigarette paper and sheets', 'cigarettePaper',
-                totalPaper - 200, 'sheets', 1));
+                totalPaper - 200, 'sheets', 0));
         } else {
             if (totalPaper > 0) {
                 freeItems.push(createAlcoholAndTobacco('Cigarette paper and sheets', 'cigarettePaper',
-                    totalPaper, 'sheets', 1));
+                    totalPaper, 'sheets', 0));
             }
         }
 
@@ -377,43 +334,43 @@ class ShoppingCart extends Component {
         // Tobacco
         if (tooMuchTobacco(totalCigarettes, totalSnuff, totalSmoking, totalCigars)) {
             if (totalCigarettes >= 200) { //More than quota
-                freeItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', 200, 'pieces', 1));
+                freeItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', 200, 'pieces', 0));
                 if (totalCigarettes !== 200)
-                    payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes - 200, 'pieces', 1));
-                if (totalSnuff > 0) payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 1));
-                if (totalSmoking > 0) payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 1));
-                if (totalCigars > 0) payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 1));
+                    payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes - 200, 'pieces', 0));
+                if (totalSnuff > 0) payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 0));
+                if (totalSmoking > 0) payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 0));
+                if (totalCigars > 0) payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 0));
 
             } else if (totalSnuff >= 250) {
-                freeItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', 250, 'g', 1));
+                freeItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', 250, 'g',0));
                 if (totalSnuff !== 250)
-                    payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff - 250, 'g', 1));
-                if (totalCigarettes > 0) payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'g', 1));
-                if (totalSmoking > 0) payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 1));
-                if (totalCigars > 0) payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 1));
+                    payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff - 250, 'g', 0));
+                if (totalCigarettes > 0) payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'g', 0));
+                if (totalSmoking > 0) payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 0));
+                if (totalCigars > 0) payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 0));
 
             } else if (totalSmoking >= 250) {
-                freeItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', 250, 'g', 1));
+                freeItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', 250, 'g', 0));
                 if (totalSmoking !== 250)
-                    payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking - 250, 'g', 1));
-                if (totalCigarettes > 0) payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'g', 1));
-                if (totalSnuff > 0) payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 1));
-                if (totalCigars > 0) payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 1));
+                    payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking - 250, 'g', 0));
+                if (totalCigarettes > 0) payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'g', 0));
+                if (totalSnuff > 0) payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 0));
+                if (totalCigars > 0) payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 0));
 
             } else if (totalCigars >= 250) {
-                freeItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', 250, 'g', 1));
+                freeItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', 250, 'g', 0));
                 if (totalCigars !== 250)
-                    payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars - 250, 'g', 1));
-                if (totalCigarettes > 0) payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'g', 1));
-                if (totalSmoking > 0) payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 1));
-                if (totalSnuff > 0) payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 1));
+                    payItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars - 250, 'g', 0));
+                if (totalCigarettes > 0) payItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'g', 0));
+                if (totalSmoking > 0) payItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 0));
+                if (totalSnuff > 0) payItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 0));
             }
 
         } else {
-            if (totalCigarettes > 0) freeItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'pieces', 1));
-            if (totalSnuff > 0) freeItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 1));
-            if (totalSmoking > 0) freeItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 1));
-            if (totalCigars > 0) freeItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 1));
+            if (totalCigarettes > 0) freeItems.push(createAlcoholAndTobacco('Cigarettes', 'cigarettes', totalCigarettes, 'pieces', 0));
+            if (totalSnuff > 0) freeItems.push(createAlcoholAndTobacco('Snuff & chewing tobacco', 'snus', totalSnuff, 'g', 0));
+            if (totalSmoking > 0) freeItems.push(createAlcoholAndTobacco('Smoking tobacco', 'pipe', totalSmoking, 'g', 0));
+            if (totalCigars > 0) freeItems.push(createAlcoholAndTobacco('Cigars and Cigarillos', 'cigar', totalCigars, 'g', 0));
         }
 
         calculateFeesAndVAT(payItems);

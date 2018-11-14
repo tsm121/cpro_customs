@@ -6,6 +6,8 @@ import TotalTable from "./TotalTable";
 import SubTable from "./SubTable";
 import {validateData} from "./logic/validateData";
 import {GlobalState} from "../../context/GlobalState";
+import {fixFormatting} from "./helper_methods/fixFormatting";
+import {mergeLists} from "./helper_methods/mergeLists";
 
 class DeclarationTable extends Component {
 
@@ -85,10 +87,9 @@ class DeclarationTable extends Component {
 
     getTotalDuty = (payItems) => {
         let sum = 0;
-        {payItems.map(item => {
-                if (item.vat !== undefined) sum += item.vat;
-                if (item.fee !== undefined) sum += item.fee;
-            })
+        for (let item of payItems){
+            if (item.vat !== undefined) sum += item.vat;
+            if (item.fee !== undefined) sum += item.fee;
         }
         return sum;
     };
@@ -105,24 +106,7 @@ class DeclarationTable extends Component {
 
     createJSON = (globalState) => {
         const {payItems, freeItems} = this.props;
-
-        let payItemsCopy = JSON.parse(JSON.stringify(payItems));
-        let freeItemsCopy = JSON.parse(JSON.stringify(freeItems));
-
-        let totalList = [];
-        for (let payItem of payItemsCopy) {
-            for (let freeItem of freeItemsCopy) {
-                if (payItem.type === freeItem.type && payItem.name === freeItem.name) {
-                    let mergedItem = {...payItem, ...freeItem};
-                    mergedItem.amount = payItem.amount + freeItem.amount;
-                    mergedItem.value = parseInt(payItem.value, 10) + parseInt(freeItem.value, 10);
-                    totalList.push(mergedItem);
-                    payItemsCopy = payItemsCopy.filter(item => item !== payItem);
-                    freeItemsCopy = freeItemsCopy.filter(item => item !== freeItem);
-                }
-            }
-        }
-        let productList = [...payItemsCopy, ...freeItemsCopy, ...totalList]
+        let productList = mergeLists(payItems, freeItems);
 
         return {
             "id_number": "0",
@@ -134,67 +118,10 @@ class DeclarationTable extends Component {
             "currency": "NOK",
             "over_a_day": globalState.overADay,
             "number_of_people": globalState.number_of_people,
-            "products": this.fixFormatting(productList)
+            "products": fixFormatting(productList)
         }
     };
 
-
-    fixFormatting = (productList) => {
-        if (productList.length <= 0){
-            return {}
-        }
-
-        let productListCopy = JSON.parse(JSON.stringify(productList)); //copying the list to make changes
-        for (let item of productListCopy) {
-            if ('kind' in item){
-                if(item.kind === "dog"){
-                    item.kind = "Dog"
-                } else if (item.kind === "horse"){
-                    item.kind = "Horse"
-                } else {
-                    item.kind = "Other"
-                }
-
-                item.product = item.kind;
-                delete item.kind;
-                delete item.type;
-
-            } else {
-                item.product = item.type;
-                delete item.type;
-            }
-
-            delete item.id;
-            delete item.icon;
-            item.vat = 25;
-            item.amount = parseFloat(item.amount.toFixed(2));
-            {typeof item.value === "string" ? parseInt(item.value, 10) : item.value}
-            {item.value === 1 ? item.value = 0 : item.value = item.value * item.amount}
-
-            if (!('fee' in item)) item.fee = 0;
-            if (item.unit === "L") item.unit = "litre";
-            if (item.unit === "g") item.unit = "grams";
-            if (!('unit' in item)) item.unit = "pieces";
-            if ('isOtherAmount' in item) delete item.isOtherAmount;
-            if ('currency' in item) delete item.currency;
-
-            if ('contactedNFSA' in item){
-                item.contacted_NFSA = item.contactedNFSA;
-                delete item.contactedNFSA
-            }
-            if ('horseHasOriginInEU' in item){
-                item.of_EU_origin = item.horseHasOriginInEU;
-                delete item.horseHasOriginInEU
-            }
-            if ('registeredAtNFSA' in item){
-                item.registered_NFSA = item.registeredAtNFSA;
-                delete item.registeredAtNFSA
-            }
-        }
-
-        return productListCopy
-
-    }
 }
 
 export default withRouter(DeclarationTable);
