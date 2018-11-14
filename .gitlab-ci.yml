@@ -45,6 +45,8 @@ before_script:
   - echo -e "-------------------------------- INSTALL DJANGO --------------------------------"
   - pip install Django
   - pip install psycopg2
+  - pip install djangorestframework
+  - pip install django-cors-headers
   - apt-get install -y postgresql-client
 
   # Uncomment next line if your Django app needs a JS runtime:
