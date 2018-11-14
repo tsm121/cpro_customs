@@ -10,7 +10,7 @@ export const validateData = (allData, isPay) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
+                'Authorization': 'Basic ' + Buffer.from(u + ":" + p).toString('base64')
             },
             body: JSON.stringify(allData)
         }).then(promise => promise.json())
@@ -23,7 +23,7 @@ export const validateData = (allData, isPay) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Basic ' + Buffer.from(username + ":" + password).toString('base64')
+                'Authorization': 'Basic ' + Buffer.from(u + ":" + p).toString('base64')
             },
             body: JSON.stringify(allData)
         }).then(promise => promise.json())
