@@ -3,7 +3,7 @@
  @param: payItems - The local state list containing all the items the user must pay for
  */
 export const calculateFeesAndVAT = (payItems) => {
-    /*
+/*
     ---------------- RULES: ---------------------
     Beer, alcopop:          20 kr per liter
     Wine:                   60 kr per liter
@@ -18,7 +18,6 @@ export const calculateFeesAndVAT = (payItems) => {
     All other use cases:    25 % VAT and no fee
     --------------------------------------------
     */
-
     {payItems.map(item => {
         switch (item.type) {
             case "Beer":
@@ -50,7 +49,7 @@ export const calculateFeesAndVAT = (payItems) => {
                     item.fee = 5000 * item.amount; // 5000 fee per horse
                 }
             default:
-                item.vat = 0.25 * parseInt(item.value) * item.amount;
+                item.vat = 0.25 * parseInt(item.value, 10) * item.amount;
                 break;
         }
     })
