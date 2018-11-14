@@ -81,6 +81,7 @@ test:
   - psql -h "$POSTGRES_HOST" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT 'OK' AS status;"
   - cd cpro_customs/
   - echo -e "{\"DB_PASSWORD\"":" \"password\"}" > secrets.json
+  - sed -i 's/localhost/postgres/g' ./cpro_customs/settings.py  
   - python manage.py makemigrations
   - python manage.py migrate
   # - psql -h "postgres" -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c "SELECT table_schema,table_name FROM information_schema.tables ORDER BY table_schema,table_name;"
