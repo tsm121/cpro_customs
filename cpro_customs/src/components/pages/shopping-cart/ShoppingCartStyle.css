@@ -75,6 +75,17 @@
     padding: 10px;
 }
 
+.declaration_button:disabled,
+.declaration_button[disabled] {
+    background-color: #e2e3e5 !important;
+}
+
+.declaration_button:disabled .declaration_button_text,
+.declaration_button[disabled] .declaration_button_text {
+    color: white !important;
+}
+
+
 
 /* ********************************************* */
 /* RemoveButton */

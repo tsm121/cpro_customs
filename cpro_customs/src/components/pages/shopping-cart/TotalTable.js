@@ -8,7 +8,7 @@ import {GlobalState} from "../../context/GlobalState";
 class TotalTable extends Component{
 
     render = () => {
-        const {aboveMaxLimit} = this.props
+        const {aboveMaxLimit, payItems, freeItems} = this.props
         return(
             <GlobalState.Consumer>
                 {globalState => (
@@ -26,7 +26,9 @@ class TotalTable extends Component{
                             <Grid item xs={12} sm={12} md={12} >
                                 <Button className={"declaration_button"}
                                         size={"medium"}
-                                        disabled={aboveMaxLimit.length > 0}
+                                        disabled={
+                                            aboveMaxLimit.length > 0 || (payItems.length === 0 && freeItems.length === 0)
+                                        }
                                         onClick={this.onClick}
                                         onMouseOver={this.onMouseOver}
                                         onMouseOut={this.onMouseOut}
@@ -48,10 +50,15 @@ class TotalTable extends Component{
 
 
     onClick = () => {
-        const {onClickValidate} = this.props;
+        const {onClickValidate, payItems} = this.props;
 
         onClickValidate();
-        this.props.history.push(this.props.route);
+        if (payItems.length === 0) {
+            // route directly to end page as the customer does not have anything to declare
+            this.props.history.push('/endpage');
+        } else {
+            this.props.history.push('/checkout');
+        }
     };
 
     onMouseOver = () => {
