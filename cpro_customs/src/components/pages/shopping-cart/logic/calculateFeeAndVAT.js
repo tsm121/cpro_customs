@@ -38,7 +38,7 @@ export const calculateFeesAndVAT = (payItems) => {
             case "Cigars and Cigarillos":
                 item.fee = item.amount/100 * 290;
                 break;
-            case "Snuff & chewing tobacco":
+            case "Snuff and chewing tobacco":
                 item.fee = item.amount/100 * 120;
                 break;
             case "Cigarette paper and sheets":

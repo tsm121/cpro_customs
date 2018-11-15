@@ -396,7 +396,7 @@ class App extends Component {
             case "Fortified wine":
             case "Spirits":
             case "Cigarettes":
-            case "Snuff & chewing tobacco":
+            case "Snuff and chewing tobacco":
             case "Smoking tobacco":
             case "Cigars and Cigarillos":
             case "Cigarette paper and sheets":
