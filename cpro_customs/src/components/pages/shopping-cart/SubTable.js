@@ -75,7 +75,7 @@ class SubTable extends Component{
     renderValue = (item, globalState) => {
         let string = '';
         if (!globalState.isAlcoholOrTobacco(item.type)){
-            string += item.value * item.amount + " ";
+            string += (item.value * item.amount).toFixed(0) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {

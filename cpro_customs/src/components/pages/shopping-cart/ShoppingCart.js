@@ -69,21 +69,29 @@ class ShoppingCart extends Component {
         // Remove from local state
         let payItems = [...this.state.payItems];
         let freeItems = [...this.state.freeItems];
+        let totalAmounts = {};
 
         if (isPayTable) {
-            payItems.splice(index, 1);
             let freeItemsIndex = this.findListIndex(freeItems, item);
-            if (freeItemsIndex > -1) freeItems.splice(freeItemsIndex, 1);
+            if (freeItemsIndex > -1){
+                totalAmounts = this.removeFromTotalAmounts(globalState, freeItems[freeItemsIndex], payItems[index]);
+                freeItems.splice(freeItemsIndex, 1);
+            }
+            payItems.splice(index, 1);
 
         } else {
-            freeItems.splice(index, 1);
             let payItemsIndex = this.findListIndex(payItems, item);
-            if (payItemsIndex > -1) payItems.splice(payItemsIndex, 1);
+            if (payItemsIndex > -1) {
+                totalAmounts = this.removeFromTotalAmounts(globalState, freeItems[index], payItems[payItemsIndex]);
+                payItems.splice(payItemsIndex, 1);
+            }
+            freeItems.splice(index, 1);
         }
 
         this.setState({
             payItems: payItems,
             freeItems: freeItems,
+            totalAmounts: totalAmounts
         });
 
         // Remove from global state
@@ -96,6 +104,37 @@ class ShoppingCart extends Component {
         }
 
     };
+
+    removeFromTotalAmounts = (globalState, freeItem, payItem) => {
+        let totalAmounts = JSON.parse(JSON.stringify(this.state.totalAmounts));
+
+        if (globalState.isAlcoholOrTobacco(freeItem.type)){
+            switch (freeItem.type){
+                case "Beer":
+                case "Alcopop and others":
+                case "Wine":
+                case "Fortified wine":
+                    totalAmounts.litersOfAlcohol -= (freeItem.amount + payItem.amount);
+                    break;
+                case "Spirits":
+                    totalAmounts.litersOfSpirits -= (freeItem.amount + payItem.amount);
+                    break;
+                case "Cigarettes":
+                    totalAmounts.piecesOfCigarettes -= (freeItem.amount + payItem.amount);
+                    break;
+                case "Snuff and chewing tobacco":
+                case "Smoking tobacco":
+                case "Cigars and Cigarillos":
+                    totalAmounts.gramsOfTobacco -= (freeItem.amount + payItem.amount);
+                    break;
+                case "Cigarette paper and sheets":
+                    totalAmounts.papers -= (freeItem.amount + payItem.amount);
+                    break;
+            }
+        }
+        return totalAmounts;
+
+    }
 
     findListIndex = (items, item) => {
         let itemsIndex = -1;
