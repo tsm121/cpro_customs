@@ -11,15 +11,6 @@ import OverLimitFeedback from "./OverLimitFeedback";
 let aboveLimitList = []
 
 class DeclarationTable extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            disablePayButton: true,
-        }
-
-    }
-
-
     componentDidUpdate() {
         const {payItems, globalState} = this.props;
         const total_duty = this.getTotalDuty(payItems);
@@ -32,9 +23,8 @@ class DeclarationTable extends Component {
 
     render = () => {
         const {payItems, freeItems} = this.props
-        const {disablePayButton} = this.state
 
-        console.log(aboveLimitList)
+        console.log("Render, aboveLimitList", aboveLimitList)
 
         /*if (aboveLimitList.length > 0) {
 
@@ -85,7 +75,8 @@ class DeclarationTable extends Component {
                         <Paper className={'paper'} style={{marginTop: "20px"}}>
                             <TotalTable onClickValidate={() => this.onClickValidateData(globalState)}
                                         globalState={globalState} route={'/checkout'}
-                                        disablePayButton={disablePayButton}
+                                        disablePayButton={this.enableButton(globalState)}
+                                        enablePayButton={this.enableButton}
                             />
                         </Paper>
                     </div>
@@ -94,17 +85,15 @@ class DeclarationTable extends Component {
         )
     };
 
-    overLimit () {
-        const {aboveLimitList} = this.state
-
-        if (aboveLimitList.length > 1) {
-            this.setState({
-                disablePayButton: true
-            })
-        } else {
-            this.setState({
-                disablePayButton: false
-            })
+    enableButton (globalState) {
+        console.log("aboveLimitsList", aboveLimitList.length)
+        console.log("GS", globalState.products)
+        if (aboveLimitList.length > 1 || globalState.products.length === 0) {
+            console.log("Disable Pay Button")
+            return true
+        } else if (aboveLimitList.length === 0) {
+            console.log("Disable Pay Button")
+            return false
         }
     }
 
@@ -115,7 +104,7 @@ class DeclarationTable extends Component {
      *          - On the format [[string, number], [string, number], ...]
      */
     aboveMaximumLimit = () => {
-
+        aboveLimitList = []
         /*
         RULES (How much can you bring ABOVE the limit):
         Liters of alcohol (excluding spirits)       27 liters => 33.5 liters
@@ -135,7 +124,6 @@ class DeclarationTable extends Component {
         if (totalAmounts.papers > 600) aboveLimit.push(["Cigarette Papers", totalAmounts.paper - 600]);
 
         aboveLimitList = aboveLimit
-
     };
 
     getTotalDuty = (payItems) => {
@@ -246,6 +234,8 @@ class DeclarationTable extends Component {
                 delete item.registeredAtNFSA
             }
         }
+
+        this.aboveMaximumLimit()
 
         return productListCopy
 

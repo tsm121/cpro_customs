@@ -6,9 +6,19 @@ import {GlobalState} from "../../context/GlobalState";
 
 
 class TotalTable extends Component{
+    constructor(props) {
+        super(props);
+
+    }
+
+    static defaultProps = {
+        disablePayButton : true,
+    }
+
 
     render = () => {
         const {disablePayButton} = this.props
+        console.log("inside pay button", disablePayButton)
         return(
             <GlobalState.Consumer>
                 {globalState => (

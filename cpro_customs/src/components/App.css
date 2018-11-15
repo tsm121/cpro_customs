@@ -593,24 +593,24 @@ div.cdp_sub_selection_max_width_grid_item {
 .limit_title {
     font-size: 2.2vmin;
     font-weight: bold;
-    padding-bottom: 0;
+    padding-bottom: 0.5em;
+    padding-top: 0;
     margin-bottom: 0;
 }
 
 .limit_item {
     font-size: 1.8vmin;
     padding-top: 0;
-    margin-top: 0.5em;
-
+    margin:0;
     display: inline-block;
 
 }
 
 .limit_value {
     display: inline-block;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
     font-weight: bold;
+    margin: 0 0.5em;
+    padding: 0;
 
 }
 
@@ -618,12 +618,16 @@ div.cdp_sub_selection_max_width_grid_item {
     font-size: 2vmin;
     display: inline-block;
     font-weight: lighter;
+    margin: 0;
+    padding: 0;
 
 }
 
 .limit_container {
     padding-left: 2em;
     padding-right: 2em;
+    padding-bottom: 1em;
+    padding-top: 0em;
 }
 
 
@@ -728,8 +732,18 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 2.4vmin;
     }
 
-    .modal_button_text {
-        font-size: 1.6vmax;
+    .limit_title {
+        font-size: 2.5vmin;
+    }
+
+    .limit_item {
+        font-size: 2.2vmin;
+
+    }
+
+    .limit_text {
+        font-size: 2.2vmin;
+
     }
 }
 
@@ -832,6 +846,20 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .modal_button_text {
         font-size: 1.4vmax;
+    }
+
+    .limit_title {
+        font-size: 4vmin;
+    }
+
+    .limit_item {
+        font-size: 3.3vmin;
+
+    }
+
+    .limit_text {
+        font-size: 3.3vmin;
+
     }
 }
 

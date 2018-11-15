@@ -22,15 +22,16 @@ class OverLimitFeedback extends Component {
                         <h4 className={"limit_title"}> You are above the legal import limit on the following item(s):</h4>
                         {aboveLimitList.map( value =>
 
-                            <h4 className={"limit_item"}>
+                            <div className={"limit_item"} key={value[1]}>
                                 <h4 className={"limit_text"}>Item: </h4>
                                 <h4 className={"limit_value"}> {value[0]},</h4>
                                 <h4 className={"limit_text"}>over limit: </h4>
                                 <h4 className={"limit_value"}> {value[1]}
                                 {value[0].split(' ')[0] === "Alcohol" ? "L" : ''}
-                                {value[0].split(' ')[0] === "Cigarettes" ? " pieces" : ''}</h4>
+                                {value[0].split(' ')[0] === "Cigarettes" ? " pieces" : ''}
+                                {value[0].split(' ')[0] === "Tobacco" ? " grams" : ''}</h4>
 
-                            </h4>
+                            </div>
 
 
                         )}

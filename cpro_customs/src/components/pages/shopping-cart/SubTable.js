@@ -13,7 +13,7 @@ import {GlobalState} from "../../context/GlobalState";
 
 class SubTable extends Component{
     render = () => {
-        const { isPayTable } = this.props
+        const { isPayTable, enablePayButton=true} = this.props
         return(
             <GlobalState.Consumer>
                 {globalState => (
@@ -46,7 +46,10 @@ class SubTable extends Component{
                                         <TableCell numeric className={"table_column"}>{this.renderVAT(item, globalState)}</TableCell>
                                         <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
                                         <TableCell numeric className={"exit_column"} padding={"none"}>
-                                            <RemoveButton onDelete={() => this.props.removeItem(isPayTable, index, item)} />
+                                            <RemoveButton
+                                                onDelete={() => this.props.removeItem(isPayTable, index, item)}
+                                                enablePayButton={enablePayButton}
+                                            />
                                         </TableCell>
                                     </TableRow>
                                 ))
