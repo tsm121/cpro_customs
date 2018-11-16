@@ -60,6 +60,10 @@ class AlcoholOrTobaccoItem extends Component {
                                                                         onChange={(e) => this.handlePitcherValueChange(globalState, e)}
                                                                         className={"cdp_input_field"}
                                                                         label={this.props.unit.toLocaleLowerCase()}
+                                                                        type={"number"}
+                                                                        onInput={(e)=>{
+                                                                            e.target.value = Math.max(0, parseFloat(e.target.value) ).toString().slice(0,6)
+                                                                        }}
                                                                     />
                                                                 </Grid>
                                                             </Grid>,

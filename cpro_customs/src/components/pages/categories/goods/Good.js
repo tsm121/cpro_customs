@@ -79,10 +79,6 @@ class Good extends Component {
                                                                     e.target.value = Math.max(0, parseFloat(e.target.value)).toString().slice(0, 9)
                                                                 }}
                                                                 placeholder={"0"}
-                                                                InputProps={{
-                                                                    startAdornment: <InputAdornment
-                                                                        position="start">$</InputAdornment>,
-                                                                }}
                                                             />
                                                         </Grid>
                                                         <Grid item xs={5} sm={6} md={5}>

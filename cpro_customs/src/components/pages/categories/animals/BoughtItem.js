@@ -108,6 +108,10 @@ class BoughtItem extends Component {
                                                             onChange={this.handleChange('value')}
                                                             variant="outlined"
                                                             style={{paddingLeft: "8px"}}
+                                                            type={"number"}
+                                                            onInput={(e)=>{
+                                                                e.target.value = Math.max(0, parseInt(e.target.value) ).toString().slice(0,8)
+                                                            }}
                                                         />
                                                     </Grid>
                                                     <Grid item>
@@ -119,6 +123,7 @@ class BoughtItem extends Component {
                                                             value={animal.currency}
                                                             onChange={this.handleChange('currency')}
                                                             variant={"outlined"}
+
                                                         >
                                                             {CURRENCIES.map(option => (
                                                                 <MenuItem key={option.value}
