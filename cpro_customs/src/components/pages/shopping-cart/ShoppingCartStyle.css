@@ -64,7 +64,7 @@
 }
 
 .declaration_button {
-    background-color: #37424a !important;
+    background-color: #ffd200 !important;
     margin: 15px !important;
     border-radius: 0 !important;
 }
@@ -73,6 +73,7 @@
     font-size: 1.5em !important;
     margin: 0 !important;
     padding: 10px;
+    font-weight: bold !important;
 }
 
 .declaration_button:disabled,
@@ -83,6 +84,7 @@
 .declaration_button:disabled .declaration_button_text,
 .declaration_button[disabled] .declaration_button_text {
     color: white !important;
+    font-weight: bold;
 }
 
 
