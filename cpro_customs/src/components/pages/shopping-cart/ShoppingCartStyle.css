@@ -70,10 +70,21 @@
 }
 
 .declaration_button_text {
-    font-size: 1.5vw !important;
+    font-size: 1.5em !important;
     margin: 0 !important;
     padding: 10px;
 }
+
+.declaration_button:disabled,
+.declaration_button[disabled] {
+    background-color: #e2e3e5 !important;
+}
+
+.declaration_button:disabled .declaration_button_text,
+.declaration_button[disabled] .declaration_button_text {
+    color: white !important;
+}
+
 
 
 /* ********************************************* */
@@ -87,7 +98,7 @@ img.remove_button_img {
 /* IconAndAmount */
 
 .iconAmount_text {
-    font-size: 1.1vw !important;
+    font-size: 1em !important;
     margin: 2px !important
 }
 
@@ -136,7 +147,7 @@ img.iconAmount_img {
     }
 
     .total_text {
-        font-size: 2.8vw !important;
+        font-size: 1.2em !important;
         color: #37424a;
     }
 
@@ -145,7 +156,7 @@ img.iconAmount_img {
     }
 
     .declaration_button_text {
-        font-size: 3.5vw !important;
+        font-size: 1.5em !important;
         padding: 5px;
     }
 
@@ -155,7 +166,7 @@ img.iconAmount_img {
     }
 
     .iconAmount_text {
-        font-size: 1.2em !important;
+        font-size: 1em !important;
         margin: 2px !important
     }
 
@@ -221,7 +232,7 @@ img.iconAmount_img {
     }
 
     .declaration_button_text {
-        font-size: 3.8vw !important;
+        font-size: 1.3em !important;
         padding: 5px;
     }
 
@@ -231,7 +242,7 @@ img.iconAmount_img {
     }
 
     .iconAmount_text {
-        font-size: 0.8em !important;
+        font-size: 0.9em !important;
         margin: 2px !important
     }
 

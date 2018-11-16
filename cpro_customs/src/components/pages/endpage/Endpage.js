@@ -6,10 +6,9 @@ import Receipt from "./Receipt";
 
 export default class Endpage extends Component {
 	render = () => {
-		const {globalState} = this.props
-		console.log(globalState)
+		const {globalState} = this.props;
 
-		let receipt_block
+		let receipt_block;
 
 		if(globalState.QRUrl.length >= 0){
 			receipt_block = <Grid item

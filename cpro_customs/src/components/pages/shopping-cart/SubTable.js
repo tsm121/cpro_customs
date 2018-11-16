@@ -54,7 +54,9 @@ class SubTable extends Component{
                                     </TableRow>
                                 ))
                                 }
+
                             </TableBody>
+
                         </Table>
                     </div>
                 )}
@@ -89,7 +91,7 @@ class SubTable extends Component{
         const {isPayTable} = this.props;
         let string = '';
         if (isPayTable && !globalState.isAlcoholOrTobacco(item.type)){
-            string += item.vat.toFixed(2) + " ";
+            string += item.vat.toFixed(0) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {
@@ -103,7 +105,7 @@ class SubTable extends Component{
         const {isPayTable} = this.props
         let string = '';
         if (isPayTable && item.fee !== undefined){
-            string += item.fee.toFixed(2) + " ";
+            string += item.fee.toFixed(0) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {

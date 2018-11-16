@@ -7,6 +7,8 @@ import SubTable from "./SubTable";
 import {validateData} from "./logic/validateData";
 import {GlobalState} from "../../context/GlobalState";
 import OverLimitFeedback from "./OverLimitFeedback";
+import {fixFormatting} from "./helper_methods/fixFormatting";
+import {mergeLists} from "./helper_methods/mergeLists";
 
 let aboveLimitList = []
 
@@ -64,6 +66,7 @@ class DeclarationTable extends Component {
                                         globalState={globalState} route={'/checkout'}
                                         disablePayButton={this.enableButton(globalState)}
                                         enablePayButton={this.enableButton}
+                                        payItems={payItems}
                             />
                         </Paper>
                     </div>
@@ -131,24 +134,7 @@ class DeclarationTable extends Component {
 
     createJSON = (globalState) => {
         const {payItems, freeItems} = this.props;
-
-        let payItemsCopy = JSON.parse(JSON.stringify(payItems));
-        let freeItemsCopy = JSON.parse(JSON.stringify(freeItems));
-
-        let totalList = [];
-        for (let payItem of payItemsCopy) {
-            for (let freeItem of freeItemsCopy) {
-                if (payItem.type === freeItem.type && payItem.name === freeItem.name) {
-                    let mergedItem = {...payItem, ...freeItem};
-                    mergedItem.amount = payItem.amount + freeItem.amount;
-                    mergedItem.value = parseInt(payItem.value, 10) + parseInt(freeItem.value, 10);
-                    totalList.push(mergedItem);
-                    payItemsCopy = payItemsCopy.filter(item => item !== payItem);
-                    freeItemsCopy = freeItemsCopy.filter(item => item !== freeItem);
-                }
-            }
-        }
-        let productList = [...payItemsCopy, ...freeItemsCopy, ...totalList]
+        let productList = mergeLists(payItems, freeItems);
 
         return {
             "id_number": "0",
@@ -160,10 +146,9 @@ class DeclarationTable extends Component {
             "currency": "NOK",
             "over_a_day": globalState.overADay,
             "number_of_people": globalState.number_of_people,
-            "products": this.fixFormatting(productList)
+            "products": fixFormatting(productList)
         }
     };
-
 
     fixFormatting = (productList) => {
         if (productList.length <= 0){
