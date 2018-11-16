@@ -21,12 +21,12 @@ if (workbox) {
     "revision": "42fc31c33280cb234aa152b87075cf00"
   },
   {
-    "url": "static/js/main.4dbe68aa.js",
-    "revision": "6c51c760c750b8e49625b38e4c7ca7b2"
+    "url": "static/js/main.ddc3dbe9.js",
+    "revision": "0e31b51cd6c975f8579a366584e6a6e0"
   },
   {
-    "url": "static/css/main.f43d6dfe.css",
-    "revision": "6bc24911bc272eec25da8ed47c102d08"
+    "url": "static/css/main.f9ebf2cf.css",
+    "revision": "780069750b4b4e25fd23c756206e3b29"
   },
   {
     "url": "assets/icons/icon-128x128.png",
