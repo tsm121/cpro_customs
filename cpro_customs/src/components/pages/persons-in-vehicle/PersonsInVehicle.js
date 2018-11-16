@@ -104,10 +104,8 @@ class PersonsInVehicle extends Component {
                                         amountPersonsShown < 12
                                             ? <Grid item
                                                     onClick={() => this.plusOnClick()}
-                                                    onMouseOver={() => this.plusOnMouseOver()}
-                                                    onMouseOut={() => this.plusOnMouseOut()}
                                             >
-                                                <img className="icon_sm"
+                                                <img className="icon_sm pointer"
                                                      src={require(`assets/img/icons/128x128/plus_black.png`)}
                                                      alt="add-person-icon"
                                                 />

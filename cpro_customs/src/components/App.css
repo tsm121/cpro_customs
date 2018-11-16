@@ -647,6 +647,14 @@ div.cdp_sub_selection_max_width_grid_item {
     padding-top: 0em;
 }
 
+.menu_container_left {
+    padding-left: 2em;
+}
+
+.menu_container_right {
+    padding-right: 2em;
+}
+
 
 /* ---- sm ---- */
 @media only screen and (max-width: 959px) {
@@ -777,6 +785,14 @@ div.cdp_sub_selection_max_width_grid_item {
 
     .light input, select, textarea {
         font-size: 1.8vmax;
+    }
+
+    .menu_container_left {
+        padding-left: 0em;
+    }
+
+    .menu_container_right {
+        padding-right: 0em;
     }
 }
 
