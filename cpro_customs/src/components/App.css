@@ -44,6 +44,10 @@ a img {
     outline: none;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 :focus {
     outline: 0 !important;
 }

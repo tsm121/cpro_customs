@@ -51,13 +51,13 @@ class ArrowButton extends Component  {
 
         if (showYellowIcon) {
             return (
-                <h4 className={"cdp arrow_button_text"} style={{color:'#ffd200'}}>
+                <h4 className={"cdp arrow_button_text pointer"} style={{color:'#ffd200'}}>
                     {text}
                 </h4>
             );
         } else {
             return (
-                <h4 className={"cdp arrow_button_text"}>
+                <h4 className={"cdp arrow_button_text pointer"}>
                     {text}
                 </h4>
             );
@@ -71,14 +71,14 @@ class ArrowButton extends Component  {
             case "down":
                 if (showYellowIcon) {
                     return (
-                        <img className="icon_sm"
+                        <img className="icon_sm pointer"
                              src={require("assets/img/icons/512x512/arrow_down_yellow.png")}
                              alt="arrow-down-yellow-cat"
                         />
                     );
                 } else {
                     return (
-                        <img className="icon_sm"
+                        <img className="icon_sm pointer"
                              src={require("assets/img/icons/512x512/arrow_down_white.png")}
                              alt="arrow-down-white-cat"
                         />
@@ -87,14 +87,14 @@ class ArrowButton extends Component  {
             case "up":
                 if (showYellowIcon) {
                     return (
-                        <img className="icon_sm"
+                        <img className="icon_sm pointer"
                              src={require("assets/img/icons/512x512/arrow_up_yellow.png")}
                              alt="arrow-up-yellow-cat"
                         />
                     );
                 } else {
                     return (
-                        <img className="icon_sm"
+                        <img className="icon_sm pointer"
                              src={require("assets/img/icons/512x512/arrow_up_white.png")}
                              alt="arrow-up-white-cat"
                         />
@@ -109,14 +109,12 @@ class ArrowButton extends Component  {
         this.setState({
             showYellowIcon: true,
         });
-        document.body.style.cursor = "pointer";
     }
 
     nextOnMouseOut() {
         this.setState({
             showYellowIcon: false,
         });
-        document.body.style.cursor = "default";
     }
 }
 

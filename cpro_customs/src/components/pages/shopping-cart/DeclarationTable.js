@@ -24,19 +24,6 @@ class DeclarationTable extends Component {
     render = () => {
         const {payItems, freeItems} = this.props
 
-        console.log("Render, aboveLimitList", aboveLimitList)
-
-        /*if (aboveLimitList.length > 0) {
-
-            error_message =
-                <div>
-
-                    <p> You are above the limit on the following item(s) </p>
-
-                    {aboveLimitList.map(value => value[0])}
-                </div>
-
-        }*/
         return (
             <GlobalState.Consumer>
                 {globalState => (
@@ -86,13 +73,9 @@ class DeclarationTable extends Component {
     };
 
     enableButton (globalState) {
-        console.log("aboveLimitsList", aboveLimitList.length)
-        console.log("GS", globalState.products)
         if (aboveLimitList.length > 1 || globalState.products.length === 0) {
-            console.log("Disable Pay Button")
             return true
         } else if (aboveLimitList.length === 0) {
-            console.log("Disable Pay Button")
             return false
         }
     }

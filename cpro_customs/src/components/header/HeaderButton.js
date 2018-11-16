@@ -21,13 +21,6 @@ class HeaderButton extends Component {
             </IconButton>
         )
     };
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 }
 
 export default HeaderButton;

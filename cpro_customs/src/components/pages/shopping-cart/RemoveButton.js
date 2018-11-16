@@ -27,17 +27,7 @@ export default class RemoveButton extends Component  {
     handleDeleteClick = () => {
         const {onDelete, enablePayButton} = this.props
         onDelete()
-
-
 }
-
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 
 }
 

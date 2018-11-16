@@ -58,17 +58,11 @@ class SubSelection extends Component {
     };
 
     onClick = () => {
-
-        this.props.history.push(this.props.route);
+        if (this.props.route.length > 0) {
+            this.props.history.push(this.props.route);
+        }
     };
 
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 }
 
 export default withRouter(SubSelection);

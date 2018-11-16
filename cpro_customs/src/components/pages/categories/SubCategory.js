@@ -102,13 +102,6 @@ class SubCategory extends Component {
         this.props.history.push(this.props.route);
     };
 
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 }
 
 SubCategory.propTypes = {

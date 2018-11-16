@@ -18,7 +18,6 @@ class TotalTable extends Component{
 
     render = () => {
         const {disablePayButton} = this.props
-        console.log("inside pay button", disablePayButton)
         return(
             <GlobalState.Consumer>
                 {globalState => (
@@ -66,13 +65,6 @@ class TotalTable extends Component{
         this.props.history.push(this.props.route);
     };
 
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 }
 
 export default withRouter(TotalTable);

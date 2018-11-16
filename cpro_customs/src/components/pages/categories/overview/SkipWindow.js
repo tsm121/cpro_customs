@@ -111,14 +111,12 @@ class SkipWindow extends Component  {
         this.setState({
             showYellowIcon: true,
         });
-        document.body.style.cursor = "pointer";
     }
 
     nextOnMouseOut() {
         this.setState({
             showYellowIcon: false,
         });
-        document.body.style.cursor = "default";
     }
 
     onClickEnd = () => {

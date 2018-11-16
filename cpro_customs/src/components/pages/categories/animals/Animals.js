@@ -15,14 +15,14 @@ class Animals extends Component {
                         <SubSelection
                             text={"I am travelling with my pet"}
                             icon={"dog"}
-                            route={"/categories/"}
+                            route={""}
                         />
                     </Grid>
                     <Grid item>
                         <SubSelection
                             text={"I am travelling with my horse"}
                             icon={"horse"}
-                            route={"/categories/"}
+                            route={""}
 
                         />
                     </Grid>
@@ -37,7 +37,7 @@ class Animals extends Component {
                         <SubSelection
                             text={"I want to import an animal"}
                             icon={"animal"}
-                            route={"/categories/"}
+                            route={""}
 
                         />
                     </Grid>
