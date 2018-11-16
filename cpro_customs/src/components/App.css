@@ -245,7 +245,7 @@ transform: translate(- 50 %, - 50 %);
     border-radius: 0 4px 4px 0 !important;
 }
 
-.month_input .MuiNotchedOutline-root-272 {
+.month_input input {
     border-radius: 4px 0 0 4px !important;
     border-width: 1px 0 1px 1px;
 }
@@ -346,7 +346,16 @@ span.cdp_icon_round_label {
 
 .add_remove_icon {
     font-size: 1.2em !important;
+}
 
+
+.minus_icon {
+    font-size: 1.2em !important;
+}
+
+span.minus_text {
+    font-size: 1.5em;
+    font-weight: 100;
 }
 
 .add_unit_icon {
@@ -375,11 +384,11 @@ span.cdp_icon_round_label {
 }
 
 .cdp_button_round_decrement:disabled,
-.cdp_button_round_decrement[disabled] {
-    background-color: #e2e3e5 !important;
-    color: #e2e3e5 !important;
-    border: 1px #e2e3e5 solid !important;
-}
+ .cdp_button_round_decrement[disabled] {
+     background-color: #e2e3e5 !important;
+     color: #999999 !important;
+     border: 1px #e2e3e5 solid !important;
+ }
 
 .cdp_button_round:hover {
     transition: all 300ms ease-in-out;
@@ -712,9 +721,21 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 2.3vw;
     }
 
+    span.minus_text {
+        font-size: 2.3vw;
+    }
+
     .add_remove_icon {
         font-size: 1.8vw !important;
 
+    }
+
+    .minus_icon {
+        font-size: 1.8vw !important;
+    }
+
+    .minus_number {
+        font-size: 1.8vw !important;
     }
 
     .cdp_button_round {
@@ -828,9 +849,17 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 2.2vmax;
     }
 
+    span.minus_text {
+        font-size: 2.2vmax;
+    }
+
     .add_remove_icon {
         font-size: 1.7vmax !important;
 
+    }
+
+    .minus_icon {
+        font-size: 1.7vmax !important;
     }
 
     .cdp_button_round {

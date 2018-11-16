@@ -13,8 +13,11 @@ class TollInfoBanner extends Component {
                 <Grid container justify={"center"} alignItems={"center"}>
                     <Grid item xs={11} className={"cdp_sub_selection_max_width_grid_item"}>
                         <Grid container>
-                            <Grid item xs={12} style={{backgroundColor: "#e2e3e5", paddingLeft: "10px"}}>
-                                <Grid container justify={"flex-start"} alignItems={"flex-start"}>
+                            <Grid item xs={12} style={{backgroundColor: "#e2e3e5"}}>
+                                <Grid container
+                                      justify={"center"}
+                                      alignItems={"center"}
+                                >
                                     <p className={"cdp_dark_grey"}>{text}</p>
                                 </Grid>
                             </Grid>
