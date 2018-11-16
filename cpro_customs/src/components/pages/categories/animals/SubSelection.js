@@ -17,6 +17,7 @@ class SubSelection extends Component {
                   justify={"center"}
                   alignItems={"center"}
                   direction={"row"}
+                  className={"pointer"}
             >
                 <Grid item xs={11} sm={10} md={8}
                       onClick={this.onClick}

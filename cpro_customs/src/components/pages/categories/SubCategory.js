@@ -39,6 +39,7 @@ class SubCategory extends Component {
                   justify={"center"}
                   alignItems={"center"}
                   direction={"row"}
+                  className={"pointer"}
             >
                 <Grid item
                       xs={11}

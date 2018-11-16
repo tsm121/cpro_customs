@@ -91,7 +91,7 @@ class PersonsInVehicle extends Component {
                                                       onMouseLeave={() => this.personOnMouseOut(value)}
                                                       onClick={() => this.personOnClick(value)}
                                                 >
-                                                    <img className="icon_sm" src={showYellowIcon[value] ?
+                                                    <img className="icon_sm pointer" src={showYellowIcon[value] ?
                                                         require(`assets/img/icons/128x128/person_yellow.png`) :
                                                         require(`assets/img/icons/128x128/person_black.png`)}
                                                          alt={value.toString() + "-persons-icon"}
@@ -169,14 +169,6 @@ class PersonsInVehicle extends Component {
         });
     }
 
-    plusOnMouseOver() {
-        document.body.style.cursor = "pointer";
-    }
-
-    plusOnMouseOut() {
-        document.body.style.cursor = "default";
-    }
-
     /**
      * Event handler for mouse over
      * Updates the state -> yellow icons are shown
@@ -187,8 +179,7 @@ class PersonsInVehicle extends Component {
         if (iconClicked[id]) {
             return;
         }
-        document.body.style.cursor = "pointer";
-        let showYellowIcon_2 = showYellowIcon;
+            let showYellowIcon_2 = showYellowIcon;
         for (let i = 0; i <= id; i++) showYellowIcon_2[i] = true;
         for (let i = id + 1; i < amountPersonsShown; i++) showYellowIcon_2[i] = false;
         this.setState({
