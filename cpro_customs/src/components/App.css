@@ -597,7 +597,7 @@ div.cdp_sub_selection_max_width_grid_item {
     -webkit-filter: grayscale(100%);
 }
 
-.modal_button_text {
+.modal_button_text_cookies {
     font-size: 1.8vmin;
     color: #37424a !important;
     padding: 0 !important
@@ -885,7 +885,7 @@ div.cdp_sub_selection_max_width_grid_item {
         font-size: 3.5vmin;
     }
 
-    .modal_button_text {
+    .modal_button_text_cookies {
         font-size: 1.4vmax;
     }
 
