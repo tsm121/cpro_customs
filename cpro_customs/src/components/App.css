@@ -325,6 +325,7 @@ h4.cdp {
 
 .cdp_category_sub_selection_only_title {
     font-size: 3.5vmin;
+    cursor: pointer;
 }
 
 .cdp_sub_sub_title {
@@ -447,7 +448,11 @@ div.cdp_sub_selection_max_width_grid_item {
     size: 5em;
 }
 
-.cdp_sub_paper_hover > .MuiPaper-root-14:hover {
+.cdp_sub_paper_hover {
+    cursor: pointer;
+}
+
+.cdp_sub_paper_hover:hover {
     transition: all 300ms ease-in-out;
     background-color: #ffd200;
     box-shadow: 10px 10px 12px 0px rgba(0, 0, 0, 0.2),

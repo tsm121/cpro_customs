@@ -51,14 +51,18 @@ class ArrowButton extends Component  {
 
         if (showYellowIcon) {
             return (
-                <h4 className={"cdp arrow_button_text pointer"} style={{color:'#ffd200'}}>
+                <h4 className={"cdp arrow_button_text"} style={{color:'#ffd200'}}>
+                    <div className={"pointer"}>
                     {text}
+                    </div>
                 </h4>
             );
         } else {
             return (
-                <h4 className={"cdp arrow_button_text pointer"}>
-                    {text}
+                <h4 className={"cdp arrow_button_text"}>
+                    <div className={"pointer"}>
+                        {text}
+                    </div>
                 </h4>
             );
         }

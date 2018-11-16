@@ -202,7 +202,6 @@ class PersonsInVehicle extends Component {
             return;
         }
         if (id === 0) return;
-        document.body.style.cursor = "default";
         let showYellowIcons_2 = showYellowIcon;
         for (let i = 1; i < amountPersonsShown; i++) showYellowIcons_2[i] = false;
         this.setState({
