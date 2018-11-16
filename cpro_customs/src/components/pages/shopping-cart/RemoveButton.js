@@ -5,11 +5,10 @@ import "./ShoppingCartStyle.css"
 
 export default class RemoveButton extends Component  {
     render = () => {
-        const{ onDelete } = this.props
         return (
             <div>
                 <IconButton
-                    onClick={onDelete}
+                    onClick={this.handleDeleteClick}
                     onMouseOver={this.onMouseOver}
                     onMouseOut={this.onMouseOut}
                     role="button"
@@ -25,13 +24,10 @@ export default class RemoveButton extends Component  {
         )
     }
 
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
+    handleDeleteClick = () => {
+        const {onDelete, enablePayButton} = this.props
+        onDelete()
+}
 
 }
 

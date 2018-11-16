@@ -1,13 +1,18 @@
 import React, {Component} from 'react'
 import {withRouter} from "react-router";
 
-import {AppBar, FormControl, Grid, Modal, Toolbar} from '@material-ui/core';
+import {AppBar, FormControl, Grid, Icon, Modal, Toolbar} from '@material-ui/core';
 
 import SettingsWindow from "./SettingsWindow";
 import BackButton from "./BackButton";
 import SettingsButton from "./SettingsButton";
 import ShoppingCartButton from "./ShoppingCartButton";
 import {GlobalState} from "../context/GlobalState";
+import IconButton from '@material-ui/core/IconButton';
+
+
+const EXLUDED_PAGES = ["/", "/persons-in-vehicle", "/on-boarding", "/endpage"]
+
 
 
 class Header extends Component {
@@ -16,6 +21,7 @@ class Header extends Component {
 
         this.state = {
             showSettingsModal: false,
+            showCategories: false,
         }
     }
 
@@ -31,6 +37,23 @@ class Header extends Component {
      */
     closeModal = () => {
         this.setState({showSettingsModal: false})
+    }
+
+    hideCategories = () => {
+        let current_location = this.props.history.location.pathname
+        console.log(EXLUDED_PAGES.includes(current_location))
+        console.log( )
+
+
+        if(EXLUDED_PAGES.includes(current_location)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    handleCategoriesButton = () => {
+            this.props.history.push("/categories");
     }
 
     render = () => {
@@ -49,19 +72,45 @@ class Header extends Component {
                                       justify="space-between"
                                       alignItems={"center"}
                                 >
-                                    <Grid item xs={2}>
+                                    <Grid item xs={5}>
+
+
                                         {/* do not show back button when on landing page */}
                                         {pathname === "/" ? null :
                                             <Grid container
                                                   justify={"center"}
                                                   alignItems={"center"}
                                             >
+
+                                                <Grid item xs={12} sm={7} md={7}>
+                                                    <Grid container
+                                                          justify={"flex-start"}
+                                                          alignItems={"center"}
+                                                          className={"menu_container_left"}
+                                                    >
                                                 <BackButton/>
+
+                                                <IconButton
+                                                    onClick={this.handleCategoriesButton}
+                                                    role="button"
+                                                    type="submit"
+                                                    value="page categories"
+                                                    aria-label="page categories"
+                                                    style={this.hideCategories() ? {display:"none"}: {display:"unset"} }
+                                                >
+                                                    <Icon>
+                                                        view_module
+                                                    </Icon>
+                                                </IconButton>
+
+                                                    </Grid>
+                                                </Grid>
+
                                             </Grid>
                                         }
                                     </Grid>
 
-                                    <Grid item xs={4}>
+                                    <Grid item xs={5}>
                                         <Grid container
                                               justify={"center"}
                                               alignItems={"center"}
@@ -70,6 +119,8 @@ class Header extends Component {
                                                 <Grid container
                                                       justify={"flex-end"}
                                                       alignItems={"center"}
+                                                      className={"menu_container_right"}
+
                                                 >
                                                     {globalState.products.length > 0 && !globalState.hasPaid ?
                                                         <ShoppingCartButton/> : ""}

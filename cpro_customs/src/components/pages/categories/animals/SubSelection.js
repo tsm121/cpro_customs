@@ -22,9 +22,8 @@ class SubSelection extends Component {
                       onClick={this.onClick}
                       onMouseOver={this.onMouseOver}
                       onMouseOut={this.onMouseOut}
-                      className={"cdp_sub_paper_hover"}
                 >
-                    <Paper className={"cdp_category_sub_selection_only_title"} style={{padding:"0.3em"}}>
+                    <Paper className={"cdp_category_sub_selection_only_title cdp_sub_paper_hover"} style={{padding:"0.3em"}}>
                         <Grid container
                               justify={"flex-start"}
                               alignItems={"center"}
@@ -39,7 +38,7 @@ class SubSelection extends Component {
                                             <Grid item>
                                                 <img className={"icon_xs"}
                                                      src={icons[icon]}
-                                                     alt={text.toString() + "-animal-xs-icon"}/>
+                                                     alt={text.toString() + "-cat-xs-icon"}/>
                                             </Grid>
                                         </Grid>
                                     </Grid>
@@ -58,17 +57,11 @@ class SubSelection extends Component {
     };
 
     onClick = () => {
-
-        this.props.history.push(this.props.route);
+        if (this.props.route.length > 0) {
+            this.props.history.push(this.props.route);
+        }
     };
 
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 }
 
 export default withRouter(SubSelection);

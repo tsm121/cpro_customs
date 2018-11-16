@@ -47,7 +47,7 @@ export default class CookieNotification extends Component  {
                                     value="I agree"
                                     size={"large"}
                                 >
-                                    <p className={"modal_button_text primary"}>I agree</p>
+                                    <p style={{margin:"0"}} className={"modal_button_text_cookies primary"}>I agree</p>
                                 </Button>
                             </Grid>
 
@@ -67,7 +67,7 @@ export default class CookieNotification extends Component  {
                                         href={"https://www.toll.no/en/"}
                                         onmouseover=""
                                         name="toll.no"
-                                        className={"modal_button_text"}
+                                        className={"modal_button_text_cookies"}
                                     >
                                          I don't agree
                                     </a>

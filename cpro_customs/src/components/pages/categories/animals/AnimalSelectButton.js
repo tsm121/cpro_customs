@@ -19,7 +19,7 @@ export default class AnimalSelectButton extends Component {
         const {text, icon} = this.props;
         return (
             <Grid container
-                  className={"cdp_animal_select_button"}
+                  className={"cdp_animal_select_button pointer"}
                   onClick={this.onClick}
                   onMouseOver={this.onMouseOver}
                   onMouseOut={this.onMouseOut}
@@ -45,18 +45,6 @@ export default class AnimalSelectButton extends Component {
                 </Grid>
             </Grid>
         )
-    };
-
-    onClick = () => {
-        document.body.style.cursor = "default";
-    };
-
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
     };
 
 }

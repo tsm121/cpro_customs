@@ -49,14 +49,14 @@ class NavigationArrow extends Component  {
             case "down":
                 if (showYellowIcon) {
                     return (
-                        <img className="icon_xl"
+                        <img className="icon_xl pointer"
                              src={require("assets/img/icons/512x512/arrow_down_yellow.png")}
                              alt="arrow-down-yellow"
                         />
                     );
                 } else {
                     return (
-                        <img className="icon_xl"
+                        <img className="icon_xl pointer"
                              src={require("assets/img/icons/512x512/arrow_down_white.png")}
                              alt="arrow-down-white"
                         />
@@ -65,14 +65,14 @@ class NavigationArrow extends Component  {
             case "right":
                 if (showYellowIcon) {
                     return (
-                        <img className="icon_xl"
+                        <img className="icon_xl pointer"
                              src={require("assets/img/icons/512x512/arrow_right_yellow.png")}
                              alt="arrow-right-yellow"
                         />
                     );
                 } else {
                     return (
-                        <img className="icon_xl"
+                        <img className="icon_xl pointer"
                              src={require("assets/img/icons/512x512/arrow_right_white.png")}
                              alt="arrow-right-white"
                         />
@@ -91,14 +91,12 @@ class NavigationArrow extends Component  {
         this.setState({
             showYellowIcon: true,
         });
-        document.body.style.cursor = "pointer";
     }
 
     nextOnMouseOut() {
         this.setState({
             showYellowIcon: false,
         });
-        document.body.style.cursor = "default";
     }
 }
 

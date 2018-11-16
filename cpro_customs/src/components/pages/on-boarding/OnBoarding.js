@@ -44,9 +44,9 @@ class OnBoarding extends Component  {
                         <h2 className={"cdp cdp_primary"}>
                             You need to set up your account
                         </h2>
-                        <h2 className={"cdp cdp_secondary"}>
-                            Please fill out your<br/> licence number and email
-                        </h2>
+                        <h3 className={"cdp cdp_secondary"}>
+                            Please fill out your licence number and email
+                        </h3>
                     </Grid>
                     <Grid item
                           style={{marginTop:'5%'}}

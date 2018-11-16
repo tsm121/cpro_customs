@@ -44,10 +44,10 @@ class SubCategory extends Component {
                       xs={11}
                       sm={10}
                       md={8}
-                      className={"cdp_sub_paper_hover cdp_sub_selection_max_width_grid_item"}
+                      className={"cdp_sub_selection_max_width_grid_item"}
                 >
                     <Paper
-                        className={"cdp_paper_category_sub_selection"}
+                        className={"cdp_paper_category_sub_selection cdp_sub_paper_hover"}
                         onClick={this.onClick}
                         onMouseOver={this.onMouseOver}
                         onMouseOut={this.onMouseOut}
@@ -102,13 +102,6 @@ class SubCategory extends Component {
         this.props.history.push(this.props.route);
     };
 
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 }
 
 SubCategory.propTypes = {

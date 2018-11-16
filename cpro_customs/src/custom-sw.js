@@ -21,12 +21,12 @@ if (workbox) {
     "revision": "42fc31c33280cb234aa152b87075cf00"
   },
   {
-    "url": "static/js/main.e66ae963.js",
-    "revision": "db59a320af6e9820862d0ae27b78419d"
+    "url": "static/js/main.4dbe68aa.js",
+    "revision": "6c51c760c750b8e49625b38e4c7ca7b2"
   },
   {
-    "url": "static/css/main.6414fd5e.css",
-    "revision": "e9ab34b2c1bbd20c838bced576123796"
+    "url": "static/css/main.f43d6dfe.css",
+    "revision": "6bc24911bc272eec25da8ed47c102d08"
   },
   {
     "url": "assets/icons/icon-128x128.png",
@@ -226,7 +226,7 @@ if (workbox) {
   },
   {
     "url": "index.html",
-    "revision": "d6072443c2ca161018a2260f688e839d"
+    "revision": "b599d8b471b7e160025c22e0e2703e14"
   },
   {
     "url": "registerServiceWorker.js",

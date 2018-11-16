@@ -36,14 +36,6 @@ class ShoppingCartButton extends Component {
     onClick = () => {
         this.props.history.push("/declaration-list");
     };
-
-    onMouseOver = () => {
-        document.body.style.cursor = "pointer";
-    };
-
-    onMouseOut = () => {
-        document.body.style.cursor = "default";
-    };
 }
 
 export default withRouter(ShoppingCartButton);

@@ -13,7 +13,7 @@ import {GlobalState} from "../../context/GlobalState";
 
 class SubTable extends Component{
     render = () => {
-        const { isPayTable } = this.props
+        const { isPayTable, enablePayButton=true} = this.props
         return(
             <GlobalState.Consumer>
                 {globalState => (
@@ -34,24 +34,27 @@ class SubTable extends Component{
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {(this.renderItems()).map((item, index) => {
-                                    return (
-                                        <TableRow key={item.id}>
-                                            <TableCell component="th" scope="row" className={"picture_column"}>
-                                                <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
-                                            </TableCell>
-                                            <TableCell className={"table_column category_column"}>
-                                                {item.type === "Goods" ? item.type + ": " + item.name : item.type}
-                                            </TableCell>
-                                            <TableCell numeric className={"table_column"}>{this.renderValue(item, globalState)}</TableCell>
-                                            <TableCell numeric className={"table_column"}>{this.renderVAT(item, globalState)}</TableCell>
-                                            <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
-                                            <TableCell numeric className={"exit_column"} padding={"none"}>
-                                                <RemoveButton onDelete={() => this.props.removeItem(isPayTable, index, item)} />
-                                            </TableCell>
-                                        </TableRow>
-                                    );
-                                })}
+                                {(this.renderItems()).map((item, index) => (
+                                    <TableRow key={item.id}>
+                                        <TableCell component="th" scope="row" className={"picture_column"}>
+                                            <IconAndAmount icon={item.icon} amount={item.amount} unit={item.unit}/>
+                                        </TableCell>
+                                        <TableCell className={"table_column category_column"}>
+                                            {item.type === "Goods" ? item.type + ": " + item.name : item.type}
+                                        </TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderValue(item, globalState)}</TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderVAT(item, globalState)}</TableCell>
+                                        <TableCell numeric className={"table_column"}>{this.renderFee(item)}</TableCell>
+                                        <TableCell numeric className={"exit_column"} padding={"none"}>
+                                            <RemoveButton
+                                                onDelete={() => this.props.removeItem(isPayTable, index, item)}
+                                                enablePayButton={enablePayButton}
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                ))
+                                }
+
                             </TableBody>
 
                         </Table>
@@ -74,7 +77,7 @@ class SubTable extends Component{
     renderValue = (item, globalState) => {
         let string = '';
         if (!globalState.isAlcoholOrTobacco(item.type)){
-            string += item.value * item.amount + " ";
+            string += (item.value * item.amount).toFixed(0) + " ";
             if (item.currency !== undefined){
                 string += item.currency
             } else {

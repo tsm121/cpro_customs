@@ -26,7 +26,7 @@ class PlusMinusButtons extends Component {
                                 type="submit"
                                 value="decrement unit"
                             >
-                                <RemoveIcon className={"add_remove_icon"}/><span className={"cdp_icon_round_label"}>1</span>
+                                <RemoveIcon className={"minus_icon"}/><span className={"minus_text"}>1</span>
                             </Button>
                         </Grid>
                         :

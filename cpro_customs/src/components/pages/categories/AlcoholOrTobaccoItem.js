@@ -31,20 +31,11 @@ class AlcoholOrTobaccoItem extends Component {
                                         {
                                             isOtherAmount
                                                 ?
-                                                <Grid item xs={12}>
-                                                    <Grid container>
-                                                        <Grid item sm={1} md={1}/>
-                                                        <Grid item xs={12} sm={6} md={6}>
-                                                            <Grid container>
-                                                                <p className={"cdp_dark_grey"}>Other amount</p>
-                                                            </Grid>
-                                                        </Grid>
-                                                    </Grid>
-                                                </Grid>
+                                                <div></div>
                                                 :
                                                 ""
                                         }
-                                        <Grid item xs={3} sm={5} md={5}>
+                                        <Grid item xs={2} sm={5} md={5}>
                                             <Grid container justify={"center"} alignItems={"center"}>
                                                 {
                                                     isOtherAmount
@@ -57,10 +48,6 @@ class AlcoholOrTobaccoItem extends Component {
                                                                         icon={icon}
                                                                         badgeContent={this.state.amount}
                                                                         color={"secondary"}
-                                                                        style={{
-                                                                            marginBottom: "-5px",
-                                                                            marginTop: "-5px"
-                                                                        }}
                                                                     />
                                                                 </Grid>
                                                             </Grid>,
@@ -73,6 +60,10 @@ class AlcoholOrTobaccoItem extends Component {
                                                                         onChange={(e) => this.handlePitcherValueChange(globalState, e)}
                                                                         className={"cdp_input_field"}
                                                                         label={this.props.unit.toLocaleLowerCase()}
+                                                                        type={"number"}
+                                                                        onInput={(e)=>{
+                                                                            e.target.value = Math.max(0, parseFloat(e.target.value) ).toString().slice(0,6)
+                                                                        }}
                                                                     />
                                                                 </Grid>
                                                             </Grid>,
@@ -86,15 +77,18 @@ class AlcoholOrTobaccoItem extends Component {
                                                                         icon={icon}
                                                                         badgeContent={this.state.amount}
                                                                         color={"secondary"}
-                                                                        style={{paddingBottom: "-10px"}}
                                                                     />
                                                                 </Grid>
                                                             </Grid>,
                                                             <Grid item xs={12} sm={4} md={3} key={1}>
-                                                                <Grid container justify={"center"}
-                                                                      alignItems={"center"}>
+                                                                <Grid container
+                                                                      justify={"center"}
+                                                                      alignItems={"center"}
+                                                                      alignContent={"center"}
+                                                                >
                                                                     <h3 className="cdp_dark_grey"
-                                                                        style={{paddingTop: "10px"}}>
+                                                                        style={{padding:"0", margin:"0", textAlign:"center"}}
+                                                                    >
                                                                         {value} {this.props.unit}
                                                                     </h3>
                                                                 </Grid>
