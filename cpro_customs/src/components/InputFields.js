@@ -187,7 +187,12 @@ export default class InputFields extends Component  {
                                 placeholder="eg. AA12345"
                                 margin="normal"
                                 variant="outlined"
-                                className={light ? 'light' : ''}
+                                className={
+                                    light ?
+                                        (!licencePlateInputError).toString() + "_light_is_valid " + 'light'
+                                        :
+                                        (!licencePlateInputError).toString() + "_is_valid " + ''
+                                }
                                 onChange={this.handleLicencePlateInput}
                                 error={licencePlateInputError}
                                 defaultValue={this.getLicencePlate()}
@@ -200,9 +205,10 @@ export default class InputFields extends Component  {
                           md={6}
                     >
                         <Grid container
-                              justify={"center"}>
+                              justify={"center"}
+                        >
                             <TextField
-                                id="outlined-email-input"
+                                id={"outlined-email-input"}
                                 label="Email"
                                 placeholder="mail@mail.com"
                                 type="email"
@@ -210,7 +216,12 @@ export default class InputFields extends Component  {
                                 autoComplete="email"
                                 margin="normal"
                                 variant="outlined"
-                                className={light ? 'light' : ''}
+                                className={
+                                    light ?
+                                        (!emailInputError).toString() + "_light_is_valid " + 'light'
+                                        :
+                                        (!emailInputError).toString() + "_is_valid " + ''
+                                }
                                 onChange={this.handleEmailInput}
                                 error={emailInputError}
                                 defaultValue={this.getEmailPlate()}
